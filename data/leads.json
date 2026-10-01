@@ -1,0 +1,1940 @@
+[
+  {
+    "id": "lead-1790876250782-0-2tpa2",
+    "businessName": "Apex Mehta Dental Care",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 985176605",
+    "email": "rahul@apexmehtadentalc.in",
+    "website": "https://www.apexmehtadentalc.in",
+    "decisionMakerName": "Dr. Rahul Mehta",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.1,
+    "googleReviewsCount": 26,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "5 - 15",
+    "audit": {
+      "loadTimeSeconds": 3.5,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 39,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4700,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (3.5s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Apex Mehta Dental Care?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Apex Mehta Dental Care. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Apex Mehta Dental Care's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Apex Mehta Dental Care's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Apex Mehta Dental Care while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Apex Mehta Dental Care's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Apex Mehta Dental Care while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Apex Mehta Dental Care—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Apex Mehta Dental Care in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Apex Mehta Dental Care, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": true,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-1-222ok",
+    "businessName": "Prime Miller Family Dental",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 984016825",
+    "email": "sarah@primemillerfamil.in",
+    "website": "https://www.primemillerfamil.in",
+    "decisionMakerName": "Dr. Sarah Miller",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.2,
+    "googleReviewsCount": 34,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "9 - 23",
+    "audit": {
+      "loadTimeSeconds": 4.2,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4200,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4800,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5300,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.2s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Prime Miller Family Dental?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Prime Miller Family Dental. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Prime Miller Family Dental's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Prime Miller Family Dental's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Prime Miller Family Dental while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Prime Miller Family Dental's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Prime Miller Family Dental while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Prime Miller Family Dental—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Prime Miller Family Dental in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Prime Miller Family Dental, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": true,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-2-75y7h",
+    "businessName": "Elite Verma Smile Studio",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 984052873",
+    "email": "amit@elitevermasmiles.in",
+    "website": "https://www.elitevermasmiles.in",
+    "decisionMakerName": "Dr. Amit Verma",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.3,
+    "googleReviewsCount": 51,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "13 - 31",
+    "audit": {
+      "loadTimeSeconds": 4.9,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4900,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5900,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.9s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Elite Verma Smile Studio?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Elite Verma Smile Studio. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Elite Verma Smile Studio's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Elite Verma Smile Studio's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Elite Verma Smile Studio while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Elite Verma Smile Studio's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Elite Verma Smile Studio while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Elite Verma Smile Studio—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Elite Verma Smile Studio in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Elite Verma Smile Studio, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": true,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-3-zts1t",
+    "businessName": "Aura Patel Orthodontics & Implants",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 986122669",
+    "email": "jessica@aurapatelorthodo.in",
+    "website": "https://www.aurapatelorthodo.in",
+    "decisionMakerName": "Dr. Jessica Patel",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.4,
+    "googleReviewsCount": 61,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "17 - 39",
+    "audit": {
+      "loadTimeSeconds": 5.6,
+      "mobileResponsive": false,
+      "hasLiveChat": true,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 3200,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 6500,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (5.6s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 2500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Aura Patel Orthodontics & Implants?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Aura Patel Orthodontics & Implants. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Aura Patel Orthodontics & Implants's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Aura Patel Orthodontics & Implants's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Aura Patel Orthodontics & Implants while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Aura Patel Orthodontics & Implants's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Aura Patel Orthodontics & Implants while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Aura Patel Orthodontics & Implants—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Aura Patel Orthodontics & Implants in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Aura Patel Orthodontics & Implants, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-4-0hi2j",
+    "businessName": "Summit Cooper Modern Dentistry",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 987219183",
+    "email": "vikram@summitcoopermode.in",
+    "website": "https://www.summitcoopermode.in",
+    "decisionMakerName": "Dr. Vikram Cooper",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.5,
+    "googleReviewsCount": 74,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "21 - 47",
+    "audit": {
+      "loadTimeSeconds": 2.8,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": true,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 51,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 2800,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 7100,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Summit Cooper Modern Dentistry?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Summit Cooper Modern Dentistry. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Summit Cooper Modern Dentistry's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Summit Cooper Modern Dentistry's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Summit Cooper Modern Dentistry while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Summit Cooper Modern Dentistry's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Summit Cooper Modern Dentistry while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Summit Cooper Modern Dentistry—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Summit Cooper Modern Dentistry in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Summit Cooper Modern Dentistry, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-5-57zmd",
+    "businessName": "Zenith Taylor Dental Spa",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 986126425",
+    "email": "elena@zenithtaylordent.in",
+    "website": "https://www.zenithtaylordent.in",
+    "decisionMakerName": "Dr. Elena Taylor",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.6,
+    "googleReviewsCount": 94,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "25 - 15",
+    "audit": {
+      "loadTimeSeconds": 3.5,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 39,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4800,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4100,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (3.5s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Zenith Taylor Dental Spa?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Zenith Taylor Dental Spa. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Zenith Taylor Dental Spa's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Zenith Taylor Dental Spa's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Zenith Taylor Dental Spa while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Zenith Taylor Dental Spa's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Zenith Taylor Dental Spa while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Zenith Taylor Dental Spa—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Zenith Taylor Dental Spa in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Zenith Taylor Dental Spa, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-6-fvayo",
+    "businessName": "NextGen Sharma Dental Care",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 985919243",
+    "email": "marcus@nextgensharmaden.in",
+    "website": "https://www.nextgensharmaden.in",
+    "decisionMakerName": "Dr. Marcus Sharma",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.7,
+    "googleReviewsCount": 103,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "5 - 23",
+    "audit": {
+      "loadTimeSeconds": 4.2,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4200,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4700,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.2s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding NextGen Sharma Dental Care?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for NextGen Sharma Dental Care. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding NextGen Sharma Dental Care's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for NextGen Sharma Dental Care's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across NextGen Sharma Dental Care while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on NextGen Sharma Dental Care's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across NextGen Sharma Dental Care while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for NextGen Sharma Dental Care—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with NextGen Sharma Dental Care in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to NextGen Sharma Dental Care, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-7-l73pa",
+    "businessName": "Horizon Jenkins Family Dental",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 981563139",
+    "email": "rahul@horizonjenkinsfa.in",
+    "website": "https://www.horizonjenkinsfa.in",
+    "decisionMakerName": "Dr. Rahul Jenkins",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.8,
+    "googleReviewsCount": 129,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "9 - 31",
+    "audit": {
+      "loadTimeSeconds": 4.9,
+      "mobileResponsive": false,
+      "hasLiveChat": true,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4900,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 3200,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5300,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.9s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 2500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Horizon Jenkins Family Dental?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Horizon Jenkins Family Dental. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Horizon Jenkins Family Dental's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Horizon Jenkins Family Dental's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Horizon Jenkins Family Dental while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Horizon Jenkins Family Dental's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Horizon Jenkins Family Dental while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Horizon Jenkins Family Dental—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Horizon Jenkins Family Dental in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Horizon Jenkins Family Dental, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-8-hes5u",
+    "businessName": "Prestige Mehta Smile Studio",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 983573937",
+    "email": "sarah@prestigemehtasmi.in",
+    "website": "https://www.prestigemehtasmi.in",
+    "decisionMakerName": "Dr. Sarah Mehta",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.1,
+    "googleReviewsCount": 130,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "13 - 39",
+    "audit": {
+      "loadTimeSeconds": 5.6,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5900,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (5.6s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Prestige Mehta Smile Studio?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Prestige Mehta Smile Studio. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Prestige Mehta Smile Studio's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Prestige Mehta Smile Studio's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Prestige Mehta Smile Studio while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Prestige Mehta Smile Studio's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Prestige Mehta Smile Studio while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Prestige Mehta Smile Studio—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Prestige Mehta Smile Studio in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Prestige Mehta Smile Studio, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-9-8vk8o",
+    "businessName": "Vanguard Miller Orthodontics & Implants",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 985022446",
+    "email": "amit@vanguardmilleror.in",
+    "website": "https://www.vanguardmilleror.in",
+    "decisionMakerName": "Dr. Amit Miller",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.2,
+    "googleReviewsCount": 155,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "17 - 47",
+    "audit": {
+      "loadTimeSeconds": 2.8,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": true,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 51,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 2800,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4800,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 6500,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Vanguard Miller Orthodontics & Implants?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Vanguard Miller Orthodontics & Implants. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Vanguard Miller Orthodontics & Implants's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Vanguard Miller Orthodontics & Implants's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Vanguard Miller Orthodontics & Implants while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Vanguard Miller Orthodontics & Implants's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Vanguard Miller Orthodontics & Implants while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Vanguard Miller Orthodontics & Implants—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Vanguard Miller Orthodontics & Implants in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Vanguard Miller Orthodontics & Implants, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-10-95n4a",
+    "businessName": "Omni Verma Modern Dentistry",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 982919632",
+    "email": "jessica@omnivermamodernd.in",
+    "website": "https://www.omnivermamodernd.in",
+    "decisionMakerName": "Dr. Jessica Verma",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.3,
+    "googleReviewsCount": 165,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "21 - 15",
+    "audit": {
+      "loadTimeSeconds": 3.5,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 39,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 7100,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (3.5s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Omni Verma Modern Dentistry?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Omni Verma Modern Dentistry. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Omni Verma Modern Dentistry's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Omni Verma Modern Dentistry's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Omni Verma Modern Dentistry while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Omni Verma Modern Dentistry's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Omni Verma Modern Dentistry while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Omni Verma Modern Dentistry—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Omni Verma Modern Dentistry in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Omni Verma Modern Dentistry, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-11-nwjj0",
+    "businessName": "Sterling Patel Dental Spa",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 989460556",
+    "email": "vikram@sterlingpatelden.in",
+    "website": "https://www.sterlingpatelden.in",
+    "decisionMakerName": "Dr. Vikram Patel",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.4,
+    "googleReviewsCount": 191,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "25 - 23",
+    "audit": {
+      "loadTimeSeconds": 4.2,
+      "mobileResponsive": false,
+      "hasLiveChat": true,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4200,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 3200,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4100,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.2s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 2500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Sterling Patel Dental Spa?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Sterling Patel Dental Spa. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Sterling Patel Dental Spa's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Sterling Patel Dental Spa's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Sterling Patel Dental Spa while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Sterling Patel Dental Spa's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Sterling Patel Dental Spa while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Sterling Patel Dental Spa—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Sterling Patel Dental Spa in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Sterling Patel Dental Spa, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-12-9i6k9",
+    "businessName": "Pinnacle Cooper Dental Care",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 984689792",
+    "email": "elena@pinnaclecooperde.in",
+    "website": "https://www.pinnaclecooperde.in",
+    "decisionMakerName": "Dr. Elena Cooper",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.5,
+    "googleReviewsCount": 191,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "5 - 31",
+    "audit": {
+      "loadTimeSeconds": 4.9,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4900,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4700,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.9s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Pinnacle Cooper Dental Care?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Pinnacle Cooper Dental Care. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Pinnacle Cooper Dental Care's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Pinnacle Cooper Dental Care's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Pinnacle Cooper Dental Care while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Pinnacle Cooper Dental Care's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Pinnacle Cooper Dental Care while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Pinnacle Cooper Dental Care—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Pinnacle Cooper Dental Care in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Pinnacle Cooper Dental Care, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-13-59258",
+    "businessName": "Radiant Taylor Family Dental",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 981606801",
+    "email": "marcus@radianttaylorfam.in",
+    "website": "https://www.radianttaylorfam.in",
+    "decisionMakerName": "Dr. Marcus Taylor",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.6,
+    "googleReviewsCount": 207,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "9 - 39",
+    "audit": {
+      "loadTimeSeconds": 5.6,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4800,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5300,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (5.6s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Radiant Taylor Family Dental?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Radiant Taylor Family Dental. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Radiant Taylor Family Dental's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Radiant Taylor Family Dental's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Radiant Taylor Family Dental while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Radiant Taylor Family Dental's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Radiant Taylor Family Dental while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Radiant Taylor Family Dental—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Radiant Taylor Family Dental in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Radiant Taylor Family Dental, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  },
+  {
+    "id": "lead-1790876250782-14-smhi5",
+    "businessName": "Nova Sharma Smile Studio",
+    "niche": "Dental Clinics",
+    "category": "Dental Clinics",
+    "city": "Mumbai",
+    "country": "India",
+    "phone": "+91 985757408",
+    "email": "rahul@novasharmasmiles.in",
+    "website": "https://www.novasharmasmiles.in",
+    "decisionMakerName": "Dr. Rahul Sharma",
+    "decisionMakerRole": "Owner & Head Practitioner",
+    "googleRating": 4.7,
+    "googleReviewsCount": 214,
+    "estimatedRevenue": "$1,500 - $6,000 / implant or smile makeover",
+    "employeeCount": "13 - 47",
+    "audit": {
+      "loadTimeSeconds": 2.8,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": true,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 51,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 2800,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5900,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Dr., this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Nova Sharma Smile Studio?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Nova Sharma Smile Studio. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Nova Sharma Smile Studio's website",
+        "Dr. - quick question about Dental Clinics lead intake in Mumbai",
+        "Fix for Nova Sharma Smile Studio's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Dr.,\n\nI came across Nova Sharma Smile Studio while researching top dental clinics providers in Mumbai.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Dental Clinics, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for dental clinics businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Nova Sharma Smile Studio's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Dr.! 👋 Came across Nova Sharma Smile Studio while reviewing top dental clinics services in Mumbai. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Nova Sharma Smile Studio—mind if I share the link here?",
+      "linkedinDm": "Hi Dr., impressed by your work with Nova Sharma Smile Studio in Mumbai. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Dr.. Most successful dental clinics businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Nova Sharma Smile Studio, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for Mumbai Dental Clinics batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-01T17:37:30.782Z"
+  }
+]
