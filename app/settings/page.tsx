@@ -8,14 +8,12 @@ import {
   Cpu, 
   Building, 
   Check, 
-  ArrowLeft 
+  ArrowLeft
 } from 'lucide-react';
 import { AppSettings } from '@/lib/db';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import {
   Select,
   SelectContent,
@@ -41,7 +39,6 @@ export default function SettingsPage() {
   const [ollamaOnline, setOllamaOnline] = useState(false);
   const [availableModels, setAvailableModels] = useState<string[]>([]);
   const [isSaved, setIsSaved] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/settings')
@@ -50,8 +47,7 @@ export default function SettingsPage() {
         if (data.success && data.settings) {
           setSettings(data.settings);
         }
-      })
-      .finally(() => setIsLoading(false));
+      });
 
     fetch('/api/ai/models')
       .then((res) => res.json())
@@ -82,115 +78,119 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-screen bg-[#09090B] text-zinc-100 font-sans selection:bg-indigo-500/30 selection:text-white">
       
       {/* Top Header */}
-      <header className="h-14 border-b border-border bg-card flex items-center justify-between px-4 sm:px-6 shrink-0 sticky top-0 z-40">
-        <div className="flex items-center gap-3">
-          <Button asChild variant="ghost" size="sm" className="h-8 gap-1 text-xs">
-            <Link href="/">
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Dashboard</span>
-            </Link>
-          </Button>
-          <Separator orientation="vertical" className="h-4" />
-          <Badge variant="outline" className="text-xs font-bold">
-            Settings
-          </Badge>
+      <header className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-[#09090B]/85 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Button asChild variant="ghost" size="sm" className="h-8 gap-1.5 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900">
+              <Link href="/">
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Back to Leads</span>
+              </Link>
+            </Button>
+            <div className="h-4 w-px bg-zinc-800" />
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">
+              System Configuration
+            </span>
+          </div>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         
         {/* Header */}
-        <div className="mb-8">
-          <Badge variant="secondary" className="mb-2 text-xs font-semibold">
+        <div className="pb-4 border-b border-zinc-800/80">
+          <Badge variant="outline" className="mb-2 text-xs font-semibold bg-indigo-500/10 border-indigo-500/30 text-indigo-400">
             <Settings className="w-3.5 h-3.5 mr-1" />
-            <span>Agency & AI Preferences</span>
+            <span>Agency & Engine Preferences</span>
           </Badge>
-          <h1 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">System Settings</h1>
-          <p className="text-xs text-muted-foreground">Configure your agency credentials, default niches, and local Ollama model.</p>
+          <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">System Settings</h1>
+          <p className="text-xs text-zinc-400 mt-1">Configure your agency details, default locations, and Ollama local LLM model.</p>
         </div>
 
         <form onSubmit={handleSave} className="space-y-6">
           
           {/* Section 1: Agency Profile */}
-          <Card className="p-6 space-y-4 shadow-xs">
-            <CardHeader className="p-0">
-              <CardTitle className="text-base font-bold flex items-center gap-2">
-                <Building className="w-4 h-4 text-primary" />
-                Your Agency Details (Auto-filled in pitches)
-              </CardTitle>
-            </CardHeader>
+          <div className="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 space-y-4 shadow-sm">
+            <div className="flex items-center gap-2 pb-3 border-b border-zinc-800">
+              <Building className="w-4 h-4 text-indigo-400" />
+              <h3 className="text-sm font-bold text-white">Agency Details (Included in Cold Pitches)</h3>
+            </div>
 
-            <CardContent className="p-0 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
-                <label className="block text-muted-foreground font-semibold mb-1.5">Agency / Company Name</label>
+                <label className="block text-zinc-400 font-semibold mb-1.5">Agency / Company Name</label>
                 <Input
                   type="text"
                   value={settings.agencyName}
                   onChange={(e) => setSettings({ ...settings, agencyName: e.target.value })}
-                  className="h-9 text-xs"
+                  className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
                 />
               </div>
 
               <div>
-                <label className="block text-muted-foreground font-semibold mb-1.5">Your Name (Sender)</label>
+                <label className="block text-zinc-400 font-semibold mb-1.5">Your Name (Sender)</label>
                 <Input
                   type="text"
                   value={settings.senderName}
                   onChange={(e) => setSettings({ ...settings, senderName: e.target.value })}
-                  className="h-9 text-xs"
+                  className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
                 />
               </div>
 
               <div>
-                <label className="block text-muted-foreground font-semibold mb-1.5">Your Direct Phone / WhatsApp</label>
+                <label className="block text-zinc-400 font-semibold mb-1.5">Your Direct Phone / WhatsApp</label>
                 <Input
                   type="text"
                   value={settings.senderPhone}
                   onChange={(e) => setSettings({ ...settings, senderPhone: e.target.value })}
-                  className="h-9 text-xs"
+                  className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
                 />
               </div>
 
               <div>
-                <label className="block text-muted-foreground font-semibold mb-1.5">Your Agency Email</label>
+                <label className="block text-zinc-400 font-semibold mb-1.5">Your Agency Email</label>
                 <Input
                   type="email"
                   value={settings.senderEmail}
                   onChange={(e) => setSettings({ ...settings, senderEmail: e.target.value })}
-                  className="h-9 text-xs"
+                  className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
                 />
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Section 2: Ollama Local LLM Configuration */}
-          <Card className="p-6 space-y-4 shadow-xs">
-            <CardHeader className="p-0 flex flex-row items-center justify-between">
-              <CardTitle className="text-base font-bold flex items-center gap-2">
-                <Cpu className="w-4 h-4 text-secondary" />
-                Local Ollama AI Integration
-              </CardTitle>
+          <div className="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 space-y-4 shadow-sm">
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-800">
+              <div className="flex items-center gap-2">
+                <Cpu className="w-4 h-4 text-emerald-400" />
+                <h3 className="text-sm font-bold text-white">Local Ollama AI Integration</h3>
+              </div>
 
-              <Badge variant={ollamaOnline ? "secondary" : "outline"} className="text-xs font-bold">
-                {ollamaOnline ? '● Ollama Online (Port 11434)' : '○ Offline Engine'}
-              </Badge>
-            </CardHeader>
+              <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${
+                ollamaOnline 
+                  ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
+                  : 'bg-zinc-800 border-zinc-700 text-zinc-400'
+              }`}>
+                {ollamaOnline ? 'Connected (Port 11434)' : 'Offline Engine Active'}
+              </span>
+            </div>
 
-            <CardContent className="p-0 text-xs space-y-3">
+            <div className="text-xs space-y-3">
               <div>
-                <label className="block text-muted-foreground font-semibold mb-1.5">Select Active LLM Model</label>
+                <label className="block text-zinc-400 font-semibold mb-1.5">Active LLM Model</label>
                 {availableModels.length > 0 ? (
                   <Select
                     value={settings.ollamaModel}
                     onValueChange={(val) => setSettings({ ...settings, ollamaModel: val })}
                   >
-                    <SelectTrigger className="h-9 text-xs">
+                    <SelectTrigger className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white">
                       <SelectValue placeholder="Select model" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-zinc-900 border-zinc-800 text-white text-xs">
                       {availableModels.map((m) => (
                         <SelectItem key={m} value={m}>
                           {m}
@@ -204,25 +204,25 @@ export default function SettingsPage() {
                     value={settings.ollamaModel}
                     onChange={(e) => setSettings({ ...settings, ollamaModel: e.target.value })}
                     placeholder="deepseek-v4-pro:cloud or kimi-k2.7-code:cloud"
-                    className="h-9 text-xs"
+                    className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
                   />
                 )}
               </div>
 
-              <p className="text-muted-foreground">
-                You pulled: <code className="text-primary font-mono">kimi-k2.7-code:cloud</code> and <code className="text-primary font-mono">deepseek-v4-pro:cloud</code>. Both generate hyper-persuasive objection handlers and cold pitches.
+              <p className="text-zinc-500 text-[11px] leading-relaxed">
+                Connected models generate custom scripts, technical objection counters, and personalized ROI packages on the fly.
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Save Button */}
           <Button
             type="submit"
-            className="w-full h-11 font-bold text-xs"
+            className="w-full h-11 font-bold text-xs bg-white text-zinc-950 hover:bg-zinc-200 shadow-md cursor-pointer"
           >
             {isSaved ? (
               <>
-                <Check className="w-4 h-4 mr-1.5 text-secondary" />
+                <Check className="w-4 h-4 mr-1.5 text-zinc-950" />
                 <span>Preferences Saved Successfully!</span>
               </>
             ) : (

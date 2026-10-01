@@ -1,33 +1,48 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { 
   RefreshCw, 
-  PhoneCall, 
-  Mail, 
-  MessageSquare, 
   ExternalLink, 
   Star, 
   Download, 
-  Settings, 
   Sparkles, 
   Search, 
-  ChevronRight, 
   Trash2, 
-  Check, 
-  TrendingUp, 
-  Layers, 
-  Filter 
+  Table as TableIcon,
+  Kanban,
+  LayoutGrid,
+  BarChart3,
+  FileText,
+  ArrowRight,
+  X,
+  Flame,
+  Phone,
+  MessageSquare
 } from 'lucide-react';
+import { 
+  AreaChart, 
+  Area, 
+  BarChart, 
+  Bar, 
+  PieChart, 
+  Pie, 
+  Cell, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer,
+  Legend
+} from 'recharts';
 import { Lead, LeadStatus, ServiceCategory } from '@/types/lead';
 import SalesBattlecardModal from '@/components/SalesBattlecardModal';
 import DailyGeneratorModal from '@/components/DailyGeneratorModal';
+import LeadCard from '@/components/LeadCard';
 import ServiceGapBadge from '@/components/ServiceGapBadge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import {
   Select,
   SelectContent,
@@ -36,55 +51,111 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+type ViewMode = 'table' | 'kanban' | 'cards' | 'analytics';
+
+// Vibrant Chart Color Palette (Indigo, Emerald, Cyan, Amber, Rose, Purple)
+const DONUT_COLORS: Record<string, string> = {
+  'Chatbots': '#6366F1', // Vibrant Indigo
+  'Voice AI': '#10B981', // Vibrant Emerald
+  'GEO / AEO': '#F59E0B', // Vibrant Amber
+  'Web / Apps': '#06B6D4', // Vibrant Cyan
+  'Portfolio': '#EC4899', // Vibrant Rose Pink
+};
+
+const STATUS_COLOR_CONFIG: Record<LeadStatus, { label: string; text: string; bg: string; border: string }> = {
+  new: { label: 'New', text: 'text-sky-400', bg: 'bg-sky-500/10', border: 'border-sky-500/25' },
+  to_call: { label: 'To Call', text: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/25' },
+  to_email: { label: 'To Email', text: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/25' },
+  contacted: { label: 'Contacted', text: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/25' },
+  meeting_booked: { label: 'Meeting', text: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/30' },
+  closed_won: { label: 'Won', text: 'text-emerald-300', bg: 'bg-emerald-500/25', border: 'border-emerald-400' },
+  not_interested: { label: 'Closed', text: 'text-zinc-500', bg: 'bg-zinc-800/40', border: 'border-zinc-800' },
+};
+
 export default function AdminConsoleDashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  
-  // Console Navigation Tabs
-  const [consoleTab, setConsoleTab] = useState<'OVERVIEW' | 'ADVANCED VIEW' | 'ALL LEADS'>('OVERVIEW');
-  const [timeRange, setTimeRange] = useState<'24H' | '7D' | '1M'>('7D');
+  const [isLoading, setIsLoading] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>('table');
 
   // Filters
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<LeadStatus | 'all'>('all');
   const [serviceFilter, setServiceFilter] = useState<ServiceCategory | 'all'>('all');
   const [selectedNiche, setSelectedNiche] = useState('All');
+  const [onlyStarred, setOnlyStarred] = useState(false);
 
   // Modals
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
-  const [selectedLeadForBattlecard, setSelectedLeadForBattlecard] = useState<Lead | null>(null);
+  const [selectedLeadForKit, setSelectedLeadForKit] = useState<Lead | null>(null);
 
   // Ollama status
   const [ollamaOnline, setOllamaOnline] = useState(false);
+  const [activeModel, setActiveModel] = useState('deepseek-v4-pro:cloud');
+  const [availableModels, setAvailableModels] = useState<string[]>([]);
 
-  useEffect(() => {
-    fetchLeads();
-    checkOllama();
-  }, []);
+  // Expanded notes state for table
+  const [expandedNotesId, setExpandedNotesId] = useState<string | null>(null);
+  const [noteInput, setNoteInput] = useState('');
 
-  const fetchLeads = async () => {
-    setIsLoading(true);
-    try {
-      const res = await fetch('/api/leads');
-      const data = await res.json();
-      if (data.success && data.leads) {
-        setLeads(data.leads);
-      }
-    } catch (err) {
-      console.error('Failed to fetch leads:', err);
-    } finally {
-      setIsLoading(false);
-    }
+  const loadData = () => {
+    fetch('/api/leads')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success && data.leads) {
+          setLeads(data.leads);
+        }
+      })
+      .catch((err) => console.error(err));
+
+    fetch('/api/ai/models')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          setOllamaOnline(!!data.isOnline);
+          if (data.models && data.models.length > 0) {
+            setAvailableModels(data.models);
+            setActiveModel(data.models[0]);
+          }
+        }
+      })
+      .catch(() => setOllamaOnline(false));
   };
 
-  const checkOllama = async () => {
-    try {
-      const res = await fetch('/api/ai/models');
-      const data = await res.json();
-      setOllamaOnline(!!data.isOnline);
-    } catch {
-      setOllamaOnline(false);
-    }
+  useEffect(() => {
+    let isMounted = true;
+    fetch('/api/leads')
+      .then((res) => res.json())
+      .then((data) => {
+        if (isMounted && data.success && data.leads) {
+          setLeads(data.leads);
+        }
+      })
+      .catch((err) => console.error(err));
+
+    fetch('/api/ai/models')
+      .then((res) => res.json())
+      .then((data) => {
+        if (isMounted && data) {
+          setOllamaOnline(!!data.isOnline);
+          if (data.models && data.models.length > 0) {
+            setAvailableModels(data.models);
+            setActiveModel(data.models[0]);
+          }
+        }
+      })
+      .catch(() => {
+        if (isMounted) setOllamaOnline(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleRefresh = async () => {
+    setIsLoading(true);
+    loadData();
+    setTimeout(() => setIsLoading(false), 500);
   };
 
   const handleUpdateStatus = async (id: string, status: LeadStatus) => {
@@ -103,6 +174,21 @@ export default function AdminConsoleDashboard() {
     }
   };
 
+  const handleToggleStar = async (id: string, starred: boolean) => {
+    setLeads((prev) =>
+      prev.map((l) => (l.id === id ? { ...l, starred } : l))
+    );
+    try {
+      await fetch(`/api/leads/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ starred })
+      });
+    } catch (err) {
+      console.error('Failed to toggle star:', err);
+    }
+  };
+
   const handleDeleteLead = async (id: string) => {
     if (!confirm('Are you sure you want to delete this lead?')) return;
     setLeads((prev) => prev.filter((l) => l.id !== id));
@@ -113,456 +199,933 @@ export default function AdminConsoleDashboard() {
     }
   };
 
+  const handleAddNote = async (id: string, note: string) => {
+    if (!note.trim()) return;
+    const lead = leads.find((l) => l.id === id);
+    if (!lead) return;
+    const updatedNotes = [...(lead.notes || []), note.trim()];
+
+    setLeads((prev) =>
+      prev.map((l) => (l.id === id ? { ...l, notes: updatedNotes } : l))
+    );
+    setNoteInput('');
+
+    try {
+      await fetch(`/api/leads/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ notes: updatedNotes })
+      });
+    } catch (err) {
+      console.error('Failed to add note:', err);
+    }
+  };
+
   // Metrics Calculations
   const totalLeads = leads.length;
-  const chatbotCount = leads.filter((l) => l.audit.topGaps.some((g) => g.service === 'chatbots')).length;
-  const voiceCount = leads.filter((l) => l.audit.topGaps.some((g) => g.service === 'calling_agents')).length;
-  const geoCount = leads.filter((l) => l.audit.topGaps.some((g) => g.service === 'seo_aeo_geo')).length;
-  const webCount = leads.filter((l) => l.audit.topGaps.some((g) => g.service === 'web_app')).length;
-
   const toCallCount = leads.filter((l) => ['new', 'to_call'].includes(l.status)).length;
   const contactedCount = leads.filter((l) => ['contacted', 'to_email'].includes(l.status)).length;
   const meetingsCount = leads.filter((l) => l.status === 'meeting_booked').length;
   const wonCount = leads.filter((l) => l.status === 'closed_won').length;
 
-  const filteredLeads = leads.filter((lead) => {
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      const match =
-        lead.businessName.toLowerCase().includes(q) ||
-        lead.decisionMakerName.toLowerCase().includes(q) ||
-        lead.phone.toLowerCase().includes(q) ||
-        lead.city.toLowerCase().includes(q) ||
-        lead.niche.toLowerCase().includes(q);
-      if (!match) return false;
+  const totalMonthlyLeak = useMemo(() => {
+    return leads.reduce((acc, lead) => {
+      const leadLeak = (lead.audit?.topGaps || []).reduce((sum, g) => sum + (g.estimatedLostRevenueMonthly || 0), 0);
+      return acc + leadLeak;
+    }, 0);
+  }, [leads]);
+
+  const avgHealthScore = useMemo(() => {
+    if (leads.length === 0) return 0;
+    const sum = leads.reduce((acc, l) => acc + (l.audit?.overallHealthScore || 0), 0);
+    return Math.round(sum / leads.length);
+  }, [leads]);
+
+  // Unique Niches
+  const allNiches = useMemo(() => {
+    const set = new Set<string>();
+    leads.forEach((l) => {
+      if (l.niche) set.add(l.niche);
+    });
+    return Array.from(set);
+  }, [leads]);
+
+  // Filtered Leads
+  const filteredLeads = useMemo(() => {
+    return leads.filter((lead) => {
+      if (onlyStarred && !lead.starred) return false;
+
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const match =
+          lead.businessName.toLowerCase().includes(q) ||
+          lead.decisionMakerName.toLowerCase().includes(q) ||
+          lead.phone.toLowerCase().includes(q) ||
+          lead.city.toLowerCase().includes(q) ||
+          lead.niche.toLowerCase().includes(q);
+        if (!match) return false;
+      }
+
+      if (statusFilter !== 'all' && lead.status !== statusFilter) return false;
+      if (serviceFilter !== 'all' && !lead.audit.topGaps.some((g) => g.service === serviceFilter)) return false;
+      if (selectedNiche !== 'All' && lead.niche !== selectedNiche) return false;
+
+      return true;
+    });
+  }, [leads, searchQuery, statusFilter, serviceFilter, selectedNiche, onlyStarred]);
+
+  // Chart Data Calculations
+  const serviceDistributionData = useMemo(() => {
+    const counts: Record<string, number> = {
+      'Chatbots': 0,
+      'Voice AI': 0,
+      'GEO / AEO': 0,
+      'Web / Apps': 0,
+      'Portfolio': 0
+    };
+    leads.forEach((l) => {
+      l.audit.topGaps.forEach((g) => {
+        if (g.service === 'chatbots') counts['Chatbots']++;
+        else if (g.service === 'calling_agents') counts['Voice AI']++;
+        else if (g.service === 'seo_aeo_geo') counts['GEO / AEO']++;
+        else if (g.service === 'web_app') counts['Web / Apps']++;
+        else if (g.service === 'portfolio') counts['Portfolio']++;
+      });
+    });
+    return Object.entries(counts).map(([name, value]) => ({ 
+      name, 
+      value,
+      color: DONUT_COLORS[name] || '#6366F1'
+    }));
+  }, [leads]);
+
+  const nicheRevenueLeakData = useMemo(() => {
+    const leakByNiche: Record<string, number> = {};
+    leads.forEach((l) => {
+      const niche = l.niche || 'Other';
+      const leak = l.audit.topGaps.reduce((sum, g) => sum + (g.estimatedLostRevenueMonthly || 0), 0);
+      leakByNiche[niche] = (leakByNiche[niche] || 0) + leak;
+    });
+    return Object.entries(leakByNiche)
+      .map(([niche, totalLeak]) => ({
+        niche: niche.length > 14 ? niche.substring(0, 12) + '..' : niche,
+        leak: totalLeak
+      }))
+      .sort((a, b) => b.leak - a.leak)
+      .slice(0, 6);
+  }, [leads]);
+
+  const pipelineStageData = useMemo(() => {
+    return [
+      { stage: 'New', count: leads.filter((l) => l.status === 'new').length },
+      { stage: 'To Call', count: leads.filter((l) => l.status === 'to_call').length },
+      { stage: 'Contacted', count: leads.filter((l) => ['contacted', 'to_email'].includes(l.status)).length },
+      { stage: 'Meetings', count: leads.filter((l) => l.status === 'meeting_booked').length },
+      { stage: 'Won', count: leads.filter((l) => l.status === 'closed_won').length }
+    ];
+  }, [leads]);
+
+  // Kanban Columns with Vibrant Column Accent Bars
+  const kanbanColumns: { status: LeadStatus; title: string; color: string; border: string; leads: Lead[] }[] = [
+    {
+      status: 'new',
+      title: 'New Discovered',
+      color: 'text-sky-400',
+      border: 'border-t-2 border-t-sky-500',
+      leads: filteredLeads.filter((l) => l.status === 'new')
+    },
+    {
+      status: 'to_call',
+      title: 'Ready to Dial',
+      color: 'text-amber-400',
+      border: 'border-t-2 border-t-amber-500',
+      leads: filteredLeads.filter((l) => l.status === 'to_call')
+    },
+    {
+      status: 'contacted',
+      title: 'In Dialogue',
+      color: 'text-purple-400',
+      border: 'border-t-2 border-t-purple-500',
+      leads: filteredLeads.filter((l) => ['contacted', 'to_email'].includes(l.status))
+    },
+    {
+      status: 'meeting_booked',
+      title: 'Meeting Booked',
+      color: 'text-emerald-400',
+      border: 'border-t-2 border-t-emerald-500',
+      leads: filteredLeads.filter((l) => l.status === 'meeting_booked')
+    },
+    {
+      status: 'closed_won',
+      title: 'Closed Won',
+      color: 'text-emerald-300',
+      border: 'border-t-2 border-t-emerald-400',
+      leads: filteredLeads.filter((l) => l.status === 'closed_won')
     }
-    if (statusFilter !== 'all' && lead.status !== statusFilter) return false;
-    if (serviceFilter !== 'all' && !lead.audit.topGaps.some((g) => g.service === serviceFilter)) return false;
-    if (selectedNiche !== 'All' && lead.niche !== selectedNiche) return false;
-    return true;
-  });
+  ];
+
+  const clearAllFilters = () => {
+    setSearchQuery('');
+    setStatusFilter('all');
+    setServiceFilter('all');
+    setSelectedNiche('All');
+    setOnlyStarred(false);
+  };
+
+  const hasActiveFilters = searchQuery || statusFilter !== 'all' || serviceFilter !== 'all' || selectedNiche !== 'All' || onlyStarred;
 
   return (
-    <div className="min-h-screen bg-black text-zinc-100 font-sans p-6 sm:p-10 selection:bg-zinc-800 selection:text-white">
-      <div className="max-w-7xl mx-auto space-y-8">
-        
-        {/* Top Header Console */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2.5">
-              <span className="w-3.5 h-3.5 rounded-full border border-zinc-500 inline-block" />
-              <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-white">
-                Admin Console
-              </h1>
-            </div>
-            <p className="text-xs text-zinc-400 mt-1">
-              Overviewing system metrics, client tech leakages, and active daily outreach.
-            </p>
+    <div className="min-h-screen bg-[#09090B] text-[#EDEDED] font-sans antialiased selection:bg-indigo-500/30 selection:text-white">
+      
+      {/* Top Navbar */}
+      <header className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-[#09090B]/85 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+          
+          {/* Breadcrumb / Workspace Brand */}
+          <div className="flex items-center gap-4 text-xs">
+            <Link href="/" className="flex items-center gap-2.5 text-white font-semibold tracking-tight">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-emerald-400 p-[1.5px]">
+                <div className="w-full h-full bg-zinc-950 rounded-[6px] flex items-center justify-center">
+                  <Flame className="w-4 h-4 text-indigo-400" />
+                </div>
+              </div>
+              <span className="text-sm font-bold">LeadPulse</span>
+            </Link>
+
+            <span className="text-zinc-700">/</span>
+
+            <nav className="flex items-center gap-1 text-xs font-medium">
+              <Link 
+                href="/" 
+                className="px-2.5 py-1 rounded-md text-white bg-zinc-900 border border-zinc-800"
+              >
+                Pipeline
+              </Link>
+
+              <Link 
+                href="/proposals" 
+                className="px-2.5 py-1 rounded-md text-zinc-400 hover:text-zinc-200 transition-colors"
+              >
+                Teasers
+              </Link>
+
+              <Link 
+                href="/settings" 
+                className="px-2.5 py-1 rounded-md text-zinc-400 hover:text-zinc-200 transition-colors"
+              >
+                Settings
+              </Link>
+            </nav>
           </div>
 
+          {/* Right Header Controls */}
           <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={fetchLeads}
-              className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white"
+            
+            {/* Engine Status Dot */}
+            <div 
+              className={`hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-full border text-[11px] font-mono ${
+                ollamaOnline 
+                  ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
+                  : 'bg-zinc-950 border-zinc-800 text-zinc-400'
+              }`}
             >
-              <RefreshCw className={`w-3.5 h-3.5 mr-1.5 ${isLoading ? 'animate-spin' : ''}`} />
-              Refresh
-            </Button>
+              <span className={`w-1.5 h-1.5 rounded-full ${ollamaOnline ? 'bg-emerald-400' : 'bg-zinc-500'}`} />
+              <span>{ollamaOnline ? activeModel.split(':')[0] : 'engine'}</span>
+            </div>
 
             <Button
               variant="outline"
               size="sm"
               onClick={() => window.open('/api/export?format=csv', '_blank')}
-              className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white"
+              className="h-7 px-2.5 text-xs bg-zinc-950 border-zinc-800 text-zinc-300 hover:bg-zinc-900 hover:text-white rounded-md"
             >
-              <Download className="w-3.5 h-3.5 mr-1.5" />
+              <Download className="w-3 h-3 mr-1.5 text-zinc-400" />
               Export
+            </Button>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              className="h-7 w-7 p-0 bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-white rounded-md"
+              title="Refresh leads"
+            >
+              <RefreshCw className={`w-3 h-3 ${isLoading ? 'animate-spin text-indigo-400' : ''}`} />
             </Button>
 
             <Button
               size="sm"
               onClick={() => setIsGeneratorOpen(true)}
-              className="h-8 text-xs bg-white text-black hover:bg-zinc-200 font-bold"
+              className="h-7 px-3 text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md shadow-sm cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5 mr-1.5" />
+              <Sparkles className="w-3 h-3 mr-1.5 text-indigo-200" />
               Generate Leads
             </Button>
+
           </div>
-        </div>
 
-        {/* Console Navigation Tabs */}
-        <div className="flex items-center gap-6 border-b border-zinc-800/80 pb-2 text-xs font-semibold tracking-wider uppercase">
-          {(['OVERVIEW', 'ADVANCED VIEW', 'ALL LEADS'] as const).map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setConsoleTab(tab)}
-              className={`pb-2 border-b-2 transition-all cursor-pointer ${
-                consoleTab === tab
-                  ? 'border-white text-white'
-                  : 'border-transparent text-zinc-500 hover:text-zinc-300'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
         </div>
+      </header>
 
-        {/* Top 4 KPI Dark Bento Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Main Content Area */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+        
+        {/* Colorful Linear-Style KPI Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 border border-zinc-800 bg-zinc-950/70 rounded-xl divide-y md:divide-y-0 md:divide-x divide-zinc-800 shadow-sm overflow-hidden">
           
-          {/* Card 1: Total Leads */}
-          <div className="p-6 rounded-xl bg-zinc-900/90 border border-zinc-800/80 flex flex-col justify-between min-h-[140px]">
-            <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
-              TOTAL LEADS
-            </div>
-            <div className="text-4xl font-extrabold text-white tracking-tight">
+          <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-indigo-400">Total Leads in CRM</span>
+            <div className="text-3xl font-extrabold text-white tracking-tight mt-1 font-mono">
               {totalLeads}
             </div>
-            <div className="text-[11px] text-zinc-500 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              {toCallCount} ready to dial today
+            <div className="text-[11px] text-zinc-400 mt-1 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span>{toCallCount} ready to dial</span>
             </div>
           </div>
 
-          {/* Card 2: Services Breakdown */}
-          <div className="p-6 rounded-xl bg-zinc-900/90 border border-zinc-800/80 flex flex-col justify-between min-h-[140px] text-xs">
-            <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
-              SERVICES BREAKDOWN
+          <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-rose-400">Client Revenue Leak</span>
+            <div className="text-3xl font-extrabold text-rose-400 tracking-tight mt-1 font-mono">
+              ${(totalMonthlyLeak / 1000).toFixed(0)}k<span className="text-xs text-zinc-500 font-normal">/mo</span>
             </div>
-            <div className="space-y-1 mt-2">
-              <div className="flex justify-between text-zinc-300">
-                <span className="text-zinc-400">AI Chatbots</span>
-                <span className="font-bold text-white">{chatbotCount}</span>
-              </div>
-              <div className="flex justify-between text-zinc-300">
-                <span className="text-zinc-400">Voice Agents</span>
-                <span className="font-bold text-white">{voiceCount}</span>
-              </div>
-              <div className="flex justify-between text-zinc-300">
-                <span className="text-zinc-400">GEO / AEO Search</span>
-                <span className="font-bold text-white">{geoCount}</span>
-              </div>
-              <div className="flex justify-between text-zinc-300">
-                <span className="text-zinc-400">Web / App Dev</span>
-                <span className="font-bold text-white">{webCount}</span>
-              </div>
+            <div className="text-[11px] text-zinc-400 mt-1">
+              Missed customer inquiries
             </div>
           </div>
 
-          {/* Card 3: Outreach Check */}
-          <div className="p-6 rounded-xl bg-zinc-900/90 border border-zinc-800/80 flex flex-col justify-between min-h-[140px] text-xs">
-            <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
-              OUTREACH CHECK
+          <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400">Outreach Conversion</span>
+            <div className="text-3xl font-extrabold text-emerald-400 tracking-tight mt-1 font-mono">
+              {meetingsCount} <span className="text-xs font-normal text-zinc-400">Booked</span>
             </div>
-            <div className="space-y-1.5 mt-2">
-              <div className="flex justify-between text-zinc-300">
-                <span className="text-zinc-400">To Call Queue</span>
-                <span className="font-bold text-white">{toCallCount}</span>
-              </div>
-              <div className="flex justify-between text-zinc-300">
-                <span className="text-zinc-400">In Conversation</span>
-                <span className="font-bold text-white">{contactedCount}</span>
-              </div>
-              <div className="flex justify-between text-zinc-300">
-                <span className="text-zinc-400">Booked Meetings</span>
-                <span className="font-bold text-emerald-400">{meetingsCount}</span>
-              </div>
+            <div className="text-[11px] text-zinc-400 mt-1">
+              {contactedCount} contacted · {wonCount} won
             </div>
           </div>
 
-          {/* Card 4: Won Deals */}
-          <div className="p-6 rounded-xl bg-zinc-900/90 border border-zinc-800/80 flex flex-col justify-between min-h-[140px]">
-            <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
-              CLOSED DEALS (WON)
+          <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400">Avg Tech Health</span>
+            <div className="text-3xl font-extrabold text-cyan-400 tracking-tight mt-1 font-mono">
+              {avgHealthScore}<span className="text-xs text-zinc-500 font-normal">/100</span>
             </div>
-            <div className="text-4xl font-extrabold text-white tracking-tight">
-              {wonCount}
-            </div>
-            <div className="text-[11px] text-zinc-500">
-              High-ticket client closures
+            <div className="text-[11px] text-zinc-400 mt-1">
+              {avgHealthScore < 60 ? 'Heavy tech vulnerabilities' : 'Moderate agency scope'}
             </div>
           </div>
 
         </div>
 
-        {/* Subheader: Performance Analytics Bar */}
-        <div className="flex items-center justify-between pt-2">
-          <div className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
-            PERFORMANCE ANALYTICS
+        {/* View Tabs & Action Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-800/80 pb-3">
+          
+          {/* View Mode Buttons */}
+          <div className="flex items-center gap-1 bg-zinc-950 p-1 rounded-lg border border-zinc-800/80">
+            <button
+              onClick={() => setViewMode('table')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+                viewMode === 'table'
+                  ? 'bg-zinc-800 text-white'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <TableIcon className="w-3.5 h-3.5 text-indigo-400" />
+              <span>Table</span>
+            </button>
+
+            <button
+              onClick={() => setViewMode('kanban')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+                viewMode === 'kanban'
+                  ? 'bg-zinc-800 text-white'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Kanban className="w-3.5 h-3.5 text-amber-400" />
+              <span>Pipeline</span>
+            </button>
+
+            <button
+              onClick={() => setViewMode('cards')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+                viewMode === 'cards'
+                  ? 'bg-zinc-800 text-white'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Cards</span>
+            </button>
+
+            <button
+              onClick={() => setViewMode('analytics')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors cursor-pointer ${
+                viewMode === 'analytics'
+                  ? 'bg-zinc-800 text-white'
+                  : 'text-zinc-400 hover:text-white'
+              }`}
+            >
+              <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Insights</span>
+            </button>
           </div>
 
-          <div className="flex items-center gap-1 bg-zinc-900 p-0.5 rounded-lg border border-zinc-800 text-xs">
-            {(['24H', '7D', '1M'] as const).map((t) => (
+          {/* Starred Filter & Counter */}
+          <div className="flex items-center gap-2 text-xs">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setOnlyStarred(!onlyStarred)}
+              className={`h-7 text-xs px-2.5 ${
+                onlyStarred ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-transparent border-zinc-800 text-zinc-400 hover:text-white'
+              }`}
+            >
+              <Star className={`w-3 h-3 mr-1 ${onlyStarred ? 'fill-amber-400 text-amber-400' : ''}`} />
+              <span>Starred</span>
+            </Button>
+
+            <span className="text-zinc-500 font-mono text-[11px]">
+              {filteredLeads.length} of {totalLeads}
+            </span>
+
+            {hasActiveFilters && (
               <button
-                key={t}
-                onClick={() => setTimeRange(t)}
-                className={`px-3 py-1 rounded-md font-semibold text-xs transition-colors cursor-pointer ${
-                  timeRange === t
-                    ? 'bg-zinc-800 text-white shadow-xs'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
+                onClick={clearAllFilters}
+                className="text-[11px] text-indigo-400 hover:underline flex items-center gap-1 ml-1 cursor-pointer"
               >
-                {t}
+                <X className="w-3 h-3" />
+                Clear
               </button>
+            )}
+          </div>
+
+        </div>
+
+        {/* Minimal Search & Filter Bar */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+          
+          <div className="relative">
+            <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-500" />
+            <Input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search leads..."
+              className="pl-8 h-8 text-xs bg-zinc-950 border-zinc-800 text-white placeholder-zinc-500 rounded-md focus:border-indigo-500 focus:ring-0"
+            />
+          </div>
+
+          <Select value={selectedNiche} onValueChange={setSelectedNiche}>
+            <SelectTrigger className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-300 rounded-md">
+              <SelectValue placeholder="All Niches" />
+            </SelectTrigger>
+            <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
+              <SelectItem value="All">All Niches</SelectItem>
+              {allNiches.map((n) => (
+                <SelectItem key={n} value={n}>{n}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          <Select value={serviceFilter} onValueChange={(v) => setServiceFilter(v as ServiceCategory | 'all')}>
+            <SelectTrigger className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-300 rounded-md">
+              <SelectValue placeholder="All Gaps" />
+            </SelectTrigger>
+            <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
+              <SelectItem value="all">All Service Gaps</SelectItem>
+              <SelectItem value="chatbots">AI Chatbots</SelectItem>
+              <SelectItem value="calling_agents">Voice Calling Agents</SelectItem>
+              <SelectItem value="seo_aeo_geo">GEO / AEO Search</SelectItem>
+              <SelectItem value="web_app">Web & Apps</SelectItem>
+              <SelectItem value="portfolio">Portfolio</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as LeadStatus | 'all')}>
+            <SelectTrigger className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-300 rounded-md">
+              <SelectValue placeholder="All Statuses" />
+            </SelectTrigger>
+            <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
+              <SelectItem value="all">All Statuses</SelectItem>
+              <SelectItem value="new">New</SelectItem>
+              <SelectItem value="to_call">To Call</SelectItem>
+              <SelectItem value="to_email">To Email</SelectItem>
+              <SelectItem value="contacted">Contacted</SelectItem>
+              <SelectItem value="meeting_booked">Meeting Booked</SelectItem>
+              <SelectItem value="closed_won">Closed Won</SelectItem>
+              <SelectItem value="not_interested">Closed / Uninterested</SelectItem>
+            </SelectContent>
+          </Select>
+
+        </div>
+
+        {/* VIEW 1: CLOSER TABLE WITH COLOR ACCENTS */}
+        {viewMode === 'table' && (
+          <div className="border border-zinc-800 rounded-xl overflow-hidden bg-zinc-950/70 shadow-sm">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b border-zinc-800 bg-zinc-900/60 text-[10px] font-mono text-zinc-400 uppercase tracking-wider">
+                    <th className="py-2.5 px-3 font-semibold">Business / Decision Maker</th>
+                    <th className="py-2.5 px-3 font-semibold">Niche & City</th>
+                    <th className="py-2.5 px-3 font-semibold">Diagnosed Vulnerability</th>
+                    <th className="py-2.5 px-3 font-semibold">Score</th>
+                    <th className="py-2.5 px-3 font-semibold">Status</th>
+                    <th className="py-2.5 px-3 text-right font-semibold">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-zinc-800/60">
+                  {filteredLeads.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="py-12 text-center text-zinc-500 text-xs">
+                        No leads found matching current criteria.
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredLeads.map((lead) => {
+                      const primaryGap = lead.audit.topGaps[0];
+                      const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
+                      const cleanWhatsAppPhone = cleanPhone.replace(/^\+/, '');
+                      const statusMeta = STATUS_COLOR_CONFIG[lead.status] || STATUS_COLOR_CONFIG.new;
+
+                      return (
+                        <React.Fragment key={lead.id}>
+                          <tr className="hover:bg-zinc-900/40 transition-colors group">
+                            
+                            {/* Business & Decision Maker */}
+                            <td className="py-3 px-3">
+                              <div className="flex items-start gap-2">
+                                <button
+                                  onClick={() => handleToggleStar(lead.id, !lead.starred)}
+                                  className="mt-0.5 text-zinc-600 hover:text-amber-400 transition-colors cursor-pointer"
+                                >
+                                  <Star className={`w-3.5 h-3.5 ${lead.starred ? 'fill-amber-400 text-amber-400' : ''}`} />
+                                </button>
+                                <div>
+                                  <div className="font-bold text-white tracking-tight flex items-center gap-1.5">
+                                    <span className="group-hover:text-indigo-400 transition-colors">{lead.businessName}</span>
+                                    {lead.website && (
+                                      <a
+                                        href={lead.website}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="text-zinc-600 hover:text-zinc-300"
+                                        title="Open Website"
+                                      >
+                                        <ExternalLink className="w-2.5 h-2.5" />
+                                      </a>
+                                    )}
+                                  </div>
+                                  <div className="text-[11px] text-zinc-400 mt-0.5">
+                                    <span className="text-zinc-300 font-medium">{lead.decisionMakerName}</span> · {lead.decisionMakerRole}
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+
+                            {/* Niche & Location */}
+                            <td className="py-3 px-3">
+                              <span className="text-[11px] text-zinc-200 font-semibold">{lead.niche}</span>
+                              <div className="text-[11px] text-zinc-500">{lead.city}</div>
+                            </td>
+
+                            {/* Diagnosed Vulnerability with Tag */}
+                            <td className="py-3 px-3 max-w-xs">
+                              {primaryGap ? (
+                                <div className="space-y-1">
+                                  <div className="flex items-center justify-between gap-2">
+                                    <ServiceGapBadge service={primaryGap.service} />
+                                    <span className="text-rose-400 font-mono text-[11px] font-bold shrink-0">-${primaryGap.estimatedLostRevenueMonthly}/mo</span>
+                                  </div>
+                                  <div className="text-[11px] text-zinc-400 truncate">{primaryGap.detectedIssue}</div>
+                                </div>
+                              ) : (
+                                <span className="text-zinc-600">None detected</span>
+                              )}
+                            </td>
+
+                            {/* Score */}
+                            <td className="py-3 px-3">
+                              <div className="flex items-center gap-1.5 font-mono">
+                                <span className={`text-[11px] font-bold ${
+                                  lead.audit.overallHealthScore < 50 ? 'text-rose-400' : lead.audit.overallHealthScore < 70 ? 'text-amber-400' : 'text-emerald-400'
+                                }`}>
+                                  {lead.audit.overallHealthScore}/100
+                                </span>
+                              </div>
+                            </td>
+
+                            {/* Status Pill Dropdown */}
+                            <td className="py-3 px-3">
+                              <Select
+                                value={lead.status}
+                                onValueChange={(val) => handleUpdateStatus(lead.id, val as LeadStatus)}
+                              >
+                                <SelectTrigger className={`h-6 w-28 text-[11px] font-semibold rounded border ${statusMeta.bg} ${statusMeta.text} ${statusMeta.border}`}>
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
+                                  <SelectItem value="new">New</SelectItem>
+                                  <SelectItem value="to_call">To Call</SelectItem>
+                                  <SelectItem value="to_email">To Email</SelectItem>
+                                  <SelectItem value="contacted">Contacted</SelectItem>
+                                  <SelectItem value="meeting_booked">Meeting</SelectItem>
+                                  <SelectItem value="closed_won">Won</SelectItem>
+                                  <SelectItem value="not_interested">Closed</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </td>
+
+                            {/* Actions */}
+                            <td className="py-3 px-3 text-right">
+                              <div className="flex items-center justify-end gap-1">
+                                
+                                <Button
+                                  asChild
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 px-2 text-[11px] text-zinc-300 hover:text-emerald-400 hover:bg-zinc-900 rounded"
+                                >
+                                  <a href={`tel:${cleanPhone}`} onClick={() => handleUpdateStatus(lead.id, 'to_call')}>
+                                    <Phone className="w-3 h-3 mr-1 text-emerald-400" />
+                                    Call
+                                  </a>
+                                </Button>
+
+                                <Button
+                                  asChild
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 px-2 text-[11px] text-zinc-300 hover:text-emerald-400 hover:bg-zinc-900 rounded"
+                                >
+                                  <a
+                                    href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    onClick={() => handleUpdateStatus(lead.id, 'contacted')}
+                                  >
+                                    <MessageSquare className="w-3 h-3 mr-1 text-emerald-400" />
+                                    WA
+                                  </a>
+                                </Button>
+
+                                <Button
+                                  size="sm"
+                                  onClick={() => setSelectedLeadForKit(lead)}
+                                  className="h-6 px-2.5 text-[11px] bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded shadow-xs"
+                                >
+                                  Pitch Kit
+                                </Button>
+
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className={`h-6 w-6 rounded ${expandedNotesId === lead.id ? 'text-indigo-400 bg-zinc-800' : 'text-zinc-500 hover:text-zinc-300'}`}
+                                  onClick={() => setExpandedNotesId(expandedNotesId === lead.id ? null : lead.id)}
+                                  title="Notes"
+                                >
+                                  <FileText className="w-3 h-3" />
+                                </Button>
+
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-6 w-6 text-zinc-600 hover:text-rose-400 rounded"
+                                  onClick={() => handleDeleteLead(lead.id)}
+                                  title="Delete"
+                                >
+                                  <Trash2 className="w-3 h-3" />
+                                </Button>
+
+                              </div>
+                            </td>
+
+                          </tr>
+
+                          {/* Notes Row */}
+                          {expandedNotesId === lead.id && (
+                            <tr className="bg-zinc-950 border-b border-zinc-800">
+                              <td colSpan={6} className="p-3 space-y-2">
+                                <div className="text-[11px] text-zinc-400 flex items-center justify-between">
+                                  <span>Call Log · {lead.businessName}</span>
+                                  <span>{lead.phone}</span>
+                                </div>
+
+                                <div className="space-y-1 max-h-24 overflow-y-auto">
+                                  {(lead.notes || []).length === 0 ? (
+                                    <p className="text-[11px] text-zinc-600 italic">No notes logged yet.</p>
+                                  ) : (
+                                    lead.notes.map((note, idx) => (
+                                      <div key={idx} className="text-[11px] text-zinc-300 bg-zinc-900 px-2 py-1 rounded border border-zinc-800">
+                                        {note}
+                                      </div>
+                                    ))
+                                  )}
+                                </div>
+
+                                <form
+                                  onSubmit={(e) => {
+                                    e.preventDefault();
+                                    handleAddNote(lead.id, noteInput);
+                                  }}
+                                  className="flex gap-1.5 pt-1"
+                                >
+                                  <Input
+                                    type="text"
+                                    value={noteInput}
+                                    onChange={(e) => setNoteInput(e.target.value)}
+                                    placeholder="Add quick note..."
+                                    className="h-7 text-xs bg-zinc-900 border-zinc-800 text-white flex-1 rounded"
+                                  />
+                                  <Button type="submit" size="sm" className="h-7 px-3 text-xs bg-zinc-800 text-white hover:bg-zinc-700 rounded">
+                                    Save
+                                  </Button>
+                                </form>
+                              </td>
+                            </tr>
+                          )}
+                        </React.Fragment>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* VIEW 2: KANBAN WITH COLOR HEADERS */}
+        {viewMode === 'kanban' && (
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 pb-4">
+            {kanbanColumns.map((col) => {
+              const colRevenueSum = col.leads.reduce((sum, l) => {
+                const leak = l.audit.topGaps.reduce((acc, g) => acc + (g.estimatedLostRevenueMonthly || 0), 0);
+                return sum + leak;
+              }, 0);
+
+              return (
+                <div key={col.status} className={`border border-zinc-800 rounded-xl bg-zinc-950/80 p-3 flex flex-col min-h-[480px] shadow-sm ${col.border}`}>
+                  
+                  {/* Column Header */}
+                  <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-800">
+                    <div>
+                      <div className={`text-xs font-bold ${col.color}`}>{col.title}</div>
+                      <div className="text-[10px] text-zinc-500 font-mono">${(colRevenueSum / 1000).toFixed(0)}k/mo</div>
+                    </div>
+                    <span className="text-[10px] font-mono text-zinc-300 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800 font-bold">
+                      {col.leads.length}
+                    </span>
+                  </div>
+
+                  {/* Cards List */}
+                  <div className="space-y-2 flex-1 overflow-y-auto">
+                    {col.leads.map((lead) => {
+                      const primaryGap = lead.audit.topGaps[0];
+                      const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
+
+                      return (
+                        <div key={lead.id} className="p-3 rounded-lg border border-zinc-800 bg-black hover:border-zinc-700 space-y-2 transition-colors">
+                          
+                          <div className="flex items-start justify-between gap-1">
+                            <div>
+                              <div className="font-bold text-white text-xs line-clamp-1">
+                                {lead.businessName}
+                              </div>
+                              <div className="text-[10px] text-zinc-400 mt-0.5">
+                                {lead.decisionMakerName}
+                              </div>
+                            </div>
+                            <span className="text-[10px] font-mono font-bold text-zinc-400">
+                              {lead.audit.overallHealthScore}
+                            </span>
+                          </div>
+
+                          {primaryGap && (
+                            <div className="text-[10px] text-zinc-400 border-t border-zinc-900 pt-1.5 flex items-center justify-between">
+                              <ServiceGapBadge service={primaryGap.service} />
+                              <span className="font-mono text-rose-400 font-bold">-${primaryGap.estimatedLostRevenueMonthly}</span>
+                            </div>
+                          )}
+
+                          <div className="flex items-center justify-between gap-1 pt-1.5 border-t border-zinc-900">
+                            <Button
+                              size="sm"
+                              onClick={() => setSelectedLeadForKit(lead)}
+                              className="h-6 px-2 text-[10px] bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded"
+                            >
+                              Pitch Kit
+                            </Button>
+
+                            <div className="flex items-center gap-1">
+                              <Button
+                                asChild
+                                variant="ghost"
+                                size="sm"
+                                className="h-6 px-1.5 text-[10px] text-zinc-400 hover:text-emerald-400"
+                              >
+                                <a href={`tel:${cleanPhone}`} onClick={() => handleUpdateStatus(lead.id, 'to_call')}>
+                                  Call
+                                </a>
+                              </Button>
+
+                              {col.status !== 'closed_won' && (
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-6 w-6 text-zinc-500 hover:text-white"
+                                  onClick={() => {
+                                    const nextMap: Record<LeadStatus, LeadStatus> = {
+                                      new: 'to_call',
+                                      to_call: 'contacted',
+                                      to_email: 'contacted',
+                                      contacted: 'meeting_booked',
+                                      meeting_booked: 'closed_won',
+                                      closed_won: 'closed_won',
+                                      not_interested: 'new'
+                                    };
+                                    handleUpdateStatus(lead.id, nextMap[lead.status]);
+                                  }}
+                                  title="Advance"
+                                >
+                                  <ArrowRight className="w-3 h-3" />
+                                </Button>
+                              )}
+                            </div>
+
+                          </div>
+
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* VIEW 3: CARDS */}
+        {viewMode === 'cards' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {filteredLeads.map((lead) => (
+              <LeadCard
+                key={lead.id}
+                lead={lead}
+                onOpenBattlecard={(l) => setSelectedLeadForKit(l)}
+                onUpdateStatus={handleUpdateStatus}
+                onToggleStar={handleToggleStar}
+                onDelete={handleDeleteLead}
+                onAddNote={handleAddNote}
+              />
             ))}
           </div>
-        </div>
+        )}
 
-        {/* 3 Dark Analytics Chart Cards (Matching user screenshot) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          {/* Chart 1: Growth Trend (Bell Curve Wave) */}
-          <div className="p-6 rounded-xl bg-zinc-900/90 border border-zinc-800/80 flex flex-col justify-between min-h-[220px]">
-            <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
-              LEAD GROWTH TREND (SPIKES - {timeRange})
-            </div>
-
-            <div className="relative h-32 flex items-center justify-center my-2">
-              <svg className="w-full h-full" viewBox="0 0 200 80" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="bellGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0.0" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M 10 75 Q 80 75 100 15 Q 120 75 190 75"
-                  fill="url(#bellGradient)"
-                />
-                <path
-                  d="M 10 75 Q 80 75 100 15 Q 120 75 190 75"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                />
-              </svg>
-            </div>
-
-            <div className="flex justify-between text-[11px] text-zinc-500 font-mono">
-              <span>0.5</span>
-              <span>1.0</span>
-              <span>1.5</span>
-              <span>2.0</span>
-            </div>
-          </div>
-
-          {/* Chart 2: Total Cumulative Leads (Bar Chart) */}
-          <div className="p-6 rounded-xl bg-zinc-900/90 border border-zinc-800/80 flex flex-col justify-between min-h-[220px]">
-            <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
-              TOTAL CUMULATIVE LEADS ({timeRange})
-            </div>
-
-            <div className="h-32 flex items-end justify-between gap-2 px-2 my-2">
-              {[70, 70, 70, 70, 70].map((val, idx) => (
-                <div key={idx} className="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
-                  <span className="text-[10px] font-mono text-zinc-300 font-bold">{val}</span>
-                  <div className="w-full bg-white rounded-t-sm h-20" />
+        {/* VIEW 4: VIBRANT COLORFUL CHARTS */}
+        {viewMode === 'analytics' && (
+          <div className="space-y-4">
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              
+              {/* Chart 1: Revenue Leak with Vibrant Indigo Bars */}
+              <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950 space-y-3 shadow-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono uppercase text-indigo-400 font-bold">
+                    Revenue Leak by Market Niche
+                  </span>
+                  <span className="text-[10px] text-zinc-400 font-mono">Monthly $USD</span>
                 </div>
-              ))}
-            </div>
 
-            <div className="flex justify-between text-[11px] text-zinc-500 font-mono">
-              <span>68.5</span>
-              <span>69.0</span>
-              <span>69.5</span>
-              <span>70.0</span>
-            </div>
-          </div>
-
-          {/* Chart 3: Outreach vs Meetings (Dual Curve) */}
-          <div className="p-6 rounded-xl bg-zinc-900/90 border border-zinc-800/80 flex flex-col justify-between min-h-[220px]">
-            <div className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
-              CALLS VS BOOKINGS ({timeRange})
-            </div>
-
-            <div className="relative h-32 flex items-center justify-center my-2">
-              <svg className="w-full h-full" viewBox="0 0 200 80" preserveAspectRatio="none">
-                {/* White curve */}
-                <path
-                  d="M 10 75 Q 80 75 100 15 Q 120 75 190 75"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="2"
-                />
-                {/* Green step/wave */}
-                <path
-                  d="M 10 65 L 40 75 L 80 45 L 140 45 L 160 75 L 190 75"
-                  fill="rgba(16,185,129,0.15)"
-                  stroke="#10b981"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            </div>
-
-            <div className="flex justify-between text-[11px] text-zinc-500 font-mono">
-              <span className="text-white">Calls (Peak)</span>
-              <span className="text-emerald-400">Bookings (Active)</span>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Main Leads Table & Closer Directory */}
-        <div className="p-6 rounded-xl bg-zinc-900/90 border border-zinc-800/80 space-y-4">
-          
-          {/* Table Search & Filter Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-zinc-800">
-            <div className="flex items-center gap-3">
-              <div className="relative w-72">
-                <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
-                <Input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search lead name, owner, city..."
-                  className="pl-8 h-8 text-xs bg-black border-zinc-800 text-white placeholder-zinc-500"
-                />
+                <div className="h-60 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={nicheRevenueLeakData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                      <defs>
+                        <linearGradient id="nicheGradient" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#818CF8" stopOpacity={1}/>
+                          <stop offset="100%" stopColor="#4F46E5" stopOpacity={0.8}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="2 2" stroke="#27272A" vertical={false} />
+                      <XAxis dataKey="niche" stroke="#71717A" fontSize={11} />
+                      <YAxis stroke="#71717A" fontSize={11} tickFormatter={(val: number) => `$${val / 1000}k`} />
+                      <Tooltip
+                        contentStyle={{ backgroundColor: '#18181B', borderColor: '#3F3F46', borderRadius: '8px', fontSize: '11px', color: '#fff' }}
+                        formatter={(val: number | string | readonly (string | number)[] | undefined) => [`$${Number(val).toLocaleString()}/mo`, 'Leak']}
+                      />
+                      <Bar dataKey="leak" fill="url(#nicheGradient)" radius={[4, 4, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
 
-              <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as any)}>
-                <SelectTrigger className="h-8 w-36 text-xs bg-black border-zinc-800 text-zinc-300">
-                  <SelectValue placeholder="All Statuses" />
-                </SelectTrigger>
-                <SelectContent className="bg-zinc-900 border-zinc-800 text-white">
-                  <SelectItem value="all">All Statuses</SelectItem>
-                  <SelectItem value="new">New</SelectItem>
-                  <SelectItem value="to_call">To Call</SelectItem>
-                  <SelectItem value="to_email">To Email</SelectItem>
-                  <SelectItem value="contacted">Contacted</SelectItem>
-                  <SelectItem value="meeting_booked">Meeting Booked</SelectItem>
-                  <SelectItem value="closed_won">Closed Won</SelectItem>
-                </SelectContent>
-              </Select>
+              {/* Chart 2: Vibrant Multi-Color Donut Chart */}
+              <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950 space-y-3 shadow-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono uppercase text-emerald-400 font-bold">
+                    Service Gap Distribution
+                  </span>
+                  <span className="text-[10px] text-zinc-400 font-mono">5 High-Ticket Services</span>
+                </div>
+
+                <div className="h-60 w-full flex items-center justify-center">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={serviceDistributionData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={55}
+                        outerRadius={85}
+                        paddingAngle={3}
+                        dataKey="value"
+                      >
+                        {serviceDistributionData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} stroke="#09090B" strokeWidth={2} />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        contentStyle={{ backgroundColor: '#18181B', borderColor: '#3F3F46', borderRadius: '8px', fontSize: '11px', color: '#fff' }}
+                      />
+                      <Legend wrapperStyle={{ fontSize: '11px', color: '#A1A1AA', paddingTop: '10px' }} />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
             </div>
 
-            <div className="text-xs text-zinc-400">
-              Showing <strong className="text-white">{filteredLeads.length}</strong> of {totalLeads} leads
+            {/* Funnel Chart with Emerald / Teal Glow */}
+            <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950 space-y-3 shadow-sm">
+              <span className="text-xs font-mono uppercase text-cyan-400 font-bold">
+                Pipeline Stage Conversion Funnel
+              </span>
+
+              <div className="h-56 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={pipelineStageData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="emeraldArea" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#10B981" stopOpacity={0.6}/>
+                        <stop offset="95%" stopColor="#06B6D4" stopOpacity={0.0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="2 2" stroke="#27272A" vertical={false} />
+                    <XAxis dataKey="stage" stroke="#71717A" fontSize={11} />
+                    <YAxis stroke="#71717A" fontSize={11} />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: '#18181B', borderColor: '#3F3F46', borderRadius: '8px', fontSize: '11px', color: '#fff' }}
+                    />
+                    <Area type="monotone" dataKey="count" stroke="#10B981" strokeWidth={2.5} fill="url(#emeraldArea)" />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
             </div>
+
           </div>
+        )}
 
-          {/* Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead>
-                <tr className="border-b border-zinc-800/80 text-[11px] font-semibold text-zinc-500 uppercase tracking-wider">
-                  <th className="py-3 px-3">Business & Owner</th>
-                  <th className="py-3 px-3">Location & Niche</th>
-                  <th className="py-3 px-3">Diagnosed Vulnerability</th>
-                  <th className="py-3 px-3">Readiness</th>
-                  <th className="py-3 px-3">Status</th>
-                  <th className="py-3 px-3 text-right">Closer Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-800/40">
-                {filteredLeads.map((lead) => {
-                  const primaryGap = lead.audit.topGaps[0];
-                  const cleanPhone = lead.phone.replace(/[^0-9+]/g, '');
-
-                  return (
-                    <tr key={lead.id} className="hover:bg-zinc-800/30 transition-colors group">
-                      
-                      {/* Business & Owner */}
-                      <td className="py-3.5 px-3">
-                        <div className="font-bold text-white tracking-tight">{lead.businessName}</div>
-                        <div className="text-[11px] text-zinc-400 mt-0.5">
-                          {lead.decisionMakerName} • <span className="text-zinc-500">{lead.decisionMakerRole}</span>
-                        </div>
-                      </td>
-
-                      {/* Location & Niche */}
-                      <td className="py-3.5 px-3">
-                        <Badge variant="outline" className="text-[10px] bg-black border-zinc-800 text-zinc-300">
-                          {lead.niche}
-                        </Badge>
-                        <div className="text-[11px] text-zinc-500 mt-1">{lead.city}</div>
-                      </td>
-
-                      {/* Diagnosed Gap */}
-                      <td className="py-3.5 px-3 max-w-xs">
-                        {primaryGap && (
-                          <div>
-                            <div className="font-semibold text-zinc-200 truncate">{primaryGap.serviceTitle}</div>
-                            <div className="text-[11px] text-zinc-500 truncate">{primaryGap.detectedIssue}</div>
-                          </div>
-                        )}
-                      </td>
-
-                      {/* Score */}
-                      <td className="py-3.5 px-3">
-                        <span className="font-mono font-bold text-zinc-300">
-                          {lead.audit.overallHealthScore}/100
-                        </span>
-                      </td>
-
-                      {/* Status */}
-                      <td className="py-3.5 px-3">
-                        <Select
-                          value={lead.status}
-                          onValueChange={(val) => handleUpdateStatus(lead.id, val as LeadStatus)}
-                        >
-                          <SelectTrigger className="h-7 w-32 text-[11px] bg-black border-zinc-800 text-zinc-300">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="bg-zinc-900 border-zinc-800 text-white text-xs">
-                            <SelectItem value="new">New Lead</SelectItem>
-                            <SelectItem value="to_call">To Call</SelectItem>
-                            <SelectItem value="to_email">To Email</SelectItem>
-                            <SelectItem value="contacted">Contacted</SelectItem>
-                            <SelectItem value="meeting_booked">Meeting Booked</SelectItem>
-                            <SelectItem value="closed_won">Won</SelectItem>
-                            <SelectItem value="not_interested">Not Interested</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </td>
-
-                      {/* Actions */}
-                      <td className="py-3.5 px-3 text-right">
-                        <div className="flex items-center justify-end gap-1.5">
-                          <Button
-                            asChild
-                            variant="outline"
-                            size="sm"
-                            className="h-7 text-xs bg-black border-zinc-800 text-zinc-300 hover:text-white"
-                          >
-                            <a href={`tel:${cleanPhone}`} onClick={() => handleUpdateStatus(lead.id, 'to_call')}>
-                              <PhoneCall className="w-3 h-3 mr-1" />
-                              Dial
-                            </a>
-                          </Button>
-
-                          <Button
-                            size="sm"
-                            onClick={() => setSelectedLeadForBattlecard(lead)}
-                            className="h-7 text-xs bg-white text-black hover:bg-zinc-200 font-bold"
-                          >
-                            <Sparkles className="w-3 h-3 mr-1" />
-                            Battlecard
-                          </Button>
-
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-7 w-7 text-zinc-500 hover:text-red-400"
-                            onClick={() => handleDeleteLead(lead.id)}
-                            title="Delete"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </Button>
-                        </div>
-                      </td>
-
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-
-        </div>
-
-      </div>
+      </main>
 
       {/* Modals */}
       <DailyGeneratorModal
@@ -570,12 +1133,13 @@ export default function AdminConsoleDashboard() {
         onClose={() => setIsGeneratorOpen(false)}
         onSuccess={() => fetchLeads()}
         ollamaOnline={ollamaOnline}
+        availableModels={availableModels}
       />
 
       <SalesBattlecardModal
-        lead={selectedLeadForBattlecard}
-        isOpen={!!selectedLeadForBattlecard}
-        onClose={() => setSelectedLeadForBattlecard(null)}
+        lead={selectedLeadForKit}
+        isOpen={!!selectedLeadForKit}
+        onClose={() => setSelectedLeadForKit(null)}
         onUpdateStatus={handleUpdateStatus}
         ollamaOnline={ollamaOnline}
       />

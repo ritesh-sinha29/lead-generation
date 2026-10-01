@@ -6,7 +6,8 @@ import {
   MapPin, 
   Building2, 
   Layers, 
-  Zap 
+  Zap,
+  AlertCircle
 } from 'lucide-react';
 import { GenerateLeadsRequest } from '@/types/lead';
 import {
@@ -18,7 +19,6 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 
 interface Props {
   isOpen: boolean;
@@ -62,8 +62,8 @@ export default function DailyGeneratorModal({
   const [selectedCityObj, setSelectedCityObj] = useState(PRESET_CITIES[0]);
   const [customCity, setCustomCity] = useState('');
   const [count, setCount] = useState(15);
-  const [useOllama, setUseOllama] = useState(ollamaOnline);
-  const [ollamaModel, setOllamaModel] = useState(availableModels[0] || 'deepseek-v4-pro:cloud');
+  const useOllama = ollamaOnline;
+  const ollamaModel = availableModels[0] || 'deepseek-v4-pro:cloud';
   
   const [isLoading, setIsLoading] = useState(false);
   const [progressStage, setProgressStage] = useState('');
@@ -110,8 +110,9 @@ export default function DailyGeneratorModal({
 
       onSuccess(data.newLeads?.length || count);
       onClose();
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong';
+      setError(msg);
     } finally {
       setIsLoading(false);
       setProgressStage('');
@@ -120,18 +121,18 @@ export default function DailyGeneratorModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-2xl p-6 sm:p-8">
+      <DialogContent className="max-w-2xl p-6 sm:p-8 bg-zinc-950 border-zinc-800 text-zinc-100 shadow-2xl rounded-2xl">
         
         <DialogHeader className="mb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+            <div className="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <DialogTitle className="text-xl font-bold tracking-tight">
-                Generate Today's Fresh Lead Batch
+              <DialogTitle className="text-xl font-bold tracking-tight text-white">
+                Generate Fresh Lead Batch
               </DialogTitle>
-              <DialogDescription className="text-xs">
+              <DialogDescription className="text-xs text-zinc-400">
                 Discover 10–20 high-intent clients with diagnosed flaws & ready sales scripts
               </DialogDescription>
             </div>
@@ -139,20 +140,21 @@ export default function DailyGeneratorModal({
         </DialogHeader>
 
         {error && (
-          <div className="mb-4 p-3 rounded-xl bg-destructive/15 border border-destructive/30 text-destructive text-xs">
-            {error}
+          <div className="mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            <span>{error}</span>
           </div>
         )}
 
         {isLoading ? (
           <div className="py-12 flex flex-col items-center justify-center space-y-4 text-center">
             <div className="relative">
-              <div className="w-14 h-14 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
-              <Zap className="absolute inset-0 m-auto w-5 h-5 text-accent animate-pulse" />
+              <div className="w-14 h-14 rounded-full border-4 border-zinc-800 border-t-indigo-500 animate-spin" />
+              <Zap className="absolute inset-0 m-auto w-5 h-5 text-indigo-400 animate-pulse" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-foreground mb-1">Generating High-Ticket Leads...</h3>
-              <p className="text-xs text-primary animate-pulse font-medium">{progressStage}</p>
+              <h3 className="text-base font-bold text-white mb-1">Generating High-Ticket Leads...</h3>
+              <p className="text-xs text-indigo-400 animate-pulse font-medium">{progressStage}</p>
             </div>
           </div>
         ) : (
@@ -160,8 +162,8 @@ export default function DailyGeneratorModal({
             
             {/* Field 1: Industry / Niche */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-2 flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-primary" />
+              <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2 flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-indigo-400" />
                 Target Industry / Niche
               </label>
               
@@ -173,7 +175,11 @@ export default function DailyGeneratorModal({
                     variant={niche === item && !customNiche ? "default" : "outline"}
                     size="sm"
                     onClick={() => { setNiche(item); setCustomNiche(''); }}
-                    className="h-8 text-[11px] justify-start px-2 font-medium"
+                    className={`h-8 text-[11px] justify-start px-2 font-medium ${
+                      niche === item && !customNiche 
+                        ? 'bg-indigo-600 hover:bg-indigo-500 text-white border-transparent' 
+                        : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white'
+                    }`}
                   >
                     <span className="truncate">{item}</span>
                   </Button>
@@ -185,14 +191,14 @@ export default function DailyGeneratorModal({
                 placeholder="Or enter custom niche (e.g. Solar Installers, Gyms...)"
                 value={customNiche}
                 onChange={(e) => setCustomNiche(e.target.value)}
-                className="h-8 text-xs"
+                className="h-8 text-xs bg-zinc-900 border-zinc-800 text-white placeholder-zinc-500"
               />
             </div>
 
             {/* Field 2: Target City / Location */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-2 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-secondary" />
+              <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-emerald-400" />
                 Target Location (City)
               </label>
 
@@ -201,10 +207,14 @@ export default function DailyGeneratorModal({
                   <Button
                     key={c.city}
                     type="button"
-                    variant={selectedCityObj.city === c.city && !customCity ? "secondary" : "outline"}
+                    variant={selectedCityObj.city === c.city && !customCity ? "default" : "outline"}
                     size="sm"
                     onClick={() => { setSelectedCityObj(c); setCustomCity(''); }}
-                    className="h-8 text-[11px] justify-start px-2 font-medium"
+                    className={`h-8 text-[11px] justify-start px-2 font-medium ${
+                      selectedCityObj.city === c.city && !customCity
+                        ? 'bg-emerald-600 hover:bg-emerald-500 text-white border-transparent'
+                        : 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white'
+                    }`}
                   >
                     <span className="truncate">{c.city}</span>
                   </Button>
@@ -216,18 +226,18 @@ export default function DailyGeneratorModal({
                 placeholder="Or enter custom city (e.g. Pune, Chicago...)"
                 value={customCity}
                 onChange={(e) => setCustomCity(e.target.value)}
-                className="h-8 text-xs"
+                className="h-8 text-xs bg-zinc-900 border-zinc-800 text-white placeholder-zinc-500"
               />
             </div>
 
             {/* Field 3: Quantity Buttons */}
-            <div className="p-3.5 rounded-xl bg-background border border-border flex items-center justify-between gap-4">
+            <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-between gap-4">
               <div>
-                <label className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-accent" />
+                <label className="text-xs font-semibold text-white flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-amber-400" />
                   Daily Batch Size
                 </label>
-                <p className="text-[11px] text-muted-foreground">Recommended: 15 qualified leads per day</p>
+                <p className="text-[11px] text-zinc-400">Recommended: 15 qualified leads per day</p>
               </div>
 
               <div className="flex items-center gap-1.5">
@@ -236,9 +246,12 @@ export default function DailyGeneratorModal({
                     key={num}
                     type="button"
                     size="sm"
-                    variant={count === num ? "default" : "outline"}
                     onClick={() => setCount(num)}
-                    className="h-8 px-3 text-xs font-bold"
+                    className={`h-8 px-3 text-xs font-bold ${
+                      count === num
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-white'
+                    }`}
                   >
                     {num}
                   </Button>
@@ -249,10 +262,10 @@ export default function DailyGeneratorModal({
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full h-11 font-bold text-xs"
+              className="w-full h-11 font-bold text-xs bg-white text-zinc-950 hover:bg-zinc-200 shadow-md cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 mr-1.5 animate-spin-slow" />
-              <span>Generate {count} Leads Now (With Call Scripts & Audits)</span>
+              <Sparkles className="w-4 h-4 mr-1.5 text-zinc-950" />
+              <span>Generate {count} Qualified Leads Now</span>
             </Button>
 
           </form>
