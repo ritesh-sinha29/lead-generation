@@ -3,14 +3,22 @@
 import React, { useState } from 'react';
 import { 
   Sparkles, 
-  X, 
   MapPin, 
   Building2, 
   Layers, 
-  Zap, 
-  Cpu 
+  Zap 
 } from 'lucide-react';
 import { GenerateLeadsRequest } from '@/types/lead';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 
 interface Props {
   isOpen: boolean;
@@ -60,8 +68,6 @@ export default function DailyGeneratorModal({
   const [isLoading, setIsLoading] = useState(false);
   const [progressStage, setProgressStage] = useState('');
   const [error, setError] = useState('');
-
-  if (!isOpen) return null;
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,36 +119,27 @@ export default function DailyGeneratorModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-fadeIn">
-      <div 
-        className="relative w-full max-w-2xl bg-card text-card-foreground border border-border rounded-3xl shadow-xl overflow-hidden p-6 sm:p-8"
-        onClick={(e) => e.stopPropagation()}
-      >
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="max-w-2xl p-6 sm:p-8">
         
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          disabled={isLoading}
-          className="absolute top-5 right-5 p-2 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
-        >
-          <X className="w-5 h-5" />
-        </button>
-
-        {/* Modal Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-primary via-accent to-secondary p-[1.5px] shadow-sm">
-            <div className="w-full h-full bg-background rounded-[14px] flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-primary" />
+        <DialogHeader className="mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <DialogTitle className="text-xl font-bold tracking-tight">
+                Generate Today's Fresh Lead Batch
+              </DialogTitle>
+              <DialogDescription className="text-xs">
+                Discover 10–20 high-intent clients with diagnosed flaws & ready sales scripts
+              </DialogDescription>
             </div>
           </div>
-          <div>
-            <h2 className="text-xl font-bold text-foreground tracking-tight">Generate Today's Fresh Lead Batch</h2>
-            <p className="text-xs text-muted-foreground">Discover 10–20 high-intent clients with diagnosed flaws & ready sales scripts</p>
-          </div>
-        </div>
+        </DialogHeader>
 
         {error && (
-          <div className="mb-5 p-3.5 rounded-xl bg-destructive/15 border border-destructive/30 text-destructive text-xs">
+          <div className="mb-4 p-3 rounded-xl bg-destructive/15 border border-destructive/30 text-destructive text-xs">
             {error}
           </div>
         )}
@@ -150,125 +147,118 @@ export default function DailyGeneratorModal({
         {isLoading ? (
           <div className="py-12 flex flex-col items-center justify-center space-y-4 text-center">
             <div className="relative">
-              <div className="w-16 h-16 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
-              <Zap className="absolute inset-0 m-auto w-6 h-6 text-accent animate-pulse" />
+              <div className="w-14 h-14 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
+              <Zap className="absolute inset-0 m-auto w-5 h-5 text-accent animate-pulse" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-foreground mb-1">Generating High-Ticket Leads...</h3>
-              <p className="text-sm text-primary animate-pulse font-medium">{progressStage}</p>
+              <h3 className="text-base font-bold text-foreground mb-1">Generating High-Ticket Leads...</h3>
+              <p className="text-xs text-primary animate-pulse font-medium">{progressStage}</p>
             </div>
           </div>
         ) : (
-          <form onSubmit={handleGenerate} className="space-y-6">
+          <form onSubmit={handleGenerate} className="space-y-5">
             
             {/* Field 1: Industry / Niche */}
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-2 flex items-center gap-1.5">
-                <Building2 className="w-4 h-4 text-primary" />
+                <Building2 className="w-3.5 h-3.5 text-primary" />
                 Target Industry / Niche
               </label>
               
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-2">
                 {PRESET_NICHES.map((item) => (
-                  <button
+                  <Button
                     key={item}
                     type="button"
+                    variant={niche === item && !customNiche ? "default" : "outline"}
+                    size="sm"
                     onClick={() => { setNiche(item); setCustomNiche(''); }}
-                    className={`px-3 py-2 rounded-xl text-xs font-medium text-left transition-all border cursor-pointer ${
-                      niche === item && !customNiche
-                        ? 'bg-primary/20 border-primary text-foreground font-bold shadow-xs'
-                        : 'bg-background border-border text-muted-foreground hover:text-foreground'
-                    }`}
+                    className="h-8 text-[11px] justify-start px-2 font-medium"
                   >
-                    {item}
-                  </button>
+                    <span className="truncate">{item}</span>
+                  </Button>
                 ))}
               </div>
 
-              <input
+              <Input
                 type="text"
-                placeholder="Or enter custom niche (e.g. Solar Installers, Wedding Photographers...)"
+                placeholder="Or enter custom niche (e.g. Solar Installers, Gyms...)"
                 value={customNiche}
                 onChange={(e) => setCustomNiche(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl bg-background border border-border text-foreground placeholder-muted-foreground text-xs focus:outline-none focus:border-primary"
+                className="h-8 text-xs"
               />
             </div>
 
             {/* Field 2: Target City / Location */}
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-foreground mb-2 flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-secondary" />
+                <MapPin className="w-3.5 h-3.5 text-secondary" />
                 Target Location (City)
               </label>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mb-2">
                 {PRESET_CITIES.map((c) => (
-                  <button
+                  <Button
                     key={c.city}
                     type="button"
+                    variant={selectedCityObj.city === c.city && !customCity ? "secondary" : "outline"}
+                    size="sm"
                     onClick={() => { setSelectedCityObj(c); setCustomCity(''); }}
-                    className={`px-3 py-2 rounded-xl text-xs font-medium text-left transition-all border cursor-pointer ${
-                      selectedCityObj.city === c.city && !customCity
-                        ? 'bg-secondary/20 border-secondary text-foreground font-bold shadow-xs'
-                        : 'bg-background border-border text-muted-foreground hover:text-foreground'
-                    }`}
+                    className="h-8 text-[11px] justify-start px-2 font-medium"
                   >
-                    <div className="font-semibold">{c.city}</div>
-                    <div className="text-[10px] text-muted-foreground">{c.country}</div>
-                  </button>
+                    <span className="truncate">{c.city}</span>
+                  </Button>
                 ))}
               </div>
 
-              <input
+              <Input
                 type="text"
-                placeholder="Or enter custom city (e.g. Pune, Chicago, Sydney...)"
+                placeholder="Or enter custom city (e.g. Pune, Chicago...)"
                 value={customCity}
                 onChange={(e) => setCustomCity(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl bg-background border border-border text-foreground placeholder-muted-foreground text-xs focus:outline-none focus:border-primary"
+                className="h-8 text-xs"
               />
             </div>
 
-            {/* Field 3: Quantity Slider */}
-            <div className="p-4 rounded-2xl bg-background border border-border flex items-center justify-between gap-4">
+            {/* Field 3: Quantity Buttons */}
+            <div className="p-3.5 rounded-xl bg-background border border-border flex items-center justify-between gap-4">
               <div>
                 <label className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                  <Layers className="w-4 h-4 text-accent" />
+                  <Layers className="w-3.5 h-3.5 text-accent" />
                   Daily Batch Size
                 </label>
-                <p className="text-[11px] text-muted-foreground">Recommended: 15 qualified leads per day to call & email</p>
+                <p className="text-[11px] text-muted-foreground">Recommended: 15 qualified leads per day</p>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 {[10, 15, 20].map((num) => (
-                  <button
+                  <Button
                     key={num}
                     type="button"
+                    size="sm"
+                    variant={count === num ? "default" : "outline"}
                     onClick={() => setCount(num)}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
-                      count === num
-                        ? 'bg-accent text-accent-foreground border-accent shadow-xs'
-                        : 'bg-card text-muted-foreground border-border hover:text-foreground'
-                    }`}
+                    className="h-8 px-3 text-xs font-bold"
                   >
-                    {num} Leads
-                  </button>
+                    {num}
+                  </Button>
                 ))}
               </div>
             </div>
 
             {/* Submit Button */}
-            <button
+            <Button
               type="submit"
-              className="w-full py-3.5 rounded-2xl bg-primary hover:opacity-90 text-primary-foreground font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full h-11 font-bold text-xs"
             >
-              <Sparkles className="w-4 h-4 animate-spin-slow" />
+              <Sparkles className="w-4 h-4 mr-1.5 animate-spin-slow" />
               <span>Generate {count} Leads Now (With Call Scripts & Audits)</span>
-            </button>
+            </Button>
 
           </form>
         )}
 
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

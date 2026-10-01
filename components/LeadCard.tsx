@@ -15,6 +15,18 @@ import {
 } from 'lucide-react';
 import { Lead, LeadStatus } from '@/types/lead';
 import ServiceGapBadge from './ServiceGapBadge';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface Props {
   lead: Lead;
@@ -24,16 +36,6 @@ interface Props {
   onDelete: (id: string) => void;
   onAddNote: (id: string, note: string) => void;
 }
-
-const STATUS_OPTIONS: { id: LeadStatus; label: string }[] = [
-  { id: 'new', label: 'New Lead' },
-  { id: 'to_call', label: 'To Call 📞' },
-  { id: 'to_email', label: 'To Email ✉️' },
-  { id: 'contacted', label: 'Contacted' },
-  { id: 'meeting_booked', label: 'Meeting Booked 📅' },
-  { id: 'closed_won', label: 'Closed Won 🏆' },
-  { id: 'not_interested', label: 'Not Interested' },
-];
 
 export default function LeadCard({
   lead,
@@ -50,11 +52,7 @@ export default function LeadCard({
   const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
   const cleanWhatsAppPhone = cleanPhone.replace(/^\+/, '');
 
-  // Score
   const score = lead.audit.overallHealthScore;
-  const scoreColor = score < 50 ? 'text-destructive border-destructive/40 bg-destructive/10' 
-    : score < 70 ? 'text-accent border-accent/40 bg-accent/10' 
-    : 'text-secondary border-secondary/40 bg-secondary/10';
 
   const handleAddNoteSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,173 +62,178 @@ export default function LeadCard({
   };
 
   return (
-    <div className="p-5 rounded-2xl bg-card text-card-foreground border border-border shadow-sm hover:border-primary/50 transition-all duration-200 group flex flex-col justify-between">
+    <Card className="hover:border-primary/50 transition-all duration-200 flex flex-col justify-between group shadow-xs">
       
-      {/* Top Header */}
-      <div>
-        <div className="flex items-start justify-between gap-3 mb-3">
-          
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-muted text-foreground border border-border">
-                {lead.niche} • {lead.city}
-              </span>
-              <span className="text-[11px] text-accent font-semibold flex items-center gap-0.5">
-                ★ {lead.googleRating} <span className="text-muted-foreground font-normal">({lead.googleReviewsCount})</span>
-              </span>
-            </div>
-
-            <h3 className="text-lg font-extrabold text-foreground tracking-tight truncate group-hover:text-primary transition-colors">
-              {lead.businessName}
-            </h3>
-
-            <div className="text-xs text-muted-foreground flex items-center gap-1.5 mt-0.5">
-              <span className="text-foreground font-semibold">{lead.decisionMakerName}</span>
-              <span>•</span>
-              <span className="text-muted-foreground truncate">{lead.decisionMakerRole}</span>
-            </div>
+      <CardHeader className="p-5 pb-3 space-y-2">
+        {/* Top Badges & Meta */}
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <Badge variant="outline" className="text-[10px] font-bold">
+              {lead.niche}
+            </Badge>
+            <span className="text-[11px] text-muted-foreground">
+              {lead.city}
+            </span>
           </div>
 
-          {/* Star & Score Gauge */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => onToggleStar(lead.id, !lead.starred)}
-              className="p-1.5 rounded-lg text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+              className="p-1 text-muted-foreground hover:text-accent transition-colors cursor-pointer"
               title={lead.starred ? 'Starred' : 'Mark as high priority'}
             >
-              <Star className={`w-4 h-4 ${lead.starred ? 'fill-accent text-accent' : ''}`} />
+              <Star className={`w-3.5 h-3.5 ${lead.starred ? 'fill-accent text-accent' : ''}`} />
             </button>
 
-            <div className={`px-2 py-1 rounded-lg border text-xs font-black ${scoreColor}`} title="Website Health Score (Lower score = more sales opportunities)">
+            <Badge variant={score < 50 ? "destructive" : score < 70 ? "secondary" : "outline"} className="text-[10px] font-bold">
               {score}/100
-            </div>
+            </Badge>
           </div>
-
         </div>
 
-        {/* 5-Service Gap Badges */}
-        <div className="flex flex-wrap gap-1.5 mb-3.5">
+        {/* Business Name & Decision Maker */}
+        <div>
+          <h3 className="text-base font-extrabold text-foreground tracking-tight group-hover:text-primary transition-colors truncate">
+            {lead.businessName}
+          </h3>
+          <div className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1.5">
+            <span className="text-foreground font-semibold">{lead.decisionMakerName}</span>
+            <span>•</span>
+            <span className="truncate">{lead.decisionMakerRole}</span>
+          </div>
+        </div>
+
+        {/* Service Gaps */}
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {lead.audit.topGaps.map((gap, i) => (
             <ServiceGapBadge key={i} service={gap.service} />
           ))}
         </div>
+      </CardHeader>
 
-        {/* Smoking Gun Flaw Preview Box */}
+      <CardContent className="px-5 py-0 space-y-3">
+        {/* Diagnosed Vulnerability Box */}
         {primaryGap && (
-          <div className="p-3 rounded-xl bg-background border border-border mb-4 text-xs space-y-1">
-            <div className="font-bold text-foreground flex items-center gap-1.5">
-              <AlertTriangle className="w-3.5 h-3.5 text-accent shrink-0" />
-              <span>Diagnosed Gap: {primaryGap.serviceTitle}</span>
+          <div className="p-3 rounded-xl bg-background border border-border text-xs space-y-1">
+            <div className="font-bold text-foreground flex items-center justify-between">
+              <span className="text-primary truncate">{primaryGap.serviceTitle}</span>
+              <span className="text-destructive font-black shrink-0">-${primaryGap.estimatedLostRevenueMonthly}/mo</span>
             </div>
-            <p className="text-muted-foreground line-clamp-2">
+            <p className="text-[11px] text-muted-foreground line-clamp-2">
               {primaryGap.detectedIssue}
             </p>
           </div>
         )}
+      </CardContent>
 
-      </div>
+      <CardFooter className="p-5 pt-3 flex flex-col gap-2.5">
+        <Separator className="mb-1" />
 
-      {/* Bottom Actions & CRM Controls */}
-      <div className="pt-3 border-t border-border space-y-3">
-        
         {/* Quick Contact Buttons */}
-        <div className="grid grid-cols-4 gap-1.5">
-          
-          {/* Call */}
-          <a
-            href={`tel:${cleanPhone}`}
-            onClick={() => onUpdateStatus(lead.id, 'to_call')}
-            className="py-1.5 px-2 rounded-lg bg-secondary/15 hover:bg-secondary/30 border border-secondary/30 text-secondary text-xs font-semibold flex items-center justify-center gap-1 transition-colors"
-            title={`Call ${lead.phone}`}
+        <div className="grid grid-cols-4 gap-1.5 w-full">
+          <Button
+            asChild
+            variant="secondary"
+            size="sm"
+            className="h-8 text-xs font-semibold"
           >
-            <Phone className="w-3 h-3" />
-            <span>Call</span>
-          </a>
+            <a href={`tel:${cleanPhone}`} onClick={() => onUpdateStatus(lead.id, 'to_call')}>
+              <Phone className="w-3 h-3 mr-1" />
+              Call
+            </a>
+          </Button>
 
-          {/* Email */}
-          <a
-            href={`mailto:${lead.email}?subject=${encodeURIComponent(lead.pitchKit.emailSubjectLines[0])}&body=${encodeURIComponent(lead.pitchKit.emailBody)}`}
-            onClick={() => onUpdateStatus(lead.id, 'to_email')}
-            className="py-1.5 px-2 rounded-lg bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary text-xs font-semibold flex items-center justify-center gap-1 transition-colors"
-            title={`Email ${lead.email}`}
+          <Button
+            asChild
+            variant="outline"
+            size="sm"
+            className="h-8 text-xs font-semibold"
           >
-            <Mail className="w-3 h-3" />
-            <span>Email</span>
-          </a>
+            <a href={`mailto:${lead.email}?subject=${encodeURIComponent(lead.pitchKit.emailSubjectLines[0])}&body=${encodeURIComponent(lead.pitchKit.emailBody)}`} onClick={() => onUpdateStatus(lead.id, 'to_email')}>
+              <Mail className="w-3 h-3 mr-1" />
+              Email
+            </a>
+          </Button>
 
-          {/* WhatsApp */}
-          <a
-            href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => onUpdateStatus(lead.id, 'contacted')}
-            className="py-1.5 px-2 rounded-lg bg-secondary/15 hover:bg-secondary/30 border border-secondary/30 text-secondary text-xs font-semibold flex items-center justify-center gap-1 transition-colors"
-            title="Open WhatsApp chat"
+          <Button
+            asChild
+            variant="secondary"
+            size="sm"
+            className="h-8 text-xs font-semibold"
           >
-            <MessageSquare className="w-3 h-3" />
-            <span>WA</span>
-          </a>
+            <a href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`} target="_blank" rel="noreferrer" onClick={() => onUpdateStatus(lead.id, 'contacted')}>
+              <MessageSquare className="w-3 h-3 mr-1" />
+              WA
+            </a>
+          </Button>
 
-          {/* Website */}
-          <a
-            href={lead.website}
-            target="_blank"
-            rel="noreferrer"
-            className="py-1.5 px-2 rounded-lg bg-muted hover:bg-background border border-border text-foreground text-xs font-semibold flex items-center justify-center gap-1 transition-colors"
-            title="Visit Website"
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="h-8 text-xs font-semibold"
           >
-            <ExternalLink className="w-3 h-3" />
-            <span>Site</span>
-          </a>
-
+            <a href={lead.website} target="_blank" rel="noreferrer">
+              <ExternalLink className="w-3 h-3 mr-1" />
+              Site
+            </a>
+          </Button>
         </div>
 
-        {/* Master Closer Battlecard Trigger */}
-        <button
+        {/* Sales Closer Battlecard Button */}
+        <Button
           onClick={() => onOpenBattlecard(lead)}
-          className="w-full py-2.5 px-3 rounded-xl bg-primary hover:opacity-90 text-primary-foreground font-bold text-xs shadow-xs flex items-center justify-center gap-2 transition-all active:scale-[0.98] cursor-pointer"
+          className="w-full h-9 font-bold text-xs"
         >
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Open Sales Battlecard & Scripts</span>
-          <ChevronRight className="w-3.5 h-3.5" />
-        </button>
+          <Sparkles className="w-3.5 h-3.5 mr-1" />
+          <span>Sales Closer Battlecard</span>
+          <ChevronRight className="w-3.5 h-3.5 ml-auto" />
+        </Button>
 
-        {/* Status Dropdown & Notes Button */}
-        <div className="flex items-center justify-between gap-2 text-xs">
-          
-          <select
+        {/* Status Dropdown & Action Controls */}
+        <div className="flex items-center justify-between gap-1.5 w-full">
+          <Select
             value={lead.status}
-            onChange={(e) => onUpdateStatus(lead.id, e.target.value as LeadStatus)}
-            className="flex-1 py-1 px-2.5 rounded-lg bg-background border border-border text-foreground font-medium focus:outline-none focus:border-primary text-xs cursor-pointer"
+            onValueChange={(val) => onUpdateStatus(lead.id, val as LeadStatus)}
           >
-            {STATUS_OPTIONS.map((opt) => (
-              <option key={opt.id} value={opt.id}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger className="h-8 text-xs flex-1">
+              <SelectValue placeholder="Update status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="new">New Lead</SelectItem>
+              <SelectItem value="to_call">To Call 📞</SelectItem>
+              <SelectItem value="to_email">To Email ✉️</SelectItem>
+              <SelectItem value="contacted">Contacted</SelectItem>
+              <SelectItem value="meeting_booked">Meeting Booked 📅</SelectItem>
+              <SelectItem value="closed_won">Closed Won 🏆</SelectItem>
+              <SelectItem value="not_interested">Not Interested</SelectItem>
+            </SelectContent>
+          </Select>
 
-          <button
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-8 w-8"
             onClick={() => setShowNotes(!showNotes)}
-            className="p-1.5 rounded-lg bg-background text-muted-foreground hover:text-foreground border border-border transition-colors cursor-pointer"
-            title="View or add notes"
+            title="Notes"
           >
             <FileText className="w-3.5 h-3.5" />
-          </button>
+          </Button>
 
-          <button
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-8 w-8 text-destructive hover:text-destructive"
             onClick={() => onDelete(lead.id)}
-            className="p-1.5 rounded-lg bg-background text-destructive hover:opacity-80 border border-border transition-colors cursor-pointer"
-            title="Delete lead"
+            title="Delete Lead"
           >
             <Trash2 className="w-3.5 h-3.5" />
-          </button>
-
+          </Button>
         </div>
 
         {/* Notes Drawer */}
         {showNotes && (
-          <div className="pt-2 border-t border-border space-y-2">
+          <div className="w-full pt-2 border-t border-border space-y-2">
             <div className="space-y-1 max-h-24 overflow-y-auto">
               {lead.notes.map((n, i) => (
                 <div key={i} className="text-[11px] text-muted-foreground bg-background p-1.5 rounded border border-border">
@@ -240,25 +243,22 @@ export default function LeadCard({
             </div>
 
             <form onSubmit={handleAddNoteSubmit} className="flex gap-1">
-              <input
+              <Input
                 type="text"
                 value={newNote}
                 onChange={(e) => setNewNote(e.target.value)}
                 placeholder="Add call outcome / note..."
-                className="flex-1 px-2 py-1 rounded bg-background border border-border text-xs text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary"
+                className="h-8 text-xs flex-1"
               />
-              <button
-                type="submit"
-                className="px-2 py-1 rounded bg-primary text-primary-foreground text-xs font-bold cursor-pointer"
-              >
+              <Button type="submit" size="sm" className="h-8 px-2.5">
                 Save
-              </button>
+              </Button>
             </form>
           </div>
         )}
 
-      </div>
+      </CardFooter>
 
-    </div>
+    </Card>
   );
 }

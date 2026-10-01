@@ -1,23 +1,31 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   FileText, 
   ExternalLink, 
   Sparkles, 
   TrendingDown, 
-  CheckCircle, 
-  Share2, 
   Copy, 
   Check, 
   ShieldCheck, 
-  DollarSign, 
   PhoneCall, 
-  Send 
+  ArrowLeft 
 } from 'lucide-react';
-import Navbar from '@/components/Navbar';
 import { Lead } from '@/types/lead';
 import ServiceGapBadge from '@/components/ServiceGapBadge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
 
 export default function ProposalsPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -46,159 +54,172 @@ export default function ProposalsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans">
-      <Navbar totalLeadsCount={leads.length} />
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      
+      {/* Top Header */}
+      <header className="h-14 border-b border-border bg-card flex items-center justify-between px-4 sm:px-6 shrink-0 sticky top-0 z-40">
+        <div className="flex items-center gap-3">
+          <Button asChild variant="ghost" size="sm" className="h-8 gap-1 text-xs">
+            <Link href="/">
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Dashboard</span>
+            </Link>
+          </Button>
+          <Separator orientation="vertical" className="h-4" />
+          <Badge variant="outline" className="text-xs font-bold">
+            Pitch Teasers
+          </Badge>
+        </div>
+      </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        {/* Header */}
+        {/* Header Section */}
         <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold mb-2">
-              <FileText className="w-3.5 h-3.5" />
+            <Badge variant="secondary" className="mb-2 text-xs font-semibold">
+              <FileText className="w-3.5 h-3.5 mr-1" />
               <span>Client-Facing Audit Teaser & Proof Sheet</span>
-            </div>
-            <h1 className="text-3xl font-black text-white tracking-tight">
+            </Badge>
+            <h1 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
               1-Page Client Teaser Generator
             </h1>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-muted-foreground">
               Share this visual technical breakdown with decision makers to prove where they are losing revenue.
             </p>
           </div>
 
           {/* Lead Selector */}
-          <div className="flex items-center gap-3">
-            <select
-              value={selectedLeadId}
-              onChange={(e) => setSelectedLeadId(e.target.value)}
-              className="px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs font-semibold focus:outline-none focus:border-indigo-500 cursor-pointer"
-            >
-              {leads.map((l) => (
-                <option key={l.id} value={l.id}>
-                  {l.businessName} ({l.city})
-                </option>
-              ))}
-            </select>
+          <div className="flex items-center gap-2">
+            {leads.length > 0 && (
+              <Select value={selectedLeadId} onValueChange={setSelectedLeadId}>
+                <SelectTrigger className="h-9 w-60 text-xs font-semibold">
+                  <SelectValue placeholder="Select a lead" />
+                </SelectTrigger>
+                <SelectContent>
+                  {leads.map((l) => (
+                    <SelectItem key={l.id} value={l.id}>
+                      {l.businessName} ({l.city})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
 
-            <button
+            <Button
               onClick={handleCopyPitch}
-              className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold flex items-center gap-1.5 transition-colors shadow-lg shadow-indigo-600/30"
+              size="sm"
+              className="h-9 font-bold text-xs"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-300" /> : <Copy className="w-4 h-4" />}
-              <span>{copied ? 'Copied Teaser' : 'Copy Teaser Link'}</span>
-            </button>
+              {copied ? <Check className="w-3.5 h-3.5 mr-1 text-secondary" /> : <Copy className="w-3.5 h-3.5 mr-1" />}
+              <span>{copied ? 'Copied Teaser' : 'Copy Teaser Pitch'}</span>
+            </Button>
           </div>
         </div>
 
         {/* Visual Client Proposal Card */}
         {currentLead && (
-          <div className="p-8 rounded-3xl bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 border border-white/15 shadow-2xl space-y-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
-
+          <Card className="p-6 sm:p-8 space-y-6 shadow-md">
+            
             {/* Header section */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-border">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 block mb-1">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-primary block mb-1">
                   Confidential Tech & AI Performance Audit
                 </span>
-                <h2 className="text-3xl font-black text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-black text-foreground tracking-tight">
                   {currentLead.businessName}
                 </h2>
-                <div className="text-xs text-slate-400 mt-1 flex items-center gap-2">
-                  <span>Prepared for: <strong className="text-slate-200">{currentLead.decisionMakerName}</strong> ({currentLead.decisionMakerRole})</span>
+                <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
+                  <span>Prepared for: <strong className="text-foreground">{currentLead.decisionMakerName}</strong> ({currentLead.decisionMakerRole})</span>
                   <span>•</span>
                   <span>{currentLead.city}, {currentLead.country}</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <div className="p-4 rounded-2xl bg-slate-950/80 border border-white/10 text-center">
-                  <div className="text-2xl font-black text-amber-400">{currentLead.audit.overallHealthScore}/100</div>
-                  <div className="text-[10px] text-slate-500 uppercase font-bold">Tech Readiness</div>
-                </div>
-              </div>
+              <Card className="p-3 text-center bg-background border-border">
+                <div className="text-xl font-black text-primary">{currentLead.audit.overallHealthScore}/100</div>
+                <div className="text-[9px] text-muted-foreground uppercase font-bold">Tech Readiness</div>
+              </Card>
             </div>
 
             {/* Key Diagnosed Vulnerabilities */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
-                <TrendingDown className="w-4 h-4 text-red-400" />
+            <div className="space-y-3">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
+                <TrendingDown className="w-3.5 h-3.5 text-destructive" />
                 Critical Revenue Leakages Detected
               </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {currentLead.audit.topGaps.map((gap, i) => (
-                  <div key={i} className="p-5 rounded-2xl bg-slate-950/70 border border-white/10 space-y-2">
+                  <Card key={i} className="p-4 bg-background border-border space-y-1.5 shadow-2xs">
                     <div className="flex items-center justify-between">
-                      <div className="font-extrabold text-white text-sm flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+                      <div className="font-extrabold text-foreground text-xs flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-destructive animate-pulse" />
                         {gap.serviceTitle}
                       </div>
-                      <span className="text-xs font-black text-red-400">
+                      <span className="text-xs font-black text-destructive">
                         -${gap.estimatedLostRevenueMonthly}/mo
                       </span>
                     </div>
 
-                    <p className="text-xs text-slate-400 leading-relaxed">
+                    <p className="text-[11px] text-muted-foreground leading-relaxed">
                       {gap.detectedIssue}
                     </p>
 
-                    <div className="pt-2 border-t border-white/5 text-[11px] text-indigo-300 font-medium">
+                    <div className="pt-2 border-t border-border text-[10px] text-primary font-medium">
                       <strong>Recommended Fix:</strong> {gap.recommendedSolution}
                     </div>
-                  </div>
+                  </Card>
                 ))}
               </div>
             </div>
 
             {/* Recommended Action Plan */}
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-indigo-950/40 via-purple-950/30 to-slate-950 border border-indigo-500/30 space-y-4">
+            <Card className="p-5 bg-muted/40 border-border space-y-3 shadow-2xs">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">Turnkey Solution Package</span>
-                  <h4 className="text-lg font-bold text-white">{currentLead.pitchKit.recommendedPackageName}</h4>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-primary">Turnkey Solution Package</span>
+                  <h4 className="text-base font-bold text-foreground">{currentLead.pitchKit.recommendedPackageName}</h4>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-slate-400 block">Estimated ROI</span>
-                  <span className="text-sm font-black text-emerald-400">{currentLead.pitchKit.estimatedRoi}</span>
+                  <span className="text-[10px] text-muted-foreground block">Estimated ROI</span>
+                  <span className="text-xs font-black text-secondary">{currentLead.pitchKit.estimatedRoi}</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-white/10 text-xs">
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
-                  <div className="text-slate-400 font-medium">Setup Timeline</div>
-                  <div className="text-white font-bold">{currentLead.pitchKit.deliveryTimeline}</div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3 border-t border-border text-xs">
+                <div className="p-2.5 rounded-lg bg-background border border-border">
+                  <div className="text-muted-foreground text-[10px]">Setup Timeline</div>
+                  <div className="font-bold text-foreground">{currentLead.pitchKit.deliveryTimeline}</div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
-                  <div className="text-slate-400 font-medium">Integration Effort</div>
-                  <div className="text-white font-bold">100% Done-For-You</div>
+                <div className="p-2.5 rounded-lg bg-background border border-border">
+                  <div className="text-muted-foreground text-[10px]">Integration Effort</div>
+                  <div className="font-bold text-foreground">100% Done-For-You</div>
                 </div>
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
-                  <div className="text-slate-400 font-medium">Capture Rate Boost</div>
-                  <div className="text-emerald-400 font-bold">+35% to +50%</div>
+                <div className="p-2.5 rounded-lg bg-background border border-border">
+                  <div className="text-muted-foreground text-[10px]">Capture Boost</div>
+                  <div className="font-bold text-secondary">+35% to +50%</div>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Footer action */}
-            <div className="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-              <div className="text-slate-400 flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+              <div className="text-muted-foreground flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-secondary" />
                 <span>Verified by Apex Tech & AI Solutions Agency</span>
               </div>
 
-              <div className="flex items-center gap-2">
-                <a
-                  href={`tel:${currentLead.phone}`}
-                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold flex items-center gap-1.5 transition-colors"
-                >
-                  <PhoneCall className="w-3.5 h-3.5" />
+              <Button asChild variant="secondary" size="sm" className="font-bold">
+                <a href={`tel:${currentLead.phone}`}>
+                  <PhoneCall className="w-3.5 h-3.5 mr-1.5" />
                   <span>Call {currentLead.decisionMakerName}</span>
                 </a>
-              </div>
+              </Button>
             </div>
 
-          </div>
+          </Card>
         )}
 
       </main>

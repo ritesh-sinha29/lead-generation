@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Roboto_Mono } from "next/font/google";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -30,7 +31,7 @@ export default function RootLayout({
       className={`${poppins.variable} ${robotoMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
   );
