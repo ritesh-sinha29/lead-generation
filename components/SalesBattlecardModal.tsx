@@ -3,17 +3,10 @@
 import React, { useState } from 'react';
 import { 
   PhoneCall, 
-  Mail, 
-  MessageSquare, 
-  ShieldAlert, 
-  FileText, 
-  Sparkles, 
   Copy, 
   Check, 
   ExternalLink, 
-  TrendingUp, 
   Send, 
-  Cpu, 
   RefreshCw
 } from 'lucide-react';
 import { Lead, ObjectionHandler, LeadStatus, SalesPitchKit } from '@/types/lead';
@@ -126,12 +119,14 @@ export default function SalesBattlecardModal({
 
             {/* Quick Dial Action */}
             <div className="flex items-center gap-2">
-              <Button asChild className="bg-white text-black hover:bg-zinc-200 font-medium text-xs h-8 px-3 rounded">
-                <a href={`tel:${cleanPhone}`} onClick={() => onUpdateStatus?.(lead.id, 'to_call')}>
-                  <PhoneCall className="w-3 h-3 mr-1.5" />
-                  Dial {lead.phone}
-                </a>
-              </Button>
+              <a
+                href={`tel:${cleanPhone}`}
+                onClick={() => onUpdateStatus?.(lead.id, 'to_call')}
+                className="inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 font-medium text-xs h-8 px-3 rounded transition-colors"
+              >
+                <PhoneCall className="w-3 h-3 mr-1.5" />
+                Dial {lead.phone}
+              </a>
             </div>
           </div>
         </DialogHeader>
@@ -289,11 +284,13 @@ export default function SalesBattlecardModal({
                       {copiedKey === 'email-body' ? 'Copied' : 'Copy Body'}
                     </Button>
 
-                    <Button asChild size="sm" className="h-6 text-[11px] bg-white text-black hover:bg-zinc-200 rounded">
-                      <a href={`mailto:${lead.email}?subject=${encodeURIComponent(currentPitch.emailSubjectLines[selectedSubjectIdx] || '')}&body=${encodeURIComponent(currentPitch.emailBody)}`} onClick={() => onUpdateStatus?.(lead.id, 'to_email')}>
-                        <Send className="w-2.5 h-2.5 mr-1" /> Open Mail
-                      </a>
-                    </Button>
+                    <a
+                      href={`mailto:${lead.email}?subject=${encodeURIComponent(currentPitch.emailSubjectLines[selectedSubjectIdx] || '')}&body=${encodeURIComponent(currentPitch.emailBody)}`}
+                      onClick={() => onUpdateStatus?.(lead.id, 'to_email')}
+                      className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 rounded font-medium transition-colors"
+                    >
+                      <Send className="w-2.5 h-2.5 mr-1" /> Open Mail
+                    </a>
                   </div>
                 </div>
 
@@ -321,11 +318,15 @@ export default function SalesBattlecardModal({
                       {copiedKey === 'wa-msg' ? 'Copied' : 'Copy'}
                     </Button>
 
-                    <Button asChild size="sm" className="h-6 text-[11px] bg-white text-black hover:bg-zinc-200 rounded">
-                      <a href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(currentPitch.whatsappMessage)}`} target="_blank" rel="noreferrer" onClick={() => onUpdateStatus?.(lead.id, 'contacted')}>
-                        <Send className="w-2.5 h-2.5 mr-1" /> Open Web
-                      </a>
-                    </Button>
+                    <a
+                      href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(currentPitch.whatsappMessage)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => onUpdateStatus?.(lead.id, 'contacted')}
+                      className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 rounded font-medium transition-colors"
+                    >
+                      <Send className="w-2.5 h-2.5 mr-1" /> Open Web
+                    </a>
                   </div>
                 </div>
 

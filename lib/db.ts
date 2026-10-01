@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { Lead, LeadStatus } from '@/types/lead';
+import { Lead } from '@/types/lead';
 import { scrapeDailyLeads } from './scraper';
 
 const DATA_DIR = path.join(process.cwd(), 'data');

@@ -84,14 +84,12 @@ export default function SettingsPage() {
       <header className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-[#09090B]/85 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <Button asChild variant="ghost" size="sm" className="h-8 gap-1.5 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900">
-              <Link href="/">
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back to Leads</span>
-              </Link>
-            </Button>
+            <Link href="/" className="inline-flex items-center h-8 gap-1.5 px-3 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-md transition-colors">
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Leads</span>
+            </Link>
             <div className="h-4 w-px bg-zinc-800" />
-            <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">
+            <span className="text-xs font-medium text-zinc-400">
               System Configuration
             </span>
           </div>
@@ -102,21 +100,21 @@ export default function SettingsPage() {
         
         {/* Header */}
         <div className="pb-4 border-b border-zinc-800/80">
-          <Badge variant="outline" className="mb-2 text-xs font-semibold bg-indigo-500/10 border-indigo-500/30 text-indigo-400">
-            <Settings className="w-3.5 h-3.5 mr-1" />
+          <Badge variant="outline" className="mb-2 text-xs font-normal bg-zinc-900 border-zinc-800 text-zinc-300">
+            <Settings className="w-3.5 h-3.5 mr-1 text-zinc-400" />
             <span>Agency & Engine Preferences</span>
           </Badge>
-          <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">System Settings</h1>
-          <p className="text-xs text-zinc-400 mt-1">Configure your agency details, default locations, and Ollama local LLM model.</p>
+          <h1 className="text-2xl font-semibold text-white tracking-tight">System Settings</h1>
+          <p className="text-xs text-zinc-500 mt-1">Configure your agency details, default locations, and Ollama local LLM model.</p>
         </div>
 
         <form onSubmit={handleSave} className="space-y-6">
           
           {/* Section 1: Agency Profile */}
-          <div className="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 space-y-4 shadow-sm">
+          <div className="p-6 rounded-xl bg-zinc-950/70 border border-zinc-800 space-y-4 shadow-sm">
             <div className="flex items-center gap-2 pb-3 border-b border-zinc-800">
-              <Building className="w-4 h-4 text-indigo-400" />
-              <h3 className="text-sm font-bold text-white">Agency Details (Included in Cold Pitches)</h3>
+              <Building className="w-4 h-4 text-zinc-400" />
+              <h3 className="text-sm font-medium text-white">Agency Details</h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
@@ -185,7 +183,7 @@ export default function SettingsPage() {
                 {availableModels.length > 0 ? (
                   <Select
                     value={settings.ollamaModel}
-                    onValueChange={(val) => setSettings({ ...settings, ollamaModel: val })}
+                    onValueChange={(val) => { if (val) setSettings({ ...settings, ollamaModel: val }); }}
                   >
                     <SelectTrigger className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white">
                       <SelectValue placeholder="Select model" />

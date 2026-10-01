@@ -112,7 +112,7 @@ export default function LeadCard({
 
       {/* Vulnerability */}
       {primaryGap && (
-        <div className="p-2.5 rounded bg-black border border-zinc-900 text-xs space-y-0.5">
+        <div className="p-2.5 rounded bg-zinc-900/50 border border-zinc-900 text-xs space-y-0.5">
           <div className="text-zinc-200 font-medium flex items-center justify-between text-[11px]">
             <span className="truncate">{primaryGap.serviceTitle}</span>
             <span className="font-mono text-zinc-400 shrink-0">-${primaryGap.estimatedLostRevenueMonthly}/mo</span>
@@ -127,49 +127,40 @@ export default function LeadCard({
       <div className="space-y-2 pt-2 border-t border-zinc-900">
         
         <div className="grid grid-cols-4 gap-1 w-full text-[11px]">
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-            className="h-7 text-[11px] bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
+          <a
+            href={`tel:${cleanPhone}`}
+            onClick={() => onUpdateStatus(lead.id, 'to_call')}
+            className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
           >
-            <a href={`tel:${cleanPhone}`} onClick={() => onUpdateStatus(lead.id, 'to_call')}>
-              Call
-            </a>
-          </Button>
+            Call
+          </a>
 
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-            className="h-7 text-[11px] bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
+          <a
+            href={`mailto:${lead.email}?subject=${encodeURIComponent(lead.pitchKit.emailSubjectLines[0] || '')}&body=${encodeURIComponent(lead.pitchKit.emailBody)}`}
+            onClick={() => onUpdateStatus(lead.id, 'to_email')}
+            className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
           >
-            <a href={`mailto:${lead.email}?subject=${encodeURIComponent(lead.pitchKit.emailSubjectLines[0] || '')}&body=${encodeURIComponent(lead.pitchKit.emailBody)}`} onClick={() => onUpdateStatus(lead.id, 'to_email')}>
-              Email
-            </a>
-          </Button>
+            Email
+          </a>
 
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-            className="h-7 text-[11px] bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
+          <a
+            href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => onUpdateStatus(lead.id, 'contacted')}
+            className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
           >
-            <a href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`} target="_blank" rel="noreferrer" onClick={() => onUpdateStatus(lead.id, 'contacted')}>
-              WA
-            </a>
-          </Button>
+            WA
+          </a>
 
-          <Button
-            asChild
-            variant="outline"
-            size="sm"
-            className="h-7 text-[11px] bg-zinc-900 border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
+          <a
+            href={lead.website}
+            target="_blank"
+            rel="noreferrer"
+            className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
           >
-            <a href={lead.website} target="_blank" rel="noreferrer">
-              Site
-            </a>
-          </Button>
+            Site
+          </a>
         </div>
 
         <Button
@@ -182,7 +173,7 @@ export default function LeadCard({
         <div className="flex items-center justify-between gap-1 w-full">
           <Select
             value={lead.status}
-            onValueChange={(val) => onUpdateStatus(lead.id, val as LeadStatus)}
+            onValueChange={(val) => { if (val) onUpdateStatus(lead.id, val as LeadStatus); }}
           >
             <SelectTrigger className="h-7 text-[11px] flex-1 bg-zinc-900 border-zinc-800 text-zinc-200 rounded">
               <SelectValue placeholder="Status" />

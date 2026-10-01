@@ -1,4 +1,4 @@
-import { SalesPitchKit, ServiceGap, Lead } from '@/types/lead';
+import { SalesPitchKit, Lead } from '@/types/lead';
 import { generateDefaultPitchKit } from './pitchGenerator';
 
 const OLLAMA_HOST = process.env.OLLAMA_HOST || 'http://127.0.0.1:11434';

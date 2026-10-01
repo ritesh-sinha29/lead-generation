@@ -56,12 +56,10 @@ export default function ProposalsPage() {
       <header className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-[#09090B]/85 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <Button asChild variant="ghost" size="sm" className="h-8 gap-1.5 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900">
-              <Link href="/">
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back to Leads</span>
-              </Link>
-            </Button>
+            <Link href="/" className="inline-flex items-center h-8 gap-1.5 px-3 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-md transition-colors">
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Leads</span>
+            </Link>
             <div className="h-4 w-px bg-zinc-800" />
             <span className="text-xs font-bold uppercase tracking-wider text-indigo-400">
               Client Audit Teaser Sheet
@@ -87,14 +85,14 @@ export default function ProposalsPage() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-zinc-800/80">
           <div>
-            <Badge variant="outline" className="mb-2 text-xs font-semibold bg-indigo-500/10 border-indigo-500/30 text-indigo-400">
-              <FileText className="w-3.5 h-3.5 mr-1" />
+            <Badge variant="outline" className="mb-2 text-xs font-normal bg-zinc-900 border-zinc-800 text-zinc-300">
+              <FileText className="w-3.5 h-3.5 mr-1 text-zinc-400" />
               <span>1-Page Client Diagnostic Proof Sheet</span>
             </Badge>
-            <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            <h1 className="text-2xl font-semibold text-white tracking-tight">
               Client Audit Teaser Generator
             </h1>
-            <p className="text-xs text-zinc-400 mt-1">
+            <p className="text-xs text-zinc-500 mt-1">
               Send this visual technical summary to decision makers to demonstrate their missed revenue.
             </p>
           </div>
@@ -102,8 +100,8 @@ export default function ProposalsPage() {
           {/* Lead Selector & Copy CTA */}
           <div className="flex items-center gap-2">
             {leads.length > 0 && (
-              <Select value={selectedLeadId} onValueChange={setSelectedLeadId}>
-                <SelectTrigger className="h-9 w-60 text-xs font-semibold bg-zinc-900 border-zinc-800 text-white">
+              <Select value={selectedLeadId} onValueChange={(val) => { if (val) setSelectedLeadId(val); }}>
+                <SelectTrigger className="h-9 w-60 text-xs font-medium bg-zinc-900 border-zinc-800 text-white">
                   <SelectValue placeholder="Select a lead" />
                 </SelectTrigger>
                 <SelectContent className="bg-zinc-900 border-zinc-800 text-white text-xs">
@@ -119,9 +117,9 @@ export default function ProposalsPage() {
             <Button
               onClick={handleCopyPitch}
               size="sm"
-              className="h-9 font-bold text-xs bg-indigo-600 hover:bg-indigo-500 text-white"
+              className="h-9 font-medium text-xs bg-white hover:bg-zinc-200 text-black shadow-none"
             >
-              {copied ? <Check className="w-3.5 h-3.5 mr-1 text-emerald-300" /> : <Copy className="w-3.5 h-3.5 mr-1" />}
+              {copied ? <Check className="w-3.5 h-3.5 mr-1 text-zinc-900" /> : <Copy className="w-3.5 h-3.5 mr-1" />}
               <span>{copied ? 'Copied Teaser' : 'Copy Teaser Pitch'}</span>
             </Button>
           </div>
@@ -221,12 +219,13 @@ export default function ProposalsPage() {
                 <span>Verified by Apex Tech & AI Solutions Agency</span>
               </div>
 
-              <Button asChild className="font-bold bg-emerald-600 hover:bg-emerald-500 text-white text-xs h-8">
-                <a href={`tel:${currentLead.phone}`}>
-                  <PhoneCall className="w-3.5 h-3.5 mr-1.5" />
-                  <span>Call {currentLead.decisionMakerName} ({currentLead.phone})</span>
-                </a>
-              </Button>
+              <a
+                href={`tel:${currentLead.phone}`}
+                className="font-medium bg-white text-black hover:bg-zinc-200 text-xs h-8 px-3 inline-flex items-center justify-center rounded transition-colors"
+              >
+                <PhoneCall className="w-3.5 h-3.5 mr-1.5" />
+                <span>Call {currentLead.decisionMakerName} ({currentLead.phone})</span>
+              </a>
             </div>
 
           </div>

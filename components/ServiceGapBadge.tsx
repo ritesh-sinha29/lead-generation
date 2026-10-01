@@ -10,37 +10,37 @@ export const SERVICE_CONFIG: Record<ServiceCategory, { label: string; short: str
   chatbots: {
     label: '24/7 AI Chatbot',
     short: 'Chatbot',
-    bg: 'bg-indigo-500/15',
-    text: 'text-indigo-400',
-    border: 'border-indigo-500/30'
+    bg: 'bg-zinc-900',
+    text: 'text-zinc-300',
+    border: 'border-zinc-800'
   },
   calling_agents: {
     label: 'AI Calling Agent',
     short: 'Voice Agent',
-    bg: 'bg-emerald-500/15',
-    text: 'text-emerald-400',
-    border: 'border-emerald-500/30'
+    bg: 'bg-zinc-900',
+    text: 'text-zinc-300',
+    border: 'border-zinc-800'
   },
   web_app: {
     label: 'Web/App Redesign',
     short: 'Web/App',
-    bg: 'bg-cyan-500/15',
-    text: 'text-cyan-400',
-    border: 'border-cyan-500/30'
+    bg: 'bg-zinc-900',
+    text: 'text-zinc-300',
+    border: 'border-zinc-800'
   },
   seo_aeo_geo: {
     label: 'SEO / AEO / GEO',
     short: 'GEO/SEO',
-    bg: 'bg-amber-500/15',
-    text: 'text-amber-400',
-    border: 'border-amber-500/30'
+    bg: 'bg-zinc-900',
+    text: 'text-zinc-300',
+    border: 'border-zinc-800'
   },
   portfolio: {
     label: 'High-Ticket Portfolio',
     short: 'Portfolio',
-    bg: 'bg-pink-500/15',
-    text: 'text-pink-400',
-    border: 'border-pink-500/30'
+    bg: 'bg-zinc-900',
+    text: 'text-zinc-300',
+    border: 'border-zinc-800'
   }
 };
 

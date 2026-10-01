@@ -63,13 +63,13 @@ const DONUT_COLORS: Record<string, string> = {
 };
 
 const STATUS_COLOR_CONFIG: Record<LeadStatus, { label: string; text: string; bg: string; border: string }> = {
-  new: { label: 'New', text: 'text-sky-400', bg: 'bg-sky-500/10', border: 'border-sky-500/25' },
-  to_call: { label: 'To Call', text: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/25' },
-  to_email: { label: 'To Email', text: 'text-indigo-400', bg: 'bg-indigo-500/10', border: 'border-indigo-500/25' },
-  contacted: { label: 'Contacted', text: 'text-purple-400', bg: 'bg-purple-500/10', border: 'border-purple-500/25' },
-  meeting_booked: { label: 'Meeting', text: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/30' },
-  closed_won: { label: 'Won', text: 'text-emerald-300', bg: 'bg-emerald-500/25', border: 'border-emerald-400' },
-  not_interested: { label: 'Closed', text: 'text-zinc-500', bg: 'bg-zinc-800/40', border: 'border-zinc-800' },
+  new: { label: 'New', text: 'text-zinc-300', bg: 'bg-zinc-900', border: 'border-zinc-800' },
+  to_call: { label: 'To Call', text: 'text-zinc-300', bg: 'bg-zinc-900', border: 'border-zinc-800' },
+  to_email: { label: 'To Email', text: 'text-zinc-300', bg: 'bg-zinc-900', border: 'border-zinc-800' },
+  contacted: { label: 'Contacted', text: 'text-zinc-300', bg: 'bg-zinc-900', border: 'border-zinc-800' },
+  meeting_booked: { label: 'Meeting', text: 'text-zinc-300', bg: 'bg-zinc-900', border: 'border-zinc-800' },
+  closed_won: { label: 'Won', text: 'text-zinc-200', bg: 'bg-zinc-800', border: 'border-zinc-700' },
+  not_interested: { label: 'Closed', text: 'text-zinc-500', bg: 'bg-zinc-900', border: 'border-zinc-800' },
 };
 
 export default function AdminConsoleDashboard() {
@@ -384,12 +384,10 @@ export default function AdminConsoleDashboard() {
           {/* Breadcrumb / Workspace Brand */}
           <div className="flex items-center gap-4 text-xs">
             <Link href="/" className="flex items-center gap-2.5 text-white font-semibold tracking-tight">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-emerald-400 p-[1.5px]">
-                <div className="w-full h-full bg-zinc-950 rounded-[6px] flex items-center justify-center">
-                  <Flame className="w-4 h-4 text-indigo-400" />
-                </div>
+              <div className="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center">
+                <Flame className="w-3.5 h-3.5 text-white" />
               </div>
-              <span className="text-sm font-bold">LeadPulse</span>
+              <span className="text-sm font-semibold tracking-tight">LeadPulse</span>
             </Link>
 
             <span className="text-zinc-700">/</span>
@@ -456,9 +454,9 @@ export default function AdminConsoleDashboard() {
             <Button
               size="sm"
               onClick={() => setIsGeneratorOpen(true)}
-              className="h-7 px-3 text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-md shadow-sm cursor-pointer"
+              className="h-7 px-3 text-xs bg-white hover:bg-zinc-200 text-black font-medium rounded-md shadow-none cursor-pointer"
             >
-              <Sparkles className="w-3 h-3 mr-1.5 text-indigo-200" />
+              <Sparkles className="w-3 h-3 mr-1.5 text-zinc-600" />
               Generate Leads
             </Button>
 
@@ -470,46 +468,45 @@ export default function AdminConsoleDashboard() {
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         
-        {/* Colorful Linear-Style KPI Strip */}
+        {/* Clean Linear-Style KPI Strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 border border-zinc-800 bg-zinc-950/70 rounded-xl divide-y md:divide-y-0 md:divide-x divide-zinc-800 shadow-sm overflow-hidden">
           
           <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-indigo-400">Total Leads in CRM</span>
+            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">Total Leads in CRM</span>
             <div className="text-3xl font-extrabold text-white tracking-tight mt-1 font-mono">
               {totalLeads}
             </div>
-            <div className="text-[11px] text-zinc-400 mt-1 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <div className="text-[11px] text-zinc-500 mt-1 flex items-center gap-1.5 font-mono">
               <span>{toCallCount} ready to dial</span>
             </div>
           </div>
 
           <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-rose-400">Client Revenue Leak</span>
-            <div className="text-3xl font-extrabold text-rose-400 tracking-tight mt-1 font-mono">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">Client Revenue Leak</span>
+            <div className="text-3xl font-extrabold text-white tracking-tight mt-1 font-mono">
               ${(totalMonthlyLeak / 1000).toFixed(0)}k<span className="text-xs text-zinc-500 font-normal">/mo</span>
             </div>
-            <div className="text-[11px] text-zinc-400 mt-1">
+            <div className="text-[11px] text-zinc-500 mt-1 font-mono">
               Missed customer inquiries
             </div>
           </div>
 
           <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400">Outreach Conversion</span>
-            <div className="text-3xl font-extrabold text-emerald-400 tracking-tight mt-1 font-mono">
-              {meetingsCount} <span className="text-xs font-normal text-zinc-400">Booked</span>
+            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">Outreach Conversion</span>
+            <div className="text-3xl font-extrabold text-white tracking-tight mt-1 font-mono">
+              {meetingsCount} <span className="text-xs font-normal text-zinc-500">Booked</span>
             </div>
-            <div className="text-[11px] text-zinc-400 mt-1">
+            <div className="text-[11px] text-zinc-500 mt-1 font-mono">
               {contactedCount} contacted · {wonCount} won
             </div>
           </div>
 
           <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400">Avg Tech Health</span>
-            <div className="text-3xl font-extrabold text-cyan-400 tracking-tight mt-1 font-mono">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">Avg Tech Health</span>
+            <div className="text-3xl font-extrabold text-white tracking-tight mt-1 font-mono">
               {avgHealthScore}<span className="text-xs text-zinc-500 font-normal">/100</span>
             </div>
-            <div className="text-[11px] text-zinc-400 mt-1">
+            <div className="text-[11px] text-zinc-500 mt-1 font-mono">
               {avgHealthScore < 60 ? 'Heavy tech vulnerabilities' : 'Moderate agency scope'}
             </div>
           </div>
@@ -529,7 +526,7 @@ export default function AdminConsoleDashboard() {
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
-              <TableIcon className="w-3.5 h-3.5 text-indigo-400" />
+              <TableIcon className="w-3.5 h-3.5" />
               <span>Table</span>
             </button>
 
@@ -541,7 +538,7 @@ export default function AdminConsoleDashboard() {
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
-              <Kanban className="w-3.5 h-3.5 text-amber-400" />
+              <Kanban className="w-3.5 h-3.5" />
               <span>Pipeline</span>
             </button>
 
@@ -553,7 +550,7 @@ export default function AdminConsoleDashboard() {
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
-              <LayoutGrid className="w-3.5 h-3.5 text-cyan-400" />
+              <LayoutGrid className="w-3.5 h-3.5" />
               <span>Cards</span>
             </button>
 
@@ -565,7 +562,7 @@ export default function AdminConsoleDashboard() {
                   : 'text-zinc-400 hover:text-white'
               }`}
             >
-              <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
+              <BarChart3 className="w-3.5 h-3.5" />
               <span>Insights</span>
             </button>
           </div>
@@ -577,10 +574,10 @@ export default function AdminConsoleDashboard() {
               size="sm"
               onClick={() => setOnlyStarred(!onlyStarred)}
               className={`h-7 text-xs px-2.5 ${
-                onlyStarred ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-transparent border-zinc-800 text-zinc-400 hover:text-white'
+                onlyStarred ? 'bg-zinc-800 text-white border-zinc-700' : 'bg-transparent border-zinc-800 text-zinc-400 hover:text-white'
               }`}
             >
-              <Star className={`w-3 h-3 mr-1 ${onlyStarred ? 'fill-amber-400 text-amber-400' : ''}`} />
+              <Star className={`w-3 h-3 mr-1 ${onlyStarred ? 'fill-white text-white' : ''}`} />
               <span>Starred</span>
             </Button>
 
@@ -591,7 +588,7 @@ export default function AdminConsoleDashboard() {
             {hasActiveFilters && (
               <button
                 onClick={clearAllFilters}
-                className="text-[11px] text-indigo-400 hover:underline flex items-center gap-1 ml-1 cursor-pointer"
+                className="text-[11px] text-zinc-400 hover:text-white flex items-center gap-1 ml-1 cursor-pointer transition-colors"
               >
                 <X className="w-3 h-3" />
                 Clear
@@ -615,7 +612,7 @@ export default function AdminConsoleDashboard() {
             />
           </div>
 
-          <Select value={selectedNiche} onValueChange={setSelectedNiche}>
+          <Select value={selectedNiche} onValueChange={(val) => { if (val) setSelectedNiche(val); }}>
             <SelectTrigger className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-300 rounded-md">
               <SelectValue placeholder="All Niches" />
             </SelectTrigger>
@@ -627,7 +624,7 @@ export default function AdminConsoleDashboard() {
             </SelectContent>
           </Select>
 
-          <Select value={serviceFilter} onValueChange={(v) => setServiceFilter(v as ServiceCategory | 'all')}>
+          <Select value={serviceFilter} onValueChange={(v) => { if (v) setServiceFilter(v as ServiceCategory | 'all'); }}>
             <SelectTrigger className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-300 rounded-md">
               <SelectValue placeholder="All Gaps" />
             </SelectTrigger>
@@ -641,7 +638,7 @@ export default function AdminConsoleDashboard() {
             </SelectContent>
           </Select>
 
-          <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as LeadStatus | 'all')}>
+          <Select value={statusFilter} onValueChange={(v) => { if (v) setStatusFilter(v as LeadStatus | 'all'); }}>
             <SelectTrigger className="h-8 text-xs bg-zinc-950 border-zinc-800 text-zinc-300 rounded-md">
               <SelectValue placeholder="All Statuses" />
             </SelectTrigger>
@@ -687,7 +684,6 @@ export default function AdminConsoleDashboard() {
                       const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
                       const cleanWhatsAppPhone = cleanPhone.replace(/^\+/, '');
                       const statusMeta = STATUS_COLOR_CONFIG[lead.status] || STATUS_COLOR_CONFIG.new;
-
                       return (
                         <React.Fragment key={lead.id}>
                           <tr className="hover:bg-zinc-900/40 transition-colors group">
@@ -697,13 +693,13 @@ export default function AdminConsoleDashboard() {
                               <div className="flex items-start gap-2">
                                 <button
                                   onClick={() => handleToggleStar(lead.id, !lead.starred)}
-                                  className="mt-0.5 text-zinc-600 hover:text-amber-400 transition-colors cursor-pointer"
+                                  className="mt-0.5 text-zinc-600 hover:text-white transition-colors cursor-pointer"
                                 >
-                                  <Star className={`w-3.5 h-3.5 ${lead.starred ? 'fill-amber-400 text-amber-400' : ''}`} />
+                                  <Star className={`w-3.5 h-3.5 ${lead.starred ? 'fill-white text-white' : ''}`} />
                                 </button>
                                 <div>
-                                  <div className="font-bold text-white tracking-tight flex items-center gap-1.5">
-                                    <span className="group-hover:text-indigo-400 transition-colors">{lead.businessName}</span>
+                                  <div className="font-medium text-white tracking-tight flex items-center gap-1.5">
+                                    <span className="group-hover:text-zinc-200 transition-colors">{lead.businessName}</span>
                                     {lead.website && (
                                       <a
                                         href={lead.website}
@@ -716,8 +712,8 @@ export default function AdminConsoleDashboard() {
                                       </a>
                                     )}
                                   </div>
-                                  <div className="text-[11px] text-zinc-400 mt-0.5">
-                                    <span className="text-zinc-300 font-medium">{lead.decisionMakerName}</span> · {lead.decisionMakerRole}
+                                  <div className="text-[11px] text-zinc-500 mt-0.5">
+                                    <span>{lead.decisionMakerName}</span> · {lead.decisionMakerRole}
                                   </div>
                                 </div>
                               </div>
@@ -725,7 +721,7 @@ export default function AdminConsoleDashboard() {
 
                             {/* Niche & Location */}
                             <td className="py-3 px-3">
-                              <span className="text-[11px] text-zinc-200 font-semibold">{lead.niche}</span>
+                              <span className="text-[11px] text-zinc-300 font-medium">{lead.niche}</span>
                               <div className="text-[11px] text-zinc-500">{lead.city}</div>
                             </td>
 
@@ -735,9 +731,9 @@ export default function AdminConsoleDashboard() {
                                 <div className="space-y-1">
                                   <div className="flex items-center justify-between gap-2">
                                     <ServiceGapBadge service={primaryGap.service} />
-                                    <span className="text-rose-400 font-mono text-[11px] font-bold shrink-0">-${primaryGap.estimatedLostRevenueMonthly}/mo</span>
+                                    <span className="text-zinc-400 font-mono text-[11px] shrink-0">-${primaryGap.estimatedLostRevenueMonthly}/mo</span>
                                   </div>
-                                  <div className="text-[11px] text-zinc-400 truncate">{primaryGap.detectedIssue}</div>
+                                  <div className="text-[11px] text-zinc-500 truncate">{primaryGap.detectedIssue}</div>
                                 </div>
                               ) : (
                                 <span className="text-zinc-600">None detected</span>
@@ -746,22 +742,18 @@ export default function AdminConsoleDashboard() {
 
                             {/* Score */}
                             <td className="py-3 px-3">
-                              <div className="flex items-center gap-1.5 font-mono">
-                                <span className={`text-[11px] font-bold ${
-                                  lead.audit.overallHealthScore < 50 ? 'text-rose-400' : lead.audit.overallHealthScore < 70 ? 'text-amber-400' : 'text-emerald-400'
-                                }`}>
-                                  {lead.audit.overallHealthScore}/100
-                                </span>
-                              </div>
+                              <span className="text-[11px] font-mono text-zinc-400">
+                                {lead.audit.overallHealthScore}/100
+                              </span>
                             </td>
 
                             {/* Status Pill Dropdown */}
                             <td className="py-3 px-3">
                               <Select
                                 value={lead.status}
-                                onValueChange={(val) => handleUpdateStatus(lead.id, val as LeadStatus)}
+                                onValueChange={(val) => { if (val) handleUpdateStatus(lead.id, val as LeadStatus); }}
                               >
-                                <SelectTrigger className={`h-6 w-28 text-[11px] font-semibold rounded border ${statusMeta.bg} ${statusMeta.text} ${statusMeta.border}`}>
+                                <SelectTrigger className="h-6 w-28 text-[11px] font-medium bg-zinc-900 border-zinc-800 text-zinc-300 rounded">
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
@@ -780,39 +772,30 @@ export default function AdminConsoleDashboard() {
                             <td className="py-3 px-3 text-right">
                               <div className="flex items-center justify-end gap-1">
                                 
-                                <Button
-                                  asChild
-                                  variant="ghost"
-                                  size="sm"
-                                  className="h-6 px-2 text-[11px] text-zinc-300 hover:text-emerald-400 hover:bg-zinc-900 rounded"
+                                <a
+                                  href={`tel:${cleanPhone}`}
+                                  onClick={() => handleUpdateStatus(lead.id, 'to_call')}
+                                  className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
                                 >
-                                  <a href={`tel:${cleanPhone}`} onClick={() => handleUpdateStatus(lead.id, 'to_call')}>
-                                    <Phone className="w-3 h-3 mr-1 text-emerald-400" />
-                                    Call
-                                  </a>
-                                </Button>
+                                  <Phone className="w-3 h-3 mr-1 text-zinc-400" />
+                                  Call
+                                </a>
 
-                                <Button
-                                  asChild
-                                  variant="ghost"
-                                  size="sm"
-                                  className="h-6 px-2 text-[11px] text-zinc-300 hover:text-emerald-400 hover:bg-zinc-900 rounded"
+                                <a
+                                  href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  onClick={() => handleUpdateStatus(lead.id, 'contacted')}
+                                  className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
                                 >
-                                  <a
-                                    href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    onClick={() => handleUpdateStatus(lead.id, 'contacted')}
-                                  >
-                                    <MessageSquare className="w-3 h-3 mr-1 text-emerald-400" />
-                                    WA
-                                  </a>
-                                </Button>
+                                  <MessageSquare className="w-3 h-3 mr-1 text-zinc-400" />
+                                  WA
+                                </a>
 
                                 <Button
                                   size="sm"
                                   onClick={() => setSelectedLeadForKit(lead)}
-                                  className="h-6 px-2.5 text-[11px] bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded shadow-xs"
+                                  className="h-6 px-2.5 text-[11px] bg-white text-black hover:bg-zinc-200 font-medium rounded shadow-none"
                                 >
                                   Pitch Kit
                                 </Button>
@@ -820,7 +803,7 @@ export default function AdminConsoleDashboard() {
                                 <Button
                                   variant="ghost"
                                   size="icon"
-                                  className={`h-6 w-6 rounded ${expandedNotesId === lead.id ? 'text-indigo-400 bg-zinc-800' : 'text-zinc-500 hover:text-zinc-300'}`}
+                                  className={`h-6 w-6 rounded ${expandedNotesId === lead.id ? 'text-white bg-zinc-800' : 'text-zinc-500 hover:text-zinc-300'}`}
                                   onClick={() => setExpandedNotesId(expandedNotesId === lead.id ? null : lead.id)}
                                   title="Notes"
                                 >
@@ -830,7 +813,7 @@ export default function AdminConsoleDashboard() {
                                 <Button
                                   variant="ghost"
                                   size="icon"
-                                  className="h-6 w-6 text-zinc-600 hover:text-rose-400 rounded"
+                                  className="h-6 w-6 text-zinc-600 hover:text-zinc-300 rounded"
                                   onClick={() => handleDeleteLead(lead.id)}
                                   title="Delete"
                                 >
@@ -894,7 +877,7 @@ export default function AdminConsoleDashboard() {
           </div>
         )}
 
-        {/* VIEW 2: KANBAN WITH COLOR HEADERS */}
+        {/* VIEW 2: KANBAN WITH CLEAN MINIMAL HEADERS */}
         {viewMode === 'kanban' && (
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 pb-4">
             {kanbanColumns.map((col) => {
@@ -904,15 +887,15 @@ export default function AdminConsoleDashboard() {
               }, 0);
 
               return (
-                <div key={col.status} className={`border border-zinc-800 rounded-xl bg-zinc-950/80 p-3 flex flex-col min-h-[480px] shadow-sm ${col.border}`}>
+                <div key={col.status} className="border border-zinc-800 rounded-xl bg-zinc-950/80 p-3 flex flex-col min-h-[480px] shadow-sm">
                   
                   {/* Column Header */}
                   <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-800">
                     <div>
-                      <div className={`text-xs font-bold ${col.color}`}>{col.title}</div>
+                      <div className="text-xs font-semibold text-zinc-200">{col.title}</div>
                       <div className="text-[10px] text-zinc-500 font-mono">${(colRevenueSum / 1000).toFixed(0)}k/mo</div>
                     </div>
-                    <span className="text-[10px] font-mono text-zinc-300 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800 font-bold">
+                    <span className="text-[10px] font-mono text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">
                       {col.leads.length}
                     </span>
                   </div>
@@ -924,26 +907,26 @@ export default function AdminConsoleDashboard() {
                       const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
 
                       return (
-                        <div key={lead.id} className="p-3 rounded-lg border border-zinc-800 bg-black hover:border-zinc-700 space-y-2 transition-colors">
+                        <div key={lead.id} className="p-3 rounded-lg border border-zinc-800/80 bg-zinc-900/40 hover:border-zinc-700 space-y-2 transition-colors">
                           
                           <div className="flex items-start justify-between gap-1">
                             <div>
-                              <div className="font-bold text-white text-xs line-clamp-1">
+                              <div className="font-medium text-white text-xs line-clamp-1">
                                 {lead.businessName}
                               </div>
-                              <div className="text-[10px] text-zinc-400 mt-0.5">
+                              <div className="text-[10px] text-zinc-500 mt-0.5">
                                 {lead.decisionMakerName}
                               </div>
                             </div>
-                            <span className="text-[10px] font-mono font-bold text-zinc-400">
-                              {lead.audit.overallHealthScore}
+                            <span className="text-[10px] font-mono text-zinc-400">
+                              {lead.audit.overallHealthScore}/100
                             </span>
                           </div>
 
                           {primaryGap && (
                             <div className="text-[10px] text-zinc-400 border-t border-zinc-900 pt-1.5 flex items-center justify-between">
                               <ServiceGapBadge service={primaryGap.service} />
-                              <span className="font-mono text-rose-400 font-bold">-${primaryGap.estimatedLostRevenueMonthly}</span>
+                              <span className="font-mono text-zinc-400">-${primaryGap.estimatedLostRevenueMonthly}</span>
                             </div>
                           )}
 
@@ -951,22 +934,19 @@ export default function AdminConsoleDashboard() {
                             <Button
                               size="sm"
                               onClick={() => setSelectedLeadForKit(lead)}
-                              className="h-6 px-2 text-[10px] bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded"
+                              className="h-6 px-2 text-[10px] bg-white text-black hover:bg-zinc-200 font-medium rounded shadow-none"
                             >
                               Pitch Kit
                             </Button>
 
                             <div className="flex items-center gap-1">
-                              <Button
-                                asChild
-                                variant="ghost"
-                                size="sm"
-                                className="h-6 px-1.5 text-[10px] text-zinc-400 hover:text-emerald-400"
+                              <a
+                                href={`tel:${cleanPhone}`}
+                                onClick={() => handleUpdateStatus(lead.id, 'to_call')}
+                                className="h-6 px-2 text-[10px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white rounded"
                               >
-                                <a href={`tel:${cleanPhone}`} onClick={() => handleUpdateStatus(lead.id, 'to_call')}>
-                                  Call
-                                </a>
-                              </Button>
+                                Call
+                              </a>
 
                               {col.status !== 'closed_won' && (
                                 <Button
@@ -1029,12 +1009,13 @@ export default function AdminConsoleDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               
               {/* Chart 1: Revenue Leak with Vibrant Indigo Bars */}
-              <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950 space-y-3 shadow-sm">
+              <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950/70 space-y-4 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase text-indigo-400 font-bold">
-                    Revenue Leak by Market Niche
-                  </span>
-                  <span className="text-[10px] text-zinc-400 font-mono">Monthly $USD</span>
+                  <div>
+                    <h3 className="text-sm font-medium text-white tracking-tight">Revenue Leak by Market Niche</h3>
+                    <p className="text-xs text-zinc-500 mt-0.5">Estimated monthly client loss</p>
+                  </div>
+                  <span className="text-xs font-mono text-zinc-500">USD / mo</span>
                 </div>
 
                 <div className="h-60 w-full">
@@ -1047,10 +1028,10 @@ export default function AdminConsoleDashboard() {
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="2 2" stroke="#27272A" vertical={false} />
-                      <XAxis dataKey="niche" stroke="#71717A" fontSize={11} />
-                      <YAxis stroke="#71717A" fontSize={11} tickFormatter={(val: number) => `$${val / 1000}k`} />
+                      <XAxis dataKey="niche" stroke="#71717A" fontSize={11} tickLine={false} axisLine={{ stroke: '#27272A' }} />
+                      <YAxis stroke="#71717A" fontSize={11} tickLine={false} axisLine={{ stroke: '#27272A' }} tickFormatter={(val: number) => `$${val / 1000}k`} />
                       <Tooltip
-                        contentStyle={{ backgroundColor: '#18181B', borderColor: '#3F3F46', borderRadius: '8px', fontSize: '11px', color: '#fff' }}
+                        contentStyle={{ backgroundColor: '#18181B', borderColor: '#27272A', borderRadius: '8px', fontSize: '12px', color: '#fff' }}
                         formatter={(val: number | string | readonly (string | number)[] | undefined) => [`$${Number(val).toLocaleString()}/mo`, 'Leak']}
                       />
                       <Bar dataKey="leak" fill="url(#nicheGradient)" radius={[4, 4, 0, 0]} />
@@ -1060,12 +1041,13 @@ export default function AdminConsoleDashboard() {
               </div>
 
               {/* Chart 2: Vibrant Multi-Color Donut Chart */}
-              <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950 space-y-3 shadow-sm">
+              <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950/70 space-y-4 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono uppercase text-emerald-400 font-bold">
-                    Service Gap Distribution
-                  </span>
-                  <span className="text-[10px] text-zinc-400 font-mono">5 High-Ticket Services</span>
+                  <div>
+                    <h3 className="text-sm font-medium text-white tracking-tight">Service Gap Distribution</h3>
+                    <p className="text-xs text-zinc-500 mt-0.5">5 High-Ticket Services</p>
+                  </div>
+                  <span className="text-xs font-mono text-zinc-500">Breakdown</span>
                 </div>
 
                 <div className="h-60 w-full flex items-center justify-center">
@@ -1085,9 +1067,9 @@ export default function AdminConsoleDashboard() {
                         ))}
                       </Pie>
                       <Tooltip
-                        contentStyle={{ backgroundColor: '#18181B', borderColor: '#3F3F46', borderRadius: '8px', fontSize: '11px', color: '#fff' }}
+                        contentStyle={{ backgroundColor: '#18181B', borderColor: '#27272A', borderRadius: '8px', fontSize: '12px', color: '#fff' }}
                       />
-                      <Legend wrapperStyle={{ fontSize: '11px', color: '#A1A1AA', paddingTop: '10px' }} />
+                      <Legend wrapperStyle={{ fontSize: '12px', color: '#A1A1AA', paddingTop: '10px' }} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -1096,10 +1078,14 @@ export default function AdminConsoleDashboard() {
             </div>
 
             {/* Funnel Chart with Emerald / Teal Glow */}
-            <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950 space-y-3 shadow-sm">
-              <span className="text-xs font-mono uppercase text-cyan-400 font-bold">
-                Pipeline Stage Conversion Funnel
-              </span>
+            <div className="p-5 border border-zinc-800 rounded-xl bg-zinc-950/70 space-y-4 shadow-sm">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-medium text-white tracking-tight">Pipeline Stage Conversion Funnel</h3>
+                  <p className="text-xs text-zinc-500 mt-0.5">Lead progression velocity</p>
+                </div>
+                <span className="text-xs font-mono text-zinc-500">Stages</span>
+              </div>
 
               <div className="h-56 w-full">
                 <ResponsiveContainer width="100%" height="100%">
@@ -1111,10 +1097,10 @@ export default function AdminConsoleDashboard() {
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="2 2" stroke="#27272A" vertical={false} />
-                    <XAxis dataKey="stage" stroke="#71717A" fontSize={11} />
-                    <YAxis stroke="#71717A" fontSize={11} />
+                    <XAxis dataKey="stage" stroke="#71717A" fontSize={11} tickLine={false} axisLine={{ stroke: '#27272A' }} />
+                    <YAxis stroke="#71717A" fontSize={11} tickLine={false} axisLine={{ stroke: '#27272A' }} />
                     <Tooltip
-                      contentStyle={{ backgroundColor: '#18181B', borderColor: '#3F3F46', borderRadius: '8px', fontSize: '11px', color: '#fff' }}
+                      contentStyle={{ backgroundColor: '#18181B', borderColor: '#27272A', borderRadius: '8px', fontSize: '12px', color: '#fff' }}
                     />
                     <Area type="monotone" dataKey="count" stroke="#10B981" strokeWidth={2.5} fill="url(#emeraldArea)" />
                   </AreaChart>
@@ -1131,7 +1117,7 @@ export default function AdminConsoleDashboard() {
       <DailyGeneratorModal
         isOpen={isGeneratorOpen}
         onClose={() => setIsGeneratorOpen(false)}
-        onSuccess={() => fetchLeads()}
+        onSuccess={handleRefresh}
         ollamaOnline={ollamaOnline}
         availableModels={availableModels}
       />
