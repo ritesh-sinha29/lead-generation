@@ -1,21 +1,27 @@
 import { NextResponse } from 'next/server';
+import { scrapeLiveLeadsWithGemini } from '@/lib/liveScraper';
 import { scrapeDailyLeads } from '@/lib/scraper';
 import { addLeads } from '@/lib/db';
-import { GenerateLeadsRequest } from '@/types/lead';
+import { GenerateLeadsRequest, Lead } from '@/types/lead';
 
 export async function POST(req: Request) {
   try {
     const body: GenerateLeadsRequest = await req.json();
     
-    // Scrape & audit the batch of 10-20 leads
-    const freshLeads = await scrapeDailyLeads(body);
+    // 1. Try Live Gemini Google Search Grounding & Live Website HTML Auditor
+    let freshLeads: Lead[] = await scrapeLiveLeadsWithGemini(body);
+
+    // 2. Fallback to High-Precision Discovery Engine if Gemini Key is not present or returns empty
+    if (!freshLeads || freshLeads.length === 0) {
+      freshLeads = await scrapeDailyLeads(body);
+    }
     
-    // Save to persistent local storage
+    // 3. Save to persistent database
     const allLeads = await addLeads(freshLeads);
 
     return NextResponse.json({
       success: true,
-      message: `Successfully generated ${freshLeads.length} qualified leads for ${body.niche} in ${body.city}!`,
+      message: `Successfully discovered and audited ${freshLeads.length} leads for ${body.niche} in ${body.city}!`,
       newLeads: freshLeads,
       totalCount: allLeads.length
     });
