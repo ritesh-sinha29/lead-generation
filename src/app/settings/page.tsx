@@ -42,6 +42,8 @@ export default function SettingsPage() {
 
   const [ollamaOnline, setOllamaOnline] = useState(false);
   const [availableModels, setAvailableModels] = useState<string[]>([]);
+  const [hasEnvGeminiKey, setHasEnvGeminiKey] = useState(false);
+  const [hasEnvGrokKey, setHasEnvGrokKey] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
@@ -50,6 +52,8 @@ export default function SettingsPage() {
       .then((data) => {
         if (data.success && data.settings) {
           setSettings((prev) => ({ ...prev, ...data.settings }));
+          setHasEnvGeminiKey(!!data.hasEnvGeminiKey);
+          setHasEnvGrokKey(!!data.hasEnvGrokKey);
         }
       });
 
@@ -148,7 +152,12 @@ export default function SettingsPage() {
                   <label className="block text-zinc-300 font-medium flex items-center justify-between">
                     <span className="flex items-center gap-1.5">
                       <Key className="w-3.5 h-3.5 text-zinc-400" />
-                      Google Gemini API Key
+                      <span>Google Gemini API Key</span>
+                      {hasEnvGeminiKey && (
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-emerald-400">
+                          ✓ Private in .env.local
+                        </span>
+                      )}
                     </span>
                     <a
                       href="https://aistudio.google.com/app/apikey"
@@ -163,11 +172,11 @@ export default function SettingsPage() {
                     type="password"
                     value={settings.geminiApiKey || ''}
                     onChange={(e) => setSettings({ ...settings, geminiApiKey: e.target.value })}
-                    placeholder="AIzaSy..."
-                    className="h-8 text-xs bg-[#0C0D0E] border-zinc-800 text-white font-mono placeholder-zinc-600 rounded"
+                    placeholder={hasEnvGeminiKey ? "•••••••••••••••• (Protected in .env.local)" : "AIzaSy..."}
+                    className="h-8 text-xs bg-[#0C0D0E] border-zinc-800 text-white font-mono placeholder-zinc-500 rounded"
                   />
                   <p className="text-[11px] text-zinc-500">
-                    Used to synthesize empathetic, hyper-personalized problem audits and cold scripts for every prospect.
+                    Powers live Google Search Grounding for real operating businesses and empathetic AI sales battlecards.
                   </p>
                 </div>
               )}
