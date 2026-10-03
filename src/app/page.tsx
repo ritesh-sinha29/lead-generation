@@ -722,7 +722,7 @@ export default function AdminConsoleDashboard() {
                             {/* Niche & Location */}
                             <td className="py-3 px-3">
                               <span className="text-[11px] text-zinc-300 font-medium">{lead.niche}</span>
-                              <div className="text-[11px] text-zinc-500">{lead.city}</div>
+                              <div className="text-[11px] text-zinc-500 capitalize">{lead.city}</div>
                             </td>
 
                             {/* Diagnosed Vulnerability with Tag */}

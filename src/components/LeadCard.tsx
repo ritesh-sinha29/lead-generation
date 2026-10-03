@@ -62,7 +62,7 @@ export default function LeadCard({
             <span className="text-[10px] font-mono uppercase text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">
               {lead.niche}
             </span>
-            <span className="text-[11px] text-zinc-500">
+            <span className="text-[11px] text-zinc-500 capitalize">
               {lead.city}
             </span>
           </div>

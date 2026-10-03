@@ -1,5 +1,1944 @@
 [
   {
+    "id": "lead-1791042873247-0-mgshf",
+    "businessName": "Apex Bhatia Realty Group",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5559044001",
+    "email": "kunal@apexbhatiarealty.com",
+    "website": "https://www.apexbhatiarealty.com",
+    "decisionMakerName": "Kunal Bhatia",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.1,
+    "googleReviewsCount": 28,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "5 - 15",
+    "audit": {
+      "loadTimeSeconds": 3.5,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 39,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4700,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (3.5s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Kunal, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Apex Bhatia Realty Group?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Apex Bhatia Realty Group. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Apex Bhatia Realty Group's website",
+        "Kunal - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Apex Bhatia Realty Group's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Kunal,\n\nI came across Apex Bhatia Realty Group while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Apex Bhatia Realty Group's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Kunal! 👋 Came across Apex Bhatia Realty Group while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Apex Bhatia Realty Group—mind if I share the link here?",
+      "linkedinDm": "Hi Kunal, impressed by your work with Apex Bhatia Realty Group in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Kunal. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Apex Bhatia Realty Group, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "to_call",
+    "starred": true,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.247Z",
+    "lastContactedAt": "2026-10-03T15:55:13.066Z"
+  },
+  {
+    "id": "lead-1791042873247-1-hbhql",
+    "businessName": "Prime Reynolds Properties & Estates",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5559137903",
+    "email": "samantha@primereynoldspro.com",
+    "website": "https://www.primereynoldspro.com",
+    "decisionMakerName": "Samantha Reynolds",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.2,
+    "googleReviewsCount": 46,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "9 - 23",
+    "audit": {
+      "loadTimeSeconds": 4.2,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4200,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4800,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5300,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.2s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Samantha, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Prime Reynolds Properties & Estates?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Prime Reynolds Properties & Estates. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Prime Reynolds Properties & Estates's website",
+        "Samantha - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Prime Reynolds Properties & Estates's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Samantha,\n\nI came across Prime Reynolds Properties & Estates while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Prime Reynolds Properties & Estates's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Samantha! 👋 Came across Prime Reynolds Properties & Estates while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Prime Reynolds Properties & Estates—mind if I share the link here?",
+      "linkedinDm": "Hi Samantha, impressed by your work with Prime Reynolds Properties & Estates in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Samantha. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Prime Reynolds Properties & Estates, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": true,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.247Z"
+  },
+  {
+    "id": "lead-1791042873247-2-jucgy",
+    "businessName": "Elite Chawla Luxury Living Real Estate",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5551564493",
+    "email": "rohan@elitechawlaluxur.com",
+    "website": "https://www.elitechawlaluxur.com",
+    "decisionMakerName": "Rohan Chawla",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.3,
+    "googleReviewsCount": 55,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "13 - 31",
+    "audit": {
+      "loadTimeSeconds": 4.9,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4900,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5900,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.9s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Rohan, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Elite Chawla Luxury Living Real Estate?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Elite Chawla Luxury Living Real Estate. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Elite Chawla Luxury Living Real Estate's website",
+        "Rohan - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Elite Chawla Luxury Living Real Estate's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Rohan,\n\nI came across Elite Chawla Luxury Living Real Estate while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Elite Chawla Luxury Living Real Estate's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Rohan! 👋 Came across Elite Chawla Luxury Living Real Estate while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Elite Chawla Luxury Living Real Estate—mind if I share the link here?",
+      "linkedinDm": "Hi Rohan, impressed by your work with Elite Chawla Luxury Living Real Estate in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Rohan. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Elite Chawla Luxury Living Real Estate, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": true,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.247Z"
+  },
+  {
+    "id": "lead-1791042873247-3-wg541",
+    "businessName": "Aura Hayes Prime Capital Realtors",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5553977097",
+    "email": "victoria@aurahayesprimeca.com",
+    "website": "https://www.aurahayesprimeca.com",
+    "decisionMakerName": "Victoria Hayes",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.4,
+    "googleReviewsCount": 61,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "17 - 39",
+    "audit": {
+      "loadTimeSeconds": 5.6,
+      "mobileResponsive": false,
+      "hasLiveChat": true,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 3200,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 6500,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (5.6s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 2500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Victoria, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Aura Hayes Prime Capital Realtors?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Aura Hayes Prime Capital Realtors. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Aura Hayes Prime Capital Realtors's website",
+        "Victoria - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Aura Hayes Prime Capital Realtors's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Victoria,\n\nI came across Aura Hayes Prime Capital Realtors while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Aura Hayes Prime Capital Realtors's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Victoria! 👋 Came across Aura Hayes Prime Capital Realtors while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Aura Hayes Prime Capital Realtors—mind if I share the link here?",
+      "linkedinDm": "Hi Victoria, impressed by your work with Aura Hayes Prime Capital Realtors in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Victoria. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Aura Hayes Prime Capital Realtors, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.247Z"
+  },
+  {
+    "id": "lead-1791042873248-4-ixxip",
+    "businessName": "Summit Singhania Apex Realty",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5556325254",
+    "email": "aman@summitsinghaniaa.com",
+    "website": "https://www.summitsinghaniaa.com",
+    "decisionMakerName": "Aman Singhania",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.5,
+    "googleReviewsCount": 84,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "21 - 47",
+    "audit": {
+      "loadTimeSeconds": 2.8,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": true,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 51,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 2800,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 7100,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Aman, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Summit Singhania Apex Realty?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Summit Singhania Apex Realty. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Summit Singhania Apex Realty's website",
+        "Aman - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Summit Singhania Apex Realty's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Aman,\n\nI came across Summit Singhania Apex Realty while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Summit Singhania Apex Realty's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Aman! 👋 Came across Summit Singhania Apex Realty while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Summit Singhania Apex Realty—mind if I share the link here?",
+      "linkedinDm": "Hi Aman, impressed by your work with Summit Singhania Apex Realty in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Aman. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Summit Singhania Apex Realty, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-5-3m4f2",
+    "businessName": "Zenith Kapoor Realty Group",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5557667213",
+    "email": "david@zenithkapoorreal.com",
+    "website": "https://www.zenithkapoorreal.com",
+    "decisionMakerName": "David Kapoor",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.6,
+    "googleReviewsCount": 107,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "25 - 15",
+    "audit": {
+      "loadTimeSeconds": 3.5,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 39,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4800,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4100,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (3.5s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi David, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Zenith Kapoor Realty Group?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Zenith Kapoor Realty Group. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Zenith Kapoor Realty Group's website",
+        "David - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Zenith Kapoor Realty Group's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi David,\n\nI came across Zenith Kapoor Realty Group while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Zenith Kapoor Realty Group's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi David! 👋 Came across Zenith Kapoor Realty Group while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Zenith Kapoor Realty Group—mind if I share the link here?",
+      "linkedinDm": "Hi David, impressed by your work with Zenith Kapoor Realty Group in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, David. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Zenith Kapoor Realty Group, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-6-8kq12",
+    "businessName": "NextGen Sterling Properties & Estates",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5556477442",
+    "email": "pooja@nextgensterlingp.com",
+    "website": "https://www.nextgensterlingp.com",
+    "decisionMakerName": "Pooja Sterling",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.7,
+    "googleReviewsCount": 107,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "5 - 23",
+    "audit": {
+      "loadTimeSeconds": 4.2,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4200,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4700,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.2s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Pooja, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding NextGen Sterling Properties & Estates?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for NextGen Sterling Properties & Estates. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding NextGen Sterling Properties & Estates's website",
+        "Pooja - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for NextGen Sterling Properties & Estates's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Pooja,\n\nI came across NextGen Sterling Properties & Estates while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on NextGen Sterling Properties & Estates's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Pooja! 👋 Came across NextGen Sterling Properties & Estates while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for NextGen Sterling Properties & Estates—mind if I share the link here?",
+      "linkedinDm": "Hi Pooja, impressed by your work with NextGen Sterling Properties & Estates in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Pooja. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to NextGen Sterling Properties & Estates, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-7-ayhea",
+    "businessName": "Horizon Bhatia Luxury Living Real Estate",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5557233948",
+    "email": "nathan@horizonbhatialux.com",
+    "website": "https://www.horizonbhatialux.com",
+    "decisionMakerName": "Nathan Bhatia",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.8,
+    "googleReviewsCount": 129,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "9 - 31",
+    "audit": {
+      "loadTimeSeconds": 4.9,
+      "mobileResponsive": false,
+      "hasLiveChat": true,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4900,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 3200,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5300,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.9s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 2500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Nathan, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Horizon Bhatia Luxury Living Real Estate?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Horizon Bhatia Luxury Living Real Estate. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Horizon Bhatia Luxury Living Real Estate's website",
+        "Nathan - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Horizon Bhatia Luxury Living Real Estate's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Nathan,\n\nI came across Horizon Bhatia Luxury Living Real Estate while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Horizon Bhatia Luxury Living Real Estate's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Nathan! 👋 Came across Horizon Bhatia Luxury Living Real Estate while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Horizon Bhatia Luxury Living Real Estate—mind if I share the link here?",
+      "linkedinDm": "Hi Nathan, impressed by your work with Horizon Bhatia Luxury Living Real Estate in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Nathan. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Horizon Bhatia Luxury Living Real Estate, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-8-u1qe4",
+    "businessName": "Prestige Reynolds Prime Capital Realtors",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5559045457",
+    "email": "kunal@prestigereynolds.com",
+    "website": "https://www.prestigereynolds.com",
+    "decisionMakerName": "Kunal Reynolds",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.1,
+    "googleReviewsCount": 143,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "13 - 39",
+    "audit": {
+      "loadTimeSeconds": 5.6,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5900,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (5.6s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Kunal, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Prestige Reynolds Prime Capital Realtors?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Prestige Reynolds Prime Capital Realtors. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Prestige Reynolds Prime Capital Realtors's website",
+        "Kunal - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Prestige Reynolds Prime Capital Realtors's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Kunal,\n\nI came across Prestige Reynolds Prime Capital Realtors while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Prestige Reynolds Prime Capital Realtors's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Kunal! 👋 Came across Prestige Reynolds Prime Capital Realtors while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Prestige Reynolds Prime Capital Realtors—mind if I share the link here?",
+      "linkedinDm": "Hi Kunal, impressed by your work with Prestige Reynolds Prime Capital Realtors in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Kunal. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Prestige Reynolds Prime Capital Realtors, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-9-ii5yt",
+    "businessName": "Vanguard Chawla Apex Realty",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5557983503",
+    "email": "samantha@vanguardchawlaap.com",
+    "website": "https://www.vanguardchawlaap.com",
+    "decisionMakerName": "Samantha Chawla",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.2,
+    "googleReviewsCount": 145,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "17 - 47",
+    "audit": {
+      "loadTimeSeconds": 2.8,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": true,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 51,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 2800,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4800,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 6500,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Samantha, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Vanguard Chawla Apex Realty?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Vanguard Chawla Apex Realty. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Vanguard Chawla Apex Realty's website",
+        "Samantha - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Vanguard Chawla Apex Realty's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Samantha,\n\nI came across Vanguard Chawla Apex Realty while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Vanguard Chawla Apex Realty's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Samantha! 👋 Came across Vanguard Chawla Apex Realty while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Vanguard Chawla Apex Realty—mind if I share the link here?",
+      "linkedinDm": "Hi Samantha, impressed by your work with Vanguard Chawla Apex Realty in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Samantha. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Vanguard Chawla Apex Realty, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-10-iver2",
+    "businessName": "Omni Hayes Realty Group",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5558110902",
+    "email": "rohan@omnihayesrealtyg.com",
+    "website": "https://www.omnihayesrealtyg.com",
+    "decisionMakerName": "Rohan Hayes",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.3,
+    "googleReviewsCount": 170,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "21 - 15",
+    "audit": {
+      "loadTimeSeconds": 3.5,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 39,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 7100,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (3.5s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Rohan, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Omni Hayes Realty Group?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Omni Hayes Realty Group. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Omni Hayes Realty Group's website",
+        "Rohan - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Omni Hayes Realty Group's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Rohan,\n\nI came across Omni Hayes Realty Group while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Omni Hayes Realty Group's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Rohan! 👋 Came across Omni Hayes Realty Group while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Omni Hayes Realty Group—mind if I share the link here?",
+      "linkedinDm": "Hi Rohan, impressed by your work with Omni Hayes Realty Group in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Rohan. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Omni Hayes Realty Group, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-11-lnjd7",
+    "businessName": "Sterling Singhania Properties & Estates",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5551519872",
+    "email": "victoria@sterlingsinghani.com",
+    "website": "https://www.sterlingsinghani.com",
+    "decisionMakerName": "Victoria Singhania",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.4,
+    "googleReviewsCount": 175,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "25 - 23",
+    "audit": {
+      "loadTimeSeconds": 4.2,
+      "mobileResponsive": false,
+      "hasLiveChat": true,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4200,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 3200,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4100,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.2s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 2500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Victoria, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Sterling Singhania Properties & Estates?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Sterling Singhania Properties & Estates. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Sterling Singhania Properties & Estates's website",
+        "Victoria - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Sterling Singhania Properties & Estates's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Victoria,\n\nI came across Sterling Singhania Properties & Estates while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Sterling Singhania Properties & Estates's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Victoria! 👋 Came across Sterling Singhania Properties & Estates while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Sterling Singhania Properties & Estates—mind if I share the link here?",
+      "linkedinDm": "Hi Victoria, impressed by your work with Sterling Singhania Properties & Estates in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Victoria. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Sterling Singhania Properties & Estates, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-12-v5cw6",
+    "businessName": "Pinnacle Kapoor Luxury Living Real Estate",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5552997639",
+    "email": "aman@pinnaclekapoorlu.com",
+    "website": "https://www.pinnaclekapoorlu.com",
+    "decisionMakerName": "Aman Kapoor",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.5,
+    "googleReviewsCount": 200,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "5 - 31",
+    "audit": {
+      "loadTimeSeconds": 4.9,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 4900,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4000,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 4700,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (4.9s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3000,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2200,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Aman, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Pinnacle Kapoor Luxury Living Real Estate?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Pinnacle Kapoor Luxury Living Real Estate. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Pinnacle Kapoor Luxury Living Real Estate's website",
+        "Aman - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Pinnacle Kapoor Luxury Living Real Estate's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Aman,\n\nI came across Pinnacle Kapoor Luxury Living Real Estate while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Pinnacle Kapoor Luxury Living Real Estate's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Aman! 👋 Came across Pinnacle Kapoor Luxury Living Real Estate while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Pinnacle Kapoor Luxury Living Real Estate—mind if I share the link here?",
+      "linkedinDm": "Hi Aman, impressed by your work with Pinnacle Kapoor Luxury Living Real Estate in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Aman. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Pinnacle Kapoor Luxury Living Real Estate, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-13-g6wqc",
+    "businessName": "Radiant Sterling Prime Capital Realtors",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5557334470",
+    "email": "david@radiantsterlingp.com",
+    "website": "https://www.radiantsterlingp.com",
+    "decisionMakerName": "David Sterling",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.6,
+    "googleReviewsCount": 214,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "9 - 39",
+    "audit": {
+      "loadTimeSeconds": 5.6,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": false,
+      "hasSchemaMarkup": false,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 38,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 4800,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5300,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "web_app",
+          "serviceTitle": "High-Performance Modern Web App & Redesign",
+          "detectedIssue": "Slow mobile load time (5.6s) and outdated layout causing immediate visitor drop-off.",
+          "impactExplanation": "Every 1-second delay in page load drops mobile conversion rates by 20%.",
+          "estimatedLostRevenueMonthly": 3500,
+          "recommendedSolution": "Rebuild into a high-speed Next.js/Tailwind web application with instant page transitions and high-converting CTA hierarchy.",
+          "urgency": "medium"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 2600,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi David, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Radiant Sterling Prime Capital Realtors?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Radiant Sterling Prime Capital Realtors. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Radiant Sterling Prime Capital Realtors's website",
+        "David - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Radiant Sterling Prime Capital Realtors's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi David,\n\nI came across Radiant Sterling Prime Capital Realtors while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Radiant Sterling Prime Capital Realtors's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi David! 👋 Came across Radiant Sterling Prime Capital Realtors while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Radiant Sterling Prime Capital Realtors—mind if I share the link here?",
+      "linkedinDm": "Hi David, impressed by your work with Radiant Sterling Prime Capital Realtors in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, David. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Radiant Sterling Prime Capital Realtors, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
+    "id": "lead-1791042873248-14-yd6iq",
+    "businessName": "Nova Bhatia Apex Realty",
+    "niche": "Real Estate Agencies",
+    "category": "Real Estate Agencies",
+    "city": "surat",
+    "country": "International",
+    "phone": "+1 5553100921",
+    "email": "pooja@novabhatiaapexre.com",
+    "website": "https://www.novabhatiaapexre.com",
+    "decisionMakerName": "Pooja Bhatia",
+    "decisionMakerRole": "Founder & Managing Director",
+    "googleRating": 4.7,
+    "googleReviewsCount": 220,
+    "estimatedRevenue": "$8,000 - $35,000 commission / transaction",
+    "employeeCount": "13 - 47",
+    "audit": {
+      "loadTimeSeconds": 2.8,
+      "mobileResponsive": true,
+      "hasLiveChat": false,
+      "hasAiBot": false,
+      "hasAutomatedBooking": true,
+      "hasSchemaMarkup": true,
+      "hasAiSearchVisibility": false,
+      "overallHealthScore": 51,
+      "topGaps": [
+        {
+          "service": "chatbots",
+          "serviceTitle": "24/7 AI Lead & Instant Booking Bot",
+          "detectedIssue": "No conversational AI agent to answer queries, capture after-hours visitors, or book appointments instantly.",
+          "impactExplanation": "Losing up to 35-45% of potential leads who visit after 7 PM or on weekends and don't want to wait for manual email replies.",
+          "estimatedLostRevenueMonthly": 2800,
+          "recommendedSolution": "Deploy a customized 24/7 AI Booking & Sales Assistant connected to WhatsApp/CRM.",
+          "urgency": "high"
+        },
+        {
+          "service": "calling_agents",
+          "serviceTitle": "AI Voice Receptionist & Missed-Call Recovery",
+          "detectedIssue": "No automated instantaneous callback for missed inbound phone calls.",
+          "impactExplanation": "62% of high-intent callers immediately dial the next competitor on Google when their call is unanswered or goes to voicemail.",
+          "estimatedLostRevenueMonthly": 5600,
+          "recommendedSolution": "Install automated Voice AI that calls back missed prospects within 15 seconds and books the meeting.",
+          "urgency": "high"
+        },
+        {
+          "service": "seo_aeo_geo",
+          "serviceTitle": "Generative Engine Optimization (GEO & AEO)",
+          "detectedIssue": "Missing JSON-LD entity schema and structured citations; invisible when users query ChatGPT or Perplexity for recommendations.",
+          "impactExplanation": "Over 30% of high-ticket consumers now use AI search (ChatGPT, Perplexity, Apple Intelligence) instead of traditional Google search.",
+          "estimatedLostRevenueMonthly": 5900,
+          "recommendedSolution": "Optimize site architecture with entity schema, llms.txt, and AI citation authority for top AI search recommendations.",
+          "urgency": "high"
+        },
+        {
+          "service": "portfolio",
+          "serviceTitle": "Authority Showcase & Video Proof System",
+          "detectedIssue": "Lacks interactive case study proof, before/after results sliders, and dynamic verified customer video reels.",
+          "impactExplanation": "High-ticket buyers demand instant proof of past results before picking up the phone.",
+          "estimatedLostRevenueMonthly": 1800,
+          "recommendedSolution": "Implement modern interactive portfolio showcases, client ROI calculators, and embedded testimonial widgets.",
+          "urgency": "medium"
+        }
+      ]
+    },
+    "pitchKit": {
+      "coldCallOpener": "“Hi Pooja, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding Nova Bhatia Apex Realty?”",
+      "coldCallSmokingGun": "I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.",
+      "coldCallValueProposition": "“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”",
+      "coldCallMicroClose": "“I actually put together a quick 60-second interactive preview for Nova Bhatia Apex Realty. Can I text or email you the demo link so you can check it out on your own time?”",
+      "emailSubjectLines": [
+        "Quick observation regarding Nova Bhatia Apex Realty's website",
+        "Pooja - quick question about Real Estate Agencies lead intake in surat",
+        "Fix for Nova Bhatia Apex Realty's missed after-hours inquiries (60-sec preview)"
+      ],
+      "emailBody": "Hi Pooja,\n\nI came across Nova Bhatia Apex Realty while researching top real estate agencies providers in surat.\n\nI noticed a specific technical gap on your site that might be costing you warm clients:\n→ I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In Real Estate Agencies, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.\n\nWe specialize in solving this for real estate agencies businesses by deploying:\n✔ 24/7 Conversational AI Appointment & Lead Intake Bot (Turnkey setup in 5 to 7 Days)\n✔ Captures leads 24/7 and syncs directly to your phone/WhatsApp\n✔ Estimated ROI: Estimated +12 to +25 extra qualified bookings each month\n\nI put together a quick 60-second interactive preview showing how this would look on Nova Bhatia Apex Realty's website.\n\nWould you be opposed if I sent over the quick preview link?\n\nBest regards,\n\n[Your Name]\nTech Solutions & AI Automation\n[Your Phone / WhatsApp] | [Your Portfolio URL]",
+      "whatsappMessage": "Hi Pooja! 👋 Came across Nova Bhatia Apex Realty while reviewing top real estate agencies services in surat. \n\nNoticed a quick gap on your website where after-hours visitors can't instantly book or get immediate responses. \n\nWe built a custom AI Assistant & modern tech setup that captures these leads 24/7 automatically. Built a quick 60-sec demo for Nova Bhatia Apex Realty—mind if I share the link here?",
+      "linkedinDm": "Hi Pooja, impressed by your work with Nova Bhatia Apex Realty in surat. \n\nDid a quick tech audit of your site and noticed an easy opportunity to boost your mobile conversions & AI search visibility (ChatGPT/Google) with modern AI automation. \n\nPut together a 60-sec proof-of-concept for you. Would you be open to checking it out?",
+      "objections": [
+        {
+          "objection": "We already have a web person / agency handling this.",
+          "whyTheySayIt": "Default reflex to protect budget or avoid confrontation.",
+          "exactResponseScript": "\"Totally understand, Pooja. Most successful real estate agencies businesses do. We don't replace your web team—we specifically plug in specialized AI automations (like 24/7 instant booking & AI search visibility) that general web designers don't build. Would you be open to seeing a 60-second video of how it integrates alongside your current setup?\"",
+          "pivotToClose": "Offer a zero-obligation 60-second Loom video showing the exact integration."
+        },
+        {
+          "objection": "We get all our business through word of mouth.",
+          "whyTheySayIt": "They pride themselves on reputation, but are missing digital capture.",
+          "exactResponseScript": "\"That's awesome—word of mouth is the best proof of quality. But here is what happens: when someone is referred to Nova Bhatia Apex Realty, they still Google you first. If they land on your site at 8 PM on a Sunday and can't instantly book, half of those warm referrals get distracted and never follow through. We ensure 100% of your referrals get captured immediately.\"",
+          "pivotToClose": "Highlight revenue leakage from existing warm referrals."
+        },
+        {
+          "objection": "AI sounds too expensive / too complicated for us.",
+          "whyTheySayIt": "Fear of high maintenance and steep learning curve.",
+          "exactResponseScript": "\"I hear you completely. We handle 100% of the build, setup, and maintenance. You don't need to learn any software—it automatically sends booked appointments and qualified leads directly to your WhatsApp or phone. Plus, it usually pays for itself with just 1 or 2 new clients.\"",
+          "pivotToClose": "Emphasize zero-effort turnkey delivery with rapid payback."
+        },
+        {
+          "objection": "Can you just send me an email with the details?",
+          "whyTheySayIt": "Polite brush-off to get off the phone.",
+          "exactResponseScript": "\"I'd be happy to send an email! So I don't send you a generic brochure, what's your biggest priority right now—getting more new client inquiries, or automating appointment booking so your team saves time?\"",
+          "pivotToClose": "Disarm with agreement, ask a qualifying question, then lock in email & follow-up time."
+        },
+        {
+          "objection": "We tried something like this before and it didn't work.",
+          "whyTheySayIt": "Burned by cheap generic freelancers or broken static forms.",
+          "exactResponseScript": "\"I completely understand your frustration. The old-school rule-based bots from 2 years ago were clunky. What we build uses modern generative AI trained specifically on your business services, so it answers questions naturally like an expert sales assistant. If I can prove it to you on a test link with your own branding in 5 minutes, would that be worth a quick look?\"",
+          "pivotToClose": "Offer an interactive live sandbox with their brand name."
+        }
+      ],
+      "recommendedPackageName": "24/7 Conversational AI Appointment & Lead Intake Bot",
+      "estimatedPrice": "$850 setup + $150/mo",
+      "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
+      "deliveryTimeline": "5 to 7 Days"
+    },
+    "status": "new",
+    "starred": false,
+    "notes": [
+      "Lead discovered for surat Real Estate Agencies batch.",
+      "Primary gap: 24/7 AI Lead & Instant Booking Bot"
+    ],
+    "createdAt": "2026-10-03T15:54:33.248Z"
+  },
+  {
     "id": "lead-1790878941117-0-le84i",
     "businessName": "Apex Bhatia Realty Group",
     "niche": "Real Estate Agencies",
@@ -253,13 +2192,14 @@
       "estimatedRoi": "Estimated +12 to +25 extra qualified bookings each month",
       "deliveryTimeline": "5 to 7 Days"
     },
-    "status": "new",
+    "status": "contacted",
     "starred": true,
     "notes": [
       "Lead discovered for vapi Real Estate Agencies batch.",
       "Primary gap: 24/7 AI Lead & Instant Booking Bot"
     ],
-    "createdAt": "2026-10-01T18:22:21.117Z"
+    "createdAt": "2026-10-01T18:22:21.117Z",
+    "lastContactedAt": "2026-10-03T15:49:59.555Z"
   },
   {
     "id": "lead-1790878941117-2-5vdvz",

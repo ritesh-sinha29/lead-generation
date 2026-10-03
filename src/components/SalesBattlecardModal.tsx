@@ -7,7 +7,18 @@ import {
   Check, 
   ExternalLink, 
   Send, 
-  RefreshCw
+  RefreshCw,
+  MessageSquare,
+  Mail,
+  Phone,
+  ShieldAlert,
+  TrendingUp,
+  Sparkles,
+  User,
+  MapPin,
+  Building2,
+  DollarSign,
+  Clock
 } from 'lucide-react';
 import { Lead, ObjectionHandler, LeadStatus, SalesPitchKit } from '@/types/lead';
 import ServiceGapBadge from './ServiceGapBadge';
@@ -20,7 +31,6 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface Props {
   lead: Lead | null;
@@ -77,40 +87,58 @@ export default function SalesBattlecardModal({
 
   const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
   const cleanWhatsAppPhone = cleanPhone.replace(/^\+/, '');
+  const formattedCity = lead.city ? lead.city.charAt(0).toUpperCase() + lead.city.slice(1) : '';
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-3xl max-h-[90vh] flex flex-col p-0 overflow-hidden bg-black border-zinc-800 text-zinc-100 rounded-lg shadow-2xl">
+      <DialogContent className="sm:max-w-4xl w-full max-h-[88vh] h-[85vh] flex flex-col p-0 gap-0 overflow-hidden bg-[#09090B] border border-zinc-800 text-zinc-100 rounded-2xl shadow-2xl">
         
-        {/* Header */}
-        <DialogHeader className="p-5 pb-3 border-b border-zinc-800 bg-zinc-950">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] font-mono uppercase bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800 text-zinc-400">
-                  {lead.niche} · {lead.city}
+        {/* Top Header - Minimalist WeKraft Aesthetic */}
+        <DialogHeader className="p-5 sm:p-6 pb-4 border-b border-zinc-850 bg-zinc-950 shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            
+            {/* Metadata */}
+            <div className="space-y-2 min-w-0">
+              
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-[11px] text-zinc-300">
+                  <Building2 className="w-3 h-3 text-zinc-400" />
+                  {lead.niche}
                 </span>
-                <span className="text-xs text-zinc-500">
-                  {lead.decisionMakerName} ({lead.decisionMakerRole})
+
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-[11px] text-zinc-400">
+                  <MapPin className="w-3 h-3 text-zinc-500" />
+                  {formattedCity}
+                </span>
+
+                <span className="text-zinc-600 hidden sm:inline">/</span>
+
+                <span className="text-xs text-zinc-400 flex items-center gap-1.5">
+                  <User className="w-3 h-3 text-zinc-500" />
+                  <strong className="text-zinc-200 font-medium">{lead.decisionMakerName}</strong>
+                  <span className="text-zinc-500">({lead.decisionMakerRole})</span>
                 </span>
               </div>
               
-              <DialogTitle className="text-xl font-semibold tracking-tight text-white flex items-center gap-2.5">
-                <span>{lead.businessName}</span>
+              <div className="flex items-center gap-3">
+                <DialogTitle className="text-xl sm:text-2xl font-bold tracking-tight text-white truncate">
+                  {lead.businessName}
+                </DialogTitle>
                 {lead.website && (
                   <a 
                     href={lead.website} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="text-xs font-normal text-zinc-500 hover:text-zinc-300 flex items-center gap-1"
+                    className="text-xs font-normal text-zinc-500 hover:text-zinc-300 flex items-center gap-1 transition-colors shrink-0"
                   >
-                    Visit <ExternalLink className="w-3 h-3" />
+                    <span>Visit Website</span>
+                    <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
-              </DialogTitle>
+              </div>
 
-              {/* Service Gaps */}
-              <div className="flex flex-wrap items-center gap-1 mt-2">
+              {/* Service Gaps - Minimalist Badges */}
+              <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
                 {lead.audit.topGaps.map((gap, i) => (
                   <ServiceGapBadge key={i} service={gap.service} />
                 ))}
@@ -118,204 +146,260 @@ export default function SalesBattlecardModal({
             </div>
 
             {/* Quick Dial Action */}
-            <div className="flex items-center gap-2">
+            <div className="flex sm:flex-col items-end gap-2 shrink-0">
               <a
                 href={`tel:${cleanPhone}`}
                 onClick={() => onUpdateStatus?.(lead.id, 'to_call')}
-                className="inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 font-medium text-xs h-8 px-3 rounded transition-colors"
+                className="inline-flex items-center justify-center bg-white hover:bg-zinc-200 text-black font-medium text-xs h-9 px-4 rounded-lg shadow-sm transition-colors active:scale-95"
               >
-                <PhoneCall className="w-3 h-3 mr-1.5" />
-                Dial {lead.phone}
+                <PhoneCall className="w-3.5 h-3.5 mr-2 text-black" />
+                <span>Dial {lead.phone}</span>
               </a>
+
+              <span className="text-[11px] text-zinc-500 font-mono hidden sm:block">
+                Health Score: {lead.audit.overallHealthScore}/100
+              </span>
             </div>
+
           </div>
         </DialogHeader>
 
         {/* Tab Navigation & Body */}
-        <Tabs defaultValue="call" className="flex-1 flex flex-col overflow-hidden">
+        <Tabs defaultValue="call" className="flex-1 flex flex-col min-h-0 overflow-hidden">
           
-          <div className="px-5 border-b border-zinc-800 bg-black">
-            <TabsList className="bg-transparent h-10 p-0 gap-1">
-              <TabsTrigger value="call" className="text-xs data-[state=active]:bg-zinc-900 data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white">
-                Cold Call
+          {/* Minimalist Tabs Header */}
+          <div className="px-6 border-b border-zinc-850 bg-black shrink-0">
+            <TabsList className="bg-transparent h-11 p-0 gap-3 sm:gap-4 flex overflow-x-auto no-scrollbar">
+              <TabsTrigger 
+                value="call" 
+                className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Phone className="w-3.5 h-3.5 text-zinc-500" />
+                <span>Cold Call Script</span>
               </TabsTrigger>
-              <TabsTrigger value="email" className="text-xs data-[state=active]:bg-zinc-900 data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white">
-                Email
+
+              <TabsTrigger 
+                value="email" 
+                className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Mail className="w-3.5 h-3.5 text-zinc-500" />
+                <span>Cold Email</span>
               </TabsTrigger>
-              <TabsTrigger value="whatsapp" className="text-xs data-[state=active]:bg-zinc-900 data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white">
-                WhatsApp
+
+              <TabsTrigger 
+                value="whatsapp" 
+                className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <MessageSquare className="w-3.5 h-3.5 text-zinc-500" />
+                <span>WhatsApp</span>
               </TabsTrigger>
-              <TabsTrigger value="objections" className="text-xs data-[state=active]:bg-zinc-900 data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white">
-                Objections
+
+              <TabsTrigger 
+                value="objections" 
+                className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <ShieldAlert className="w-3.5 h-3.5 text-zinc-500" />
+                <span>Objections</span>
               </TabsTrigger>
-              <TabsTrigger value="proposal" className="text-xs data-[state=active]:bg-zinc-900 data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white">
-                ROI
+
+              <TabsTrigger 
+                value="proposal" 
+                className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <TrendingUp className="w-3.5 h-3.5 text-zinc-500" />
+                <span>ROI Proposal</span>
               </TabsTrigger>
-              <TabsTrigger value="ai" className="text-xs data-[state=active]:bg-zinc-900 data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white">
-                AI Fine-Tune
+
+              <TabsTrigger 
+                value="ai" 
+                className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-zinc-500" />
+                <span>AI Fine-Tune</span>
               </TabsTrigger>
             </TabsList>
           </div>
 
-          <ScrollArea className="flex-1 p-5">
+          {/* Smooth Scrollable Container with Hidden Scrollbar */}
+          <div className="flex-1 overflow-y-auto no-scrollbar p-6 space-y-4">
             
             {/* TAB 1: COLD CALL SCRIPT */}
-            <TabsContent value="call" className="mt-0 space-y-3">
+            <TabsContent value="call" className="mt-0 space-y-3.5">
               
-              <div className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-1.5">
+              {/* Step 1 */}
+              <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-2 hover:border-zinc-700 transition-colors shadow-xs">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
-                    1 · Pattern Interrupt Opener
+                  <span className="text-[11px] font-mono text-zinc-400 font-medium tracking-wide uppercase">
+                    01 / Pattern Interrupt Opener
                   </span>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 text-[11px] text-zinc-400 hover:text-white"
+                    className="h-7 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-md"
                     onClick={() => handleCopy(currentPitch.coldCallOpener, 'opener')}
                   >
-                    {copiedKey === 'opener' ? <Check className="w-3 h-3 text-white mr-1" /> : <Copy className="w-3 h-3 mr-1" />}
-                    {copiedKey === 'opener' ? 'Copied' : 'Copy'}
+                    {copiedKey === 'opener' ? <Check className="w-3.5 h-3.5 text-white mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5 text-zinc-500" />}
+                    <span>{copiedKey === 'opener' ? 'Copied' : 'Copy'}</span>
                   </Button>
                 </div>
-                <p className="text-xs font-mono leading-relaxed text-zinc-200">
-                  {currentPitch.coldCallOpener}
+                <p className="text-sm text-zinc-200 leading-relaxed font-sans">
+                  &ldquo;{currentPitch.coldCallOpener}&rdquo;
                 </p>
               </div>
 
-              <div className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-1.5">
+              {/* Step 2 */}
+              <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-2 hover:border-zinc-700 transition-colors shadow-xs">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
-                    2 · Diagnosed Vulnerability Hook
+                  <span className="text-[11px] font-mono text-zinc-400 font-medium tracking-wide uppercase">
+                    02 / Diagnosed Vulnerability Hook (Smoking Gun)
                   </span>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 text-[11px] text-zinc-400 hover:text-white"
+                    className="h-7 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-md"
                     onClick={() => handleCopy(currentPitch.coldCallSmokingGun, 'gun')}
                   >
-                    {copiedKey === 'gun' ? <Check className="w-3 h-3 text-white mr-1" /> : <Copy className="w-3 h-3 mr-1" />}
-                    {copiedKey === 'gun' ? 'Copied' : 'Copy'}
+                    {copiedKey === 'gun' ? <Check className="w-3.5 h-3.5 text-white mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5 text-zinc-500" />}
+                    <span>{copiedKey === 'gun' ? 'Copied' : 'Copy'}</span>
                   </Button>
                 </div>
-                <p className="text-xs font-mono leading-relaxed text-zinc-200">
-                  {currentPitch.coldCallSmokingGun}
+                <p className="text-sm text-zinc-200 leading-relaxed font-sans">
+                  &ldquo;{currentPitch.coldCallSmokingGun}&rdquo;
                 </p>
               </div>
 
-              <div className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-1.5">
+              {/* Step 3 */}
+              <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-2 hover:border-zinc-700 transition-colors shadow-xs">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
-                    3 · Value Proposition
+                  <span className="text-[11px] font-mono text-zinc-400 font-medium tracking-wide uppercase">
+                    03 / Value Proposition & Turnkey Fix
                   </span>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 text-[11px] text-zinc-400 hover:text-white"
+                    className="h-7 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-md"
                     onClick={() => handleCopy(currentPitch.coldCallValueProposition, 'val')}
                   >
-                    {copiedKey === 'val' ? <Check className="w-3 h-3 text-white mr-1" /> : <Copy className="w-3 h-3 mr-1" />}
-                    {copiedKey === 'val' ? 'Copied' : 'Copy'}
+                    {copiedKey === 'val' ? <Check className="w-3.5 h-3.5 text-white mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5 text-zinc-500" />}
+                    <span>{copiedKey === 'val' ? 'Copied' : 'Copy'}</span>
                   </Button>
                 </div>
-                <p className="text-xs font-mono leading-relaxed text-zinc-200">
-                  {currentPitch.coldCallValueProposition}
+                <p className="text-sm text-zinc-200 leading-relaxed font-sans">
+                  &ldquo;{currentPitch.coldCallValueProposition}&rdquo;
                 </p>
               </div>
 
-              <div className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-1.5">
+              {/* Step 4 */}
+              <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-2 hover:border-zinc-700 transition-colors shadow-xs">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500">
-                    4 · Low-Friction Micro-Close
+                  <span className="text-[11px] font-mono text-zinc-400 font-medium tracking-wide uppercase">
+                    04 / Low-Friction Micro-Close (Meeting Pitch)
                   </span>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 text-[11px] text-zinc-400 hover:text-white"
+                    className="h-7 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-md"
                     onClick={() => handleCopy(currentPitch.coldCallMicroClose, 'close')}
                   >
-                    {copiedKey === 'close' ? <Check className="w-3 h-3 text-white mr-1" /> : <Copy className="w-3 h-3 mr-1" />}
-                    {copiedKey === 'close' ? 'Copied' : 'Copy'}
+                    {copiedKey === 'close' ? <Check className="w-3.5 h-3.5 text-white mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5 text-zinc-500" />}
+                    <span>{copiedKey === 'close' ? 'Copied' : 'Copy'}</span>
                   </Button>
                 </div>
-                <p className="text-xs font-mono font-medium leading-relaxed text-white">
-                  {currentPitch.coldCallMicroClose}
+                <p className="text-sm font-medium text-white leading-relaxed font-sans">
+                  &ldquo;{currentPitch.coldCallMicroClose}&rdquo;
                 </p>
               </div>
 
             </TabsContent>
 
             {/* TAB 2: COLD EMAIL */}
-            <TabsContent value="email" className="mt-0 space-y-3">
-              <div>
-                <label className="block text-[10px] font-mono uppercase text-zinc-500 mb-1.5">
-                  Subject Lines:
+            <TabsContent value="email" className="mt-0 space-y-4">
+              
+              {/* Subject Lines */}
+              <div className="space-y-2">
+                <label className="block text-[11px] font-mono uppercase text-zinc-500 tracking-wider">
+                  Select Subject Line:
                 </label>
-                <div className="space-y-1">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {(currentPitch.emailSubjectLines || []).map((subj: string, idx: number) => (
                     <div
                       key={idx}
                       onClick={() => { setSelectedSubjectIdx(idx); handleCopy(subj, `subj-${idx}`); }}
-                      className={`p-2 rounded border text-xs cursor-pointer flex items-center justify-between transition-colors ${
+                      className={`p-3 rounded-xl border text-xs cursor-pointer flex flex-col justify-between gap-2 transition-colors ${
                         selectedSubjectIdx === idx
                           ? 'bg-zinc-900 border-zinc-600 text-white'
-                          : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-white'
+                          : 'bg-[#0C0D0E] border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
                       }`}
                     >
-                      <span className="font-mono text-[11px]">{subj}</span>
-                      <span className="text-[10px] text-zinc-500">
-                        {copiedKey === `subj-${idx}` ? 'Copied' : 'Copy'}
+                      <span className="font-medium text-xs leading-snug">{subj}</span>
+                      <span className="text-[10px] text-zinc-500 font-mono">
+                        {copiedKey === `subj-${idx}` ? 'Copied' : 'Click to copy'}
                       </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-2">
-                <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
-                  <span className="text-xs font-mono text-zinc-400">To: {lead.email}</span>
+              {/* Email Body Card */}
+              <div className="p-5 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-4 shadow-xs">
+                
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-zinc-850">
+                  <div className="text-xs space-y-1">
+                    <div className="text-zinc-400">
+                      To: <span className="text-zinc-200">{lead.email}</span>
+                    </div>
+                    <div className="text-zinc-400">
+                      Subject: <span className="text-white">{currentPitch.emailSubjectLines[selectedSubjectIdx] || ''}</span>
+                    </div>
+                  </div>
                   
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="h-6 text-[11px] bg-black border-zinc-800 rounded"
+                      className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white rounded-lg"
                       onClick={() => handleCopy(currentPitch.emailBody, 'email-body')}
                     >
-                      {copiedKey === 'email-body' ? 'Copied' : 'Copy Body'}
+                      {copiedKey === 'email-body' ? <Check className="w-3.5 h-3.5 text-white mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5 text-zinc-500" />}
+                      <span>{copiedKey === 'email-body' ? 'Copied Body' : 'Copy Body'}</span>
                     </Button>
 
                     <a
                       href={`mailto:${lead.email}?subject=${encodeURIComponent(currentPitch.emailSubjectLines[selectedSubjectIdx] || '')}&body=${encodeURIComponent(currentPitch.emailBody)}`}
                       onClick={() => onUpdateStatus?.(lead.id, 'to_email')}
-                      className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 rounded font-medium transition-colors"
+                      className="h-8 px-3 text-xs inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 rounded-lg font-medium transition-colors"
                     >
-                      <Send className="w-2.5 h-2.5 mr-1" /> Open Mail
+                      <Send className="w-3.5 h-3.5 mr-1.5" />
+                      <span>Open Mail</span>
                     </a>
                   </div>
                 </div>
 
-                <pre className="text-xs text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed">
+                <div className="text-sm text-zinc-200 font-sans whitespace-pre-wrap leading-relaxed">
                   {currentPitch.emailBody}
-                </pre>
+                </div>
               </div>
+
             </TabsContent>
 
             {/* TAB 3: WHATSAPP */}
-            <TabsContent value="whatsapp" className="mt-0 space-y-3">
-              <div className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-2">
-                <div className="flex items-center justify-between pb-2 border-b border-zinc-800">
+            <TabsContent value="whatsapp" className="mt-0 space-y-4">
+              <div className="p-5 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-4 shadow-xs">
+                
+                <div className="flex items-center justify-between pb-3 border-b border-zinc-850">
                   <span className="text-xs font-mono text-zinc-400">
-                    WhatsApp: {lead.phone}
+                    Recipient WhatsApp: {lead.phone}
                   </span>
 
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="h-6 text-[11px] bg-black border-zinc-800 rounded text-zinc-300 hover:text-white"
+                      className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white rounded-lg"
                       onClick={() => handleCopy(currentPitch.whatsappMessage, 'wa-msg')}
                     >
-                      {copiedKey === 'wa-msg' ? 'Copied' : 'Copy'}
+                      {copiedKey === 'wa-msg' ? <Check className="w-3.5 h-3.5 text-white mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5 text-zinc-500" />}
+                      <span>{copiedKey === 'wa-msg' ? 'Copied' : 'Copy'}</span>
                     </Button>
 
                     <a
@@ -323,123 +407,158 @@ export default function SalesBattlecardModal({
                       target="_blank"
                       rel="noreferrer"
                       onClick={() => onUpdateStatus?.(lead.id, 'contacted')}
-                      className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 rounded font-medium transition-colors"
+                      className="h-8 px-3 text-xs inline-flex items-center justify-center bg-white text-black hover:bg-zinc-200 rounded-lg font-medium transition-colors"
                     >
-                      <Send className="w-2.5 h-2.5 mr-1" /> Open Web
+                      <Send className="w-3.5 h-3.5 mr-1.5" />
+                      <span>Open WhatsApp Web</span>
                     </a>
                   </div>
                 </div>
 
-                <div className="text-xs text-zinc-300 font-mono leading-relaxed whitespace-pre-wrap">
+                <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-850 text-sm text-zinc-200 font-sans leading-relaxed whitespace-pre-wrap">
                   {currentPitch.whatsappMessage}
                 </div>
               </div>
             </TabsContent>
 
             {/* TAB 4: OBJECTIONS */}
-            <TabsContent value="objections" className="mt-0 space-y-2.5">
+            <TabsContent value="objections" className="mt-0 space-y-3">
               {(currentPitch.objections || []).map((obj: ObjectionHandler, idx: number) => (
-                <div key={idx} className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-1.5">
-                  <div className="flex items-start justify-between gap-2">
-                    <h4 className="text-xs font-medium text-white">
-                      {obj.objection}
+                <div key={idx} className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] hover:border-zinc-700 transition-colors space-y-2.5 shadow-xs">
+                  
+                  <div className="flex items-start justify-between gap-3">
+                    <h4 className="text-sm font-semibold text-white">
+                      &ldquo;{obj.objection}&rdquo;
                     </h4>
+
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-5 text-[10px] text-zinc-500 hover:text-white"
+                      className="h-7 text-xs text-zinc-400 hover:text-white"
                       onClick={() => handleCopy(obj.exactResponseScript, `obj-${idx}`)}
                     >
-                      {copiedKey === `obj-${idx}` ? 'Copied' : 'Copy'}
+                      {copiedKey === `obj-${idx}` ? <Check className="w-3.5 h-3.5 text-white mr-1" /> : <Copy className="w-3.5 h-3.5 mr-1 text-zinc-500" />}
+                      <span>{copiedKey === `obj-${idx}` ? 'Copied' : 'Copy'}</span>
                     </Button>
                   </div>
 
-                  <p className="text-[11px] text-zinc-500">
-                    Reason: {obj.whyTheySayIt}
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    <span className="text-zinc-500 font-mono text-[11px] uppercase block mb-0.5">Underlying Concern:</span>
+                    {obj.whyTheySayIt}
                   </p>
 
-                  <div className="p-2.5 rounded bg-black border border-zinc-900 text-xs text-zinc-200 font-mono leading-relaxed">
-                    {obj.exactResponseScript}
+                  <div className="p-3 rounded-lg bg-zinc-950 border border-zinc-850 text-sm text-zinc-200 font-sans leading-relaxed">
+                    <span className="text-zinc-500 font-mono text-[10px] uppercase block mb-1">Your Exact Counter:</span>
+                    &ldquo;{obj.exactResponseScript}&rdquo;
                   </div>
 
-                  <div className="text-[10px] text-zinc-500">
-                    Pivot: {obj.pivotToClose}
+                  <div className="text-xs text-zinc-400 flex items-center gap-1.5 pt-1">
+                    <span className="text-zinc-500 font-mono text-[11px] uppercase">Pivot:</span>
+                    <span>{obj.pivotToClose}</span>
                   </div>
                 </div>
               ))}
             </TabsContent>
 
-            {/* TAB 5: ROI */}
-            <TabsContent value="proposal" className="mt-0 space-y-3">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                <div className="p-3 rounded border border-zinc-800 bg-zinc-950">
-                  <span className="text-[10px] font-mono uppercase text-zinc-500 block">Package</span>
-                  <strong className="text-xs text-white font-medium">{currentPitch.recommendedPackageName}</strong>
+            {/* TAB 5: ROI PROPOSAL */}
+            <TabsContent value="proposal" className="mt-0 space-y-4">
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-1">
+                  <span className="text-[11px] font-mono uppercase text-zinc-500 flex items-center gap-1">
+                    <Building2 className="w-3.5 h-3.5 text-zinc-400" />
+                    Recommended Package
+                  </span>
+                  <div className="text-sm font-semibold text-white pt-1">{currentPitch.recommendedPackageName}</div>
                 </div>
 
-                <div className="p-3 rounded border border-zinc-800 bg-zinc-950">
-                  <span className="text-[10px] font-mono uppercase text-zinc-500 block">Pricing</span>
-                  <strong className="text-xs text-white font-mono">{currentPitch.estimatedPrice}</strong>
+                <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-1">
+                  <span className="text-[11px] font-mono uppercase text-zinc-500 flex items-center gap-1">
+                    <DollarSign className="w-3.5 h-3.5 text-zinc-400" />
+                    Turnkey Agency Price
+                  </span>
+                  <div className="text-sm font-semibold text-white pt-1 font-mono">{currentPitch.estimatedPrice}</div>
                 </div>
 
-                <div className="p-3 rounded border border-zinc-800 bg-zinc-950">
-                  <span className="text-[10px] font-mono uppercase text-zinc-500 block">Timeline</span>
-                  <strong className="text-xs text-white font-medium">{currentPitch.deliveryTimeline}</strong>
+                <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-1">
+                  <span className="text-[11px] font-mono uppercase text-zinc-500 flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                    Delivery Timeline
+                  </span>
+                  <div className="text-sm font-semibold text-white pt-1">{currentPitch.deliveryTimeline}</div>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-2">
-                <span className="text-[10px] font-mono uppercase text-zinc-500">
-                  Client Leakage Audit
-                </span>
+              {/* Diagnosed Gaps */}
+              <div className="p-5 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-3 shadow-xs">
+                <div className="flex items-center justify-between pb-2 border-b border-zinc-850">
+                  <span className="text-xs font-semibold text-white font-mono uppercase">
+                    Diagnosed Revenue Leaks
+                  </span>
+                  <span className="text-xs font-mono text-zinc-400">
+                    Total: -${lead.audit.topGaps.reduce((acc, g) => acc + g.estimatedLostRevenueMonthly, 0)}/mo
+                  </span>
+                </div>
 
-                <div className="space-y-1">
+                <div className="space-y-2">
                   {lead.audit.topGaps.map((gap, i) => (
-                    <div key={i} className="p-2 rounded bg-black border border-zinc-900 flex items-center justify-between text-xs">
-                      <div>
-                        <div className="font-medium text-zinc-200">{gap.serviceTitle}</div>
-                        <div className="text-[11px] text-zinc-500">{gap.detectedIssue}</div>
+                    <div key={i} className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                      <div className="space-y-0.5">
+                        <div className="font-semibold text-white">{gap.serviceTitle}</div>
+                        <div className="text-zinc-400">{gap.detectedIssue}</div>
                       </div>
-                      <div className="font-mono text-zinc-400">-${gap.estimatedLostRevenueMonthly}/mo</div>
+                      <div className="font-mono text-zinc-300 shrink-0 text-sm">
+                        -${gap.estimatedLostRevenueMonthly}/mo
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
+
             </TabsContent>
 
-            {/* TAB 6: AI */}
-            <TabsContent value="ai" className="mt-0 space-y-3">
-              <div className="p-3.5 rounded border border-zinc-800 bg-zinc-950 space-y-2.5">
-                <span className="text-xs font-medium text-white">
-                  Ollama Custom Re-synthesis
-                </span>
+            {/* TAB 6: AI FINE-TUNE */}
+            <TabsContent value="ai" className="mt-0 space-y-4">
+              <div className="p-5 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-3 shadow-xs">
+                <div>
+                  <h4 className="text-sm font-semibold text-white flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-zinc-400" />
+                    AI Script Customizer
+                  </h4>
+                  <p className="text-xs text-zinc-400 mt-1">
+                    Enter custom context or adjustments to re-synthesize custom sales pitches in real-time.
+                  </p>
+                </div>
 
                 <Textarea
                   value={customPrompt}
                   onChange={(e) => setCustomPrompt(e.target.value)}
-                  placeholder="Custom instruction (e.g. emphasize 24/7 AI Voice after-hours capture)..."
-                  rows={3}
-                  className="text-xs bg-black border-zinc-800 text-white placeholder-zinc-600 rounded"
+                  placeholder="e.g. Focus on high-end luxury conversions and increase urgency..."
+                  rows={4}
+                  className="text-xs bg-zinc-950 border-zinc-800 text-white placeholder-zinc-500 rounded-lg focus:border-zinc-500"
                 />
 
                 <Button
                   onClick={handleRegenerateWithOllama}
                   disabled={isRegenerating}
-                  className="w-full text-xs bg-white text-black hover:bg-zinc-200 font-medium h-8 rounded"
+                  className="w-full text-xs bg-white hover:bg-zinc-200 text-black font-semibold h-9 rounded-lg transition-colors cursor-pointer"
                 >
                   {isRegenerating ? (
                     <>
-                      <RefreshCw className="w-3 h-3 mr-1.5 animate-spin" />
-                      Regenerating...
+                      <RefreshCw className="w-3.5 h-3.5 mr-2 animate-spin" />
+                      <span>Synthesizing...</span>
                     </>
                   ) : (
-                    'Regenerate Pitch'
+                    <>
+                      <Sparkles className="w-3.5 h-3.5 mr-2" />
+                      <span>Regenerate Pitch Kit</span>
+                    </>
                   )}
                 </Button>
               </div>
             </TabsContent>
 
-          </ScrollArea>
+          </div>
 
         </Tabs>
 
