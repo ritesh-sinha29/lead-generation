@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "LeadPulse | Daily AI Lead Generation & Sales Closer Suite",
-  description: "Get 10–20 high-intent leads daily across Web Dev, AI Chatbots, Voice Calling Agents, Portfolios & SEO/AEO/GEO with instant cold call scripts, flaw audits and WhatsApp pitches.",
+  description: "Get high-intent leads daily across Web Dev, AI Chatbots, Voice Calling Agents, Portfolios & SEO/AEO/GEO with instant cold call scripts, flaw audits and WhatsApp pitches.",
 };
 
 export default function RootLayout({
@@ -29,7 +30,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
-        <TooltipProvider>{children}</TooltipProvider>
+        <ConvexClientProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );

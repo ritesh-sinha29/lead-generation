@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { generateRelatablePitchWithGemini } from '@/lib/gemini';
 import { generateCustomPitchWithOllama } from '@/lib/ollama';
 import { updateLead } from '@/lib/db';
 import { Lead } from '@/types/lead';
@@ -15,18 +16,26 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: 'Lead is required' }, { status: 400 });
     }
 
-    const result = await generateCustomPitchWithOllama(lead, customInstructions, preferredModel);
+    // 1. Try Google Gemini first for highest quality problem-solving pitch
+    let pitchKit = await generateRelatablePitchWithGemini(lead, customInstructions);
+    let source = 'gemini-2.0-flash';
+
+    // 2. Fallback to Ollama or built-in engine if Gemini isn't configured
+    if (!pitchKit) {
+      const ollamaRes = await generateCustomPitchWithOllama(lead, customInstructions, preferredModel);
+      pitchKit = ollamaRes.pitchKit;
+      source = ollamaRes.source;
+    }
 
     // Persist regenerated pitch to lead if it exists in DB
-    if (lead.id) {
-      await updateLead(lead.id, { pitchKit: result.pitchKit });
+    if (lead.id && pitchKit) {
+      await updateLead(lead.id, { pitchKit });
     }
 
     return NextResponse.json({
       success: true,
-      pitchKit: result.pitchKit,
-      usedModel: result.usedModel,
-      source: result.source
+      pitchKit,
+      source
     });
   } catch (error) {
     console.error('Failed to generate AI pitch:', error);

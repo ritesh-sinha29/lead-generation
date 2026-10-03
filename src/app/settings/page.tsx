@@ -8,12 +8,13 @@ import {
   Cpu, 
   Building, 
   Check, 
-  ArrowLeft
+  ArrowLeft,
+  Sparkles,
+  Key
 } from 'lucide-react';
 import { AppSettings } from '@/lib/db';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import {
   Select,
   SelectContent,
@@ -32,6 +33,9 @@ export default function SettingsPage() {
     defaultNiche: 'Dental Clinics',
     defaultCity: 'Mumbai',
     defaultBatchSize: 15,
+    aiProvider: 'gemini',
+    geminiApiKey: '',
+    grokApiKey: '',
     ollamaModel: 'deepseek-v4-pro:cloud',
     currency: 'USD'
   });
@@ -45,7 +49,7 @@ export default function SettingsPage() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success && data.settings) {
-          setSettings(data.settings);
+          setSettings((prev) => ({ ...prev, ...data.settings }));
         }
       });
 
@@ -78,149 +82,220 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090B] text-zinc-100 font-sans selection:bg-indigo-500/30 selection:text-white">
+    <div className="min-h-screen bg-[#09090B] text-zinc-100 font-sans antialiased selection:bg-zinc-800 selection:text-white">
       
       {/* Top Header */}
-      <header className="sticky top-0 z-40 w-full border-b border-zinc-800/80 bg-[#09090B]/85 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-40 w-full border-b border-zinc-850 bg-[#09090B]/90 backdrop-blur-md">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <Link href="/" className="inline-flex items-center h-8 gap-1.5 px-3 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-md transition-colors">
+            <Link href="/" className="inline-flex items-center h-8 gap-1.5 px-2.5 text-xs text-zinc-400 hover:text-white hover:bg-zinc-900 rounded-md transition-colors">
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Leads</span>
+              <span>Back to Pipeline</span>
             </Link>
             <div className="h-4 w-px bg-zinc-800" />
-            <span className="text-xs font-medium text-zinc-400">
-              System Configuration
+            <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
+              System Settings
             </span>
           </div>
         </div>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-6">
         
         {/* Header */}
-        <div className="pb-4 border-b border-zinc-800/80">
-          <Badge variant="outline" className="mb-2 text-xs font-normal bg-zinc-900 border-zinc-800 text-zinc-300">
-            <Settings className="w-3.5 h-3.5 mr-1 text-zinc-400" />
-            <span>Agency & Engine Preferences</span>
-          </Badge>
-          <h1 className="text-2xl font-semibold text-white tracking-tight">System Settings</h1>
-          <p className="text-xs text-zinc-500 mt-1">Configure your agency details, default locations, and Ollama local LLM model.</p>
+        <div className="pb-4 border-b border-zinc-850 space-y-1">
+          <h1 className="text-xl font-bold text-white tracking-tight">System & AI Engine Preferences</h1>
+          <p className="text-xs text-zinc-400">
+            Configure your consultative sales persona, AI model provider (Gemini / Ollama / Grok), and Convex backend.
+          </p>
         </div>
 
-        <form onSubmit={handleSave} className="space-y-6">
+        <form onSubmit={handleSave} className="space-y-5">
           
-          {/* Section 1: Agency Profile */}
-          <div className="p-6 rounded-xl bg-zinc-950/70 border border-zinc-800 space-y-4 shadow-sm">
-            <div className="flex items-center gap-2 pb-3 border-b border-zinc-800">
-              <Building className="w-4 h-4 text-zinc-400" />
-              <h3 className="text-sm font-medium text-white">Agency Details</h3>
+          {/* Section 1: AI Engine Selection */}
+          <div className="p-5 rounded-xl bg-[#0C0D0E] border border-zinc-800 space-y-4 shadow-xs">
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-850">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-zinc-400" />
+                <h3 className="text-sm font-semibold text-white">AI Pitch & Audit Engine</h3>
+              </div>
+              <span className="text-[11px] font-mono text-zinc-400 uppercase">
+                Problem-Solving Mode
+              </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div className="space-y-4 text-xs">
               <div>
-                <label className="block text-zinc-400 font-semibold mb-1.5">Agency / Company Name</label>
+                <label className="block text-zinc-400 font-medium mb-1.5">Primary AI Provider</label>
+                <Select
+                  value={settings.aiProvider || 'gemini'}
+                  onValueChange={(val) => setSettings({ ...settings, aiProvider: val as 'gemini' | 'grok' | 'ollama' })}
+                >
+                  <SelectTrigger className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white rounded-lg">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
+                    <SelectItem value="gemini">Google Gemini 2.0 Flash (Recommended — Relatable Problem-Centric Pitches)</SelectItem>
+                    <SelectItem value="ollama">Local Ollama LLM (Offline / Private Machine)</SelectItem>
+                    <SelectItem value="grok">xAI Grok-2 (Direct & Conversational)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Gemini API Key */}
+              {(settings.aiProvider === 'gemini' || !settings.aiProvider) && (
+                <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-2">
+                  <label className="block text-zinc-300 font-medium flex items-center justify-between">
+                    <span className="flex items-center gap-1.5">
+                      <Key className="w-3.5 h-3.5 text-zinc-400" />
+                      Google Gemini API Key
+                    </span>
+                    <a
+                      href="https://aistudio.google.com/app/apikey"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[11px] text-zinc-400 hover:text-white underline underline-offset-2"
+                    >
+                      Get Free API Key &rarr;
+                    </a>
+                  </label>
+                  <Input
+                    type="password"
+                    value={settings.geminiApiKey || ''}
+                    onChange={(e) => setSettings({ ...settings, geminiApiKey: e.target.value })}
+                    placeholder="AIzaSy..."
+                    className="h-8 text-xs bg-[#0C0D0E] border-zinc-800 text-white font-mono placeholder-zinc-600 rounded"
+                  />
+                  <p className="text-[11px] text-zinc-500">
+                    Used to synthesize empathetic, hyper-personalized problem audits and cold scripts for every prospect.
+                  </p>
+                </div>
+              )}
+
+              {/* Grok API Key */}
+              {settings.aiProvider === 'grok' && (
+                <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-2">
+                  <label className="block text-zinc-300 font-medium flex items-center justify-between">
+                    <span className="flex items-center gap-1.5">
+                      <Key className="w-3.5 h-3.5 text-zinc-400" />
+                      xAI Grok API Key
+                    </span>
+                    <a
+                      href="https://console.x.ai"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[11px] text-zinc-400 hover:text-white underline underline-offset-2"
+                    >
+                      xAI Console &rarr;
+                    </a>
+                  </label>
+                  <Input
+                    type="password"
+                    value={settings.grokApiKey || ''}
+                    onChange={(e) => setSettings({ ...settings, grokApiKey: e.target.value })}
+                    placeholder="xai-..."
+                    className="h-8 text-xs bg-[#0C0D0E] border-zinc-800 text-white font-mono placeholder-zinc-600 rounded"
+                  />
+                </div>
+              )}
+
+              {/* Ollama Model Selector */}
+              {settings.aiProvider === 'ollama' && (
+                <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <label className="text-zinc-300 font-medium">Local Ollama Model</label>
+                    <span className="text-[10px] font-mono text-zinc-500">
+                      {ollamaOnline ? 'Port 11434 Connected' : 'Offline Fallback'}
+                    </span>
+                  </div>
+                  {availableModels.length > 0 ? (
+                    <Select
+                      value={settings.ollamaModel}
+                      onValueChange={(val) => { if (val) setSettings({ ...settings, ollamaModel: val }); }}
+                    >
+                      <SelectTrigger className="h-8 text-xs bg-[#0C0D0E] border-zinc-800 text-white rounded">
+                        <SelectValue placeholder="Select model" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
+                        {availableModels.map((m) => (
+                          <SelectItem key={m} value={m}>
+                            {m}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <Input
+                      type="text"
+                      value={settings.ollamaModel}
+                      onChange={(e) => setSettings({ ...settings, ollamaModel: e.target.value })}
+                      placeholder="deepseek-v4-pro:cloud or qwen3.6"
+                      className="h-8 text-xs bg-[#0C0D0E] border-zinc-800 text-white rounded"
+                    />
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Section 2: Agency Persona */}
+          <div className="p-5 rounded-xl bg-[#0C0D0E] border border-zinc-800 space-y-4 shadow-xs">
+            <div className="flex items-center gap-2 pb-3 border-b border-zinc-850">
+              <Building className="w-4 h-4 text-zinc-400" />
+              <h3 className="text-sm font-semibold text-white">Agency & Persona Details</h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div>
+                <label className="block text-zinc-400 font-medium mb-1">Agency Name</label>
                 <Input
                   type="text"
                   value={settings.agencyName}
                   onChange={(e) => setSettings({ ...settings, agencyName: e.target.value })}
-                  className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
+                  className="h-8 text-xs bg-zinc-950 border-zinc-800 text-white rounded"
                 />
               </div>
 
               <div>
-                <label className="block text-zinc-400 font-semibold mb-1.5">Your Name (Sender)</label>
+                <label className="block text-zinc-400 font-medium mb-1">Sender Name (Your Name)</label>
                 <Input
                   type="text"
                   value={settings.senderName}
                   onChange={(e) => setSettings({ ...settings, senderName: e.target.value })}
-                  className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
+                  className="h-8 text-xs bg-zinc-950 border-zinc-800 text-white rounded"
                 />
               </div>
 
               <div>
-                <label className="block text-zinc-400 font-semibold mb-1.5">Your Direct Phone / WhatsApp</label>
+                <label className="block text-zinc-400 font-medium mb-1">Direct Phone / WhatsApp</label>
                 <Input
                   type="text"
                   value={settings.senderPhone}
                   onChange={(e) => setSettings({ ...settings, senderPhone: e.target.value })}
-                  className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
+                  className="h-8 text-xs bg-zinc-950 border-zinc-800 text-white rounded"
                 />
               </div>
 
               <div>
-                <label className="block text-zinc-400 font-semibold mb-1.5">Your Agency Email</label>
+                <label className="block text-zinc-400 font-medium mb-1">Agency Email</label>
                 <Input
                   type="email"
                   value={settings.senderEmail}
                   onChange={(e) => setSettings({ ...settings, senderEmail: e.target.value })}
-                  className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
+                  className="h-8 text-xs bg-zinc-950 border-zinc-800 text-white rounded"
                 />
               </div>
-            </div>
-          </div>
-
-          {/* Section 2: Ollama Local LLM Configuration */}
-          <div className="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 space-y-4 shadow-sm">
-            <div className="flex items-center justify-between pb-3 border-b border-zinc-800">
-              <div className="flex items-center gap-2">
-                <Cpu className="w-4 h-4 text-emerald-400" />
-                <h3 className="text-sm font-bold text-white">Local Ollama AI Integration</h3>
-              </div>
-
-              <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${
-                ollamaOnline 
-                  ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
-                  : 'bg-zinc-800 border-zinc-700 text-zinc-400'
-              }`}>
-                {ollamaOnline ? 'Connected (Port 11434)' : 'Offline Engine Active'}
-              </span>
-            </div>
-
-            <div className="text-xs space-y-3">
-              <div>
-                <label className="block text-zinc-400 font-semibold mb-1.5">Active LLM Model</label>
-                {availableModels.length > 0 ? (
-                  <Select
-                    value={settings.ollamaModel}
-                    onValueChange={(val) => { if (val) setSettings({ ...settings, ollamaModel: val }); }}
-                  >
-                    <SelectTrigger className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white">
-                      <SelectValue placeholder="Select model" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-zinc-900 border-zinc-800 text-white text-xs">
-                      {availableModels.map((m) => (
-                        <SelectItem key={m} value={m}>
-                          {m}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                ) : (
-                  <Input
-                    type="text"
-                    value={settings.ollamaModel}
-                    onChange={(e) => setSettings({ ...settings, ollamaModel: e.target.value })}
-                    placeholder="deepseek-v4-pro:cloud or kimi-k2.7-code:cloud"
-                    className="h-9 text-xs bg-zinc-950 border-zinc-800 text-white"
-                  />
-                )}
-              </div>
-
-              <p className="text-zinc-500 text-[11px] leading-relaxed">
-                Connected models generate custom scripts, technical objection counters, and personalized ROI packages on the fly.
-              </p>
             </div>
           </div>
 
           {/* Save Button */}
           <Button
             type="submit"
-            className="w-full h-11 font-bold text-xs bg-white text-zinc-950 hover:bg-zinc-200 shadow-md cursor-pointer"
+            className="w-full h-10 font-semibold text-xs bg-white text-black hover:bg-zinc-200 shadow-sm cursor-pointer rounded-lg transition-colors"
           >
             {isSaved ? (
               <>
-                <Check className="w-4 h-4 mr-1.5 text-zinc-950" />
+                <Check className="w-4 h-4 mr-1.5 text-black" />
                 <span>Preferences Saved Successfully!</span>
               </>
             ) : (

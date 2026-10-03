@@ -16,6 +16,9 @@ export interface AppSettings {
   defaultNiche: string;
   defaultCity: string;
   defaultBatchSize: number;
+  aiProvider: 'gemini' | 'grok' | 'ollama';
+  geminiApiKey?: string;
+  grokApiKey?: string;
   ollamaModel: string;
   currency: string;
 }
@@ -29,6 +32,9 @@ const DEFAULT_SETTINGS: AppSettings = {
   defaultNiche: 'Dental Clinics',
   defaultCity: 'Mumbai',
   defaultBatchSize: 15,
+  aiProvider: 'gemini',
+  geminiApiKey: '',
+  grokApiKey: '',
   ollamaModel: 'deepseek-v4-pro:cloud',
   currency: 'USD'
 };
