@@ -231,8 +231,8 @@ export default function SalesBattlecardModal({
                 value="competitors" 
                 className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
               >
-                <Swords className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Competitor Intel</span>
+                <Target className="w-3.5 h-3.5 text-zinc-500" />
+                <span>Market Intel</span>
               </TabsTrigger>
 
               <TabsTrigger 

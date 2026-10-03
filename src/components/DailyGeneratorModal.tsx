@@ -107,7 +107,7 @@ export default function DailyGeneratorModal({
         throw new Error(data.error || 'Lead generation failed');
       }
 
-      setProgressStage('3/3: Crafting sales battlecards & cold scripts...');
+      setProgressStage('3/3: Crafting sales pitch kits & cold scripts...');
       await new Promise(r => setTimeout(r, 400));
 
       onSuccess(data.newLeads?.length || count);

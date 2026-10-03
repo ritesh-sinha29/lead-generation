@@ -176,7 +176,7 @@ export default function SettingsPage() {
                     className="h-8 text-xs bg-[#0C0D0E] border-zinc-800 text-white font-mono placeholder-zinc-500 rounded"
                   />
                   <p className="text-[11px] text-zinc-500">
-                    Powers live Google Search Grounding for real operating businesses and empathetic AI sales battlecards.
+                    Powers live Google Search Grounding for real operating businesses and empathetic AI sales pitch kits.
                   </p>
                 </div>
               )}
