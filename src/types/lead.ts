@@ -43,6 +43,22 @@ export interface ObjectionHandler {
   pivotToClose: string;
 }
 
+export interface PricingTierOption {
+  tierName: string;
+  price: string;
+  description: string;
+  isRecommended?: boolean;
+}
+
+export interface AffordabilityStrategy {
+  clientBudgetTier: string; // e.g. "High-Ticket ($$$)", "Mid-Market ($$)", "Starter ($)"
+  recommendedSweetSpotPrice: string; // e.g. "$1,500 setup + $250/mo"
+  minWalkawayPrice: string; // e.g. "$850 setup"
+  maxUpsellPrice: string; // e.g. "$3,500 complete system"
+  roiBreakEvenMath: string; // e.g. "Their avg ticket is $2,500. Just 1 single booked patient covers the full fee."
+  quoteOptions: PricingTierOption[];
+}
+
 export interface SalesPitchKit {
   // Cold Calling
   coldCallOpener: string;
@@ -58,7 +74,7 @@ export interface SalesPitchKit {
   whatsappMessage: string;
   
   // LinkedIn / DM
-  linkedinDm: string;
+  linkedinDm?: string;
   
   // Objection Handlers
   objections: ObjectionHandler[];
@@ -68,6 +84,9 @@ export interface SalesPitchKit {
   estimatedPrice: string;
   estimatedRoi: string;
   deliveryTimeline: string;
+
+  // Exact Client Affordability & Quote Strategy
+  affordability?: AffordabilityStrategy;
 }
 
 export interface Lead {

@@ -157,23 +157,32 @@ function generateAuditGaps(niche: string, index: number): { audit: WebsiteAudit;
 }
 
 export async function scrapeDailyLeads(req: GenerateLeadsRequest): Promise<Lead[]> {
-  const targetNiche = req.niche || 'Dental Clinics';
+  const isAnyNiche = (req.niche || '').toLowerCase().includes('any niche') || (req.niche || '').toLowerCase().includes('top in-demand') || (req.niche || '').toLowerCase().includes('top high-ticket');
   const targetCity = req.city || 'Mumbai';
   const targetCountry = req.country || 'India';
   const count = Math.min(25, Math.max(5, req.count || 15));
 
-  const nicheMeta = NICHE_DATA[targetNiche] || {
-    suffixes: ['Solutions', 'Group', 'Enterprises', 'Studio', 'Partners'],
-    firstNames: ['Rajesh', 'Sarah', 'Amit', 'David', 'Vikram', 'Elena'],
-    lastNames: ['Sharma', 'Miller', 'Patel', 'Taylor', 'Verma', 'Reynolds'],
-    avgTickets: '$2,000 - $10,000'
-  };
+  const highTicketNiches = [
+    'Real Estate Agencies',
+    'Law Firms',
+    'High-End Home Remodeling',
+    'Dental Clinics',
+    'Med Spas & Aesthetics',
+    'Tech Startups & B2B SaaS'
+  ];
 
   const phoneMeta = CITY_PHONE_PREFIXES[targetCity] || { code: '+1 555', sampleArea: '400' };
-
   const leads: Lead[] = [];
 
   for (let i = 0; i < count; i++) {
+    const currentNiche = isAnyNiche ? highTicketNiches[i % highTicketNiches.length] : (req.niche || 'Dental Clinics');
+    const nicheMeta = NICHE_DATA[currentNiche] || {
+      suffixes: ['Solutions', 'Group', 'Enterprises', 'Studio', 'Partners'],
+      firstNames: ['Rajesh', 'Sarah', 'Amit', 'David', 'Vikram', 'Elena'],
+      lastNames: ['Sharma', 'Miller', 'Patel', 'Taylor', 'Verma', 'Reynolds'],
+      avgTickets: '$2,000 - $10,000'
+    };
+
     const firstName = nicheMeta.firstNames[i % nicheMeta.firstNames.length];
     const lastName = nicheMeta.lastNames[(i + 2) % nicheMeta.lastNames.length];
     const decisionMakerName = `${firstName} ${lastName}`;
@@ -198,11 +207,11 @@ export async function scrapeDailyLeads(req: GenerateLeadsRequest): Promise<Lead[
     const cleanFirstName = firstName.replace(/Dr\.\s*|Adv\.\s*|Coach\s*/g, '').toLowerCase();
     const email = `${cleanFirstName}@${domain}`;
     
-    const { audit, gaps } = generateAuditGaps(targetNiche, i + 1);
+    const { audit, gaps } = generateAuditGaps(currentNiche, i + 1);
 
     const pitchKit = generateDefaultPitchKit({
       businessName,
-      niche: targetNiche,
+      niche: currentNiche,
       city: targetCity,
       decisionMakerName,
       website,
@@ -216,17 +225,17 @@ export async function scrapeDailyLeads(req: GenerateLeadsRequest): Promise<Lead[
     const lead: Lead = {
       id: `lead-${Date.now()}-${i}-${Math.random().toString(36).substring(2, 7)}`,
       businessName,
-      niche: targetNiche,
-      category: targetNiche,
+      niche: currentNiche,
+      category: currentNiche,
       city: targetCity,
       country: targetCountry,
       phone,
       email,
       website,
       decisionMakerName,
-      decisionMakerRole: targetNiche.includes('Dental') || targetNiche.includes('Med') 
+      decisionMakerRole: currentNiche.includes('Dental') || currentNiche.includes('Med') 
         ? 'Owner & Head Practitioner' 
-        : targetNiche.includes('Law') 
+        : currentNiche.includes('Law') 
           ? 'Managing Partner' 
           : 'Founder & Managing Director',
       googleRating: rating,
@@ -238,7 +247,7 @@ export async function scrapeDailyLeads(req: GenerateLeadsRequest): Promise<Lead[
       status: 'new',
       starred: i < 3, // star top 3 high intent leads
       notes: [
-        `Lead discovered for ${targetCity} ${targetNiche} batch.`,
+        `Lead discovered for ${targetCity} ${currentNiche} batch.`,
         `Primary gap: ${gaps[0]?.serviceTitle || 'AI Chatbot & Voice'}`
       ],
       createdAt: new Date().toISOString()

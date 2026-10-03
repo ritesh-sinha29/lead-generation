@@ -1,4 +1,4 @@
-import { SalesPitchKit, ServiceGap, ObjectionHandler } from '@/types/lead';
+import { SalesPitchKit, ServiceGap, ObjectionHandler, AffordabilityStrategy } from '@/types/lead';
 
 interface GeneratePitchParams {
   businessName: string;
@@ -44,7 +44,7 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
       break;
 
     case 'calling_agents':
-      smokingGun = `When prospective clients call ${businessName} after hours or while your team is on another line, there is no instant AI receptionist to qualify them and book appointments. 4 out of 5 first-time callers never leave a voicemail and immediately dial the next business on Google.`;
+      smokingGun = `When prospective clients call ${businessName} after hours or while your team is on another line, there is no instant AI receptionist to qualify them and book appointments. 4 out of 5 first-time callers never leave a voicemail and immediately dial the next competitor on Google.`;
       offerPackage = 'AI Voice Receptionist & Missed-Call Auto-Recovery System';
       price = '$1,200 setup + usage';
       roi = 'Recovers 60-70% of missed inbound calls into booked consultations';
@@ -77,7 +77,84 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
       break;
   }
 
-  // Objections Annihilator Suite (The secret to closing)
+  // Client Affordability & Quote Sweet-Spot Calculation
+  const isHighTicketNiche = /real estate|remodeling|realty|law|legal|luxury|clinic|aesthetic|implant|surgery/i.test(niche);
+  const isMidMarketNiche = /spa|gym|fitness|dental|saas|tech/i.test(niche);
+
+  const affordability: AffordabilityStrategy = isHighTicketNiche
+    ? {
+        clientBudgetTier: 'High-Ticket ($$$) — High Buying Power',
+        recommendedSweetSpotPrice: '$1,800 setup + $350/mo retainer',
+        minWalkawayPrice: '$1,200 one-time setup',
+        maxUpsellPrice: '$3,800 full turnkey ecosystem',
+        roiBreakEvenMath: `In ${niche}, their average transaction is high. Closing just 1 single extra client pays back your entire $1,800 fee.`,
+        quoteOptions: [
+          {
+            tierName: 'Starter Setup',
+            price: '$1,200',
+            description: 'Core 24/7 AI lead capture widget + standard CRM connection.'
+          },
+          {
+            tierName: 'Full Growth Engine (Recommended)',
+            price: '$1,800 + $350/mo',
+            description: 'Complete AI Voice + Chat assistant, GEO AI search optimization, monthly performance reporting.',
+            isRecommended: true
+          },
+          {
+            tierName: 'Enterprise Autopilot',
+            price: '$3,500 + $600/mo',
+            description: 'Multi-location automated intake, instant missed-call recovery, full website redesign.'
+          }
+        ]
+      }
+    : isMidMarketNiche
+    ? {
+        clientBudgetTier: 'Mid-Market ($$) — Moderate Budget',
+        recommendedSweetSpotPrice: '$1,200 setup + $200/mo retainer',
+        minWalkawayPrice: '$750 setup',
+        maxUpsellPrice: '$2,400 complete system',
+        roiBreakEvenMath: `They only need 2–3 extra appointments or bookings to recoup the full monthly fee.`,
+        quoteOptions: [
+          {
+            tierName: 'Essential Bot',
+            price: '$750',
+            description: 'Standalone 24/7 WhatsApp & web booking widget.'
+          },
+          {
+            tierName: 'Turnkey Pro (Recommended)',
+            price: '$1,200 + $200/mo',
+            description: 'AI Booking Assistant + GEO Schema + Missed-call SMS auto-recovery.',
+            isRecommended: true
+          },
+          {
+            tierName: 'Custom Full Stack',
+            price: '$2,400 + $400/mo',
+            description: 'Full web revamp + custom AI voice receptionist.'
+          }
+        ]
+      }
+    : {
+        clientBudgetTier: 'Starter ($) — Entry Local Business',
+        recommendedSweetSpotPrice: '$850 setup + $150/mo',
+        minWalkawayPrice: '$500 setup',
+        maxUpsellPrice: '$1,500',
+        roiBreakEvenMath: `Capturing just 3–5 additional customer inquiries easily covers their monthly investment.`,
+        quoteOptions: [
+          {
+            tierName: 'Fast Start',
+            price: '$500',
+            description: 'Basic interactive lead capture bot.'
+          },
+          {
+            tierName: 'Pro Intake (Recommended)',
+            price: '$850 + $150/mo',
+            description: 'Full AI appointment bot with WhatsApp notifications.',
+            isRecommended: true
+          }
+        ]
+      };
+
+  // Objections Suite
   const objections: ObjectionHandler[] = [
     {
       objection: "We already have a web person / agency handling this.",
@@ -113,19 +190,14 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
 
   return {
     coldCallOpener: `“Hi ${nameGreeting}, this is [Your Name] from [Your Agency]. I know you weren't expecting my call, so I'll be super brief—do you have 30 seconds for why I'm reaching out regarding ${businessName}?”`,
-    
     coldCallSmokingGun: smokingGun,
-    
     coldCallValueProposition: `“We built a solution that automatically captures these high-intent leads and books them directly into your calendar 24/7 without needing extra staff.”`,
-    
     coldCallMicroClose: `“I actually put together a quick 60-second interactive preview for ${businessName}. Can I text or email you the demo link so you can check it out on your own time?”`,
-    
     emailSubjectLines: [
       `Quick observation regarding ${businessName}'s website`,
       `${nameGreeting} - quick question about ${niche} lead intake in ${city}`,
       `Fix for ${businessName}'s missed after-hours inquiries (60-sec preview)`
     ],
-    
     emailBody: `Hi ${nameGreeting},
 
 I came across ${businessName} while researching top ${niche.toLowerCase()} providers in ${city}.
@@ -164,6 +236,7 @@ Put together a 60-sec proof-of-concept for you. Would you be open to checking it
     recommendedPackageName: offerPackage,
     estimatedPrice: price,
     estimatedRoi: roi,
-    deliveryTimeline: timeline
+    deliveryTimeline: timeline,
+    affordability
   };
 }

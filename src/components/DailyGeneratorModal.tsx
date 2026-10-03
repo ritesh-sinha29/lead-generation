@@ -29,14 +29,14 @@ interface Props {
 }
 
 const PRESET_NICHES = [
+  '⚡ Top In-Demand Clients (Any Niche)',
   'Dental Clinics',
   'Real Estate Agencies',
   'Law Firms',
   'Med Spas & Aesthetics',
   'High-End Home Remodeling',
   'E-Commerce Brands',
-  'Tech Startups & B2B SaaS',
-  'Fitness & CrossFit Gyms'
+  'Tech Startups & B2B SaaS'
 ];
 
 const PRESET_CITIES = [
@@ -57,7 +57,7 @@ export default function DailyGeneratorModal({
   ollamaOnline = false,
   availableModels = []
 }: Props) {
-  const [niche, setNiche] = useState('Dental Clinics');
+  const [niche, setNiche] = useState(' Top In-Demand Clients (Any Niche)');
   const [customNiche, setCustomNiche] = useState('');
   const [selectedCityObj, setSelectedCityObj] = useState(PRESET_CITIES[0]);
   const [customCity, setCustomCity] = useState('');

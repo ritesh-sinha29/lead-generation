@@ -220,7 +220,31 @@ export async function scrapeLiveLeadsWithGemini(req: GenerateLeadsRequest): Prom
   try {
     const ai = new GoogleGenAI({ apiKey });
 
-    const prompt = `You are a real-time lead research specialist. Use live Google Search to find ${count} real, verified, operating local businesses in the following target:
+    const isAnyNiche = niche.toLowerCase().includes('any niche') || niche.toLowerCase().includes('top in-demand') || niche.toLowerCase().includes('top high-ticket');
+
+    const prompt = isAnyNiche
+      ? `You are an elite B2B sales researcher. Use live Google Search to find ${count} real, operating high-ticket businesses across the most lucrative service industries (e.g. Cosmetic Dental Care, Luxury Real Estate, Commercial Litigation Law, Med Spas & Aesthetics, High-End Home Remodeling, Private Wealth) in ${city}, ${country}. Prioritize businesses with active customer inquiries, high customer lifetime value, and established local presence.
+
+STRICT DATA ACCURACY INSTRUCTIONS:
+1. ONLY return REAL businesses currently open and operating in ${city}.
+2. Provide their exact REAL business name as listed on Google Maps / website.
+3. Provide their specific niche (e.g. "Dental Clinics", "Luxury Real Estate", "Law Firms", "Med Spas").
+4. Provide their REAL working website URL (or verified Google Maps/Justdial profile URL).
+5. Provide their REAL phone number with area/country code.
+6. Provide the real Doctor name, Founder name, Managing Director, or Owner name.
+7. Provide their real Google Rating (e.g. 4.6) and Reviews count (e.g. 48).
+
+Return a strict JSON array of objects with keys:
+- businessName (string)
+- niche (string)
+- website (string)
+- phone (string)
+- email (string)
+- decisionMakerName (string)
+- decisionMakerRole (string)
+- googleRating (number)
+- googleReviewsCount (number)`
+      : `You are a real-time lead research specialist. Use live Google Search to find ${count} real, verified, operating local businesses in the following target:
 - Niche/Industry: ${niche}
 - City: ${city}
 - Country: ${country}
@@ -262,6 +286,7 @@ Return a strict JSON array of objects with keys:
 
       const parsedBusinesses = JSON.parse(rawText) as Array<{
         businessName: string;
+        niche?: string;
         website: string;
         phone: string;
         email: string;
@@ -275,8 +300,10 @@ Return a strict JSON array of objects with keys:
         const leads: Lead[] = [];
 
         for (const [idx, b] of parsedBusinesses.slice(0, count).entries()) {
+          const actualNiche = b.niche || niche;
+
           // 1. Audit live website & harvest verified phone/email directly from their site
-          const { audit, contact } = await auditLiveWebsite(b.website || '', niche);
+          const { audit, contact } = await auditLiveWebsite(b.website || '', actualNiche);
 
           const finalPhone = contact.extractedPhone || b.phone || '+91 98765 43210';
           const finalEmail = contact.extractedEmail || b.email || `contact@${b.businessName.toLowerCase().replace(/[^a-z0-9]/g, '')}.com`;
@@ -285,7 +312,7 @@ Return a strict JSON array of objects with keys:
           // 2. Synthesize consultative problem-solving pitch kit
           const partialLead: Partial<Lead> = {
             businessName: b.businessName,
-            niche,
+            niche: actualNiche,
             city,
             country,
             website: b.website,
@@ -300,7 +327,7 @@ Return a strict JSON array of objects with keys:
           if (!pitchKit) {
             pitchKit = generateDefaultPitchKit({
               businessName: b.businessName,
-              niche,
+              niche: actualNiche,
               city,
               decisionMakerName: finalDecisionMaker,
               website: b.website,
@@ -312,8 +339,8 @@ Return a strict JSON array of objects with keys:
           leads.push({
             id: `lead-${Date.now()}-${idx + 1}`,
             businessName: b.businessName,
-            niche,
-            category: niche,
+            niche: actualNiche,
+            category: actualNiche,
             city,
             country: country || 'International',
             website: b.website || `https://www.${b.businessName.toLowerCase().replace(/[^a-z0-9]/g, '')}.com`,

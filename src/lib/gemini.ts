@@ -62,6 +62,31 @@ Generate a complete SalesPitchKit JSON object.`;
         estimatedPrice: { type: Type.STRING, description: 'Price range matching niche average tickets' },
         deliveryTimeline: { type: Type.STRING, description: 'Implementation timeframe' },
         estimatedRoi: { type: Type.STRING, description: 'Conservative projected return' },
+        affordability: {
+          type: Type.OBJECT,
+          description: 'Pricing strategy and exact quote recommendations tailored to client budget',
+          properties: {
+            clientBudgetTier: { type: Type.STRING, description: 'e.g. High-Ticket ($$$), Mid-Market ($$), Starter ($)' },
+            recommendedSweetSpotPrice: { type: Type.STRING, description: 'e.g. $1,500 setup + $250/mo' },
+            minWalkawayPrice: { type: Type.STRING, description: 'e.g. $850 setup' },
+            maxUpsellPrice: { type: Type.STRING, description: 'e.g. $3,500 full system' },
+            roiBreakEvenMath: { type: Type.STRING, description: 'e.g. Just 1 new client booked covers the full cost' },
+            quoteOptions: {
+              type: Type.ARRAY,
+              items: {
+                type: Type.OBJECT,
+                properties: {
+                  tierName: { type: Type.STRING },
+                  price: { type: Type.STRING },
+                  description: { type: Type.STRING },
+                  isRecommended: { type: Type.BOOLEAN }
+                },
+                required: ['tierName', 'price', 'description']
+              }
+            }
+          },
+          required: ['clientBudgetTier', 'recommendedSweetSpotPrice', 'minWalkawayPrice', 'maxUpsellPrice', 'roiBreakEvenMath', 'quoteOptions']
+        },
         objections: {
           type: Type.ARRAY,
           items: {

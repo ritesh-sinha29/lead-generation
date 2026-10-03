@@ -489,6 +489,90 @@ export default function SalesBattlecardModal({
                 </div>
               </div>
 
+              {/* Client Affordability Strategy & Recommended Quote */}
+              <div className="p-5 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-4 shadow-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-zinc-850">
+                  <div>
+                    <span className="text-[11px] font-mono uppercase text-zinc-400 block mb-0.5">
+                      Client Affordability Index & Quote Strategy
+                    </span>
+                    <h4 className="text-sm font-semibold text-white">
+                      How Much Should You Ask? (Optimal Sweet Spot)
+                    </h4>
+                  </div>
+                  <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">
+                    {currentPitch.affordability?.clientBudgetTier || 'High-Ticket ($$$)'}
+                  </span>
+                </div>
+
+                {/* Sweet Spot Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-1">
+                    <span className="text-[10px] font-mono uppercase text-zinc-500 block">Minimum Walkaway</span>
+                    <div className="text-xs font-mono font-medium text-zinc-400">
+                      {currentPitch.affordability?.minWalkawayPrice || '$850'}
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-zinc-900/90 border border-zinc-700 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono uppercase text-white font-semibold">Recommended Ask</span>
+                      <span className="text-[10px] font-mono text-zinc-400">Sweet Spot</span>
+                    </div>
+                    <div className="text-sm font-mono font-bold text-white">
+                      {currentPitch.affordability?.recommendedSweetSpotPrice || '$1,500 + $250/mo'}
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-1">
+                    <span className="text-[10px] font-mono uppercase text-zinc-500 block">Max Upsell Ceiling</span>
+                    <div className="text-xs font-mono font-medium text-zinc-400">
+                      {currentPitch.affordability?.maxUpsellPrice || '$3,500'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Break-Even Pitch Logic */}
+                <div className="p-3 rounded-lg bg-zinc-950 border border-zinc-850 text-xs text-zinc-300 leading-relaxed font-sans">
+                  <strong className="text-white block text-[11px] uppercase font-mono mb-0.5">ROI Justification Pitch:</strong>
+                  {currentPitch.affordability?.roiBreakEvenMath || 'Closing just 1 single new client or booking pays back the entire investment.'}
+                </div>
+
+                {/* Pricing Tiers */}
+                {(currentPitch.affordability?.quoteOptions || []).length > 0 && (
+                  <div className="space-y-2 pt-1">
+                    <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block">
+                      Recommended Pricing Tiers for Proposal:
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      {currentPitch.affordability?.quoteOptions.map((opt, i) => (
+                        <div
+                          key={i}
+                          className={`p-3 rounded-lg border text-xs flex flex-col justify-between gap-1.5 ${
+                            opt.isRecommended
+                              ? 'bg-zinc-900 border-zinc-700 text-white'
+                              : 'bg-zinc-950 border-zinc-850 text-zinc-400'
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center justify-between">
+                              <span className="font-semibold text-white">{opt.tierName}</span>
+                              {opt.isRecommended && (
+                                <span className="text-[9px] font-mono bg-white text-black px-1.5 py-0.2 rounded font-bold">
+                                  BEST
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-sm font-mono font-bold text-white mt-1">{opt.price}</div>
+                          </div>
+                          <p className="text-[11px] text-zinc-400 leading-tight">{opt.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Diagnosed Gaps */}
               <div className="p-5 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-3 shadow-xs">
                 <div className="flex items-center justify-between pb-2 border-b border-zinc-850">
