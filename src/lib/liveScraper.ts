@@ -121,7 +121,7 @@ export async function auditLiveWebsite(url: string, niche: string): Promise<{ au
       serviceTitle: '24/7 AI Lead & Appointment Booking Assistant',
       detectedIssue: 'No conversational AI agent active to capture evening/weekend inquiries or confirm bookings in real-time.',
       impactExplanation: `In ${niche}, 42% of inquiries visit outside normal business hours and leave immediately if forced to fill out a static form.`,
-      estimatedLostRevenueMonthly: 3200,
+      estimatedLostRevenueMonthly: 35000,
       recommendedSolution: 'Deploy a turnkey 24/7 conversational AI agent connected to WhatsApp and CRM calendar.',
       urgency: 'high'
     });
@@ -133,7 +133,7 @@ export async function auditLiveWebsite(url: string, niche: string): Promise<{ au
     serviceTitle: 'AI Voice Receptionist & Missed-Call Recovery',
     detectedIssue: 'No automated instantaneous callback system for missed inbound phone calls.',
     impactExplanation: '65% of first-time callers never leave a voicemail and immediately dial the next competitor on Google.',
-    estimatedLostRevenueMonthly: 3800,
+    estimatedLostRevenueMonthly: 45000,
     recommendedSolution: 'Connect an automated Voice AI that calls back missed prospect calls within 15 seconds.',
     urgency: 'high'
   });
@@ -145,7 +145,7 @@ export async function auditLiveWebsite(url: string, niche: string): Promise<{ au
       serviceTitle: 'Generative Engine Optimization (GEO & AEO for ChatGPT / Perplexity)',
       detectedIssue: 'Missing JSON-LD local business entity schema; invisible when potential clients ask ChatGPT or Perplexity for recommendations.',
       impactExplanation: 'Over 30% of high-intent clients now search via AI conversational tools rather than traditional Google links.',
-      estimatedLostRevenueMonthly: 4200,
+      estimatedLostRevenueMonthly: 50000,
       recommendedSolution: 'Inject rich JSON-LD semantic entity data, llms.txt, and AI citation authority vectors.',
       urgency: 'high'
     });
@@ -158,7 +158,7 @@ export async function auditLiveWebsite(url: string, niche: string): Promise<{ au
       serviceTitle: 'High-Performance Modern Web App Redesign',
       detectedIssue: `Slow load response (${loadTimeSeconds}s) causing high mobile visitor bounce rate.`,
       impactExplanation: 'Every additional second of load time reduces lead conversion rates by 20%.',
-      estimatedLostRevenueMonthly: 2600,
+      estimatedLostRevenueMonthly: 30000,
       recommendedSolution: 'Rebuild into an ultra-fast Next.js web application with sub-second page transitions.',
       urgency: 'medium'
     });
@@ -170,7 +170,7 @@ export async function auditLiveWebsite(url: string, niche: string): Promise<{ au
     serviceTitle: 'Authority Showcase & Proof System',
     detectedIssue: 'Lacks interactive case studies, before/after results proof, or video review carousels.',
     impactExplanation: 'High-ticket buyers demand visual proof within the first 10 seconds of visiting.',
-    estimatedLostRevenueMonthly: 1900,
+    estimatedLostRevenueMonthly: 25000,
     recommendedSolution: 'Embed interactive proof sliders, verified customer reels, and client ROI calculators.',
     urgency: 'medium'
   });
@@ -267,99 +267,196 @@ Return a strict JSON array of objects with keys:
 - googleRating (number)
 - googleReviewsCount (number)`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
-      contents: prompt,
-      config: {
-        tools: [{ googleSearch: {} }],
-        temperature: 0.1, // Low temperature for maximum factual precision
+    // Discover valid models for this API key dynamically
+    let availableModelNames: string[] = [];
+    try {
+      const modelsPager = await ai.models.list();
+      for await (const m of modelsPager) {
+        if (m.name) {
+          const cleanName = m.name.replace(/^models\//, '');
+          availableModelNames.push(cleanName);
+        }
       }
+      console.log('Discovered Gemini models for this API key:', availableModelNames);
+    } catch (listErr) {
+      console.warn('Could not list models dynamically:', listErr);
+    }
+
+    // Filter only genuine text generation & search models (exclude tts, audio, transcribe, embedding)
+    const validDiscovered = availableModelNames.filter(name => {
+      const lower = name.toLowerCase();
+      const isExcluded = lower.includes('tts') || lower.includes('transcribe') || lower.includes('audio') || lower.includes('embed') || lower.includes('imagen') || lower.includes('vision');
+      return !isExcluded && (lower.includes('flash') || lower.includes('pro'));
     });
 
-    if (response.text) {
-      let rawText = response.text.trim();
-      if (rawText.startsWith('```json')) {
-        rawText = rawText.replace(/^```json/, '').replace(/```$/, '').trim();
-      } else if (rawText.startsWith('```')) {
-        rawText = rawText.replace(/^```/, '').replace(/```$/, '').trim();
-      }
+    const priorityOrder = [
+      'gemini-1.5-flash',
+      'gemini-1.5-flash-latest',
+      'gemini-1.5-flash-002',
+      'gemini-1.5-pro',
+      'gemini-1.5-pro-latest',
+      'gemini-2.0-flash-exp',
+      'gemini-2.5-flash'
+    ];
 
-      const parsedBusinesses = JSON.parse(rawText) as Array<{
+    const candidateModels = Array.from(new Set([
+      ...validDiscovered,
+      ...priorityOrder
+    ]));
+
+    let response: any = null;
+    let lastErr: any = null;
+
+    for (const model of candidateModels) {
+      try {
+        response = await ai.models.generateContent({
+          model,
+          contents: prompt,
+          config: {
+            tools: [{ googleSearch: {} }],
+            temperature: 0.1, // Low temperature for maximum factual precision
+          }
+        });
+        if (response && response.text) {
+          console.log(`Successfully generated leads using model: ${model}`);
+          break;
+        }
+      } catch (err: any) {
+        lastErr = err;
+        const errMsg = err?.message || String(err);
+        console.warn(`Model ${model} failed: ${errMsg.slice(0, 120)}`);
+        
+        // If quota limit (429) hit, no other model in this project will work, break early
+        if (err?.status === 429 || errMsg.includes('429') || errMsg.includes('RESOURCE_EXHAUSTED')) {
+          console.error('Google Gemini API Key has exhausted its quota (HTTP 429).');
+          break;
+        }
+      }
+    }
+
+    if (!response || !response.text) {
+      throw lastErr || new Error('Google Gemini API key has exceeded its quota (HTTP 429) or is invalid.');
+    }
+
+    if (response && response.text) {
+      const rawText = response.text.trim();
+      
+      // Inspect Context7-verified groundingMetadata for search queries & source chunks
+      const metadata = response.candidates?.[0]?.groundingMetadata;
+      const groundingChunks = metadata?.groundingChunks || [];
+      const searchQueries = metadata?.webSearchQueries || [];
+      if (searchQueries.length > 0) {
+        console.log('Live Google Search Grounding Queries:', searchQueries);
+      }
+      
+      // Robust extraction of JSON array from response
+      const jsonMatch = rawText.match(/\[[\s\S]*\]/);
+      const jsonString = jsonMatch ? jsonMatch[0] : rawText.replace(/^```json/i, '').replace(/^```/i, '').replace(/```$/i, '').trim();
+
+      let parsedBusinesses: Array<{
         businessName: string;
         niche?: string;
-        website: string;
-        phone: string;
-        email: string;
-        decisionMakerName: string;
-        decisionMakerRole: string;
+        website?: string;
+        phone?: string;
+        email?: string;
+        decisionMakerName?: string;
+        decisionMakerRole?: string;
         googleRating?: number;
         googleReviewsCount?: number;
-      }>;
+      }> = [];
+
+      try {
+        parsedBusinesses = JSON.parse(jsonString);
+      } catch (parseErr) {
+        console.error('Failed to parse JSON from model output, attempting repair:', parseErr);
+        // Fallback cleanup if trailing commas or formatting flaws exist
+        const cleaned = jsonString.replace(/,\s*\]/, ']').replace(/,\s*\}/g, '}');
+        parsedBusinesses = JSON.parse(cleaned);
+      }
 
       if (Array.isArray(parsedBusinesses) && parsedBusinesses.length > 0) {
-        const leads: Lead[] = [];
+        const isIndia = (country || '').toLowerCase().includes('india') || (city || '').toLowerCase().includes('vapi') || (city || '').toLowerCase().includes('mumbai') || (city || '').toLowerCase().includes('surat');
 
-        for (const [idx, b] of parsedBusinesses.slice(0, count).entries()) {
-          const actualNiche = b.niche || niche;
+        // Execute website audits concurrently in parallel for ultra-fast response
+        const leads = await Promise.all(
+          parsedBusinesses.slice(0, count).map(async (b, idx) => {
+            const actualNiche = b.niche || niche;
 
-          // 1. Audit live website & harvest verified phone/email directly from their site
-          const { audit, contact } = await auditLiveWebsite(b.website || '', actualNiche);
+            // Resolve website URL from Grounding Chunks if missing
+            let siteUrl = b.website || '';
+            if (!siteUrl || siteUrl.includes('example.com')) {
+              const matchedChunk = groundingChunks.find((c: any) => 
+                c.web?.title?.toLowerCase().includes((b.businessName || '').toLowerCase()) ||
+                c.web?.uri?.toLowerCase().includes((b.businessName || '').toLowerCase().replace(/[^a-z0-9]/g, ''))
+              );
+              if (matchedChunk?.web?.uri) {
+                siteUrl = matchedChunk.web.uri;
+              }
+            }
 
-          const finalPhone = contact.extractedPhone || b.phone || '+91 98765 43210';
-          const finalEmail = contact.extractedEmail || b.email || `contact@${b.businessName.toLowerCase().replace(/[^a-z0-9]/g, '')}.com`;
-          const finalDecisionMaker = contact.extractedOwner || b.decisionMakerName || 'Business Owner';
+            // 1. Audit live website & harvest verified phone/email directly from their real site
+            const { audit, contact } = await auditLiveWebsite(siteUrl, actualNiche);
 
-          // 2. Synthesize consultative problem-solving pitch kit
-          const partialLead: Partial<Lead> = {
-            businessName: b.businessName,
-            niche: actualNiche,
-            city,
-            country,
-            website: b.website,
-            phone: finalPhone,
-            email: finalEmail,
-            decisionMakerName: finalDecisionMaker,
-            decisionMakerRole: b.decisionMakerRole || 'Founder & Managing Director',
-            audit
-          };
+            // Only use real discovered data - zero mock/pre-fed fallbacks
+            const finalPhone = contact.extractedPhone || b.phone || '';
+            const finalEmail = contact.extractedEmail || b.email || '';
+            const finalWebsite = siteUrl || (b.website && !b.website.includes('example.com') ? b.website : '');
+            const finalDecisionMaker = contact.extractedOwner || b.decisionMakerName || 'Owner / Decision Maker';
+            const finalRating = typeof b.googleRating === 'number' ? b.googleRating : 0;
+            const finalReviewsCount = typeof b.googleReviewsCount === 'number' ? b.googleReviewsCount : 0;
 
-          let pitchKit = await generateRelatablePitchWithGemini(partialLead, undefined, apiKey);
-          if (!pitchKit) {
-            pitchKit = generateDefaultPitchKit({
+            // 2. Synthesize dynamic, real-time consultative pitch kit using Gemini
+            const partialLead: Partial<Lead> = {
               businessName: b.businessName,
               niche: actualNiche,
               city,
+              country,
+              website: finalWebsite,
+              phone: finalPhone,
+              email: finalEmail,
               decisionMakerName: finalDecisionMaker,
-              website: b.website,
-              topGaps: audit.topGaps,
-              primaryService: audit.topGaps[0]?.service || 'chatbots'
-            });
-          }
+              decisionMakerRole: b.decisionMakerRole || 'Owner / Founder',
+              audit
+            };
 
-          leads.push({
-            id: `lead-${Date.now()}-${idx + 1}`,
-            businessName: b.businessName,
-            niche: actualNiche,
-            category: actualNiche,
-            city,
-            country: country || 'International',
-            website: b.website || `https://www.${b.businessName.toLowerCase().replace(/[^a-z0-9]/g, '')}.com`,
-            phone: finalPhone,
-            email: finalEmail,
-            decisionMakerName: finalDecisionMaker,
-            decisionMakerRole: b.decisionMakerRole || 'Founder & Managing Director',
-            googleRating: b.googleRating || Number((4.2 + ((idx * 3) % 8) * 0.1).toFixed(1)),
-            googleReviewsCount: b.googleReviewsCount || (24 + idx * 6),
-            estimatedRevenue: '$40k - $120k/mo',
-            employeeCount: '5 - 25',
-            status: 'new',
-            starred: idx < 2,
-            notes: [],
-            createdAt: new Date().toISOString(),
-            audit,
-            pitchKit
-          });
-        }
+            let pitchKit = await generateRelatablePitchWithGemini(partialLead, undefined, apiKey);
+            if (!pitchKit) {
+              pitchKit = generateDefaultPitchKit({
+                businessName: b.businessName,
+                niche: actualNiche,
+                city,
+                decisionMakerName: finalDecisionMaker,
+                website: finalWebsite,
+                topGaps: audit.topGaps,
+                primaryService: audit.topGaps[0]?.service || 'chatbots'
+              });
+            }
+
+            return {
+              id: `lead-${Date.now()}-${idx + 1}-${Math.random().toString(36).substring(2, 6)}`,
+              businessName: b.businessName,
+              niche: actualNiche,
+              category: actualNiche,
+              city,
+              country: country || (isIndia ? 'India' : 'International'),
+              website: finalWebsite,
+              phone: finalPhone,
+              email: finalEmail,
+              decisionMakerName: finalDecisionMaker,
+              decisionMakerRole: b.decisionMakerRole || 'Owner / Founder',
+              googleRating: finalRating,
+              googleReviewsCount: finalReviewsCount,
+              estimatedRevenue: 'Verified via Live Audit',
+              employeeCount: 'Local Business',
+              status: 'new' as const,
+              starred: idx < 2,
+              notes: [`Audited live for ${city} ${actualNiche} outreach.`],
+              createdAt: new Date().toISOString(),
+              audit,
+              pitchKit
+            };
+          })
+        );
 
         return leads;
       }

@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import { Lead } from '@/types/lead';
-import { scrapeDailyLeads } from './scraper';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const LEADS_FILE = path.join(DATA_DIR, 'leads.json');

@@ -19,16 +19,20 @@ export async function generateRelatablePitchWithGemini(
   try {
     const ai = new GoogleGenAI({ apiKey });
 
+    const currency = 'INR';
+    const currencySymbol = '₹';
+
     const systemInstruction = `You are an elite, consultative sales strategist for a modern AI & Web engineering agency (${settings.agencyName}).
 Your task is to write hyper-relatable, consultative sales copy for decision-makers that feels 100% personalized, empathetic, and problem-focused.
 
-CRITICAL TONE REQUIREMENTS:
-1. Avoid generic agency buzzwords ("synergy", "cutting-edge", "game-changer", "unleash").
-2. Focus 100% on the exact customer pain point: what friction or revenue leakage their business is experiencing right now.
-3. Make the prospect feel: "This person actually took time to audit my exact site, understands my niche, and has a concrete fix for my lost revenue."
-4. Every cold call opener must be a polite pattern-interrupt with specific reference to their business.
-5. Every smoking gun must point to a real, diagnosed flaw (e.g. after-hours lost bookings, missed phone calls bouncing to competitors, slow mobile load times, invisible on AI search).
-6. Every email, WhatsApp pitch, and objection handler must be consultative, low-pressure, and conversational.`;
+CRITICAL REQUIREMENTS:
+1. ALWAYS CALCULATE AND QUOTE IN INDIAN RUPEES (INR / ₹): Strictly format ALL prices, estimated revenue leaks, quotes, tiers, and financial figures in Indian Rupees (e.g., ₹45,000 setup + ₹12,000/mo retainer, ₹25,000, ₹85,000, ₹1.5 Lakhs). NEVER use dollars ($) or any non-rupee currency.
+2. Avoid generic agency buzzwords ("synergy", "cutting-edge", "game-changer", "unleash").
+3. Focus 100% on the exact customer pain point: what friction or revenue leakage their business is experiencing right now in ₹.
+4. Make the prospect feel: "This person actually took time to audit my exact site, understands my niche, and has a concrete fix for my lost revenue."
+5. Every cold call opener must be a polite pattern-interrupt with specific reference to their business.
+6. Every smoking gun must point to a real, diagnosed flaw (e.g. after-hours lost bookings, missed phone calls bouncing to competitors, slow mobile load times, invisible on AI search).
+7. Every email, WhatsApp pitch, and objection handler must be consultative, low-pressure, and conversational.`;
 
     const prompt = `Business Details:
 - Name: ${lead.businessName}
@@ -37,10 +41,11 @@ CRITICAL TONE REQUIREMENTS:
 - Decision Maker: ${lead.decisionMakerName} (${lead.decisionMakerRole})
 - Phone: ${lead.phone}
 - Website: ${lead.website}
+- Currency: INR (₹)
 - Diagnosed Vulnerabilities: ${JSON.stringify(lead.audit?.topGaps || [])}
 - Overall Tech Readiness Score: ${lead.audit?.overallHealthScore}/100
 
-Custom Goal/Instruction: ${customPrompt || 'Craft a deeply relatable, empathetic pitch solving their primary technical leak.'}
+Custom Goal/Instruction: ${customPrompt || 'Craft a deeply relatable, empathetic pitch solving their primary technical leak. All pricing must be strictly in Indian Rupees (₹).'}
 
 Generate a complete SalesPitchKit JSON object.`;
 
@@ -59,17 +64,17 @@ Generate a complete SalesPitchKit JSON object.`;
         emailBody: { type: Type.STRING, description: 'Short, personalized consultative cold email body' },
         whatsappMessage: { type: Type.STRING, description: 'Casual, high-converting WhatsApp message ready to send' },
         recommendedPackageName: { type: Type.STRING, description: 'Tailored turnkey package name' },
-        estimatedPrice: { type: Type.STRING, description: 'Price range matching niche average tickets' },
+        estimatedPrice: { type: Type.STRING, description: `Price range formatted in ${currencySymbol} (e.g. ${currencySymbol}35,000 - ${currencySymbol}65,000 setup)` },
         deliveryTimeline: { type: Type.STRING, description: 'Implementation timeframe' },
         estimatedRoi: { type: Type.STRING, description: 'Conservative projected return' },
         affordability: {
           type: Type.OBJECT,
           description: 'Pricing strategy and exact quote recommendations tailored to client budget',
           properties: {
-            clientBudgetTier: { type: Type.STRING, description: 'e.g. High-Ticket ($$$), Mid-Market ($$), Starter ($)' },
-            recommendedSweetSpotPrice: { type: Type.STRING, description: 'e.g. $1,500 setup + $250/mo' },
-            minWalkawayPrice: { type: Type.STRING, description: 'e.g. $850 setup' },
-            maxUpsellPrice: { type: Type.STRING, description: 'e.g. $3,500 full system' },
+            clientBudgetTier: { type: Type.STRING, description: 'e.g. High-Ticket, Mid-Market, Starter' },
+            recommendedSweetSpotPrice: { type: Type.STRING, description: `e.g. ${currencySymbol}45,000 setup + ${currencySymbol}12,000/mo retainer` },
+            minWalkawayPrice: { type: Type.STRING, description: `e.g. ${currencySymbol}25,000 setup` },
+            maxUpsellPrice: { type: Type.STRING, description: `e.g. ${currencySymbol}95,000 full system` },
             roiBreakEvenMath: { type: Type.STRING, description: 'e.g. Just 1 new client booked covers the full cost' },
             quoteOptions: {
               type: Type.ARRAY,
@@ -117,18 +122,60 @@ Generate a complete SalesPitchKit JSON object.`;
       ]
     };
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
-      contents: prompt,
-      config: {
-        systemInstruction,
-        responseMimeType: 'application/json',
-        responseSchema: pitchSchema,
-        temperature: 0.7,
+    // Discover valid models for this API key dynamically
+    let availableModelNames: string[] = [];
+    try {
+      const modelsPager = await ai.models.list();
+      for await (const m of modelsPager) {
+        if (m.name) {
+          const cleanName = m.name.replace(/^models\//, '');
+          availableModelNames.push(cleanName);
+        }
       }
-    });
+    } catch (listErr) {
+      console.warn('Could not list models dynamically in gemini.ts:', listErr);
+    }
 
-    if (response.text) {
+    const priorityOrder = [
+      'gemini-1.5-flash-latest',
+      'gemini-1.5-flash-002',
+      'gemini-1.5-flash',
+      'gemini-2.0-flash-001',
+      'gemini-2.0-flash-exp',
+      'gemini-1.5-pro-latest',
+      'gemini-1.5-pro',
+      'gemini-2.5-flash',
+      'gemini-pro'
+    ];
+
+    const candidateModels = Array.from(new Set([
+      ...availableModelNames.filter(name => name.includes('flash') || name.includes('gemini')),
+      ...priorityOrder
+    ]));
+
+    let response: any = null;
+
+    for (const model of candidateModels) {
+      try {
+        response = await ai.models.generateContent({
+          model,
+          contents: prompt,
+          config: {
+            systemInstruction,
+            responseMimeType: 'application/json',
+            responseSchema: pitchSchema,
+            temperature: 0.7,
+          }
+        });
+        if (response && response.text) {
+          break;
+        }
+      } catch (err) {
+        console.warn(`Pitch model ${model} failed, trying next candidate...`, err instanceof Error ? err.message : err);
+      }
+    }
+
+    if (response && response.text) {
       const parsed = JSON.parse(response.text) as SalesPitchKit;
       return parsed;
     }

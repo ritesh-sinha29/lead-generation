@@ -6,7 +6,7 @@ import {
   PhoneCall, 
   Bot, 
   CheckCircle2, 
-  DollarSign, 
+  IndianRupee, 
   Globe 
 } from 'lucide-react';
 
@@ -80,12 +80,12 @@ export default function StatsOverview({ leads }: Props) {
         <div className="flex items-center justify-between mb-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Client Revenue Leaks</span>
           <div className="p-2 rounded-xl bg-accent/20 text-foreground border border-accent/40">
-            <DollarSign className="w-4 h-4" />
+            <IndianRupee className="w-4 h-4" />
           </div>
         </div>
         <div className="flex items-baseline gap-2">
           <span className="text-3xl font-extrabold text-foreground tracking-tight">
-            ${(totalPipelineValue / 1000).toFixed(0)}k<span className="text-base font-normal text-muted-foreground">/mo</span>
+            ₹{(totalPipelineValue / 1000).toFixed(0)}k<span className="text-base font-normal text-muted-foreground">/mo</span>
           </span>
         </div>
         <p className="mt-2 text-xs text-muted-foreground">

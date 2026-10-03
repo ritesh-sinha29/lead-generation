@@ -1,4 +1,5 @@
 import { SalesPitchKit, ServiceGap, ObjectionHandler, AffordabilityStrategy } from '@/types/lead';
+import { getSettings } from './db';
 
 interface GeneratePitchParams {
   businessName: string;
@@ -30,7 +31,7 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
   // Specific "Smoking Gun" observation based on primary gap
   let smokingGun = '';
   let offerPackage = '';
-  let price = '$950 - $2,500';
+  let price = '₹25,000 - ₹65,000';
   let roi = '3x - 5x ROI in 30 days (capturing 8-15 extra high-value clients/mo)';
   let timeline = '7 to 10 Business Days';
 
@@ -38,7 +39,7 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
     case 'chatbots':
       smokingGun = `I tested your website last night at 9:30 PM. I looked for a way to instantly book an appointment or get quick pricing, but there was only a static contact form that takes 24 hours to get a response. In ${niche}, over 42% of inquiries bounce to a competitor if not answered within 5 minutes.`;
       offerPackage = '24/7 Conversational AI Appointment & Lead Intake Bot';
-      price = '$850 setup + $150/mo';
+      price = '₹25,000 setup + ₹6,000/mo';
       roi = 'Estimated +12 to +25 extra qualified bookings each month';
       timeline = '5 to 7 Days';
       break;
@@ -46,7 +47,7 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
     case 'calling_agents':
       smokingGun = `When prospective clients call ${businessName} after hours or while your team is on another line, there is no instant AI receptionist to qualify them and book appointments. 4 out of 5 first-time callers never leave a voicemail and immediately dial the next competitor on Google.`;
       offerPackage = 'AI Voice Receptionist & Missed-Call Auto-Recovery System';
-      price = '$1,200 setup + usage';
+      price = '₹45,000 setup + ₹12,000/mo';
       roi = 'Recovers 60-70% of missed inbound calls into booked consultations';
       timeline = '7 to 10 Days';
       break;
@@ -54,7 +55,7 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
     case 'web_app':
       smokingGun = `Your current website takes over 4 seconds to load on mobile devices and the call-to-action is pushed down below the fold. Your competitors are converting 3x higher because modern mobile clients expect lightning-fast single-click action.`;
       offerPackage = 'High-Speed Modern Web App & Conversion Redesign';
-      price = '$1,800 - $3,500';
+      price = '₹35,000 - ₹75,000';
       roi = 'Drops bounce rate by 50% and doubles mobile conversion rates';
       timeline = '10 to 14 Days';
       break;
@@ -62,7 +63,7 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
     case 'seo_aeo_geo':
       smokingGun = `I ran a Generative Engine Optimization (GEO) scan on ChatGPT and Perplexity for "best ${niche.toLowerCase()} in ${city}". Because your site lacks structured schema and AI search indexing, the AI models are recommending 2 of your local competitors instead of ${businessName}.`;
       offerPackage = 'Next-Gen SEO + AEO (Answer Engine) + GEO (AI Search) Engine';
-      price = '$950/month';
+      price = '₹25,000/month';
       roi = 'Captures top rankings across Google Search, ChatGPT, Perplexity & Apple Intelligence';
       timeline = 'Continuous (First results in 14 days)';
       break;
@@ -71,7 +72,7 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
     default:
       smokingGun = `Your website has great potential, but it lacks interactive case studies, before/after proof sliders, and automated video testimonial carousels. Today's high-ticket clients buy based on tangible proof within the first 10 seconds of landing.`;
       offerPackage = 'High-Converting Authority Showcase & Portfolio Experience';
-      price = '$1,200 - $2,200';
+      price = '₹20,000 - ₹45,000';
       roi = 'Increases lead-to-consultation close rates by 35%';
       timeline = '7 Days';
       break;
@@ -83,71 +84,71 @@ export function generateDefaultPitchKit(params: GeneratePitchParams): SalesPitch
 
   const affordability: AffordabilityStrategy = isHighTicketNiche
     ? {
-        clientBudgetTier: 'High-Ticket ($$$) — High Buying Power',
-        recommendedSweetSpotPrice: '$1,800 setup + $350/mo retainer',
-        minWalkawayPrice: '$1,200 one-time setup',
-        maxUpsellPrice: '$3,800 full turnkey ecosystem',
-        roiBreakEvenMath: `In ${niche}, their average transaction is high. Closing just 1 single extra client pays back your entire $1,800 fee.`,
+        clientBudgetTier: 'High-Ticket — High Buying Power',
+        recommendedSweetSpotPrice: '₹45,000 setup + ₹12,000/mo retainer',
+        minWalkawayPrice: '₹25,000 one-time setup',
+        maxUpsellPrice: '₹95,000 full turnkey ecosystem',
+        roiBreakEvenMath: `In ${niche}, their average transaction is high. Closing just 1 single extra client pays back your entire ₹45,000 fee.`,
         quoteOptions: [
           {
             tierName: 'Starter Setup',
-            price: '$1,200',
+            price: '₹25,000',
             description: 'Core 24/7 AI lead capture widget + standard CRM connection.'
           },
           {
             tierName: 'Full Growth Engine (Recommended)',
-            price: '$1,800 + $350/mo',
+            price: '₹45,000 + ₹12,000/mo',
             description: 'Complete AI Voice + Chat assistant, GEO AI search optimization, monthly performance reporting.',
             isRecommended: true
           },
           {
             tierName: 'Enterprise Autopilot',
-            price: '$3,500 + $600/mo',
+            price: '₹85,000 + ₹20,000/mo',
             description: 'Multi-location automated intake, instant missed-call recovery, full website redesign.'
           }
         ]
       }
     : isMidMarketNiche
     ? {
-        clientBudgetTier: 'Mid-Market ($$) — Moderate Budget',
-        recommendedSweetSpotPrice: '$1,200 setup + $200/mo retainer',
-        minWalkawayPrice: '$750 setup',
-        maxUpsellPrice: '$2,400 complete system',
-        roiBreakEvenMath: `They only need 2–3 extra appointments or bookings to recoup the full monthly fee.`,
+        clientBudgetTier: 'Mid-Market — Moderate Budget',
+        recommendedSweetSpotPrice: '₹28,000 setup + ₹8,000/mo retainer',
+        minWalkawayPrice: '₹18,000 setup',
+        maxUpsellPrice: '₹60,000 complete system',
+        roiBreakEvenMath: `They only need 1–2 extra appointments or bookings to recoup the full investment.`,
         quoteOptions: [
           {
             tierName: 'Essential Bot',
-            price: '$750',
+            price: '₹18,000',
             description: 'Standalone 24/7 WhatsApp & web booking widget.'
           },
           {
             tierName: 'Turnkey Pro (Recommended)',
-            price: '$1,200 + $200/mo',
+            price: '₹28,000 + ₹8,000/mo',
             description: 'AI Booking Assistant + GEO Schema + Missed-call SMS auto-recovery.',
             isRecommended: true
           },
           {
             tierName: 'Custom Full Stack',
-            price: '$2,400 + $400/mo',
+            price: '₹55,000 + ₹15,000/mo',
             description: 'Full web revamp + custom AI voice receptionist.'
           }
         ]
       }
     : {
-        clientBudgetTier: 'Starter ($) — Entry Local Business',
-        recommendedSweetSpotPrice: '$850 setup + $150/mo',
-        minWalkawayPrice: '$500 setup',
-        maxUpsellPrice: '$1,500',
-        roiBreakEvenMath: `Capturing just 3–5 additional customer inquiries easily covers their monthly investment.`,
+        clientBudgetTier: 'Starter — Entry Local Business',
+        recommendedSweetSpotPrice: '₹18,000 setup + ₹5,000/mo',
+        minWalkawayPrice: '₹12,000 setup',
+        maxUpsellPrice: '₹35,000',
+        roiBreakEvenMath: `Capturing just 2–3 additional customer inquiries easily covers their investment.`,
         quoteOptions: [
           {
             tierName: 'Fast Start',
-            price: '$500',
+            price: '₹12,000',
             description: 'Basic interactive lead capture bot.'
           },
           {
             tierName: 'Pro Intake (Recommended)',
-            price: '$850 + $150/mo',
+            price: '₹18,000 + ₹5,000/mo',
             description: 'Full AI appointment bot with WhatsApp notifications.',
             isRecommended: true
           }

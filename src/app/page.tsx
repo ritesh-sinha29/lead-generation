@@ -731,7 +731,7 @@ export default function AdminConsoleDashboard() {
                                 <div className="space-y-1">
                                   <div className="flex items-center justify-between gap-2">
                                     <ServiceGapBadge service={primaryGap.service} />
-                                    <span className="text-zinc-400 font-mono text-[11px] shrink-0">-${primaryGap.estimatedLostRevenueMonthly}/mo</span>
+                                    <span className="text-zinc-400 font-mono text-[11px] shrink-0">-₹{primaryGap.estimatedLostRevenueMonthly.toLocaleString('en-IN')}/mon</span>
                                   </div>
                                   <div className="text-[11px] text-zinc-500 truncate">{primaryGap.detectedIssue}</div>
                                 </div>
@@ -772,25 +772,47 @@ export default function AdminConsoleDashboard() {
                             <td className="py-3 px-3 text-right">
                               <div className="flex items-center justify-end gap-1">
                                 
-                                <a
-                                  href={`tel:${cleanPhone}`}
-                                  onClick={() => handleUpdateStatus(lead.id, 'to_call')}
-                                  className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
-                                >
-                                  <Phone className="w-3 h-3 mr-1 text-zinc-400" />
-                                  Call
-                                </a>
+                                {cleanPhone ? (
+                                  <a
+                                    href={`tel:${cleanPhone}`}
+                                    onClick={() => handleUpdateStatus(lead.id, 'to_call')}
+                                    className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded transition-colors"
+                                    title={`Call ${cleanPhone}`}
+                                  >
+                                    <Phone className="w-3 h-3 mr-1 text-zinc-400" />
+                                    Call
+                                  </a>
+                                ) : (
+                                  <span
+                                    className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-zinc-950 border border-zinc-900 text-zinc-600 rounded cursor-not-allowed"
+                                    title="No phone detected on website / Google"
+                                  >
+                                    <Phone className="w-3 h-3 mr-1 text-zinc-700" />
+                                    No Tel
+                                  </span>
+                                )}
 
-                                <a
-                                  href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  onClick={() => handleUpdateStatus(lead.id, 'contacted')}
-                                  className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
-                                >
-                                  <MessageSquare className="w-3 h-3 mr-1 text-zinc-400" />
-                                  WA
-                                </a>
+                                {cleanWhatsAppPhone ? (
+                                  <a
+                                    href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    onClick={() => handleUpdateStatus(lead.id, 'contacted')}
+                                    className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded transition-colors"
+                                    title={`WhatsApp ${cleanWhatsAppPhone}`}
+                                  >
+                                    <MessageSquare className="w-3 h-3 mr-1 text-zinc-400" />
+                                    WA
+                                  </a>
+                                ) : (
+                                  <span
+                                    className="h-6 px-2 text-[11px] inline-flex items-center justify-center bg-zinc-950 border border-zinc-900 text-zinc-600 rounded cursor-not-allowed"
+                                    title="No WhatsApp phone available"
+                                  >
+                                    <MessageSquare className="w-3 h-3 mr-1 text-zinc-700" />
+                                    No WA
+                                  </span>
+                                )}
 
                                 <Button
                                   size="sm"
@@ -893,7 +915,7 @@ export default function AdminConsoleDashboard() {
                   <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-800">
                     <div>
                       <div className="text-xs font-semibold text-zinc-200">{col.title}</div>
-                      <div className="text-[10px] text-zinc-500 font-mono">${(colRevenueSum / 1000).toFixed(0)}k/mo</div>
+                      <div className="text-[10px] text-zinc-500 font-mono">₹{(colRevenueSum / 1000).toFixed(0)}k/mo</div>
                     </div>
                     <span className="text-[10px] font-mono text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">
                       {col.leads.length}
@@ -926,7 +948,7 @@ export default function AdminConsoleDashboard() {
                           {primaryGap && (
                             <div className="text-[10px] text-zinc-400 border-t border-zinc-900 pt-1.5 flex items-center justify-between">
                               <ServiceGapBadge service={primaryGap.service} />
-                              <span className="font-mono text-zinc-400">-${primaryGap.estimatedLostRevenueMonthly}</span>
+                              <span className="font-mono text-zinc-400">-₹{primaryGap.estimatedLostRevenueMonthly.toLocaleString('en-IN')}</span>
                             </div>
                           )}
 
@@ -940,13 +962,23 @@ export default function AdminConsoleDashboard() {
                             </Button>
 
                             <div className="flex items-center gap-1">
-                              <a
-                                href={`tel:${cleanPhone}`}
-                                onClick={() => handleUpdateStatus(lead.id, 'to_call')}
-                                className="h-6 px-2 text-[10px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white rounded"
-                              >
-                                Call
-                              </a>
+                              {cleanPhone ? (
+                                <a
+                                  href={`tel:${cleanPhone}`}
+                                  onClick={() => handleUpdateStatus(lead.id, 'to_call')}
+                                  className="h-6 px-2 text-[10px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white rounded"
+                                  title={`Call ${cleanPhone}`}
+                                >
+                                  Call
+                                </a>
+                              ) : (
+                                <span
+                                  className="h-6 px-1.5 text-[10px] inline-flex items-center justify-center bg-zinc-950 border border-zinc-900 text-zinc-600 rounded cursor-not-allowed"
+                                  title="No phone detected"
+                                >
+                                  No Tel
+                                </span>
+                              )}
 
                               {col.status !== 'closed_won' && (
                                 <Button
@@ -1015,7 +1047,7 @@ export default function AdminConsoleDashboard() {
                     <h3 className="text-sm font-medium text-white tracking-tight">Revenue Leak by Market Niche</h3>
                     <p className="text-xs text-zinc-500 mt-0.5">Estimated monthly client loss</p>
                   </div>
-                  <span className="text-xs font-mono text-zinc-500">USD / mo</span>
+                  <span className="text-xs font-mono text-zinc-500">INR (₹) / mo</span>
                 </div>
 
                 <div className="h-60 w-full min-w-0 min-h-0">
@@ -1029,10 +1061,10 @@ export default function AdminConsoleDashboard() {
                       </defs>
                       <CartesianGrid strokeDasharray="2 2" stroke="#27272A" vertical={false} />
                       <XAxis dataKey="niche" stroke="#71717A" fontSize={11} tickLine={false} axisLine={{ stroke: '#27272A' }} />
-                      <YAxis stroke="#71717A" fontSize={11} tickLine={false} axisLine={{ stroke: '#27272A' }} tickFormatter={(val: number) => `$${val / 1000}k`} />
+                      <YAxis stroke="#71717A" fontSize={11} tickLine={false} axisLine={{ stroke: '#27272A' }} tickFormatter={(val: number) => `₹${val / 1000}k`} />
                       <Tooltip
                         contentStyle={{ backgroundColor: '#18181B', borderColor: '#27272A', borderRadius: '8px', fontSize: '12px', color: '#fff' }}
-                        formatter={(val: number | string | readonly (string | number)[] | undefined) => [`$${Number(val).toLocaleString()}/mo`, 'Leak']}
+                        formatter={(val: number | string | readonly (string | number)[] | undefined) => [`₹${Number(val).toLocaleString('en-IN')}/mo`, 'Leak']}
                       />
                       <Bar dataKey="leak" fill="url(#nicheGradient)" radius={[4, 4, 0, 0]} />
                     </BarChart>

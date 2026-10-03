@@ -514,7 +514,7 @@ export default function SalesBattlecardModal({
                     </h4>
                   </div>
                   <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">
-                    {currentPitch.affordability?.clientBudgetTier || 'High-Ticket ($$$)'}
+                    {currentPitch.affordability?.clientBudgetTier || 'High-Ticket (₹₹₹)'}
                   </span>
                 </div>
 
@@ -523,7 +523,7 @@ export default function SalesBattlecardModal({
                   <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-1">
                     <span className="text-[10px] font-mono uppercase text-zinc-500 block">Minimum Walkaway</span>
                     <div className="text-xs font-mono font-medium text-zinc-400">
-                      {currentPitch.affordability?.minWalkawayPrice || '$850'}
+                      {currentPitch.affordability?.minWalkawayPrice || '₹25,000'}
                     </div>
                   </div>
 
@@ -533,14 +533,14 @@ export default function SalesBattlecardModal({
                       <span className="text-[10px] font-mono text-zinc-400">Sweet Spot</span>
                     </div>
                     <div className="text-sm font-mono font-bold text-white">
-                      {currentPitch.affordability?.recommendedSweetSpotPrice || '$1,500 + $250/mo'}
+                      {currentPitch.affordability?.recommendedSweetSpotPrice || '₹45,000 + ₹12,000/mo'}
                     </div>
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-1">
                     <span className="text-[10px] font-mono uppercase text-zinc-500 block">Max Upsell Ceiling</span>
                     <div className="text-xs font-mono font-medium text-zinc-400">
-                      {currentPitch.affordability?.maxUpsellPrice || '$3,500'}
+                      {currentPitch.affordability?.maxUpsellPrice || '₹95,000'}
                     </div>
                   </div>
                 </div>
@@ -593,7 +593,7 @@ export default function SalesBattlecardModal({
                     Diagnosed Revenue Leaks
                   </span>
                   <span className="text-xs font-mono text-zinc-400">
-                    Total: -${lead.audit.topGaps.reduce((acc, g) => acc + g.estimatedLostRevenueMonthly, 0)}/mo
+                    Total: -₹{lead.audit.topGaps.reduce((acc, g) => acc + g.estimatedLostRevenueMonthly, 0).toLocaleString('en-IN')}/mo
                   </span>
                 </div>
 
@@ -605,7 +605,7 @@ export default function SalesBattlecardModal({
                         <div className="text-zinc-400">{gap.detectedIssue}</div>
                       </div>
                       <div className="font-mono text-zinc-300 shrink-0 text-sm">
-                        -${gap.estimatedLostRevenueMonthly}/mo
+                        -₹{gap.estimatedLostRevenueMonthly.toLocaleString('en-IN')}/mo
                       </div>
                     </div>
                   ))}

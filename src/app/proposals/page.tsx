@@ -13,7 +13,7 @@ import {
   ArrowLeft,
   Printer,
   Sparkles,
-  DollarSign,
+  IndianRupee,
   Calendar,
   Share2,
   MapPin,
@@ -62,14 +62,14 @@ function ProposalsContent() {
   ) || 0;
 
   const affordability = currentLead?.pitchKit.affordability;
-  const sweetSpotPrice = affordability?.recommendedSweetSpotPrice || currentLead?.pitchKit.estimatedPrice || '$2,500';
+  const sweetSpotPrice = affordability?.recommendedSweetSpotPrice || currentLead?.pitchKit.estimatedPrice || '₹45,000 + ₹12,000/mo';
   const breakEvenMath = affordability?.roiBreakEvenMath || 'Client recovers total investment with just 1-2 newly captured bookings.';
   const quoteOptions = affordability?.quoteOptions || [];
 
   const handleCopySummary = () => {
     if (!currentLead) return;
     const gapsList = currentLead.audit.topGaps
-      .map((g, i) => `${i + 1}. ${g.serviceTitle}: -$${g.estimatedLostRevenueMonthly}/mo (${g.detectedIssue})`)
+      .map((g, i) => `${i + 1}. ${g.serviceTitle}: -₹${g.estimatedLostRevenueMonthly.toLocaleString('en-IN')}/mo (${g.detectedIssue})`)
       .join('\n');
 
     const text = `📊 EXECUTIVE AUDIT & GROWTH DIAGNOSTIC
@@ -77,7 +77,7 @@ Client: ${currentLead.businessName} (${currentLead.city})
 Prepared For: ${currentLead.decisionMakerName} (${currentLead.decisionMakerRole})
 Health Score: ${currentLead.audit.overallHealthScore}/100
 
-🚨 DETECTED REVENUE LEAKAGES (~$${totalMonthlyLeak.toLocaleString()}/mo total):
+🚨 DETECTED REVENUE LEAKAGES (~₹${totalMonthlyLeak.toLocaleString('en-IN')}/mo total):
 ${gapsList}
 
 💡 TURNKEY SOLUTION: ${currentLead.pitchKit.recommendedPackageName}
@@ -95,7 +95,7 @@ Verified & Prepared by AI Growth Systems`;
 
   const handleCopyPitch = () => {
     if (!currentLead) return;
-    const text = `Hi ${currentLead.decisionMakerName}, I ran a technical diagnostic on ${currentLead.businessName}'s web setup and found ~$${totalMonthlyLeak.toLocaleString()}/mo in potential missed inquiries from missing 24/7 AI response & SEO capture. We prepared a 1-page breakdown showing how to capture this revenue within ${currentLead.pitchKit.deliveryTimeline}. Mind if I send the 1-page PDF over?`;
+    const text = `Hi ${currentLead.decisionMakerName}, I ran a technical diagnostic on ${currentLead.businessName}'s web setup and found ~₹${totalMonthlyLeak.toLocaleString('en-IN')}/mo in potential missed inquiries from missing 24/7 AI response & SEO capture. We prepared a 1-page breakdown showing how to capture this revenue within ${currentLead.pitchKit.deliveryTimeline}. Mind if I send the 1-page PDF over?`;
     navigator.clipboard.writeText(text);
     setCopiedPitch(true);
     setTimeout(() => setCopiedPitch(false), 2000);
@@ -246,14 +246,14 @@ Verified & Prepared by AI Growth Systems`;
                   Monthly Missed Pipeline
                 </div>
                 <div className="text-lg sm:text-xl font-black text-rose-400 font-mono mt-1">
-                  -${totalMonthlyLeak.toLocaleString()}<span className="text-xs text-zinc-500 font-normal">/mo</span>
+                  -₹{totalMonthlyLeak.toLocaleString('en-IN')}<span className="text-xs text-zinc-500 font-normal">/mo</span>
                 </div>
                 <div className="text-[11px] text-zinc-500 mt-0.5">Estimated lost inquiries</div>
               </div>
 
               <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-850 print:bg-zinc-50 print:border-zinc-200">
                 <div className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider flex items-center gap-1">
-                  <DollarSign className="w-3 h-3 text-emerald-400" />
+                  <IndianRupee className="w-3 h-3 text-emerald-400" />
                   Recommended Quote
                 </div>
                 <div className="text-lg sm:text-xl font-black text-white font-mono mt-1 print:text-black">
@@ -292,7 +292,7 @@ Verified & Prepared by AI Growth Systems`;
                         {gap.serviceTitle}
                       </div>
                       <span className="text-xs font-mono font-bold text-rose-400">
-                        -${gap.estimatedLostRevenueMonthly}/mo
+                        -₹{gap.estimatedLostRevenueMonthly.toLocaleString('en-IN')}/mo
                       </span>
                     </div>
 

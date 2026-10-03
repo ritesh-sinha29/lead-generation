@@ -115,7 +115,7 @@ export default function LeadCard({
         <div className="p-2.5 rounded bg-zinc-900/50 border border-zinc-900 text-xs space-y-0.5">
           <div className="text-zinc-200 font-medium flex items-center justify-between text-[11px]">
             <span className="truncate">{primaryGap.serviceTitle}</span>
-            <span className="font-mono text-zinc-400 shrink-0">-${primaryGap.estimatedLostRevenueMonthly}/mo</span>
+            <span className="font-mono text-zinc-400 shrink-0">-₹{primaryGap.estimatedLostRevenueMonthly.toLocaleString('en-IN')}/mo</span>
           </div>
           <p className="text-[11px] text-zinc-500 line-clamp-2">
             {primaryGap.detectedIssue}
@@ -127,40 +127,80 @@ export default function LeadCard({
       <div className="space-y-2 pt-2 border-t border-zinc-900">
         
         <div className="grid grid-cols-4 gap-1 w-full text-[11px]">
-          <a
-            href={`tel:${cleanPhone}`}
-            onClick={() => onUpdateStatus(lead.id, 'to_call')}
-            className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
-          >
-            Call
-          </a>
+          {cleanPhone ? (
+            <a
+              href={`tel:${cleanPhone}`}
+              onClick={() => onUpdateStatus(lead.id, 'to_call')}
+              className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded transition-colors"
+              title={`Call ${cleanPhone}`}
+            >
+              Call
+            </a>
+          ) : (
+            <span
+              className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-950 border border-zinc-900 text-zinc-600 rounded cursor-not-allowed"
+              title="No phone detected on website/Google"
+            >
+              No Tel
+            </span>
+          )}
 
-          <a
-            href={`mailto:${lead.email}?subject=${encodeURIComponent(lead.pitchKit.emailSubjectLines[0] || '')}&body=${encodeURIComponent(lead.pitchKit.emailBody)}`}
-            onClick={() => onUpdateStatus(lead.id, 'to_email')}
-            className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
-          >
-            Email
-          </a>
+          {lead.email ? (
+            <a
+              href={`mailto:${lead.email}?subject=${encodeURIComponent(lead.pitchKit.emailSubjectLines[0] || '')}&body=${encodeURIComponent(lead.pitchKit.emailBody)}`}
+              onClick={() => onUpdateStatus(lead.id, 'to_email')}
+              className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded transition-colors"
+              title={`Email ${lead.email}`}
+            >
+              Email
+            </a>
+          ) : (
+            <span
+              className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-950 border border-zinc-900 text-zinc-600 rounded cursor-not-allowed"
+              title="No email listed on website"
+            >
+              No Mail
+            </span>
+          )}
 
-          <a
-            href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => onUpdateStatus(lead.id, 'contacted')}
-            className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
-          >
-            WA
-          </a>
+          {cleanWhatsAppPhone ? (
+            <a
+              href={`https://wa.me/${cleanWhatsAppPhone}?text=${encodeURIComponent(lead.pitchKit.whatsappMessage)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => onUpdateStatus(lead.id, 'contacted')}
+              className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded transition-colors"
+              title={`WhatsApp ${cleanWhatsAppPhone}`}
+            >
+              WA
+            </a>
+          ) : (
+            <span
+              className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-950 border border-zinc-900 text-zinc-600 rounded cursor-not-allowed"
+              title="No WhatsApp phone available"
+            >
+              No WA
+            </span>
+          )}
 
-          <a
-            href={lead.website}
-            target="_blank"
-            rel="noreferrer"
-            className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded"
-          >
-            Site
-          </a>
+          {lead.website ? (
+            <a
+              href={lead.website}
+              target="_blank"
+              rel="noreferrer"
+              className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded transition-colors"
+              title={lead.website}
+            >
+              Site
+            </a>
+          ) : (
+            <span
+              className="h-7 text-[11px] inline-flex items-center justify-center bg-zinc-950 border border-zinc-900 text-zinc-600 rounded cursor-not-allowed"
+              title="No active website detected"
+            >
+              No Site
+            </span>
+          )}
         </div>
 
         <Button

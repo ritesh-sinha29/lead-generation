@@ -29,17 +29,26 @@ export async function GET(req: Request) {
       'Role',
       'Google Rating',
       'Reviews Count',
+      'Tech Health Score',
+      'Monthly Revenue Leak',
       'Primary Gap Service',
       'Detected Issue',
       'Status',
       'Recommended Package',
-      'Estimated Price',
+      'Quote Sweet Spot Price',
+      'ROI Break-Even Math',
+      'Turnaround Timeline',
       'Cold Call Opener',
-      'Cold Call Smoking Gun'
+      'Cold Call Smoking Gun',
+      'WhatsApp Pitch Message'
     ];
 
     const rows = leads.map((l) => {
       const primaryGap = l.audit.topGaps[0];
+      const totalLeak = l.audit.topGaps.reduce((acc, g) => acc + (g.estimatedLostRevenueMonthly || 0), 0);
+      const sweetSpot = l.pitchKit?.affordability?.recommendedSweetSpotPrice || l.pitchKit?.estimatedPrice || '';
+      const roiMath = l.pitchKit?.affordability?.roiBreakEvenMath || l.pitchKit?.estimatedRoi || '';
+
       return [
         `"${(l.businessName || '').replace(/"/g, '""')}"`,
         `"${(l.niche || '').replace(/"/g, '""')}"`,
@@ -52,13 +61,18 @@ export async function GET(req: Request) {
         `"${(l.decisionMakerRole || '').replace(/"/g, '""')}"`,
         l.googleRating || 0,
         l.googleReviewsCount || 0,
+        l.audit?.overallHealthScore || 0,
+        `"₹${totalLeak.toLocaleString('en-IN')}/mo"`,
         `"${(primaryGap?.serviceTitle || '').replace(/"/g, '""')}"`,
         `"${(primaryGap?.detectedIssue || '').replace(/"/g, '""')}"`,
         `"${(l.status || '').replace(/"/g, '""')}"`,
         `"${(l.pitchKit?.recommendedPackageName || '').replace(/"/g, '""')}"`,
-        `"${(l.pitchKit?.estimatedPrice || '').replace(/"/g, '""')}"`,
+        `"${sweetSpot.replace(/"/g, '""')}"`,
+        `"${roiMath.replace(/"/g, '""')}"`,
+        `"${(l.pitchKit?.deliveryTimeline || '').replace(/"/g, '""')}"`,
         `"${(l.pitchKit?.coldCallOpener || '').replace(/"/g, '""')}"`,
         `"${(l.pitchKit?.coldCallSmokingGun || '').replace(/"/g, '""')}"`,
+        `"${(l.pitchKit?.whatsappMessage || '').replace(/"/g, '""')}"`,
       ].join(',');
     });
 
