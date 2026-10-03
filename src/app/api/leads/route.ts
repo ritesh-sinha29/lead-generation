@@ -22,3 +22,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: false, error: 'Failed to save leads' }, { status: 500 });
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+    const body = await req.json().catch(() => ({}));
+    const { ids, all } = body;
+
+    if (all) {
+      const count = await import('@/lib/db').then(m => m.clearAllLeads());
+      return NextResponse.json({ success: true, count, message: 'All leads cleared' });
+    }
+
+    if (Array.isArray(ids) && ids.length > 0) {
+      const count = await import('@/lib/db').then(m => m.deleteLeads(ids));
+      return NextResponse.json({ success: true, count, message: `Deleted ${count} leads` });
+    }
+
+    return NextResponse.json({ success: false, error: 'No lead IDs provided or action specified' }, { status: 400 });
+  } catch (error) {
+    console.error('Failed to batch delete leads:', error);
+    return NextResponse.json({ success: false, error: 'Failed to delete leads' }, { status: 500 });
+  }
+}

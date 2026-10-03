@@ -55,7 +55,7 @@ export function DashboardHeader({
             }`}
           >
             <span className={`w-1.5 h-1.5 rounded-full ${ollamaOnline ? 'bg-emerald-400' : 'bg-zinc-500'}`} />
-            <span>{ollamaOnline ? activeModel.split(':')[0] : 'Convex Active'}</span>
+            <span>{ollamaOnline ? 'AI Engine Online' : 'Convex Active'}</span>
           </div>
 
           {/* Export Button */}

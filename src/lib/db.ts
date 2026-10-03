@@ -27,10 +27,9 @@ export interface AppSettings {
   defaultNiche: string;
   defaultCity: string;
   defaultBatchSize: number;
-  aiProvider: 'gemini' | 'grok' | 'ollama';
+  aiProvider: 'gemini' | 'grok';
   geminiApiKey?: string;
   grokApiKey?: string;
-  ollamaModel: string;
   currency: string;
 }
 
@@ -46,7 +45,6 @@ const DEFAULT_SETTINGS: AppSettings = {
   aiProvider: 'gemini',
   geminiApiKey: process.env.GEMINI_API_KEY || '',
   grokApiKey: process.env.GROK_API_KEY || '',
-  ollamaModel: 'deepseek-v4-pro:cloud',
   currency: 'INR'
 };
 
@@ -120,6 +118,32 @@ export async function deleteLead(id: string): Promise<boolean> {
   }
 }
 
+export async function deleteLeads(ids: string[]): Promise<number> {
+  const client = getClient();
+  if (!client || ids.length === 0) return 0;
+
+  try {
+    const res = await client.mutation(api.leads.deleteLeads, { ids });
+    return res?.count || 0;
+  } catch (e) {
+    console.error('Error batch deleting leads in Convex:', e);
+    return 0;
+  }
+}
+
+export async function clearAllLeads(): Promise<number> {
+  const client = getClient();
+  if (!client) return 0;
+
+  try {
+    const res = await client.mutation(api.leads.clearAllLeads, {});
+    return res?.count || 0;
+  } catch (e) {
+    console.error('Error clearing all leads in Convex:', e);
+    return 0;
+  }
+}
+
 export function getSettings(): AppSettings {
   // Sync read using cache + env defaults
   return {
@@ -168,7 +192,6 @@ export function saveSettings(settings: Partial<AppSettings>): AppSettings {
       aiProvider: cachedSettings.aiProvider,
       geminiApiKey: cachedSettings.geminiApiKey,
       grokApiKey: cachedSettings.grokApiKey,
-      ollamaModel: cachedSettings.ollamaModel,
       currency: cachedSettings.currency
     }).catch(err => {
       console.error('Failed to save settings to Convex:', err);

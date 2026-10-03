@@ -8,7 +8,9 @@ import {
   Table as TableIcon, 
   Kanban, 
   LayoutGrid, 
-  BarChart3 
+  BarChart3,
+  Trash2,
+  Calendar
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { LeadStatus, ServiceCategory } from '@/types/lead';
+import { LeadStatus, ServiceCategory, DateFilterOption } from '@/types/lead';
 import { ViewMode } from './DashboardSidebar';
 
 interface DashboardFiltersProps {
@@ -31,12 +33,15 @@ interface DashboardFiltersProps {
   setServiceFilter: (s: ServiceCategory | 'all') => void;
   statusFilter: LeadStatus | 'all';
   setStatusFilter: (st: LeadStatus | 'all') => void;
+  dateFilter: DateFilterOption;
+  setDateFilter: (df: DateFilterOption) => void;
   onlyStarred: boolean;
   setOnlyStarred: (st: boolean) => void;
   filteredCount: number;
   totalLeads: number;
   hasActiveFilters: boolean;
   onClearFilters: () => void;
+  onClearAllLeads?: () => void;
   allNiches: string[];
   viewMode: ViewMode;
   setViewMode: (vm: ViewMode) => void;
@@ -51,12 +56,15 @@ export function DashboardFilters({
   setServiceFilter,
   statusFilter,
   setStatusFilter,
+  dateFilter,
+  setDateFilter,
   onlyStarred,
   setOnlyStarred,
   filteredCount,
   totalLeads,
   hasActiveFilters,
   onClearFilters,
+  onClearAllLeads,
   allNiches,
   viewMode,
   setViewMode,
@@ -157,6 +165,19 @@ export function DashboardFilters({
             {filteredCount} of {totalLeads}
           </span>
 
+          {totalLeads > 0 && onClearAllLeads && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onClearAllLeads}
+              className="h-8 text-xs px-2.5 rounded-lg border-zinc-800 text-zinc-400 hover:text-red-400 hover:border-red-800/60 hover:bg-red-950/20 cursor-pointer transition-colors"
+              title="Delete all leads in database"
+            >
+              <Trash2 className="w-3 h-3 mr-1" />
+              <span>Mass Delete</span>
+            </Button>
+          )}
+
           {hasActiveFilters && (
             <button
               onClick={onClearFilters}
@@ -169,8 +190,8 @@ export function DashboardFilters({
         </div>
       </div>
 
-      {/* Responsive 3-Dropdown Filter Row */}
-      <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
+      {/* Responsive 4-Dropdown Filter Row */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2">
         <Select value={selectedNiche} onValueChange={(val) => { if (val) setSelectedNiche(val); }}>
           <SelectTrigger className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-300 rounded-lg">
             <SelectValue placeholder="All Niches" />
@@ -208,8 +229,23 @@ export function DashboardFilters({
             <SelectItem value="to_email">To Email</SelectItem>
             <SelectItem value="contacted">Contacted</SelectItem>
             <SelectItem value="meeting_booked">Meeting Booked</SelectItem>
-            <SelectItem value="closed_won">Closed Won</SelectItem>
-            <SelectItem value="not_interested">Closed / Uninterested</SelectItem>
+            <SelectItem value="closed_won">Deal Fix</SelectItem>
+            <SelectItem value="not_interested">Lost</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select value={dateFilter} onValueChange={(v) => { if (v) setDateFilter(v as DateFilterOption); }}>
+          <SelectTrigger className="h-8 text-xs bg-zinc-900 border-zinc-800 text-zinc-300 rounded-lg flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+            <SelectValue placeholder="All Time" />
+          </SelectTrigger>
+          <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
+            <SelectItem value="all">All Dates (All Time)</SelectItem>
+            <SelectItem value="today">Added Today</SelectItem>
+            <SelectItem value="yesterday">Added Yesterday</SelectItem>
+            <SelectItem value="last_7_days">Last 7 Days</SelectItem>
+            <SelectItem value="last_30_days">Last 30 Days</SelectItem>
+            <SelectItem value="this_month">This Month</SelectItem>
           </SelectContent>
         </Select>
       </div>

@@ -22,7 +22,7 @@ export const saveSettings = mutation({
     aiProvider: v.string(),
     geminiApiKey: v.optional(v.string()),
     grokApiKey: v.optional(v.string()),
-    ollamaModel: v.string(),
+    ollamaModel: v.optional(v.string()),
     currency: v.string()
   },
   handler: async (ctx, args) => {

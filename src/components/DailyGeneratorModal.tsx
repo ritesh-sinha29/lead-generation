@@ -24,8 +24,6 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: (count: number) => void;
-  ollamaOnline?: boolean;
-  availableModels?: string[];
 }
 
 const PRESET_NICHES = [
@@ -55,17 +53,13 @@ const PRESET_CITIES = [
 export default function DailyGeneratorModal({
   isOpen,
   onClose,
-  onSuccess,
-  ollamaOnline = false,
-  availableModels = []
+  onSuccess
 }: Props) {
   const [niche, setNiche] = useState('Top In-Demand Clients (Any Niche)');
   const [customNiche, setCustomNiche] = useState('');
   const [selectedCityObj, setSelectedCityObj] = useState(PRESET_CITIES[0]);
   const [customCity, setCustomCity] = useState('');
   const [count, setCount] = useState(15);
-  const useOllama = ollamaOnline;
-  const ollamaModel = availableModels[0] || 'deepseek-v4-pro:cloud';
   
   const [isLoading, setIsLoading] = useState(false);
   const [progressStage, setProgressStage] = useState('');
@@ -84,9 +78,7 @@ export default function DailyGeneratorModal({
       niche: targetNiche,
       city: targetCity,
       country: targetCountry,
-      count,
-      useOllama,
-      ollamaModel
+      count
     };
 
     try {

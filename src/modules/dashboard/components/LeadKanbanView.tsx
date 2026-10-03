@@ -65,7 +65,7 @@ export function LeadKanbanView({
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 pb-4 select-none">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-2.5 pb-4 select-none">
       {kanbanColumns.map((col) => {
         const colDealSum = col.leads.reduce((sum, l) => sum + getLeadDealValue(l), 0);
 
@@ -77,7 +77,7 @@ export function LeadKanbanView({
             onDragOver={handleDragOver}
             onDragEnter={() => handleDragEnter(col.status)}
             onDrop={(e) => handleDrop(e, col.status)}
-            className={`border rounded-xl p-3 flex flex-col min-h-[500px] shadow-xs transition-all duration-150 ${
+            className={`border rounded-xl p-2.5 flex flex-col min-h-[520px] shadow-xs transition-all duration-150 ${
               isOver 
                 ? 'bg-zinc-900/80 border-zinc-500 ring-2 ring-zinc-500/40' 
                 : 'border-zinc-800 bg-zinc-950/80'
@@ -86,11 +86,11 @@ export function LeadKanbanView({
             
             {/* Column Header */}
             <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-800">
-              <div>
-                <div className="text-xs font-semibold text-zinc-200">{col.title}</div>
+              <div className="min-w-0 pr-1">
+                <div className="text-xs font-semibold text-zinc-200 truncate">{col.title}</div>
                 <div className="text-[10px] text-zinc-500 font-mono">₹{(colDealSum / 1000).toFixed(0)}k pipe</div>
               </div>
-              <span className="text-[10px] font-mono text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">
+              <span className="text-[10px] font-mono text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800 shrink-0">
                 {col.leads.length}
               </span>
             </div>
@@ -118,7 +118,7 @@ export function LeadKanbanView({
                       draggable={true}
                       onDragStart={(e) => handleDragStart(e, lead.id)}
                       onDragEnd={handleDragEnd}
-                      className={`p-3 rounded-lg border space-y-2 transition-all cursor-grab active:cursor-grabbing ${
+                      className={`p-2.5 rounded-lg border space-y-2 transition-all cursor-grab active:cursor-grabbing ${
                         isBeingDragged
                           ? 'opacity-40 border-dashed border-zinc-500 bg-zinc-900/20 scale-[0.98]'
                           : 'border-zinc-800/80 bg-zinc-900/40 hover:border-zinc-700 hover:bg-zinc-900/70'
@@ -197,7 +197,7 @@ export function LeadKanbanView({
                             </span>
                           )}
 
-                          {col.status !== 'closed_won' && (
+                          {col.status !== 'closed_won' && col.status !== 'not_interested' && (
                             <Button
                               variant="ghost"
                               size="icon"
@@ -206,7 +206,7 @@ export function LeadKanbanView({
                                 e.stopPropagation();
                                 const nextMap: Record<LeadStatus, LeadStatus> = {
                                   new: 'to_call',
-                                  to_call: 'contacted',
+                                  to_call: 'to_email',
                                   to_email: 'contacted',
                                   contacted: 'meeting_booked',
                                   meeting_booked: 'closed_won',

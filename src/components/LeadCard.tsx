@@ -233,9 +233,9 @@ export default function LeadCard({
               <SelectItem value="to_call">To Call</SelectItem>
               <SelectItem value="to_email">To Email</SelectItem>
               <SelectItem value="contacted">Contacted</SelectItem>
-              <SelectItem value="meeting_booked">Meeting Booked</SelectItem>
-              <SelectItem value="closed_won">Closed Won</SelectItem>
-              <SelectItem value="not_interested">Not Interested</SelectItem>
+              <SelectItem value="meeting_booked">Meeting</SelectItem>
+              <SelectItem value="closed_won">Deal Fix</SelectItem>
+              <SelectItem value="not_interested">Lost</SelectItem>
             </SelectContent>
           </Select>
 

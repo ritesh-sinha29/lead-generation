@@ -31,6 +31,7 @@ interface LeadTableViewProps {
   onOpenPitchKit: (lead: Lead) => void;
   onAddNote: (id: string, note: string) => void;
   onUpdateDealValue?: (id: string, value: number) => void;
+  onClearAll?: () => void;
 }
 
 export function LeadTableView({
@@ -41,6 +42,7 @@ export function LeadTableView({
   onOpenPitchKit,
   onAddNote,
   onUpdateDealValue = () => {},
+  onClearAll,
 }: LeadTableViewProps) {
   const [expandedNotesId, setExpandedNotesId] = useState<string | null>(null);
   const [noteInput, setNoteInput] = useState('');
@@ -109,8 +111,8 @@ export function LeadTableView({
                       <SelectItem value="to_email">To Email</SelectItem>
                       <SelectItem value="contacted">Contacted</SelectItem>
                       <SelectItem value="meeting_booked">Meeting</SelectItem>
-                      <SelectItem value="closed_won">Won</SelectItem>
-                      <SelectItem value="not_interested">Closed</SelectItem>
+                      <SelectItem value="closed_won">Deal Fix</SelectItem>
+                      <SelectItem value="not_interested">Lost</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -271,6 +273,7 @@ export function LeadTableView({
                   const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
                   const cleanWhatsAppPhone = cleanPhone.replace(/^\+/, '');
                   const dealValue = getLeadDealValue(lead);
+
                   return (
                     <React.Fragment key={lead.id}>
                       <tr className="hover:bg-zinc-900/40 transition-colors group">
@@ -359,8 +362,8 @@ export function LeadTableView({
                               <SelectItem value="to_email">To Email</SelectItem>
                               <SelectItem value="contacted">Contacted</SelectItem>
                               <SelectItem value="meeting_booked">Meeting</SelectItem>
-                              <SelectItem value="closed_won">Won</SelectItem>
-                              <SelectItem value="not_interested">Closed</SelectItem>
+                              <SelectItem value="closed_won">Deal Fix</SelectItem>
+                              <SelectItem value="not_interested">Lost</SelectItem>
                             </SelectContent>
                           </Select>
                         </td>
@@ -414,7 +417,7 @@ export function LeadTableView({
                             <Button
                               size="sm"
                               onClick={() => onOpenPitchKit(lead)}
-                              className="h-6 px-2.5 text-[11px] bg-white text-black hover:bg-zinc-200 font-medium rounded shadow-none"
+                              className="h-6 px-2.5 text-[11px] bg-white text-black hover:bg-zinc-200 font-medium rounded shadow-none cursor-pointer"
                             >
                               Pitch Kit
                             </Button>
@@ -422,7 +425,7 @@ export function LeadTableView({
                             <Button
                               variant="ghost"
                               size="icon"
-                              className={`h-6 w-6 rounded ${expandedNotesId === lead.id ? 'text-white bg-zinc-800' : 'text-zinc-500 hover:text-zinc-300'}`}
+                              className={`h-6 w-6 rounded cursor-pointer ${expandedNotesId === lead.id ? 'text-white bg-zinc-800' : 'text-zinc-500 hover:text-zinc-300'}`}
                               onClick={() => setExpandedNotesId(expandedNotesId === lead.id ? null : lead.id)}
                               title="Notes"
                             >
@@ -432,7 +435,7 @@ export function LeadTableView({
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-6 w-6 text-zinc-600 hover:text-zinc-300 rounded"
+                              className="h-6 w-6 text-zinc-600 hover:text-red-400 rounded cursor-pointer"
                               onClick={() => onDeleteLead(lead.id)}
                               title="Delete"
                             >
@@ -447,7 +450,7 @@ export function LeadTableView({
                       {/* Notes Row */}
                       {expandedNotesId === lead.id && (
                         <tr className="bg-zinc-950 border-b border-zinc-800">
-                          <td colSpan={6} className="p-3 space-y-2">
+                          <td colSpan={8} className="p-3 space-y-2">
                             <div className="text-[11px] text-zinc-400 flex items-center justify-between">
                               <span>Call Log · {lead.businessName}</span>
                               <span>{lead.phone}</span>

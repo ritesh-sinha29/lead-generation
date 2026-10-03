@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Lead, LeadStatus, ServiceCategory, getLeadDealValue } from '@/types/lead';
+import { Lead, LeadStatus, ServiceCategory, DateFilterOption, getLeadDealValue } from '@/types/lead';
 import SalesBattlecardModal from '@/components/SalesBattlecardModal';
 import DailyGeneratorModal from '@/components/DailyGeneratorModal';
 import {
@@ -35,16 +35,19 @@ export default function AdminConsoleDashboard() {
   const [statusFilter, setStatusFilter] = useState<LeadStatus | 'all'>('all');
   const [serviceFilter, setServiceFilter] = useState<ServiceCategory | 'all'>('all');
   const [selectedNiche, setSelectedNiche] = useState('All');
+  const [dateFilter, setDateFilter] = useState<DateFilterOption>('all');
   const [onlyStarred, setOnlyStarred] = useState(false);
+
+  const [selectedLeadIds, setSelectedLeadIds] = useState<string[]>([]);
 
   // Modals & Navigation
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false);
   const [selectedLeadForKit, setSelectedLeadForKit] = useState<Lead | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Ollama status
+  // AI engine status
   const [ollamaOnline, setOllamaOnline] = useState(false);
-  const [activeModel, setActiveModel] = useState('deepseek-v4-pro:cloud');
+  const [activeModel, setActiveModel] = useState('gemini-2.0-flash');
   const [availableModels, setAvailableModels] = useState<string[]>([]);
 
   const loadData = () => {
@@ -108,6 +111,58 @@ export default function AdminConsoleDashboard() {
     setTimeout(() => setIsLoading(false), 500);
   };
 
+  const handleToggleSelectLead = (id: string) => {
+    setSelectedLeadIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  const handleToggleSelectAll = () => {
+    const visibleIds = filteredLeads.map((l) => l.id);
+    const isAll = visibleIds.length > 0 && visibleIds.every((id) => selectedLeadIds.includes(id));
+    if (isAll) {
+      setSelectedLeadIds((prev) => prev.filter((id) => !visibleIds.includes(id)));
+    } else {
+      setSelectedLeadIds((prev) => Array.from(new Set([...prev, ...visibleIds])));
+    }
+  };
+
+  const handleBatchDeleteLeads = async (idsToDelete: string[]) => {
+    if (!idsToDelete || idsToDelete.length === 0) return;
+    
+    // Optimistic local state update
+    const idSet = new Set(idsToDelete);
+    setLeads((prev) => prev.filter((l) => !idSet.has(l.id)));
+    setSelectedLeadIds((prev) => prev.filter((id) => !idSet.has(id)));
+
+    try {
+      await fetch('/api/leads', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: idsToDelete })
+      });
+    } catch (err) {
+      console.error('Failed to mass delete leads:', err);
+    }
+  };
+
+  const handleClearAllLeads = async () => {
+    if (!confirm('Are you sure you want to permanently clear ALL leads? This action cannot be undone.')) return;
+    
+    setLeads([]);
+    setSelectedLeadIds([]);
+
+    try {
+      await fetch('/api/leads', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ all: true })
+      });
+    } catch (err) {
+      console.error('Failed to clear all leads:', err);
+    }
+  };
+
   const handleUpdateStatus = async (id: string, status: LeadStatus) => {
     setLeads((prev) =>
       prev.map((l) => (l.id === id ? { ...l, status, lastContactedAt: new Date().toISOString() } : l))
@@ -142,6 +197,7 @@ export default function AdminConsoleDashboard() {
   const handleDeleteLead = async (id: string) => {
     if (!confirm('Are you sure you want to delete this lead?')) return;
     setLeads((prev) => prev.filter((l) => l.id !== id));
+    setSelectedLeadIds((prev) => prev.filter((item) => item !== id));
     try {
       await fetch(`/api/leads/${id}`, { method: 'DELETE' });
     } catch (err) {
@@ -282,9 +338,28 @@ export default function AdminConsoleDashboard() {
       if (serviceFilter !== 'all' && !lead.audit.topGaps.some((g) => g.service === serviceFilter)) return false;
       if (selectedNiche !== 'All' && lead.niche !== selectedNiche) return false;
 
+      if (dateFilter !== 'all') {
+        const leadDate = new Date(lead.createdAt || Date.now());
+        const now = new Date();
+        const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const startOfYesterday = new Date(startOfToday);
+        startOfYesterday.setDate(startOfYesterday.getDate() - 1);
+        const startOf7DaysAgo = new Date(startOfToday);
+        startOf7DaysAgo.setDate(startOf7DaysAgo.getDate() - 7);
+        const startOf30DaysAgo = new Date(startOfToday);
+        startOf30DaysAgo.setDate(startOf30DaysAgo.getDate() - 30);
+        const startOfThisMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        if (dateFilter === 'today' && leadDate < startOfToday) return false;
+        if (dateFilter === 'yesterday' && (leadDate < startOfYesterday || leadDate >= startOfToday)) return false;
+        if (dateFilter === 'last_7_days' && leadDate < startOf7DaysAgo) return false;
+        if (dateFilter === 'last_30_days' && leadDate < startOf30DaysAgo) return false;
+        if (dateFilter === 'this_month' && leadDate < startOfThisMonth) return false;
+      }
+
       return true;
     });
-  }, [leads, searchQuery, statusFilter, serviceFilter, selectedNiche, onlyStarred]);
+  }, [leads, searchQuery, statusFilter, serviceFilter, selectedNiche, onlyStarred, dateFilter]);
 
   // Chart Data Calculations
   const serviceDistributionData = useMemo(() => {
@@ -331,47 +406,63 @@ export default function AdminConsoleDashboard() {
     return [
       { stage: 'New', count: leads.filter((l) => l.status === 'new').length },
       { stage: 'To Call', count: leads.filter((l) => l.status === 'to_call').length },
-      { stage: 'Contacted', count: leads.filter((l) => ['contacted', 'to_email'].includes(l.status)).length },
+      { stage: 'To Email', count: leads.filter((l) => l.status === 'to_email').length },
+      { stage: 'Contacted', count: leads.filter((l) => l.status === 'contacted').length },
       { stage: 'Meetings', count: leads.filter((l) => l.status === 'meeting_booked').length },
-      { stage: 'Won', count: leads.filter((l) => l.status === 'closed_won').length }
+      { stage: 'Deal Fix', count: leads.filter((l) => l.status === 'closed_won').length },
+      { stage: 'Lost', count: leads.filter((l) => l.status === 'not_interested').length }
     ];
   }, [leads]);
 
   const kanbanColumns = [
     {
       status: 'new' as LeadStatus,
-      title: 'New Discovered',
+      title: 'New',
       color: 'text-sky-400',
       border: 'border-t-2 border-t-sky-500',
       leads: filteredLeads.filter((l) => l.status === 'new')
     },
     {
       status: 'to_call' as LeadStatus,
-      title: 'Ready to Dial',
+      title: 'To Call',
       color: 'text-amber-400',
       border: 'border-t-2 border-t-amber-500',
       leads: filteredLeads.filter((l) => l.status === 'to_call')
     },
     {
+      status: 'to_email' as LeadStatus,
+      title: 'To Email',
+      color: 'text-blue-400',
+      border: 'border-t-2 border-t-blue-500',
+      leads: filteredLeads.filter((l) => l.status === 'to_email')
+    },
+    {
       status: 'contacted' as LeadStatus,
-      title: 'In Dialogue',
+      title: 'Contacted',
       color: 'text-purple-400',
       border: 'border-t-2 border-t-purple-500',
-      leads: filteredLeads.filter((l) => ['contacted', 'to_email'].includes(l.status))
+      leads: filteredLeads.filter((l) => l.status === 'contacted')
     },
     {
       status: 'meeting_booked' as LeadStatus,
-      title: 'Meeting Booked',
-      color: 'text-emerald-400',
-      border: 'border-t-2 border-t-emerald-500',
+      title: 'Meeting',
+      color: 'text-indigo-400',
+      border: 'border-t-2 border-t-indigo-500',
       leads: filteredLeads.filter((l) => l.status === 'meeting_booked')
     },
     {
       status: 'closed_won' as LeadStatus,
-      title: 'Closed Won',
-      color: 'text-emerald-300',
-      border: 'border-t-2 border-t-emerald-400',
+      title: 'Deal Fix',
+      color: 'text-emerald-400',
+      border: 'border-t-2 border-t-emerald-500',
       leads: filteredLeads.filter((l) => l.status === 'closed_won')
+    },
+    {
+      status: 'not_interested' as LeadStatus,
+      title: 'Lost',
+      color: 'text-zinc-400',
+      border: 'border-t-2 border-t-zinc-600',
+      leads: filteredLeads.filter((l) => l.status === 'not_interested')
     }
   ];
 
@@ -380,10 +471,11 @@ export default function AdminConsoleDashboard() {
     setStatusFilter('all');
     setServiceFilter('all');
     setSelectedNiche('All');
+    setDateFilter('all');
     setOnlyStarred(false);
   };
 
-  const hasActiveFilters = !!(searchQuery || statusFilter !== 'all' || serviceFilter !== 'all' || selectedNiche !== 'All' || onlyStarred);
+  const hasActiveFilters = !!(searchQuery || statusFilter !== 'all' || serviceFilter !== 'all' || selectedNiche !== 'All' || onlyStarred || dateFilter !== 'all');
 
   return (
     <div className="min-h-screen bg-[#09090B] text-[#EDEDED] font-sans antialiased flex selection:bg-indigo-500/30 selection:text-white">
@@ -458,12 +550,15 @@ export default function AdminConsoleDashboard() {
               setServiceFilter={setServiceFilter}
               statusFilter={statusFilter}
               setStatusFilter={setStatusFilter}
+              dateFilter={dateFilter}
+              setDateFilter={setDateFilter}
               onlyStarred={onlyStarred}
               setOnlyStarred={setOnlyStarred}
               filteredCount={filteredLeads.length}
               totalLeads={totalLeads}
               hasActiveFilters={hasActiveFilters}
               onClearFilters={clearAllFilters}
+              onClearAllLeads={handleClearAllLeads}
               allNiches={allNiches}
               viewMode={viewMode}
               setViewMode={setViewMode}
@@ -479,6 +574,7 @@ export default function AdminConsoleDashboard() {
                 onOpenPitchKit={(lead) => setSelectedLeadForKit(lead)}
                 onAddNote={handleAddNote}
                 onUpdateDealValue={handleUpdateDealValue}
+                onClearAll={handleClearAllLeads}
               />
             )}
 
@@ -525,8 +621,6 @@ export default function AdminConsoleDashboard() {
         isOpen={isGeneratorOpen}
         onClose={() => setIsGeneratorOpen(false)}
         onSuccess={handleRefresh}
-        ollamaOnline={ollamaOnline}
-        availableModels={availableModels}
       />
 
       <SalesBattlecardModal
@@ -535,7 +629,6 @@ export default function AdminConsoleDashboard() {
         onClose={() => setSelectedLeadForKit(null)}
         onUpdateStatus={handleUpdateStatus}
         onUpdateDealValue={handleUpdateDealValue}
-        ollamaOnline={ollamaOnline}
       />
 
     </div>

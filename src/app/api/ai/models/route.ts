@@ -1,12 +1,18 @@
 import { NextResponse } from 'next/server';
-import { checkOllamaStatus } from '@/lib/ollama';
+import { getSettings } from '@/lib/db';
 
 export async function GET() {
   try {
-    const status = await checkOllamaStatus();
-    return NextResponse.json({ success: true, ...status });
+    const settings = getSettings();
+    const hasKey = !!(process.env.GEMINI_API_KEY || settings.geminiApiKey);
+    return NextResponse.json({
+      success: true,
+      isOnline: hasKey,
+      provider: 'gemini',
+      model: 'gemini-2.5-flash'
+    });
   } catch (error) {
-    console.error('Failed to get Ollama status:', error);
-    return NextResponse.json({ success: false, isOnline: false, models: [] });
+    console.error('Failed to get AI status:', error);
+    return NextResponse.json({ success: false, isOnline: false });
   }
 }

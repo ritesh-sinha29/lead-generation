@@ -37,7 +37,6 @@ export default function SettingsPage() {
     aiProvider: 'gemini',
     geminiApiKey: '',
     grokApiKey: '',
-    ollamaModel: 'deepseek-v4-pro:cloud',
     currency: 'INR'
   });
 
@@ -201,14 +200,13 @@ export default function SettingsPage() {
                   <label className="block text-zinc-400 font-medium mb-1.5">Primary AI Provider</label>
                   <Select
                     value={settings.aiProvider || 'gemini'}
-                    onValueChange={(val) => setSettings({ ...settings, aiProvider: val as 'gemini' | 'grok' | 'ollama' })}
+                    onValueChange={(val) => setSettings({ ...settings, aiProvider: val as 'gemini' | 'grok' })}
                   >
                     <SelectTrigger className="h-9 text-xs bg-zinc-900 border-zinc-800 text-white rounded-lg">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
-                      <SelectItem value="gemini">Google Gemini 2.0 Flash (Recommended — Relatable Problem-Centric Pitches)</SelectItem>
-                      <SelectItem value="ollama">Local Ollama LLM (Offline / Private Machine)</SelectItem>
+                      <SelectItem value="gemini">Google Gemini 2.0 Flash (Recommended — Grounded Problem-Centric Pitches)</SelectItem>
                       <SelectItem value="grok">xAI Grok-2 (Direct & Conversational)</SelectItem>
                     </SelectContent>
                   </Select>
@@ -276,42 +274,7 @@ export default function SettingsPage() {
                   </div>
                 )}
 
-                {/* Ollama Model Selector */}
-                {settings.aiProvider === 'ollama' && (
-                  <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-850 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <label className="text-zinc-300 font-medium">Local Ollama Model</label>
-                      <span className="text-[10px] font-mono text-zinc-500">
-                        {ollamaOnline ? 'Port 11434 Connected' : 'Offline Fallback'}
-                      </span>
-                    </div>
-                    {availableModels.length > 0 ? (
-                      <Select
-                        value={settings.ollamaModel}
-                        onValueChange={(val) => { if (val) setSettings({ ...settings, ollamaModel: val }); }}
-                      >
-                        <SelectTrigger className="h-8 text-xs bg-zinc-950 border-zinc-800 text-white rounded-lg">
-                          <SelectValue placeholder="Select model" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-zinc-950 border-zinc-800 text-white text-xs">
-                          {availableModels.map((m) => (
-                            <SelectItem key={m} value={m}>
-                              {m}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    ) : (
-                      <Input
-                        type="text"
-                        value={settings.ollamaModel}
-                        onChange={(e) => setSettings({ ...settings, ollamaModel: e.target.value })}
-                        placeholder="deepseek-v4-pro:cloud or qwen3.6"
-                        className="h-8 text-xs bg-zinc-950 border-zinc-800 text-white rounded-lg"
-                      />
-                    )}
-                  </div>
-                )}
+
               </div>
             </div>
 

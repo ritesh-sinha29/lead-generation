@@ -14,6 +14,14 @@ export type LeadStatus =
   | 'closed_won' 
   | 'not_interested';
 
+export type DateFilterOption = 
+  | 'all' 
+  | 'today' 
+  | 'yesterday' 
+  | 'last_7_days' 
+  | 'last_30_days' 
+  | 'this_month';
+
 export interface ServiceGap {
   service: ServiceCategory;
   serviceTitle: string;
@@ -218,12 +226,5 @@ export interface GenerateLeadsRequest {
   country?: string;
   count: number; // 10 to 20
   targetServices?: ServiceCategory[];
-  useOllama?: boolean;
-  ollamaModel?: string;
 }
 
-export interface OllamaModelInfo {
-  name: string;
-  size?: number;
-  modified_at?: string;
-}

@@ -51,7 +51,7 @@ export default defineSchema({
     aiProvider: v.string(),
     geminiApiKey: v.optional(v.string()),
     grokApiKey: v.optional(v.string()),
-    ollamaModel: v.string(),
+    ollamaModel: v.optional(v.string()),
     currency: v.string()
   })
 });

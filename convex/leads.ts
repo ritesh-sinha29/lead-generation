@@ -212,6 +212,24 @@ export const deleteLead = mutation({
   }
 });
 
+export const deleteLeads = mutation({
+  args: {
+    ids: v.array(v.string())
+  },
+  handler: async (ctx, args) => {
+    const idSet = new Set(args.ids);
+    const all = await ctx.db.query('leads').collect();
+    let deletedCount = 0;
+    for (const doc of all) {
+      if (idSet.has(doc._id) || idSet.has((doc as any).id)) {
+        await ctx.db.delete(doc._id);
+        deletedCount++;
+      }
+    }
+    return { success: true, count: deletedCount };
+  }
+});
+
 export const clearAllLeads = mutation({
   args: {},
   handler: async (ctx) => {
