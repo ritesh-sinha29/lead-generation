@@ -26,8 +26,9 @@ import {
   Target,
   Zap
 } from 'lucide-react';
-import { Lead, ObjectionHandler, LeadStatus, SalesPitchKit } from '@/types/lead';
+import { Lead, ObjectionHandler, LeadStatus, SalesPitchKit, getLeadDealValue, sanitizeToINR } from '@/types/lead';
 import ServiceGapBadge from './ServiceGapBadge';
+import EditableDealAmount from './EditableDealAmount';
 import {
   Dialog,
   DialogContent,
@@ -43,6 +44,7 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   onUpdateStatus?: (id: string, status: LeadStatus) => void;
+  onUpdateDealValue?: (id: string, value: number) => void;
   ollamaOnline?: boolean;
 }
 
@@ -51,6 +53,7 @@ export default function SalesBattlecardModal({
   isOpen,
   onClose,
   onUpdateStatus,
+  onUpdateDealValue = () => {},
 }: Props) {
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [selectedSubjectIdx, setSelectedSubjectIdx] = useState(0);
@@ -502,7 +505,18 @@ export default function SalesBattlecardModal({
                     <IndianRupee className="w-3.5 h-3.5 text-zinc-400" />
                     Agency Price
                   </span>
-                  <div className="text-sm font-semibold text-white pt-1 font-mono">{currentPitch.estimatedPrice}</div>
+                  <div className="pt-1 flex items-center gap-2">
+                    {lead ? (
+                      <EditableDealAmount
+                        leadId={lead.id}
+                        value={getLeadDealValue(lead)}
+                        onUpdate={onUpdateDealValue}
+                        variant="table"
+                      />
+                    ) : (
+                      <div className="text-sm font-semibold text-white font-mono">{currentPitch.estimatedPrice}</div>
+                    )}
+                  </div>
                 </div>
 
                 <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-1">
@@ -526,7 +540,7 @@ export default function SalesBattlecardModal({
                     </h4>
                   </div>
                   <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-300">
-                    {currentPitch.affordability?.clientBudgetTier || 'High-Ticket (₹₹₹)'}
+                    {sanitizeToINR(currentPitch.affordability?.clientBudgetTier) || 'High-Ticket (₹₹₹)'}
                   </span>
                 </div>
 
@@ -535,7 +549,7 @@ export default function SalesBattlecardModal({
                   <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-1">
                     <span className="text-[10px] font-mono uppercase text-zinc-500 block">Minimum Walkaway</span>
                     <div className="text-xs font-mono font-medium text-zinc-400">
-                      {currentPitch.affordability?.minWalkawayPrice || '₹25,000'}
+                      {sanitizeToINR(currentPitch.affordability?.minWalkawayPrice) || '₹25,000'}
                     </div>
                   </div>
 
@@ -545,14 +559,14 @@ export default function SalesBattlecardModal({
                       <span className="text-[10px] font-mono text-zinc-400">Sweet Spot</span>
                     </div>
                     <div className="text-sm font-mono font-bold text-white">
-                      {currentPitch.affordability?.recommendedSweetSpotPrice || '₹45,000 + ₹12,000/mo'}
+                      {sanitizeToINR(currentPitch.affordability?.recommendedSweetSpotPrice) || '₹45,000 + ₹12,000/mo'}
                     </div>
                   </div>
 
                   <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 space-y-1">
                     <span className="text-[10px] font-mono uppercase text-zinc-500 block">Max Upsell Ceiling</span>
                     <div className="text-xs font-mono font-medium text-zinc-400">
-                      {currentPitch.affordability?.maxUpsellPrice || '₹95,000'}
+                      {sanitizeToINR(currentPitch.affordability?.maxUpsellPrice) || '₹95,000'}
                     </div>
                   </div>
                 </div>
@@ -560,7 +574,7 @@ export default function SalesBattlecardModal({
                 {/* Break-Even Pitch Logic */}
                 <div className="p-3 rounded-lg bg-zinc-950 border border-zinc-850 text-xs text-zinc-300 leading-relaxed font-sans">
                   <strong className="text-white block text-[11px] uppercase font-mono mb-0.5">ROI Justification Pitch:</strong>
-                  {currentPitch.affordability?.roiBreakEvenMath || 'Closing just 1 single new client or booking pays back the entire investment.'}
+                  {sanitizeToINR(currentPitch.affordability?.roiBreakEvenMath) || 'Closing just 1 single new client or booking pays back the entire investment.'}
                 </div>
 
                 {/* Pricing Tiers */}
@@ -588,14 +602,91 @@ export default function SalesBattlecardModal({
                                 </span>
                               )}
                             </div>
-                            <div className="text-sm font-mono font-bold text-white mt-1">{opt.price}</div>
+                            <div className="text-sm font-mono font-bold text-white mt-1">{sanitizeToINR(opt.price)}</div>
+                            <p className="text-[11px] text-zinc-400 mt-1 line-clamp-3 leading-snug">
+                              {sanitizeToINR(opt.description)}
+                            </p>
                           </div>
-                          <p className="text-[11px] text-zinc-400 leading-tight">{opt.description}</p>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
+
+                {/* Market Price Comparison Matrix */}
+                <div className="space-y-2 pt-2 border-t border-zinc-850">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider block">
+                      Market Comparison & Cost Arbitrage
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded">
+                      Save ~65-75% vs Traditional Agency
+                    </span>
+                  </div>
+
+                  <div className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-950">
+                    <table className="w-full text-left text-xs">
+                      <thead>
+                        <tr className="border-b border-zinc-800 bg-zinc-900/80 text-[10px] font-mono text-zinc-400 uppercase">
+                          <th className="py-2 px-3 font-semibold">Comparison Factor</th>
+                          <th className="py-2 px-3 font-semibold text-zinc-500">Traditional Dev Agency</th>
+                          <th className="py-2 px-3 font-semibold text-zinc-500">Freelancer / DIY</th>
+                          <th className="py-2 px-3 font-semibold text-emerald-400 bg-zinc-900/90 border-l border-zinc-800">Our Done-For-You AI Engine</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-zinc-850/80 text-[11px]">
+                        <tr>
+                          <td className="py-2 px-3 font-medium text-zinc-300">Initial Setup Cost</td>
+                          <td className="py-2 px-3 font-mono text-zinc-500">₹1,80,000 - ₹3,50,000</td>
+                          <td className="py-2 px-3 font-mono text-zinc-500">₹35,000 - ₹65,000</td>
+                          <td className="py-2 px-3 font-mono font-bold text-white bg-zinc-900/40 border-l border-zinc-800">
+                            {sanitizeToINR(currentPitch.affordability?.recommendedSweetSpotPrice?.split('+')[0]) || '₹45,000'}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-medium text-zinc-300">Turnaround Timeline</td>
+                          <td className="py-2 px-3 text-zinc-500">6 to 10 Weeks</td>
+                          <td className="py-2 px-3 text-zinc-500">3 to 6 Weeks</td>
+                          <td className="py-2 px-3 font-semibold text-emerald-400 bg-zinc-900/40 border-l border-zinc-800">
+                            {currentPitch.deliveryTimeline || '5-7 Days'} Turnkey
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-medium text-zinc-300">24/7 AI Voice & Chatbot</td>
+                          <td className="py-2 px-3 text-zinc-500">❌ Not Included (+₹80k)</td>
+                          <td className="py-2 px-3 text-zinc-500">⚠️ Basic Static Form</td>
+                          <td className="py-2 px-3 text-white bg-zinc-900/40 border-l border-zinc-800">
+                            ✅ Included & Trained
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-medium text-zinc-300">GEO AI Search (ChatGPT/Perplexity)</td>
+                          <td className="py-2 px-3 text-zinc-500">❌ Old Google SEO only</td>
+                          <td className="py-2 px-3 text-zinc-500">❌ None</td>
+                          <td className="py-2 px-3 text-white bg-zinc-900/40 border-l border-zinc-800">
+                            ✅ Schema & AI Indexing
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-medium text-zinc-300">Ongoing Maintenance & Support</td>
+                          <td className="py-2 px-3 text-zinc-500">₹35,000/mo (₹2.5k/hr)</td>
+                          <td className="py-2 px-3 text-zinc-500">Zero Ongoing SLAs</td>
+                          <td className="py-2 px-3 font-mono text-zinc-200 bg-zinc-900/40 border-l border-zinc-800">
+                            ₹8,000 - ₹12,000/mo
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="py-2 px-3 font-medium text-zinc-300">Client Break-Even ROI</td>
+                          <td className="py-2 px-3 text-zinc-500">6 to 9 Months</td>
+                          <td className="py-2 px-3 text-zinc-500">Unpredictable</td>
+                          <td className="py-2 px-3 font-bold text-emerald-400 bg-zinc-900/40 border-l border-zinc-800">
+                            1–2 Booked Clients
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
 
               {/* Diagnosed Gaps */}

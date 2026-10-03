@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { Lead, LeadStatus, ServiceCategory } from '@/types/lead';
+import { Lead, LeadStatus, ServiceCategory, getLeadDealValue } from '@/types/lead';
 import SalesBattlecardModal from '@/components/SalesBattlecardModal';
 import DailyGeneratorModal from '@/components/DailyGeneratorModal';
 import {
@@ -170,6 +170,25 @@ export default function AdminConsoleDashboard() {
     }
   };
 
+  const handleUpdateDealValue = async (id: string, customDealValue: number) => {
+    setLeads((prev) =>
+      prev.map((l) => (l.id === id ? { ...l, customDealValue } : l))
+    );
+    if (selectedLeadForKit?.id === id) {
+      setSelectedLeadForKit((prev) => (prev ? { ...prev, customDealValue } : null));
+    }
+
+    try {
+      await fetch(`/api/leads/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ customDealValue })
+      });
+    } catch (err) {
+      console.error('Failed to update deal value:', err);
+    }
+  };
+
   // Metrics Calculations
   const totalLeads = leads.length;
   const toCallCount = leads.filter((l) => ['new', 'to_call'].includes(l.status)).length;
@@ -179,15 +198,7 @@ export default function AdminConsoleDashboard() {
   const verifiedPhonesCount = leads.filter((l) => !!l.phone && l.phone.trim().length > 5).length;
 
   const agencyPipelineValue = useMemo(() => {
-    return leads.reduce((acc, lead) => {
-      const priceStr = lead.pitchKit?.affordability?.recommendedSweetSpotPrice || lead.pitchKit?.estimatedPrice || '';
-      const match = priceStr.match(/₹?([0-9,]+)/);
-      let val = 45000;
-      if (match) {
-        val = parseInt(match[1].replace(/,/g, ''), 10) || 45000;
-      }
-      return acc + val;
-    }, 0);
+    return leads.reduce((acc, lead) => acc + getLeadDealValue(lead), 0);
   }, [leads]);
 
   const avgAgencyDealSize = useMemo(() => {
@@ -467,6 +478,7 @@ export default function AdminConsoleDashboard() {
                 onDeleteLead={handleDeleteLead}
                 onOpenPitchKit={(lead) => setSelectedLeadForKit(lead)}
                 onAddNote={handleAddNote}
+                onUpdateDealValue={handleUpdateDealValue}
               />
             )}
 
@@ -476,6 +488,7 @@ export default function AdminConsoleDashboard() {
                 kanbanColumns={kanbanColumns}
                 onOpenPitchKit={(lead) => setSelectedLeadForKit(lead)}
                 onUpdateStatus={handleUpdateStatus}
+                onUpdateDealValue={handleUpdateDealValue}
               />
             )}
 
@@ -488,6 +501,7 @@ export default function AdminConsoleDashboard() {
                 onToggleStar={handleToggleStar}
                 onDeleteLead={handleDeleteLead}
                 onAddNote={handleAddNote}
+                onUpdateDealValue={handleUpdateDealValue}
               />
             )}
 
@@ -520,6 +534,7 @@ export default function AdminConsoleDashboard() {
         isOpen={!!selectedLeadForKit}
         onClose={() => setSelectedLeadForKit(null)}
         onUpdateStatus={handleUpdateStatus}
+        onUpdateDealValue={handleUpdateDealValue}
         ollamaOnline={ollamaOnline}
       />
 

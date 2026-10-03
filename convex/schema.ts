@@ -29,6 +29,7 @@ export default defineSchema({
     ),
     starred: v.boolean(),
     notes: v.array(v.string()),
+    customDealValue: v.optional(v.number()),
     createdAt: v.string(),
     lastContactedAt: v.optional(v.string()),
     audit: v.any(),

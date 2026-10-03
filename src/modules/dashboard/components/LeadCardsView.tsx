@@ -11,6 +11,7 @@ interface LeadCardsViewProps {
   onToggleStar: (id: string, starred: boolean) => void;
   onDeleteLead: (id: string) => void;
   onAddNote: (id: string, note: string) => void;
+  onUpdateDealValue?: (id: string, value: number) => void;
 }
 
 export function LeadCardsView({
@@ -20,6 +21,7 @@ export function LeadCardsView({
   onToggleStar,
   onDeleteLead,
   onAddNote,
+  onUpdateDealValue = () => {},
 }: LeadCardsViewProps) {
   if (leads.length === 0) {
     return (
@@ -40,6 +42,7 @@ export function LeadCardsView({
           onToggleStar={onToggleStar}
           onDelete={onDeleteLead}
           onAddNote={onAddNote}
+          onUpdateDealValue={onUpdateDealValue}
         />
       ))}
     </div>

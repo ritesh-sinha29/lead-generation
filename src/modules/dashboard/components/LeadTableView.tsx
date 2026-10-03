@@ -10,8 +10,9 @@ import {
   FileText, 
   Trash2 
 } from 'lucide-react';
-import { Lead, LeadStatus } from '@/types/lead';
+import { Lead, LeadStatus, getLeadDealValue } from '@/types/lead';
 import ServiceGapBadge from '@/components/ServiceGapBadge';
+import EditableDealAmount from '@/components/EditableDealAmount';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -29,6 +30,7 @@ interface LeadTableViewProps {
   onDeleteLead: (id: string) => void;
   onOpenPitchKit: (lead: Lead) => void;
   onAddNote: (id: string, note: string) => void;
+  onUpdateDealValue?: (id: string, value: number) => void;
 }
 
 export function LeadTableView({
@@ -38,6 +40,7 @@ export function LeadTableView({
   onDeleteLead,
   onOpenPitchKit,
   onAddNote,
+  onUpdateDealValue = () => {},
 }: LeadTableViewProps) {
   const [expandedNotesId, setExpandedNotesId] = useState<string | null>(null);
   const [noteInput, setNoteInput] = useState('');
@@ -249,6 +252,7 @@ export function LeadTableView({
                 <th className="py-2.5 px-3 font-semibold">Business / Decision Maker</th>
                 <th className="py-2.5 px-3 font-semibold">Niche & City</th>
                 <th className="py-2.5 px-3 font-semibold">Diagnosed Vulnerability</th>
+                <th className="py-2.5 px-3 font-semibold">Deal Value</th>
                 <th className="py-2.5 px-3 font-semibold">Score</th>
                 <th className="py-2.5 px-3 font-semibold">Status</th>
                 <th className="py-2.5 px-3 text-right font-semibold">Actions</th>
@@ -257,7 +261,7 @@ export function LeadTableView({
             <tbody className="divide-y divide-zinc-800/60">
               {leads.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="py-12 text-center text-zinc-500 text-xs">
+                  <td colSpan={7} className="py-12 text-center text-zinc-500 text-xs">
                     No leads found matching current criteria.
                   </td>
                 </tr>
@@ -266,6 +270,7 @@ export function LeadTableView({
                   const primaryGap = lead.audit.topGaps[0];
                   const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
                   const cleanWhatsAppPhone = cleanPhone.replace(/^\+/, '');
+                  const dealValue = getLeadDealValue(lead);
                   return (
                     <React.Fragment key={lead.id}>
                       <tr className="hover:bg-zinc-900/40 transition-colors group">
@@ -320,6 +325,16 @@ export function LeadTableView({
                           ) : (
                             <span className="text-zinc-600">None detected</span>
                           )}
+                        </td>
+
+                        {/* Deal Value (Editable) */}
+                        <td className="py-3 px-3">
+                          <EditableDealAmount
+                            leadId={lead.id}
+                            value={dealValue}
+                            onUpdate={onUpdateDealValue}
+                            variant="table"
+                          />
                         </td>
 
                         {/* Score */}

@@ -7,8 +7,9 @@ import {
   Trash2, 
   FileText
 } from 'lucide-react';
-import { Lead, LeadStatus } from '@/types/lead';
+import { Lead, LeadStatus, getLeadDealValue } from '@/types/lead';
 import ServiceGapBadge from './ServiceGapBadge';
+import EditableDealAmount from './EditableDealAmount';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -26,6 +27,7 @@ interface Props {
   onToggleStar: (id: string, starred: boolean) => void;
   onDelete: (id: string) => void;
   onAddNote: (id: string, note: string) => void;
+  onUpdateDealValue?: (id: string, value: number) => void;
 }
 
 export default function LeadCard({
@@ -34,7 +36,8 @@ export default function LeadCard({
   onUpdateStatus,
   onToggleStar,
   onDelete,
-  onAddNote
+  onAddNote,
+  onUpdateDealValue = () => {},
 }: Props) {
   const [showNotes, setShowNotes] = useState(false);
   const [newNote, setNewNote] = useState('');
@@ -68,6 +71,13 @@ export default function LeadCard({
           </div>
 
           <div className="flex items-center gap-1.5">
+            <EditableDealAmount
+              leadId={lead.id}
+              value={getLeadDealValue(lead)}
+              onUpdate={onUpdateDealValue}
+              variant="badge"
+            />
+
             <button
               onClick={() => onToggleStar(lead.id, !lead.starred)}
               className="text-zinc-600 hover:text-white transition-colors cursor-pointer"

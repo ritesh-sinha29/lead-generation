@@ -22,7 +22,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { Lead } from '@/types/lead';
+import { Lead, sanitizeToINR } from '@/types/lead';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -511,12 +511,85 @@ Verified & Prepared by AI Growth Systems`;
                               </span>
                             )}
                           </div>
-                          <div className="text-sm font-bold text-zinc-200 font-mono print:text-black">{tier.price}</div>
-                          <p className="text-[10px] text-zinc-400 line-clamp-2 print:text-zinc-600">{tier.description}</p>
+                          <div className="text-sm font-bold text-zinc-200 font-mono print:text-black">{sanitizeToINR(tier.price)}</div>
+                          <p className="text-[10px] text-zinc-400 line-clamp-2 print:text-zinc-600">{sanitizeToINR(tier.description)}</p>
                         </div>
                       ))}
                     </div>
                   )}
+
+                  {/* Market Comparison Table */}
+                  <div className="pt-3 border-t border-zinc-850 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Market Rate Comparison & Value Arbitrage</span>
+                      <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded print:border-zinc-400 print:text-black">
+                        Save 65–75% vs Traditional Agency
+                      </span>
+                    </div>
+
+                    <div className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-950 print:bg-white print:border-zinc-300">
+                      <table className="w-full text-left text-xs">
+                        <thead>
+                          <tr className="border-b border-zinc-800 bg-zinc-900/80 text-[10px] font-mono text-zinc-400 uppercase print:bg-zinc-100 print:text-black print:border-zinc-300">
+                            <th className="py-2 px-3 font-semibold">Scope & Deliverable</th>
+                            <th className="py-2 px-3 font-semibold text-zinc-500 print:text-zinc-600">Traditional Agency</th>
+                            <th className="py-2 px-3 font-semibold text-zinc-500 print:text-zinc-600">Freelancer / DIY</th>
+                            <th className="py-2 px-3 font-semibold text-emerald-400 bg-zinc-900/90 border-l border-zinc-800 print:bg-zinc-200 print:text-black print:border-zinc-300">Our Done-For-You AI Engine</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-zinc-850 text-[11px] print:divide-zinc-200">
+                          <tr>
+                            <td className="py-2 px-3 font-medium text-zinc-300 print:text-black">Setup Investment</td>
+                            <td className="py-2 px-3 font-mono text-zinc-500 print:text-zinc-600">₹1,80,000 - ₹3,50,000</td>
+                            <td className="py-2 px-3 font-mono text-zinc-500 print:text-zinc-600">₹35,000 - ₹65,000</td>
+                            <td className="py-2 px-3 font-mono font-bold text-white bg-zinc-900/40 border-l border-zinc-800 print:bg-zinc-50 print:text-black print:border-zinc-300">
+                              {sweetSpotPrice.split('+')[0].trim()}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="py-2 px-3 font-medium text-zinc-300 print:text-black">Turnaround Speed</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">6 to 10 Weeks</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">3 to 6 Weeks</td>
+                            <td className="py-2 px-3 font-semibold text-emerald-400 bg-zinc-900/40 border-l border-zinc-800 print:bg-zinc-50 print:text-black print:border-zinc-300">
+                              {currentLead.pitchKit?.deliveryTimeline || '5-7 Days'} Turnkey
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="py-2 px-3 font-medium text-zinc-300 print:text-black">24/7 AI Voice & Chatbot</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">❌ Not Included (+₹80k)</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">⚠️ Static Web Form</td>
+                            <td className="py-2 px-3 text-white bg-zinc-900/40 border-l border-zinc-800 print:bg-zinc-50 print:text-black print:border-zinc-300">
+                              ✅ Custom Trained & Included
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="py-2 px-3 font-medium text-zinc-300 print:text-black">GEO AI Search (ChatGPT/Perplexity)</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">❌ Basic Google SEO</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">❌ Ignored</td>
+                            <td className="py-2 px-3 text-white bg-zinc-900/40 border-l border-zinc-800 print:bg-zinc-50 print:text-black print:border-zinc-300">
+                              ✅ Fully Structured & Indexed
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="py-2 px-3 font-medium text-zinc-300 print:text-black">Ongoing SLA & Retainer</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">₹35,000/mo (₹2.5k/hr)</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">Zero Ongoing SLAs</td>
+                            <td className="py-2 px-3 font-mono text-zinc-200 bg-zinc-900/40 border-l border-zinc-800 print:bg-zinc-50 print:text-black print:border-zinc-300">
+                              ₹8,000 - ₹12,000/mo
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="py-2 px-3 font-medium text-zinc-300 print:text-black">Estimated Payback</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">6 to 9 Months</td>
+                            <td className="py-2 px-3 text-zinc-500 print:text-zinc-600">Unpredictable</td>
+                            <td className="py-2 px-3 font-bold text-emerald-400 bg-zinc-900/40 border-l border-zinc-800 print:bg-zinc-50 print:text-black print:border-zinc-300">
+                              First 1–2 Bookings
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Verification Footer & Call to Action */}

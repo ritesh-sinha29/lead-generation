@@ -127,10 +127,36 @@ Generate a hyper-persuasive, high-ticket closer kit. Respond ONLY in valid JSON 
     }
   ],
   "recommendedPackageName": "e.g. 24/7 AI Lead & Booking System",
-  "estimatedPrice": "e.g. $950 - $2,500",
+  "estimatedPrice": "e.g. ₹28,000 - ₹55,000",
   "estimatedRoi": "e.g. +10 to +20 booked appointments/mo",
-  "deliveryTimeline": "e.g. 7 Days Turnkey"
+  "deliveryTimeline": "e.g. 7 Days Turnkey",
+  "affordability": {
+    "clientBudgetTier": "e.g. High-Ticket (₹₹₹) or Mid-Market (₹₹)",
+    "recommendedSweetSpotPrice": "e.g. ₹45,000 setup + ₹12,000/mo",
+    "minWalkawayPrice": "e.g. ₹25,000 setup",
+    "maxUpsellPrice": "e.g. ₹95,000 full system",
+    "roiBreakEvenMath": "e.g. Just 1 single client covers the entire ₹45,000 investment.",
+    "quoteOptions": [
+      {
+        "tierName": "Starter Setup",
+        "price": "₹25,000",
+        "description": "Core 24/7 AI booking bot"
+      },
+      {
+        "tierName": "Growth Package",
+        "price": "₹45,000 + ₹12,000/mo",
+        "description": "AI Voice + WhatsApp Booking Assistant",
+        "isRecommended": true
+      },
+      {
+        "tierName": "Full Authority System",
+        "price": "₹85,000 + ₹20,000/mo",
+        "description": "Comprehensive AI suite + Full GEO optimization"
+      }
+    ]
+  }
 }
+CRITICAL: All prices and monetary amounts MUST strictly be formatted in Indian Rupees (₹), NEVER in dollars ($) or USD.
 `;
 
   try {

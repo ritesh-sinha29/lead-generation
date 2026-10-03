@@ -1,6 +1,6 @@
 import { ConvexHttpClient } from 'convex/browser';
 import { api } from '@/../convex/_generated/api';
-import { Lead } from '@/types/lead';
+import { Lead, sanitizeLeadPricing } from '@/types/lead';
 
 const CONVEX_URL = process.env.NEXT_PUBLIC_CONVEX_URL || 'https://successful-canary-499.convex.cloud';
 
@@ -62,11 +62,14 @@ export async function getLeads(): Promise<Lead[]> {
 
   try {
     const docs = await client.query(api.leads.getLeads);
-    return (docs || []).map((doc: any) => ({
-      ...doc,
-      id: doc._id || doc.id,
-      notes: Array.isArray(doc.notes) ? doc.notes : []
-    })) as Lead[];
+    return (docs || []).map((doc: any) => {
+      const leadObj: Lead = {
+        ...doc,
+        id: doc._id || doc.id,
+        notes: Array.isArray(doc.notes) ? doc.notes : []
+      };
+      return sanitizeLeadPricing(leadObj);
+    });
   } catch (e) {
     console.error('Error fetching leads from Convex:', e);
     return [];
@@ -93,10 +96,11 @@ export async function updateLead(id: string, updates: Partial<Lead>): Promise<Le
   try {
     const updated = await client.mutation(api.leads.updateLead, { id, updates });
     if (!updated) return null;
-    return {
+    const leadObj: Lead = {
       ...(updated as any),
       id: (updated as any)._id || id
-    } as Lead;
+    };
+    return sanitizeLeadPricing(leadObj);
   } catch (e) {
     console.error('Error updating lead in Convex:', e);
     return null;

@@ -135,9 +135,82 @@ export interface Lead {
   status: LeadStatus;
   starred: boolean;
   notes: string[];
+  customDealValue?: number;
   lastContactedAt?: string;
   createdAt: string;
 }
+
+export function getLeadDealValue(lead: Lead): number {
+  if (typeof lead.customDealValue === 'number' && !isNaN(lead.customDealValue) && lead.customDealValue > 0) {
+    return lead.customDealValue;
+  }
+  const priceStr = lead.pitchKit?.affordability?.recommendedSweetSpotPrice || lead.pitchKit?.estimatedPrice || '';
+  const match = priceStr.match(/₹?([0-9,]+)/);
+  if (match) {
+    const parsed = parseInt(match[1].replace(/,/g, ''), 10);
+    if (!isNaN(parsed) && parsed > 0) return parsed;
+  }
+  return 45000;
+}
+
+export function formatINR(amount: number): string {
+  return `₹${amount.toLocaleString('en-IN')}`;
+}
+
+export function sanitizeToINR(text: string | undefined | null): string {
+  if (!text) return '';
+  let res = text;
+  
+  // Replace tiers ($$$) -> (₹₹₹)
+  res = res.replace(/\$\$\$/g, '₹₹₹').replace(/\$\$/g, '₹₹').replace(/\(\$\)/g, '(₹)');
+
+  // Replace USD / Dollar amounts (e.g., "$1,500", "1,500 USD", "$950", "950 USD", "$300/mo", "300 USD/mo")
+  res = res.replace(/\$([0-9,]+(?:\.\d+)?)\s*(USD)?/gi, (_match, numStr) => {
+    const rawNum = parseFloat(numStr.replace(/,/g, ''));
+    if (isNaN(rawNum)) return '₹45,000';
+    const inrVal = Math.round((rawNum * 80) / 1000) * 1000;
+    return `₹${inrVal.toLocaleString('en-IN')}`;
+  });
+
+  res = res.replace(/([0-9,]+)\s*USD/gi, (_match, numStr) => {
+    const rawNum = parseFloat(numStr.replace(/,/g, ''));
+    if (isNaN(rawNum)) return '₹45,000';
+    const inrVal = Math.round((rawNum * 80) / 1000) * 1000;
+    return `₹${inrVal.toLocaleString('en-IN')}`;
+  });
+
+  // Clean up any remaining USD / dollar mentions
+  res = res.replace(/\bUSD\b/gi, 'INR');
+
+  return res;
+}
+
+export function sanitizeLeadPricing(lead: Lead): Lead {
+  if (!lead.pitchKit) return lead;
+  const pk = lead.pitchKit;
+  const aff = pk.affordability;
+  return {
+    ...lead,
+    pitchKit: {
+      ...pk,
+      estimatedPrice: sanitizeToINR(pk.estimatedPrice),
+      affordability: aff ? {
+        ...aff,
+        clientBudgetTier: sanitizeToINR(aff.clientBudgetTier),
+        recommendedSweetSpotPrice: sanitizeToINR(aff.recommendedSweetSpotPrice),
+        minWalkawayPrice: sanitizeToINR(aff.minWalkawayPrice),
+        maxUpsellPrice: sanitizeToINR(aff.maxUpsellPrice),
+        roiBreakEvenMath: sanitizeToINR(aff.roiBreakEvenMath),
+        quoteOptions: (aff.quoteOptions || []).map(opt => ({
+          ...opt,
+          price: sanitizeToINR(opt.price),
+          description: sanitizeToINR(opt.description)
+        }))
+      } : undefined
+    }
+  };
+}
+
 
 export interface GenerateLeadsRequest {
   niche: string;

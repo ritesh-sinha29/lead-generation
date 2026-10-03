@@ -5,9 +5,10 @@ import {
   ArrowRight,
   GripVertical
 } from 'lucide-react';
-import { Lead, LeadStatus } from '@/types/lead';
+import { Lead, LeadStatus, getLeadDealValue } from '@/types/lead';
 import ServiceGapBadge from '@/components/ServiceGapBadge';
 import { Button } from '@/components/ui/button';
+import EditableDealAmount from '@/components/EditableDealAmount';
 
 interface KanbanColumn {
   status: LeadStatus;
@@ -21,12 +22,14 @@ interface LeadKanbanViewProps {
   kanbanColumns: KanbanColumn[];
   onOpenPitchKit: (lead: Lead) => void;
   onUpdateStatus: (id: string, status: LeadStatus) => void;
+  onUpdateDealValue?: (id: string, value: number) => void;
 }
 
 export function LeadKanbanView({
   kanbanColumns,
   onOpenPitchKit,
   onUpdateStatus,
+  onUpdateDealValue = () => {},
 }: LeadKanbanViewProps) {
   const [draggedLeadId, setDraggedLeadId] = useState<string | null>(null);
   const [dragOverColumn, setDragOverColumn] = useState<LeadStatus | null>(null);
@@ -64,10 +67,7 @@ export function LeadKanbanView({
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 pb-4 select-none">
       {kanbanColumns.map((col) => {
-        const colRevenueSum = col.leads.reduce((sum, l) => {
-          const leak = l.audit.topGaps.reduce((acc, g) => acc + (g.estimatedLostRevenueMonthly || 0), 0);
-          return sum + leak;
-        }, 0);
+        const colDealSum = col.leads.reduce((sum, l) => sum + getLeadDealValue(l), 0);
 
         const isOver = dragOverColumn === col.status;
 
@@ -88,7 +88,7 @@ export function LeadKanbanView({
             <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-800">
               <div>
                 <div className="text-xs font-semibold text-zinc-200">{col.title}</div>
-                <div className="text-[10px] text-zinc-500 font-mono">₹{(colRevenueSum / 1000).toFixed(0)}k/mo</div>
+                <div className="text-[10px] text-zinc-500 font-mono">₹{(colDealSum / 1000).toFixed(0)}k pipe</div>
               </div>
               <span className="text-[10px] font-mono text-zinc-400 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">
                 {col.leads.length}
@@ -110,6 +110,7 @@ export function LeadKanbanView({
                   const primaryGap = lead.audit.topGaps[0];
                   const cleanPhone = (lead.phone || '').replace(/[^0-9+]/g, '');
                   const isBeingDragged = draggedLeadId === lead.id;
+                  const dealValue = getLeadDealValue(lead);
 
                   return (
                     <div 
@@ -141,12 +142,26 @@ export function LeadKanbanView({
                         </span>
                       </div>
 
+                      {/* Diagnosed Vulnerability & Lost Revenue Leak */}
                       {primaryGap && (
-                        <div className="text-[10px] text-zinc-400 border-t border-zinc-900 pt-1.5 flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-1 text-[10px] border-t border-zinc-900 pt-1.5">
                           <ServiceGapBadge service={primaryGap.service} />
-                          <span className="font-mono text-zinc-400">-₹{primaryGap.estimatedLostRevenueMonthly.toLocaleString('en-IN')}</span>
+                          <span className="font-mono text-zinc-400 text-[10px]" title="Monthly Revenue Leak">
+                            -₹{primaryGap.estimatedLostRevenueMonthly.toLocaleString('en-IN')}/mo
+                          </span>
                         </div>
                       )}
+
+                      {/* Deal Quote / Ask */}
+                      <div className="flex items-center justify-between gap-1 text-[11px] pt-0.5">
+                        <span className="text-zinc-500 font-mono text-[10px] uppercase">Deal Quote</span>
+                        <EditableDealAmount
+                          leadId={lead.id}
+                          value={dealValue}
+                          onUpdate={onUpdateDealValue}
+                          variant="badge"
+                        />
+                      </div>
 
                       <div className="flex items-center justify-between gap-1 pt-1.5 border-t border-zinc-900">
                         <Button
