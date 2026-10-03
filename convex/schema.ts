@@ -5,6 +5,7 @@ export default defineSchema({
   leads: defineTable({
     businessName: v.string(),
     niche: v.string(),
+    category: v.optional(v.string()),
     city: v.string(),
     country: v.string(),
     website: v.string(),
@@ -13,6 +14,10 @@ export default defineSchema({
     decisionMakerName: v.string(),
     decisionMakerRole: v.string(),
     decisionMakerLinkedin: v.optional(v.string()),
+    googleRating: v.optional(v.number()),
+    googleReviewsCount: v.optional(v.number()),
+    estimatedRevenue: v.optional(v.string()),
+    employeeCount: v.optional(v.string()),
     status: v.union(
       v.literal('new'),
       v.literal('to_call'),
@@ -26,56 +31,8 @@ export default defineSchema({
     notes: v.array(v.string()),
     createdAt: v.string(),
     lastContactedAt: v.optional(v.string()),
-    audit: v.object({
-      overallHealthScore: v.number(),
-      hasLiveChat: v.boolean(),
-      hasAiBot: v.boolean(),
-      hasAutomatedBooking: v.boolean(),
-      hasSchemaMarkup: v.boolean(),
-      hasAiSearchVisibility: v.boolean(),
-      mobileResponsive: v.boolean(),
-      loadTimeSeconds: v.number(),
-      topGaps: v.array(
-        v.object({
-          service: v.union(
-            v.literal('chatbots'),
-            v.literal('calling_agents'),
-            v.literal('web_app'),
-            v.literal('seo_aeo_geo'),
-            v.literal('portfolio')
-          ),
-          serviceTitle: v.string(),
-          detectedIssue: v.string(),
-          impactExplanation: v.string(),
-          estimatedLostRevenueMonthly: v.number(),
-          recommendedSolution: v.string(),
-          urgency: v.union(v.literal('low'), v.literal('medium'), v.literal('high'))
-        })
-      )
-    }),
-    pitchKit: v.object({
-      coldCallOpener: v.string(),
-      coldCallSmokingGun: v.string(),
-      coldCallValueProposition: v.string(),
-      coldCallMicroClose: v.string(),
-      emailSubjectLines: v.array(v.string()),
-      emailBody: v.string(),
-      whatsappMessage: v.string(),
-      recommendedPackageName: v.string(),
-      estimatedPrice: v.string(),
-      deliveryTimeline: v.string(),
-      estimatedRoi: v.string(),
-      affordability: v.optional(v.any()),
-      competitorAnalysis: v.optional(v.any()),
-      objections: v.array(
-        v.object({
-          objection: v.string(),
-          whyTheySayIt: v.string(),
-          exactResponseScript: v.string(),
-          pivotToClose: v.string()
-        })
-      )
-    })
+    audit: v.any(),
+    pitchKit: v.any()
   })
     .index('by_status', ['status'])
     .index('by_starred', ['starred'])
@@ -97,3 +54,4 @@ export default defineSchema({
     currency: v.string()
   })
 });
+

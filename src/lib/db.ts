@@ -1,10 +1,22 @@
-import fs from 'fs';
-import path from 'path';
+import { ConvexHttpClient } from 'convex/browser';
+import { api } from '@/../convex/_generated/api';
 import { Lead } from '@/types/lead';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const LEADS_FILE = path.join(DATA_DIR, 'leads.json');
-const SETTINGS_FILE = path.join(DATA_DIR, 'settings.json');
+const CONVEX_URL = process.env.NEXT_PUBLIC_CONVEX_URL || 'https://successful-canary-499.convex.cloud';
+
+let clientInstance: ConvexHttpClient | null = null;
+
+function getClient(): ConvexHttpClient | null {
+  if (!CONVEX_URL) return null;
+  if (clientInstance) return clientInstance;
+  try {
+    clientInstance = new ConvexHttpClient(CONVEX_URL);
+    return clientInstance;
+  } catch (e) {
+    console.error('Failed to initialize ConvexHttpClient:', e);
+    return null;
+  }
+}
 
 export interface AppSettings {
   agencyName: string;
@@ -32,94 +44,132 @@ const DEFAULT_SETTINGS: AppSettings = {
   defaultCity: 'Vapi',
   defaultBatchSize: 15,
   aiProvider: 'gemini',
-  geminiApiKey: '',
-  grokApiKey: '',
+  geminiApiKey: process.env.GEMINI_API_KEY || '',
+  grokApiKey: process.env.GROK_API_KEY || '',
   ollamaModel: 'deepseek-v4-pro:cloud',
   currency: 'INR'
 };
 
-function ensureDataDir() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-  }
-}
+// In-memory cache for ultra-fast synchronous reads when needed
+let cachedSettings: AppSettings = { ...DEFAULT_SETTINGS };
 
 export async function getLeads(): Promise<Lead[]> {
-  ensureDataDir();
-  if (!fs.existsSync(LEADS_FILE)) {
-    saveLeads([]);
+  const client = getClient();
+  if (!client) {
+    console.warn('Convex client not configured');
     return [];
   }
 
   try {
-    const raw = fs.readFileSync(LEADS_FILE, 'utf-8');
-    return JSON.parse(raw);
+    const docs = await client.query(api.leads.getLeads);
+    return (docs || []).map((doc: any) => ({
+      ...doc,
+      id: doc._id || doc.id,
+      notes: Array.isArray(doc.notes) ? doc.notes : []
+    })) as Lead[];
   } catch (e) {
-    console.error('Error reading leads file:', e);
+    console.error('Error fetching leads from Convex:', e);
     return [];
   }
-}
-
-export function saveLeads(leads: Lead[]): void {
-  ensureDataDir();
-  fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2), 'utf-8');
 }
 
 export async function addLeads(newLeads: Lead[]): Promise<Lead[]> {
-  const current = await getLeads();
-  // Prepend new leads so latest batch shows at top
-  const combined = [...newLeads, ...current];
-  saveLeads(combined);
-  return combined;
+  const client = getClient();
+  if (!client) return [];
+
+  try {
+    await client.mutation(api.leads.addLeads, { leads: newLeads });
+    return await getLeads();
+  } catch (e) {
+    console.error('Error adding leads to Convex:', e);
+    return [];
+  }
 }
 
 export async function updateLead(id: string, updates: Partial<Lead>): Promise<Lead | null> {
-  const leads = await getLeads();
-  const index = leads.findIndex((l) => l.id === id);
-  if (index === -1) return null;
+  const client = getClient();
+  if (!client) return null;
 
-  leads[index] = { ...leads[index], ...updates };
-  saveLeads(leads);
-  return leads[index];
+  try {
+    const updated = await client.mutation(api.leads.updateLead, { id, updates });
+    if (!updated) return null;
+    return {
+      ...(updated as any),
+      id: (updated as any)._id || id
+    } as Lead;
+  } catch (e) {
+    console.error('Error updating lead in Convex:', e);
+    return null;
+  }
 }
 
 export async function deleteLead(id: string): Promise<boolean> {
-  const leads = await getLeads();
-  const filtered = leads.filter((l) => l.id !== id);
-  saveLeads(filtered);
-  return true;
+  const client = getClient();
+  if (!client) return false;
+
+  try {
+    const res = await client.mutation(api.leads.deleteLead, { id });
+    return !!res;
+  } catch (e) {
+    console.error('Error deleting lead in Convex:', e);
+    return false;
+  }
 }
 
 export function getSettings(): AppSettings {
-  ensureDataDir();
-  if (!fs.existsSync(SETTINGS_FILE)) {
-    try {
-      fs.writeFileSync(SETTINGS_FILE, JSON.stringify(DEFAULT_SETTINGS, null, 2), 'utf-8');
-    } catch (e) {
-      console.error('Error writing default settings:', e);
-    }
-    return DEFAULT_SETTINGS;
-  }
+  // Sync read using cache + env defaults
+  return {
+    ...cachedSettings,
+    geminiApiKey: cachedSettings.geminiApiKey || process.env.GEMINI_API_KEY || '',
+    grokApiKey: cachedSettings.grokApiKey || process.env.GROK_API_KEY || ''
+  };
+}
+
+export async function getSettingsAsync(): Promise<AppSettings> {
+  const client = getClient();
+  if (!client) return getSettings();
+
   try {
-    const raw = fs.readFileSync(SETTINGS_FILE, 'utf-8');
-    return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
-  } catch {
-    return DEFAULT_SETTINGS;
+    const remote = await client.query(api.settings.getSettings);
+    if (remote) {
+      cachedSettings = {
+        ...DEFAULT_SETTINGS,
+        ...(remote as any),
+        geminiApiKey: (remote as any).geminiApiKey || process.env.GEMINI_API_KEY || '',
+        grokApiKey: (remote as any).grokApiKey || process.env.GROK_API_KEY || ''
+      };
+    }
+  } catch (e) {
+    console.error('Error fetching settings from Convex:', e);
   }
+
+  return getSettings();
 }
 
 export function saveSettings(settings: Partial<AppSettings>): AppSettings {
-  ensureDataDir();
-  let current = DEFAULT_SETTINGS;
-  if (fs.existsSync(SETTINGS_FILE)) {
-    try {
-      const raw = fs.readFileSync(SETTINGS_FILE, 'utf-8');
-      current = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
-    } catch {
-      current = DEFAULT_SETTINGS;
-    }
+  cachedSettings = { ...cachedSettings, ...settings };
+  
+  // Persist asynchronously to Convex
+  const client = getClient();
+  if (client) {
+    client.mutation(api.settings.saveSettings, {
+      agencyName: cachedSettings.agencyName,
+      senderName: cachedSettings.senderName,
+      senderPhone: cachedSettings.senderPhone,
+      senderEmail: cachedSettings.senderEmail,
+      portfolioUrl: cachedSettings.portfolioUrl,
+      defaultNiche: cachedSettings.defaultNiche,
+      defaultCity: cachedSettings.defaultCity,
+      defaultBatchSize: cachedSettings.defaultBatchSize,
+      aiProvider: cachedSettings.aiProvider,
+      geminiApiKey: cachedSettings.geminiApiKey,
+      grokApiKey: cachedSettings.grokApiKey,
+      ollamaModel: cachedSettings.ollamaModel,
+      currency: cachedSettings.currency
+    }).catch(err => {
+      console.error('Failed to save settings to Convex:', err);
+    });
   }
-  const updated = { ...current, ...settings };
-  fs.writeFileSync(SETTINGS_FILE, JSON.stringify(updated, null, 2), 'utf-8');
-  return updated;
+
+  return cachedSettings;
 }

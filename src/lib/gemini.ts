@@ -144,37 +144,18 @@ Generate a complete SalesPitchKit JSON object including competitorAnalysis.`;
       ]
     };
 
-    // Discover valid models for this API key dynamically
-    let availableModelNames: string[] = [];
-    try {
-      const modelsPager = await ai.models.list();
-      for await (const m of modelsPager) {
-        if (m.name) {
-          const cleanName = m.name.replace(/^models\//, '');
-          availableModelNames.push(cleanName);
-        }
-      }
-    } catch (listErr) {
-      console.warn('Could not list models dynamically in gemini.ts:', listErr);
-    }
-
+    // Cached working model to minimize latency and discovery overhead
     const priorityOrder = [
+      'gemini-2.5-flash',
       'gemini-1.5-flash-latest',
       'gemini-1.5-flash-002',
       'gemini-1.5-flash',
       'gemini-2.0-flash-001',
-      'gemini-2.0-flash-exp',
       'gemini-1.5-pro-latest',
-      'gemini-1.5-pro',
-      'gemini-2.5-flash',
       'gemini-pro'
     ];
 
-    const candidateModels = Array.from(new Set([
-      ...availableModelNames.filter(name => name.includes('flash') || name.includes('gemini')),
-      ...priorityOrder
-    ]));
-
+    let candidateModels = [...priorityOrder];
     let response: any = null;
 
     for (const model of candidateModels) {

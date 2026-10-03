@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio';
 import { GoogleGenAI } from '@google/genai';
 import { Lead, ServiceGap, WebsiteAudit, GenerateLeadsRequest } from '@/types/lead';
-import { getSettings } from './db';
+import { getSettings, getLeads } from './db';
 import { generateDefaultPitchKit } from './pitchGenerator';
 import { generateRelatablePitchWithGemini } from './gemini';
 
@@ -207,7 +207,10 @@ export async function auditLiveWebsite(url: string, niche: string): Promise<{ au
 }
 
 // 2. Discover Real, Verified Leads with Gemini Google Search Grounding
-export async function scrapeLiveLeadsWithGemini(req: GenerateLeadsRequest): Promise<Lead[]> {
+export async function scrapeLiveLeadsWithGemini(
+  req: GenerateLeadsRequest,
+  existingLeadsParam?: Lead[]
+): Promise<Lead[]> {
   const { niche, city, country = 'India', count = 15 } = req;
   const settings = getSettings();
   const apiKey = process.env.GEMINI_API_KEY || settings.geminiApiKey;
@@ -217,13 +220,63 @@ export async function scrapeLiveLeadsWithGemini(req: GenerateLeadsRequest): Prom
     return [];
   }
 
+  // 1. Fetch existing leads to guarantee every single discovered lead is 100% unique
+  let existingLeads: Lead[] = [];
+  try {
+    existingLeads = existingLeadsParam && existingLeadsParam.length > 0 
+      ? existingLeadsParam 
+      : await getLeads();
+  } catch (err) {
+    console.warn('Could not fetch existing leads for deduplication:', err);
+  }
+
+  const existingNames = Array.from(new Set(
+    existingLeads
+      .map(l => (l.businessName || '').trim())
+      .filter(name => name.length > 0)
+  ));
+
+  const existingNormNames = new Set(
+    existingNames.map(name => name.toLowerCase().replace(/[^a-z0-9]/g, ''))
+  );
+
+  const existingDomains = new Set(
+    existingLeads
+      .map(l => {
+        try {
+          if (!l.website) return '';
+          const urlStr = l.website.startsWith('http') ? l.website : `https://${l.website}`;
+          return new URL(urlStr).hostname.replace(/^www\./, '').toLowerCase();
+        } catch {
+          return '';
+        }
+      })
+      .filter(d => d.length > 0 && !d.includes('example.com'))
+  );
+
+  const existingPhones = new Set(
+    existingLeads
+      .map(l => (l.phone || '').replace(/[^0-9]/g, ''))
+      .filter(p => p.length >= 8)
+  );
+
+  const exclusionPrompt = existingNames.length > 0
+    ? `\n\nCRITICAL EXCLUSION LIST (DO NOT RETURN ANY OF THESE ALREADY-SAVED CLIENTS):
+The following ${existingNames.length} businesses already exist in our CRM. You MUST NOT include them. Find completely fresh, new, different operating businesses not on this list:
+${existingNames.slice(0, 80).map(n => `- ${n}`).join('\n')}`
+    : '';
+
+  // Request extra candidates so after strict uniqueness filtering we have the full requested count
+  const requestedCandidateCount = Math.min(Math.max(count + (existingNames.length > 0 ? 8 : 4), 15), 30);
+
   try {
     const ai = new GoogleGenAI({ apiKey });
 
     const isAnyNiche = niche.toLowerCase().includes('any niche') || niche.toLowerCase().includes('top in-demand') || niche.toLowerCase().includes('top high-ticket');
 
     const prompt = isAnyNiche
-      ? `You are an elite B2B sales researcher. Use live Google Search to find ${count} real, operating high-ticket businesses across the most lucrative service industries (e.g. Cosmetic Dental Care, Luxury Real Estate, Commercial Litigation Law, Med Spas & Aesthetics, High-End Home Remodeling, Private Wealth) in ${city}, ${country}. Prioritize businesses with active customer inquiries, high customer lifetime value, and established local presence.
+      ? `You are an elite B2B sales researcher. Use live Google Search to find ${requestedCandidateCount} real, operating high-ticket businesses across the most lucrative service industries (e.g. Cosmetic Dental Care, Luxury Real Estate, Commercial Litigation Law, Med Spas & Aesthetics, High-End Home Remodeling, Private Wealth) in ${city}, ${country}. Prioritize businesses with active customer inquiries, high customer lifetime value, and established local presence.
+${exclusionPrompt}
 
 STRICT DATA ACCURACY INSTRUCTIONS:
 1. ONLY return REAL businesses currently open and operating in ${city}.
@@ -244,10 +297,11 @@ Return a strict JSON array of objects with keys:
 - decisionMakerRole (string)
 - googleRating (number)
 - googleReviewsCount (number)`
-      : `You are a real-time lead research specialist. Use live Google Search to find ${count} real, verified, operating local businesses in the following target:
+      : `You are a real-time lead research specialist. Use live Google Search to find ${requestedCandidateCount} real, verified, operating local businesses in the following target:
 - Niche/Industry: ${niche}
 - City: ${city}
 - Country: ${country}
+${exclusionPrompt}
 
 STRICT DATA ACCURACY INSTRUCTIONS:
 1. ONLY return REAL businesses currently open and operating in ${city}.
@@ -267,47 +321,19 @@ Return a strict JSON array of objects with keys:
 - googleRating (number)
 - googleReviewsCount (number)`;
 
-    // Discover valid models for this API key dynamically
-    let availableModelNames: string[] = [];
-    try {
-      const modelsPager = await ai.models.list();
-      for await (const m of modelsPager) {
-        if (m.name) {
-          const cleanName = m.name.replace(/^models\//, '');
-          availableModelNames.push(cleanName);
-        }
-      }
-      console.log('Discovered Gemini models for this API key:', availableModelNames);
-    } catch (listErr) {
-      console.warn('Could not list models dynamically:', listErr);
-    }
-
-    // Filter only genuine text generation & search models (exclude tts, audio, transcribe, embedding)
-    const validDiscovered = availableModelNames.filter(name => {
-      const lower = name.toLowerCase();
-      const isExcluded = lower.includes('tts') || lower.includes('transcribe') || lower.includes('audio') || lower.includes('embed') || lower.includes('imagen') || lower.includes('vision');
-      return !isExcluded && (lower.includes('flash') || lower.includes('pro'));
-    });
-
     const priorityOrder = [
+      'gemini-2.5-flash',
       'gemini-1.5-flash',
       'gemini-1.5-flash-latest',
       'gemini-1.5-flash-002',
-      'gemini-1.5-pro',
-      'gemini-1.5-pro-latest',
-      'gemini-2.0-flash-exp',
-      'gemini-2.5-flash'
+      'gemini-2.0-flash-001',
+      'gemini-1.5-pro'
     ];
-
-    const candidateModels = Array.from(new Set([
-      ...validDiscovered,
-      ...priorityOrder
-    ]));
 
     let response: any = null;
     let lastErr: any = null;
 
-    for (const model of candidateModels) {
+    for (const model of priorityOrder) {
       try {
         response = await ai.models.generateContent({
           model,
@@ -375,11 +401,69 @@ Return a strict JSON array of objects with keys:
       }
 
       if (Array.isArray(parsedBusinesses) && parsedBusinesses.length > 0) {
+        // Strict Uniqueness & Deduplication Filter against Convex CRM and Intra-Batch duplicates
+        const uniqueCandidates: typeof parsedBusinesses = [];
+        const seenBatchNormNames = new Set<string>();
+
+        for (const b of parsedBusinesses) {
+          if (!b.businessName) continue;
+          const rawName = b.businessName.trim();
+          const normName = rawName.toLowerCase().replace(/[^a-z0-9]/g, '');
+          if (!normName || seenBatchNormNames.has(normName)) continue;
+
+          // 1. Check against existing database names
+          if (existingNormNames.has(normName)) {
+            console.log(`[Deduplicator] Skipping already-existing client: ${rawName}`);
+            continue;
+          }
+
+          // Partial fuzzy match against existing names
+          const isFuzzyDuplicate = existingNames.some(ex => {
+            const exNorm = ex.toLowerCase().replace(/[^a-z0-9]/g, '');
+            if (exNorm === normName) return true;
+            if (exNorm.length > 8 && normName.length > 8) {
+              return exNorm.startsWith(normName) || normName.startsWith(exNorm);
+            }
+            return false;
+          });
+          if (isFuzzyDuplicate) {
+            console.log(`[Deduplicator] Skipping fuzzy duplicate client: ${rawName}`);
+            continue;
+          }
+
+          // 2. Check against existing domain
+          if (b.website) {
+            try {
+              const urlStr = b.website.startsWith('http') ? b.website : `https://${b.website}`;
+              const domain = new URL(urlStr).hostname.replace(/^www\./, '').toLowerCase();
+              if (domain && existingDomains.has(domain)) {
+                console.log(`[Deduplicator] Skipping duplicate website domain: ${domain}`);
+                continue;
+              }
+            } catch {}
+          }
+
+          // 3. Check against existing phone number
+          if (b.phone) {
+            const cleanPhone = b.phone.replace(/[^0-9]/g, '');
+            if (cleanPhone.length >= 8 && existingPhones.has(cleanPhone)) {
+              console.log(`[Deduplicator] Skipping duplicate phone number: ${b.phone}`);
+              continue;
+            }
+          }
+
+          seenBatchNormNames.add(normName);
+          uniqueCandidates.push(b);
+        }
+
+        const finalCandidatesToAudit = uniqueCandidates.slice(0, count);
+        console.log(`[Deduplicator] Yielded ${finalCandidatesToAudit.length} guaranteed unique fresh leads out of ${parsedBusinesses.length} candidates.`);
+
         const isIndia = (country || '').toLowerCase().includes('india') || (city || '').toLowerCase().includes('vapi') || (city || '').toLowerCase().includes('mumbai') || (city || '').toLowerCase().includes('surat');
 
         // Execute website audits concurrently in parallel for ultra-fast response
         const leads = await Promise.all(
-          parsedBusinesses.slice(0, count).map(async (b, idx) => {
+          finalCandidatesToAudit.map(async (b, idx) => {
             const actualNiche = b.niche || niche;
 
             // Resolve website URL from Grounding Chunks if missing
