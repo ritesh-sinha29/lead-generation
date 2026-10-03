@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
-  Sparkles, 
+  Plus, 
   Download, 
   Settings, 
   Cpu, 
@@ -135,7 +135,7 @@ export default function Navbar({
               onClick={onOpenGenerator}
               className="flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-lg bg-primary hover:opacity-90 text-primary-foreground shadow-sm transition-all duration-200 active:scale-95 cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 animate-spin-slow" />
+              <Plus className="w-4 h-4" />
               <span>Get Daily Leads</span>
             </button>
           )}

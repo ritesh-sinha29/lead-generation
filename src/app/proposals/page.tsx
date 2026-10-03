@@ -12,7 +12,6 @@ import {
   PhoneCall, 
   ArrowLeft,
   Printer,
-  Sparkles,
   IndianRupee,
   Calendar,
   Share2,
@@ -325,7 +324,7 @@ Verified & Prepared by AI Growth Systems`;
               {breakEvenMath && (
                 <div className="p-3 rounded-lg bg-zinc-950 border border-zinc-850 text-xs text-zinc-300 leading-relaxed print:bg-white print:border-zinc-200 print:text-zinc-800">
                   <div className="font-bold text-white text-[11px] mb-0.5 flex items-center gap-1.5 print:text-black">
-                    <Sparkles className="w-3 h-3 text-zinc-400" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-zinc-400" />
                     <span>Investment Break-Even Math</span>
                   </div>
                   {breakEvenMath}

@@ -9,7 +9,6 @@ import {
   Building, 
   Check, 
   ArrowLeft,
-  Sparkles,
   Key
 } from 'lucide-react';
 import { AppSettings } from '@/lib/db';
@@ -120,7 +119,7 @@ export default function SettingsPage() {
           <div className="p-5 rounded-xl bg-[#0C0D0E] border border-zinc-800 space-y-4 shadow-xs">
             <div className="flex items-center justify-between pb-3 border-b border-zinc-850">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-zinc-400" />
+                <Cpu className="w-4 h-4 text-zinc-400" />
                 <h3 className="text-sm font-semibold text-white">AI Pitch & Audit Engine</h3>
               </div>
               <span className="text-[11px] font-mono text-zinc-400 uppercase">
