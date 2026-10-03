@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { 
-  Sparkles, 
+  Plus, 
   MapPin, 
   Building2, 
   Layers, 
@@ -259,7 +259,7 @@ export default function DailyGeneratorModal({
               type="submit"
               className="w-full h-10 font-semibold text-xs bg-white text-black hover:bg-zinc-200 shadow-sm transition-colors cursor-pointer rounded-lg"
             >
-              <Sparkles className="w-3.5 h-3.5 mr-2" />
+              <Plus className="w-3.5 h-3.5 mr-2" />
               <span>Generate {count} Qualified Leads</span>
             </Button>
 

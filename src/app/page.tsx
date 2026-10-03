@@ -7,7 +7,9 @@ import {
   ExternalLink, 
   Star, 
   Download, 
-  Sparkles, 
+  Plus,
+  Zap,
+  Briefcase,
   Search, 
   Trash2, 
   Table as TableIcon,
@@ -314,13 +316,24 @@ export default function AdminConsoleDashboard() {
       if (onlyStarred && !lead.starred) return false;
 
       if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
+        const q = searchQuery.toLowerCase().trim();
+        const hasNoSite = !lead.website || lead.website.includes('google.com') || lead.website.includes('justdial.com') || lead.website.includes('practo.com');
+        const siteQueryMatch = (q === 'no site' || q === 'no website' || q === 'no-site') && hasNoSite;
+        const gapsMatch = (lead.audit?.topGaps || []).some(
+          (g) => g.serviceTitle.toLowerCase().includes(q) || g.detectedIssue.toLowerCase().includes(q) || g.service.toLowerCase().includes(q)
+        );
+        const notesMatch = (lead.notes || []).some((n) => n.toLowerCase().includes(q));
+
         const match =
+          siteQueryMatch ||
+          gapsMatch ||
+          notesMatch ||
           lead.businessName.toLowerCase().includes(q) ||
           lead.decisionMakerName.toLowerCase().includes(q) ||
           lead.phone.toLowerCase().includes(q) ||
           lead.city.toLowerCase().includes(q) ||
-          lead.niche.toLowerCase().includes(q);
+          lead.niche.toLowerCase().includes(q) ||
+          (lead.website && lead.website.toLowerCase().includes(q));
         if (!match) return false;
       }
 
@@ -517,7 +530,7 @@ export default function AdminConsoleDashboard() {
               onClick={() => setIsGeneratorOpen(true)}
               className="h-8 px-3 text-xs bg-white hover:bg-zinc-200 text-black font-semibold rounded-lg shadow-sm cursor-pointer shrink-0 transition-transform active:scale-95"
             >
-              <Sparkles className="w-3.5 h-3.5 sm:mr-1.5 text-zinc-800" />
+              <Plus className="w-3.5 h-3.5 sm:mr-1.5 text-zinc-800" />
               <span className="hidden sm:inline">Generate Leads</span>
               <span className="sm:hidden">Generate</span>
             </Button>
@@ -972,7 +985,7 @@ export default function AdminConsoleDashboard() {
                           onClick={() => setSelectedLeadForKit(lead)}
                           className="h-8 px-2 text-xs bg-white text-black hover:bg-zinc-200 font-semibold rounded-lg shadow-none flex items-center justify-center gap-1 active:scale-95 cursor-pointer"
                         >
-                          <Sparkles className="w-3.5 h-3.5 text-zinc-800" />
+                          <Zap className="w-3.5 h-3.5 text-zinc-800" />
                           <span>Pitch Kit</span>
                         </Button>
                       </div>

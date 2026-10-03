@@ -14,14 +14,14 @@ import {
   Phone, 
   ShieldAlert, 
   TrendingUp, 
-  Sparkles, 
+  SlidersHorizontal,
+  Cpu,
   User, 
   MapPin, 
   Building2, 
   IndianRupee, 
   Clock,
   FileText,
-  Swords,
   Trophy,
   Target,
   Zap
@@ -239,7 +239,7 @@ export default function SalesBattlecardModal({
                 value="ai" 
                 className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
               >
-                <Sparkles className="w-3.5 h-3.5 text-zinc-500" />
+                <SlidersHorizontal className="w-3.5 h-3.5 text-zinc-500" />
                 <span>AI Fine-Tune</span>
               </TabsTrigger>
             </TabsList>
@@ -758,7 +758,7 @@ export default function SalesBattlecardModal({
               <div className="p-5 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-3 shadow-xs">
                 <div>
                   <h4 className="text-sm font-semibold text-white flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-zinc-400" />
+                    <SlidersHorizontal className="w-4 h-4 text-zinc-400" />
                     AI Script Customizer
                   </h4>
                   <p className="text-xs text-zinc-400 mt-1">
@@ -786,7 +786,7 @@ export default function SalesBattlecardModal({
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-3.5 h-3.5 mr-2" />
+                      <SlidersHorizontal className="w-3.5 h-3.5 mr-2" />
                       <span>Regenerate Pitch Kit</span>
                     </>
                   )}

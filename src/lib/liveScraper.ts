@@ -33,149 +33,190 @@ export async function auditLiveWebsite(url: string, niche: string): Promise<{ au
   let extractedEmail: string | undefined;
   let extractedOwner: string | undefined;
 
-  try {
-    const formattedUrl = url.startsWith('http') ? url : `https://${url}`;
-    const startTime = Date.now();
-    
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4500);
+  const isDirectoryOrNoSite = !url || 
+    url.includes('google.com/maps') || 
+    url.includes('justdial.com') || 
+    url.includes('practo.com') || 
+    url.includes('indiamart.com') ||
+    url.includes('facebook.com') ||
+    url.includes('instagram.com');
 
-    const response = await fetch(formattedUrl, {
-      signal: controller.signal,
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-      }
-    });
-    clearTimeout(timeoutId);
+  if (!isDirectoryOrNoSite) {
+    try {
+      const formattedUrl = url.startsWith('http') ? url : `https://${url}`;
+      const startTime = Date.now();
+      
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4500);
 
-    loadTimeSeconds = Number(((Date.now() - startTime) / 1000).toFixed(1));
-
-    if (response.ok) {
-      isLive = true;
-      const html = await response.text();
-      const $ = cheerio.load(html);
-
-      // Check Mobile Viewport
-      mobileResponsive = $('meta[name="viewport"]').length > 0;
-
-      // Extract Real Phone from tel: links or HTML
-      const telLink = $('a[href^="tel:"]').first().attr('href');
-      if (telLink) {
-        extractedPhone = telLink.replace(/^tel:/i, '').trim();
-      } else {
-        const phoneMatch = html.match(/(?:\+91[\s-]?)?[6789]\d{9}|(?:\+1[\s-]?)?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}|\+44[\s-]?\d{4}[\s-]?\d{6}/);
-        if (phoneMatch) extractedPhone = phoneMatch[0].trim();
-      }
-
-      // Extract Real Email from mailto: links
-      const mailtoLink = $('a[href^="mailto:"]').first().attr('href');
-      if (mailtoLink) {
-        const cleanMail = mailtoLink.replace(/^mailto:/i, '').split('?')[0].trim();
-        if (cleanMail.includes('@') && !cleanMail.includes('example') && !cleanMail.includes('wixpress')) {
-          extractedEmail = cleanMail;
+      const response = await fetch(formattedUrl, {
+        signal: controller.signal,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
         }
-      }
+      });
+      clearTimeout(timeoutId);
 
-      // Check Schema JSON-LD (Crucial for AI Search Engine Visibility - GEO / AEO)
-      const schemaScripts = $('script[type="application/ld+json"]').text();
-      hasSchemaMarkup = schemaScripts.length > 20 && (schemaScripts.includes('schema.org') || schemaScripts.includes('LocalBusiness'));
+      loadTimeSeconds = Number(((Date.now() - startTime) / 1000).toFixed(1));
 
-      // Extract Doctor / Owner from Schema if present
-      try {
-        if (hasSchemaMarkup) {
-          const schemaObj = JSON.parse(schemaScripts);
-          if (schemaObj.founder?.name) extractedOwner = schemaObj.founder.name;
-          else if (schemaObj.physician?.name) extractedOwner = schemaObj.physician.name;
-          else if (schemaObj.employee?.name) extractedOwner = schemaObj.employee.name;
+      if (response.ok) {
+        isLive = true;
+        const html = await response.text();
+        const $ = cheerio.load(html);
+
+        // Check Mobile Viewport
+        mobileResponsive = $('meta[name="viewport"]').length > 0;
+
+        // Extract Real Phone from tel: links or HTML
+        const telLink = $('a[href^="tel:"]').first().attr('href');
+        if (telLink) {
+          extractedPhone = telLink.replace(/^tel:/i, '').trim();
+        } else {
+          const phoneMatch = html.match(/(?:\+91[\s-]?)?[6789]\d{9}|(?:\+1[\s-]?)?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{4}|\+44[\s-]?\d{4}[\s-]?\d{6}/);
+          if (phoneMatch) extractedPhone = phoneMatch[0].trim();
         }
-      } catch {
-        // Silent JSON parse fallback
+
+        // Extract Real Email from mailto: links
+        const mailtoLink = $('a[href^="mailto:"]').first().attr('href');
+        if (mailtoLink) {
+          const cleanMail = mailtoLink.replace(/^mailto:/i, '').split('?')[0].trim();
+          if (cleanMail.includes('@') && !cleanMail.includes('example') && !cleanMail.includes('wixpress')) {
+            extractedEmail = cleanMail;
+          }
+        }
+
+        // Check Schema JSON-LD (Crucial for AI Search Engine Visibility - GEO / AEO)
+        const schemaScripts = $('script[type="application/ld+json"]').text();
+        hasSchemaMarkup = schemaScripts.length > 20 && (schemaScripts.includes('schema.org') || schemaScripts.includes('LocalBusiness'));
+
+        // Extract Doctor / Owner from Schema if present
+        try {
+          if (hasSchemaMarkup) {
+            const schemaObj = JSON.parse(schemaScripts);
+            if (schemaObj.founder?.name) extractedOwner = schemaObj.founder.name;
+            else if (schemaObj.physician?.name) extractedOwner = schemaObj.physician.name;
+            else if (schemaObj.employee?.name) extractedOwner = schemaObj.employee.name;
+          }
+        } catch {
+          // Silent JSON parse fallback
+        }
+
+        // Check for Chatbots & Voice AI
+        const lowerHtml = html.toLowerCase();
+        const chatKeywords = ['tidio', 'intercom', 'crisp.chat', 'drift', 'chatra', 'zendesk', 'livechat', 'tawk.to', 'chatbase', 'voiceflow', 'vapi', 'retell'];
+        hasLiveChat = chatKeywords.some(k => lowerHtml.includes(k));
+        hasAiBot = lowerHtml.includes('chatbase') || lowerHtml.includes('voiceflow') || lowerHtml.includes('retell') || lowerHtml.includes('vapi');
+
+        // Check for Automated Booking Engine
+        const bookingKeywords = ['calendly', 'acuityscheduling', 'setmore', 'zocdoc', 'practo', 'simplybook', 'appointlet', 'book-online'];
+        hasAutomatedBooking = bookingKeywords.some(k => lowerHtml.includes(k));
       }
-
-      // Check for Chatbots & Voice AI
-      const lowerHtml = html.toLowerCase();
-      const chatKeywords = ['tidio', 'intercom', 'crisp.chat', 'drift', 'chatra', 'zendesk', 'livechat', 'tawk.to', 'chatbase', 'voiceflow', 'vapi', 'retell'];
-      hasLiveChat = chatKeywords.some(k => lowerHtml.includes(k));
-      hasAiBot = lowerHtml.includes('chatbase') || lowerHtml.includes('voiceflow') || lowerHtml.includes('retell') || lowerHtml.includes('vapi');
-
-      // Check for Automated Booking Engine
-      const bookingKeywords = ['calendly', 'acuityscheduling', 'setmore', 'zocdoc', 'practo', 'simplybook', 'appointlet', 'book-online'];
-      hasAutomatedBooking = bookingKeywords.some(k => lowerHtml.includes(k));
+    } catch {
+      loadTimeSeconds = 3.8;
+      mobileResponsive = false;
+      hasLiveChat = false;
+      hasAiBot = false;
+      hasAutomatedBooking = false;
+      hasSchemaMarkup = false;
     }
-  } catch {
-    loadTimeSeconds = 3.8;
-    mobileResponsive = false;
-    hasLiveChat = false;
-    hasAiBot = false;
-    hasAutomatedBooking = false;
-    hasSchemaMarkup = false;
   }
 
   // Construct Problem-Centric Diagnostic Gaps
   const gaps: ServiceGap[] = [];
 
-  // Gap 1: 24/7 AI Chatbot & Instant Booking
-  if (!hasAiBot) {
-    gaps.push({
-      service: 'chatbots',
-      serviceTitle: '24/7 AI Lead & Appointment Booking Assistant',
-      detectedIssue: 'No conversational AI agent active to capture evening/weekend inquiries or confirm bookings in real-time.',
-      impactExplanation: `In ${niche}, 42% of inquiries visit outside normal business hours and leave immediately if forced to fill out a static form.`,
-      estimatedLostRevenueMonthly: 35000,
-      recommendedSolution: 'Deploy a turnkey 24/7 conversational AI agent connected to WhatsApp and CRM calendar.',
-      urgency: 'high'
-    });
-  }
-
-  // Gap 2: AI Voice Receptionist
-  gaps.push({
-    service: 'calling_agents',
-    serviceTitle: 'AI Voice Receptionist & Missed-Call Recovery',
-    detectedIssue: 'No automated instantaneous callback system for missed inbound phone calls.',
-    impactExplanation: '65% of first-time callers never leave a voicemail and immediately dial the next competitor on Google.',
-    estimatedLostRevenueMonthly: 45000,
-    recommendedSolution: 'Connect an automated Voice AI that calls back missed prospect calls within 15 seconds.',
-    urgency: 'high'
-  });
-
-  // Gap 3: Generative AI Search Visibility (GEO / AEO)
-  if (!hasSchemaMarkup) {
-    gaps.push({
-      service: 'seo_aeo_geo',
-      serviceTitle: 'Generative Engine Optimization (GEO & AEO for ChatGPT / Perplexity)',
-      detectedIssue: 'Missing JSON-LD local business entity schema; invisible when potential clients ask ChatGPT or Perplexity for recommendations.',
-      impactExplanation: 'Over 30% of high-intent clients now search via AI conversational tools rather than traditional Google links.',
-      estimatedLostRevenueMonthly: 50000,
-      recommendedSolution: 'Inject rich JSON-LD semantic entity data, llms.txt, and AI citation authority vectors.',
-      urgency: 'high'
-    });
-  }
-
-  // Gap 4: Web Performance & Mobile Conversion
-  if (loadTimeSeconds > 3.0 || !mobileResponsive) {
+  if (isDirectoryOrNoSite) {
+    // CASE A: Established business doing well locally, but has NO OFFICIAL WEBSITE
     gaps.push({
       service: 'web_app',
-      serviceTitle: 'High-Performance Modern Web App Redesign',
-      detectedIssue: `Slow load response (${loadTimeSeconds}s) causing high mobile visitor bounce rate.`,
-      impactExplanation: 'Every additional second of load time reduces lead conversion rates by 20%.',
-      estimatedLostRevenueMonthly: 30000,
-      recommendedSolution: 'Rebuild into an ultra-fast Next.js web application with sub-second page transitions.',
+      serviceTitle: 'High-Converting Web & App Launch',
+      detectedIssue: 'No official website found; business relies solely on local footfall / directory listings without digital appointment booking.',
+      impactExplanation: `In ${niche}, over 58% of prospective clients research websites before making high-ticket decisions. Without a website, these leads drop off to competing providers.`,
+      estimatedLostRevenueMonthly: 65000,
+      recommendedSolution: 'Build and deploy a modern, high-speed Next.js web application with online booking and portfolio showcase.',
+      urgency: 'high'
+    });
+
+    gaps.push({
+      service: 'seo_aeo_geo',
+      serviceTitle: 'Local Google Maps & AI Search Authority (GEO / AEO)',
+      detectedIssue: 'Missing verified custom domain and local business entity schema; lower visibility in Google Maps Local 3-Pack and ChatGPT search.',
+      impactExplanation: 'Competitors with dedicated websites and entity SEO rank above on Google Maps and capture top inquiries.',
+      estimatedLostRevenueMonthly: 45000,
+      recommendedSolution: 'Connect a custom branded domain, setup structured local JSON-LD entity schema, and optimize local search ranking.',
+      urgency: 'high'
+    });
+
+    gaps.push({
+      service: 'chatbots',
+      serviceTitle: 'Automated 24/7 WhatsApp & Lead Capture',
+      detectedIssue: 'No automated response system to capture and qualify evening and weekend customer inquiries.',
+      impactExplanation: 'Prospective clients who reach out after hours receive no immediate response and contact other businesses.',
+      estimatedLostRevenueMonthly: 35000,
+      recommendedSolution: 'Deploy an automated 24/7 WhatsApp capture assistant directly linked to staff calendars.',
+      urgency: 'medium'
+    });
+  } else {
+    // CASE B: Business HAS a website, diagnose gaps across AI, speed, and visibility
+    if (!hasAiBot) {
+      gaps.push({
+        service: 'chatbots',
+        serviceTitle: '24/7 AI Lead & Appointment Booking Assistant',
+        detectedIssue: 'No conversational AI agent active on website to capture evening/weekend inquiries or confirm bookings in real-time.',
+        impactExplanation: `In ${niche}, 42% of inquiries visit outside normal business hours and leave immediately if forced to fill out a static form.`,
+        estimatedLostRevenueMonthly: 35000,
+        recommendedSolution: 'Deploy a turnkey 24/7 conversational AI agent connected to WhatsApp and CRM calendar.',
+        urgency: 'high'
+      });
+    }
+
+    gaps.push({
+      service: 'calling_agents',
+      serviceTitle: 'AI Voice Receptionist & Missed-Call Recovery',
+      detectedIssue: 'No automated instantaneous callback system for missed inbound phone calls.',
+      impactExplanation: '65% of first-time callers never leave a voicemail and immediately dial the next competitor on Google.',
+      estimatedLostRevenueMonthly: 45000,
+      recommendedSolution: 'Connect an automated Voice AI that calls back missed prospect calls within 15 seconds.',
+      urgency: 'high'
+    });
+
+    if (!hasSchemaMarkup) {
+      gaps.push({
+        service: 'seo_aeo_geo',
+        serviceTitle: 'Generative Engine Optimization (GEO & AEO for ChatGPT / Perplexity)',
+        detectedIssue: 'Missing JSON-LD local business entity schema; invisible when potential clients ask ChatGPT or Perplexity for recommendations.',
+        impactExplanation: 'Over 30% of high-intent clients now search via AI conversational tools rather than traditional Google links.',
+        estimatedLostRevenueMonthly: 50000,
+        recommendedSolution: 'Inject rich JSON-LD semantic entity data, llms.txt, and AI citation authority vectors.',
+        urgency: 'high'
+      });
+    }
+
+    if (loadTimeSeconds > 3.0 || !mobileResponsive) {
+      gaps.push({
+        service: 'web_app',
+        serviceTitle: 'High-Performance Modern Web App Redesign',
+        detectedIssue: `Slow load response (${loadTimeSeconds}s) or non-optimized mobile experience causing high visitor bounce rate.`,
+        impactExplanation: 'Every additional second of load time reduces lead conversion rates by 20%.',
+        estimatedLostRevenueMonthly: 30000,
+        recommendedSolution: 'Rebuild into an ultra-fast Next.js web application with sub-second page transitions.',
+        urgency: 'medium'
+      });
+    }
+
+    gaps.push({
+      service: 'portfolio',
+      serviceTitle: 'Authority Showcase & Proof System',
+      detectedIssue: 'Lacks interactive case studies, before/after results proof, or video review carousels.',
+      impactExplanation: 'High-ticket buyers demand visual proof within the first 10 seconds of visiting.',
+      estimatedLostRevenueMonthly: 25000,
+      recommendedSolution: 'Embed interactive proof sliders, verified customer reels, and client ROI calculators.',
       urgency: 'medium'
     });
   }
 
-  // Gap 5: Portfolio & Social Proof
-  gaps.push({
-    service: 'portfolio',
-    serviceTitle: 'Authority Showcase & Proof System',
-    detectedIssue: 'Lacks interactive case studies, before/after results proof, or video review carousels.',
-    impactExplanation: 'High-ticket buyers demand visual proof within the first 10 seconds of visiting.',
-    estimatedLostRevenueMonthly: 25000,
-    recommendedSolution: 'Embed interactive proof sliders, verified customer reels, and client ROI calculators.',
-    urgency: 'medium'
-  });
-
-  const overallHealthScore = Math.max(35, Math.min(85, Math.floor(100 - (loadTimeSeconds * 6) - (gaps.length * 8))));
+  const overallHealthScore = isDirectoryOrNoSite 
+    ? 45 
+    : Math.max(35, Math.min(85, Math.floor(100 - (loadTimeSeconds * 6) - (gaps.length * 8))));
 
   const audit: WebsiteAudit = {
     overallHealthScore,
@@ -275,22 +316,27 @@ ${existingNames.slice(0, 80).map(n => `- ${n}`).join('\n')}`
     const isAnyNiche = niche.toLowerCase().includes('any niche') || niche.toLowerCase().includes('top in-demand') || niche.toLowerCase().includes('top high-ticket');
 
     const prompt = isAnyNiche
-      ? `You are an elite B2B sales researcher. Use live Google Search to find ${requestedCandidateCount} real, operating high-ticket businesses across the most lucrative service industries (e.g. Cosmetic Dental Care, Luxury Real Estate, Commercial Litigation Law, Med Spas & Aesthetics, High-End Home Remodeling, Private Wealth) in ${city}, ${country}. Prioritize businesses with active customer inquiries, high customer lifetime value, and established local presence.
+      ? `You are an elite B2B sales researcher. Use live Google Search to find ${requestedCandidateCount} real, operating high-ticket businesses across the most lucrative service industries (e.g. Cosmetic Dental Care, Luxury Real Estate, Commercial Litigation Law, Med Spas & Aesthetics, High-End Home Remodeling, Private Wealth, Architects, High-End Banquet Venues) in ${city}, ${country}.
+
+CRITICAL LEAD MIX INSTRUCTION:
+You MUST search for and provide a balanced combination of:
+1. TYPE A (Thriving Local Businesses WITH NO WEBSITE): Popular, highly rated (4.2+ stars) doctors, advocates, clinics, restaurants, and firms listed on Google Maps / Justdial / Practo that are doing great business locally but DO NOT have their own website yet.
+2. TYPE B (Established Businesses WITH A WEBSITE): Businesses with an existing website that need modern 24/7 AI chat, voice receptionists, speed optimization, or local search visibility.
 ${exclusionPrompt}
 
 STRICT DATA ACCURACY INSTRUCTIONS:
 1. ONLY return REAL businesses currently open and operating in ${city}.
-2. Provide their exact REAL business name as listed on Google Maps / website.
-3. Provide their specific niche (e.g. "Dental Clinics", "Luxury Real Estate", "Law Firms", "Med Spas").
-4. Provide their REAL working website URL (or verified Google Maps/Justdial profile URL).
-5. Provide their REAL phone number with area/country code.
-6. Provide the real Doctor name, Founder name, Managing Director, or Owner name.
-7. Provide their real Google Rating (e.g. 4.6) and Reviews count (e.g. 48).
+2. Provide their exact REAL business name as listed on Google Maps / Justdial / website.
+3. Provide their specific niche (e.g. "Dental Clinics", "Luxury Real Estate", "Law Firms", "Med Spas", "Architects").
+4. If they have their own official website, provide the URL (e.g. "https://exampleclinic.com"). If they DO NOT have a website, provide their Google Maps / Justdial / Practo profile link or leave as "".
+5. Provide their REAL working phone number with area/country code.
+6. Provide the real Doctor name, Founder name, Managing Director, Advocate, or Owner name.
+7. Provide their real Google Rating (e.g. 4.7) and Reviews count (e.g. 84).
 
 Return a strict JSON array of objects with keys:
 - businessName (string)
 - niche (string)
-- website (string)
+- website (string - official website URL, or Google Maps profile link, or empty string "")
 - phone (string)
 - email (string)
 - decisionMakerName (string)
@@ -301,12 +347,17 @@ Return a strict JSON array of objects with keys:
 - Niche/Industry: ${niche}
 - City: ${city}
 - Country: ${country}
+
+CRITICAL LEAD MIX INSTRUCTION:
+Search for a healthy mix of:
+1. Thriving businesses with strong Google Maps ratings/reviews that DO NOT have an official website yet.
+2. Businesses that have an existing website but lack modern 24/7 AI response, automated booking, or modern SEO.
 ${exclusionPrompt}
 
 STRICT DATA ACCURACY INSTRUCTIONS:
 1. ONLY return REAL businesses currently open and operating in ${city}.
 2. Provide their exact REAL business name as listed on Google Maps / website.
-3. Provide their REAL working website URL (or their verified Google Maps / Practo / JustDial business profile URL).
+3. Provide their REAL working website URL (or their verified Google Maps / Practo / JustDial business profile URL, or empty string if no website).
 4. Provide their REAL phone number with area/country code.
 5. Provide the real Doctor name, Founder name, Managing Director, or Owner name.
 6. Provide their real Google Rating (e.g. 4.6) and Reviews count (e.g. 48).
