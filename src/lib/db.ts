@@ -24,19 +24,19 @@ export interface AppSettings {
 }
 
 const DEFAULT_SETTINGS: AppSettings = {
-  agencyName: 'Apex AI & Web Solutions',
+  agencyName: 'Ixion Labs',
   senderName: 'Ritesh Sinha',
-  senderPhone: '+91 98765 43210',
-  senderEmail: 'ritesh@apexsolutions.dev',
-  portfolioUrl: 'https://apexsolutions.dev',
-  defaultNiche: 'Dental Clinics',
-  defaultCity: 'Mumbai',
+  senderPhone: '+91 7211164751',
+  senderEmail: 'ritesh@ixionlabs.xyz',
+  portfolioUrl: 'https://ixionlabs.xyz',
+  defaultNiche: 'Top In-Demand Clients (Any Niche)',
+  defaultCity: 'Vapi',
   defaultBatchSize: 15,
   aiProvider: 'gemini',
   geminiApiKey: '',
   grokApiKey: '',
   ollamaModel: 'deepseek-v4-pro:cloud',
-  currency: 'USD'
+  currency: 'INR'
 };
 
 function ensureDataDir() {
@@ -48,15 +48,8 @@ function ensureDataDir() {
 export async function getLeads(): Promise<Lead[]> {
   ensureDataDir();
   if (!fs.existsSync(LEADS_FILE)) {
-    // Generate initial initial batch of 15 high-converting leads to get started immediately
-    const initialLeads = await scrapeDailyLeads({
-      niche: 'Dental Clinics',
-      city: 'Mumbai',
-      country: 'India',
-      count: 15
-    });
-    saveLeads(initialLeads);
-    return initialLeads;
+    saveLeads([]);
+    return [];
   }
 
   try {
@@ -101,7 +94,11 @@ export async function deleteLead(id: string): Promise<boolean> {
 export function getSettings(): AppSettings {
   ensureDataDir();
   if (!fs.existsSync(SETTINGS_FILE)) {
-    saveSettings(DEFAULT_SETTINGS);
+    try {
+      fs.writeFileSync(SETTINGS_FILE, JSON.stringify(DEFAULT_SETTINGS, null, 2), 'utf-8');
+    } catch (e) {
+      console.error('Error writing default settings:', e);
+    }
     return DEFAULT_SETTINGS;
   }
   try {
@@ -114,7 +111,15 @@ export function getSettings(): AppSettings {
 
 export function saveSettings(settings: Partial<AppSettings>): AppSettings {
   ensureDataDir();
-  const current = getSettings();
+  let current = DEFAULT_SETTINGS;
+  if (fs.existsSync(SETTINGS_FILE)) {
+    try {
+      const raw = fs.readFileSync(SETTINGS_FILE, 'utf-8');
+      current = { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
+    } catch {
+      current = DEFAULT_SETTINGS;
+    }
+  }
   const updated = { ...current, ...settings };
   fs.writeFileSync(SETTINGS_FILE, JSON.stringify(updated, null, 2), 'utf-8');
   return updated;

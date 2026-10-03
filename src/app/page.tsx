@@ -484,7 +484,7 @@ export default function AdminConsoleDashboard() {
           <div className="p-4 flex flex-col justify-between hover:bg-zinc-900/30 transition-colors">
             <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 font-semibold">Client Revenue Leak</span>
             <div className="text-3xl font-extrabold text-white tracking-tight mt-1 font-mono">
-              ${(totalMonthlyLeak / 1000).toFixed(0)}k<span className="text-xs text-zinc-500 font-normal">/mo</span>
+              ₹{totalMonthlyLeak === 0 ? '0' : `${(totalMonthlyLeak / 1000).toFixed(0)}k`}<span className="text-xs text-zinc-500 font-normal">/mo</span>
             </div>
             <div className="text-[11px] text-zinc-500 mt-1 font-mono">
               Missed customer inquiries
@@ -1018,8 +1018,8 @@ export default function AdminConsoleDashboard() {
                   <span className="text-xs font-mono text-zinc-500">USD / mo</span>
                 </div>
 
-                <div className="h-60 w-full">
-                  <ResponsiveContainer width="100%" height="100%">
+                <div className="h-60 w-full min-w-0 min-h-0">
+                  <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                     <BarChart data={nicheRevenueLeakData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                       <defs>
                         <linearGradient id="nicheGradient" x1="0" y1="0" x2="0" y2="1">
@@ -1050,8 +1050,8 @@ export default function AdminConsoleDashboard() {
                   <span className="text-xs font-mono text-zinc-500">Breakdown</span>
                 </div>
 
-                <div className="h-60 w-full flex items-center justify-center">
-                  <ResponsiveContainer width="100%" height="100%">
+                <div className="h-60 w-full min-w-0 min-h-0 flex items-center justify-center">
+                  <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                     <PieChart>
                       <Pie
                         data={serviceDistributionData}
@@ -1087,8 +1087,8 @@ export default function AdminConsoleDashboard() {
                 <span className="text-xs font-mono text-zinc-500">Stages</span>
               </div>
 
-              <div className="h-56 w-full">
-                <ResponsiveContainer width="100%" height="100%">
+              <div className="h-56 w-full min-w-0 min-h-0">
+                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                   <AreaChart data={pipelineStageData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                     <defs>
                       <linearGradient id="emeraldArea" x1="0" y1="0" x2="0" y2="1">

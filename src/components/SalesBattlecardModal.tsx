@@ -1,24 +1,26 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { 
   PhoneCall, 
   Copy, 
   Check, 
   ExternalLink, 
   Send, 
-  RefreshCw,
-  MessageSquare,
-  Mail,
-  Phone,
-  ShieldAlert,
-  TrendingUp,
-  Sparkles,
-  User,
-  MapPin,
-  Building2,
-  DollarSign,
-  Clock
+  RefreshCw, 
+  MessageSquare, 
+  Mail, 
+  Phone, 
+  ShieldAlert, 
+  TrendingUp, 
+  Sparkles, 
+  User, 
+  MapPin, 
+  Building2, 
+  DollarSign, 
+  Clock,
+  FileText
 } from 'lucide-react';
 import { Lead, ObjectionHandler, LeadStatus, SalesPitchKit } from '@/types/lead';
 import ServiceGapBadge from './ServiceGapBadge';
@@ -145,16 +147,27 @@ export default function SalesBattlecardModal({
               </div>
             </div>
 
-            {/* Quick Dial Action */}
+            {/* Quick Actions */}
             <div className="flex sm:flex-col items-end gap-2 shrink-0">
-              <a
-                href={`tel:${cleanPhone}`}
-                onClick={() => onUpdateStatus?.(lead.id, 'to_call')}
-                className="inline-flex items-center justify-center bg-white hover:bg-zinc-200 text-black font-medium text-xs h-9 px-4 rounded-lg shadow-sm transition-colors active:scale-95"
-              >
-                <PhoneCall className="w-3.5 h-3.5 mr-2 text-black" />
-                <span>Dial {lead.phone}</span>
-              </a>
+              <div className="flex items-center gap-2">
+                <Link
+                  href={`/proposals?leadId=${lead.id}`}
+                  target="_blank"
+                  className="inline-flex items-center justify-center bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 font-medium text-xs h-9 px-3 rounded-lg shadow-sm transition-colors"
+                >
+                  <FileText className="w-3.5 h-3.5 mr-1.5 text-zinc-400" />
+                  <span>1-Page PDF</span>
+                </Link>
+
+                <a
+                  href={`tel:${cleanPhone}`}
+                  onClick={() => onUpdateStatus?.(lead.id, 'to_call')}
+                  className="inline-flex items-center justify-center bg-white hover:bg-zinc-200 text-black font-medium text-xs h-9 px-4 rounded-lg shadow-sm transition-colors active:scale-95"
+                >
+                  <PhoneCall className="w-3.5 h-3.5 mr-2 text-black" />
+                  <span>Dial {lead.phone}</span>
+                </a>
+              </div>
 
               <span className="text-[11px] text-zinc-500 font-mono hidden sm:block">
                 Health Score: {lead.audit.overallHealthScore}/100

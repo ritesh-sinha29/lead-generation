@@ -8,15 +8,17 @@ export async function POST(req: Request) {
   try {
     const body: GenerateLeadsRequest = await req.json();
     
-    // 1. Try Live Gemini Google Search Grounding & Live Website HTML Auditor
-    let freshLeads: Lead[] = await scrapeLiveLeadsWithGemini(body);
+    // 1. Live Gemini Google Search Grounding & Live Website HTML Auditor
+    const freshLeads: Lead[] = await scrapeLiveLeadsWithGemini(body);
 
-    // 2. Fallback to High-Precision Discovery Engine if Gemini Key is not present or returns empty
     if (!freshLeads || freshLeads.length === 0) {
-      freshLeads = await scrapeDailyLeads(body);
+      return NextResponse.json({
+        success: false,
+        error: 'No live leads discovered. Please check your Gemini API key in Settings (or .env.local) to enable live Google Search Grounding for real operating businesses.'
+      }, { status: 400 });
     }
     
-    // 3. Save to persistent database
+    // 2. Save real verified leads to persistent database
     const allLeads = await addLeads(freshLeads);
 
     return NextResponse.json({

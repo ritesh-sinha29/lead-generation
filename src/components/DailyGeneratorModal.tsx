@@ -29,7 +29,7 @@ interface Props {
 }
 
 const PRESET_NICHES = [
-  '⚡ Top In-Demand Clients (Any Niche)',
+  'Top In-Demand Clients (Any Niche)',
   'Dental Clinics',
   'Real Estate Agencies',
   'Law Firms',
@@ -40,7 +40,9 @@ const PRESET_NICHES = [
 ];
 
 const PRESET_CITIES = [
+  { city: 'Vapi', country: 'India' },
   { city: 'Mumbai', country: 'India' },
+  { city: 'Surat', country: 'India' },
   { city: 'Delhi', country: 'India' },
   { city: 'Bengaluru', country: 'India' },
   { city: 'Dubai', country: 'UAE' },
@@ -57,7 +59,7 @@ export default function DailyGeneratorModal({
   ollamaOnline = false,
   availableModels = []
 }: Props) {
-  const [niche, setNiche] = useState(' Top In-Demand Clients (Any Niche)');
+  const [niche, setNiche] = useState('Top In-Demand Clients (Any Niche)');
   const [customNiche, setCustomNiche] = useState('');
   const [selectedCityObj, setSelectedCityObj] = useState(PRESET_CITIES[0]);
   const [customCity, setCustomCity] = useState('');

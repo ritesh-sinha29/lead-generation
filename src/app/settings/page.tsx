@@ -25,19 +25,19 @@ import {
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState<AppSettings>({
-    agencyName: 'Apex AI & Web Solutions',
+    agencyName: 'Ixion Labs',
     senderName: 'Ritesh Sinha',
-    senderPhone: '+91 98765 43210',
-    senderEmail: 'ritesh@apexsolutions.dev',
-    portfolioUrl: 'https://apexsolutions.dev',
-    defaultNiche: 'Dental Clinics',
-    defaultCity: 'Mumbai',
+    senderPhone: '+91 7211164751',
+    senderEmail: 'ritesh@ixionlabs.xyz',
+    portfolioUrl: 'https://ixionlabs.xyz',
+    defaultNiche: 'Top In-Demand Clients (Any Niche)',
+    defaultCity: 'Vapi',
     defaultBatchSize: 15,
     aiProvider: 'gemini',
     geminiApiKey: '',
     grokApiKey: '',
     ollamaModel: 'deepseek-v4-pro:cloud',
-    currency: 'USD'
+    currency: 'INR'
   });
 
   const [ollamaOnline, setOllamaOnline] = useState(false);
