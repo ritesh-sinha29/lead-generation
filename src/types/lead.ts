@@ -59,6 +59,22 @@ export interface AffordabilityStrategy {
   quoteOptions: PricingTierOption[];
 }
 
+export interface CompetitorIntel {
+  competitorName: string;
+  website?: string;
+  googleRating?: number;
+  googleReviewsCount?: number;
+  whyTheyAreWinning: string; // Key edge: e.g. 24/7 instant WhatsApp booking, 350+ reviews, top AI search ranking
+  marketAdvantage: string; // e.g. Capturing 45% of after-hours inbound search traffic
+  howWeBeatThem: string; // Specific tactical upgrade to leapfrog them
+}
+
+export interface CompetitorBenchmark {
+  topCompetitors: CompetitorIntel[];
+  ourDifferentiationStrategy: string; // High-converting pitch narrative on how our upgrade makes the prospect #1 in their city
+  estimatedTimeToOvertake: string; // e.g. "30 to 45 Days post-launch"
+}
+
 export interface SalesPitchKit {
   // Cold Calling
   coldCallOpener: string;
@@ -87,6 +103,9 @@ export interface SalesPitchKit {
 
   // Exact Client Affordability & Quote Strategy
   affordability?: AffordabilityStrategy;
+
+  // Local Competitor Benchmark & Outperform Blueprint
+  competitorAnalysis?: CompetitorBenchmark;
 }
 
 export interface Lead {

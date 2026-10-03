@@ -18,9 +18,13 @@ import {
   User, 
   MapPin, 
   Building2, 
-  DollarSign, 
+  IndianRupee, 
   Clock,
-  FileText
+  FileText,
+  Swords,
+  Trophy,
+  Target,
+  Zap
 } from 'lucide-react';
 import { Lead, ObjectionHandler, LeadStatus, SalesPitchKit } from '@/types/lead';
 import ServiceGapBadge from './ServiceGapBadge';
@@ -221,6 +225,14 @@ export default function SalesBattlecardModal({
               >
                 <TrendingUp className="w-3.5 h-3.5 text-zinc-500" />
                 <span>ROI Proposal</span>
+              </TabsTrigger>
+
+              <TabsTrigger 
+                value="competitors" 
+                className="h-11 px-1 text-xs font-medium data-[state=active]:bg-transparent data-[state=active]:text-white text-zinc-400 rounded-none border-b-2 border-transparent data-[state=active]:border-white flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Swords className="w-3.5 h-3.5 text-zinc-500" />
+                <span>Competitor Intel</span>
               </TabsTrigger>
 
               <TabsTrigger 
@@ -487,8 +499,8 @@ export default function SalesBattlecardModal({
 
                 <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-1">
                   <span className="text-[11px] font-mono uppercase text-zinc-500 flex items-center gap-1">
-                    <DollarSign className="w-3.5 h-3.5 text-zinc-400" />
-                    Turnkey Agency Price
+                    <IndianRupee className="w-3.5 h-3.5 text-zinc-400" />
+                    Agency Price
                   </span>
                   <div className="text-sm font-semibold text-white pt-1 font-mono">{currentPitch.estimatedPrice}</div>
                 </div>
@@ -610,6 +622,133 @@ export default function SalesBattlecardModal({
                     </div>
                   ))}
                 </div>
+              </div>
+
+            </TabsContent>
+
+            {/* TAB: COMPETITOR INTEL & OUTPERFORM BLUEPRINT */}
+            <TabsContent value="competitors" className="mt-0 space-y-4">
+              
+              {/* Strategic Leapfrog Header */}
+              <div className="p-5 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-3 shadow-xs">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-zinc-850">
+                  <div>
+                    <span className="text-[10px] font-mono uppercase text-zinc-400 block mb-0.5">
+                      Competitive Growth Benchmark
+                    </span>
+                    <h4 className="text-sm font-semibold text-white flex items-center gap-2">
+                      <Trophy className="w-4 h-4 text-amber-400" />
+                      How to Outperform & Beat Local Competition in {lead.city}
+                    </h4>
+                  </div>
+                  <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-emerald-400">
+                    Target: {currentPitch.competitorAnalysis?.estimatedTimeToOvertake || '30 to 45 Days to Lead Market'}
+                  </span>
+                </div>
+
+                <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-850 text-xs text-zinc-300 leading-relaxed font-sans space-y-1">
+                  <span className="text-[10px] font-mono uppercase text-zinc-500 font-bold block">
+                    Our Market-Dominance Strategy:
+                  </span>
+                  <p>
+                    {currentPitch.competitorAnalysis?.ourDifferentiationStrategy || 
+                      `Deploying instant 24/7 AI lead capture and Generative Engine Optimization (GEO) allows ${lead.businessName} to capture 100% of evening/weekend search queries before local competitors even wake up.`}
+                  </p>
+                </div>
+              </div>
+
+              {/* Competitors List */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-white font-mono uppercase">
+                    Direct Local Competitors Identified ({currentPitch.competitorAnalysis?.topCompetitors?.length || 2})
+                  </span>
+                  <span className="text-[11px] text-zinc-500 font-mono">Live local search audit</span>
+                </div>
+
+                {((currentPitch.competitorAnalysis?.topCompetitors && currentPitch.competitorAnalysis.topCompetitors.length > 0)
+                  ? currentPitch.competitorAnalysis.topCompetitors
+                  : [
+                      {
+                        competitorName: `Top Ranking ${lead.niche} Rival in ${lead.city}`,
+                        whyTheyAreWinning: 'Ranks higher on Google Local Pack due to more active reviews and faster contact forms.',
+                        marketAdvantage: 'Captures ~35% of first-time searchers who need urgent consultations.',
+                        howWeBeatThem: 'Deploying an instant 24/7 AI Voice & WhatsApp Receptionist converts warm prospects within 15 seconds, recovering callers who bounce off their static contact forms.'
+                      },
+                      {
+                        competitorName: `Established ${lead.niche} Provider in ${lead.city}`,
+                        whyTheyAreWinning: 'Aggressive Google Business presence and strong word-of-mouth referral capture.',
+                        marketAdvantage: 'High perceived brand trust on desktop Google searches.',
+                        howWeBeatThem: 'Injecting structured AI entity schema (GEO & AEO) ensures ChatGPT, Perplexity, and Apple Intelligence recommend our client first when users search for best services in town.'
+                      }
+                    ]
+                ).map((comp, idx) => (
+                  <div key={idx} className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-3 shadow-xs">
+                    <div className="flex items-start justify-between gap-2 pb-2 border-b border-zinc-850">
+                      <div className="flex items-center gap-2">
+                        <span className="w-5 h-5 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[10px] font-mono text-zinc-400 font-bold">
+                          {idx + 1}
+                        </span>
+                        <div className="font-semibold text-white text-xs">
+                          {comp.competitorName}
+                        </div>
+                      </div>
+                      <span className="text-[10px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20">
+                        Rival Advantage
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs">
+                      <div className="p-3 rounded-lg bg-zinc-950 border border-zinc-850 space-y-1">
+                        <span className="text-[10px] font-mono uppercase text-zinc-400 font-semibold block flex items-center gap-1">
+                          <Target className="w-3 h-3 text-rose-400" />
+                          Why They Are Growing / Winning:
+                        </span>
+                        <p className="text-zinc-300 text-[11px] leading-relaxed">
+                          {comp.whyTheyAreWinning}
+                        </p>
+                        <div className="text-[10px] text-zinc-500 pt-1">
+                          <strong>Market Edge: </strong>{comp.marketAdvantage}
+                        </div>
+                      </div>
+
+                      <div className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-750 space-y-1">
+                        <span className="text-[10px] font-mono uppercase text-emerald-400 font-semibold block flex items-center gap-1">
+                          <Zap className="w-3 h-3 text-emerald-400" />
+                          How We Help Our Client Beat Them:
+                        </span>
+                        <p className="text-zinc-200 text-[11px] leading-relaxed">
+                          {comp.howWeBeatThem}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Copyable Competitor Gap Pitch Hook */}
+              <div className="p-4 rounded-xl border border-zinc-800 bg-[#0C0D0E] space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-mono uppercase text-zinc-400 font-bold">
+                    Competitor-Leverage Outreach Angle (Copy & Send)
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800/80 rounded-md"
+                    onClick={() => {
+                      const compName = currentPitch.competitorAnalysis?.topCompetitors?.[0]?.competitorName || `competitors in ${lead.city}`;
+                      const pitch = `Hi ${lead.decisionMakerName}, while auditing ${lead.niche.toLowerCase()} services in ${lead.city}, I noticed ${compName} is currently picking up evening inquiries because their response time is faster. We built a 24/7 AI booking assistant tailored for ${lead.businessName} that captures 100% of those inquiries before they can call anyone else. Would you be open to a 60-second video demo?`;
+                      handleCopy(pitch, 'comp-pitch');
+                    }}
+                  >
+                    {copiedKey === 'comp-pitch' ? <Check className="w-3.5 h-3.5 text-white mr-1.5" /> : <Copy className="w-3.5 h-3.5 mr-1.5 text-zinc-500" />}
+                    <span>{copiedKey === 'comp-pitch' ? 'Copied Pitch' : 'Copy Pitch'}</span>
+                  </Button>
+                </div>
+                <p className="text-xs text-zinc-300 font-sans leading-relaxed">
+                  &ldquo;Hi {lead.decisionMakerName}, while auditing {lead.niche.toLowerCase()} services in {lead.city}, I noticed {currentPitch.competitorAnalysis?.topCompetitors?.[0]?.competitorName || `competitors in ${lead.city}`} is currently picking up evening inquiries because their response time is faster. We built a 24/7 AI booking assistant tailored for {lead.businessName} that captures 100% of those inquiries before they can call anyone else. Would you be open to a 60-second video demo?&rdquo;
+                </p>
               </div>
 
             </TabsContent>

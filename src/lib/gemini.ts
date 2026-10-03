@@ -27,9 +27,9 @@ Your task is to write hyper-relatable, consultative sales copy for decision-make
 
 CRITICAL REQUIREMENTS:
 1. ALWAYS CALCULATE AND QUOTE IN INDIAN RUPEES (INR / ₹): Strictly format ALL prices, estimated revenue leaks, quotes, tiers, and financial figures in Indian Rupees (e.g., ₹45,000 setup + ₹12,000/mo retainer, ₹25,000, ₹85,000, ₹1.5 Lakhs). NEVER use dollars ($) or any non-rupee currency.
-2. Avoid generic agency buzzwords ("synergy", "cutting-edge", "game-changer", "unleash").
+2. COMPETITOR BENCHMARKING: Identify who their 2 top local competitors in ${lead.city || 'their area'} are (or likely direct category rivals), explain why those competitors are growing / what makes them win (e.g. 24/7 instant WhatsApp response, higher review count, better search ranking), and provide the exact tactical playbook showing how our AI/Web upgrade will help this business leapfrog and beat them.
 3. Focus 100% on the exact customer pain point: what friction or revenue leakage their business is experiencing right now in ₹.
-4. Make the prospect feel: "This person actually took time to audit my exact site, understands my niche, and has a concrete fix for my lost revenue."
+4. Make the prospect feel: "This person actually took time to audit my exact site, understands my niche, analyzed my competitors, and has a concrete fix for my lost revenue."
 5. Every cold call opener must be a polite pattern-interrupt with specific reference to their business.
 6. Every smoking gun must point to a real, diagnosed flaw (e.g. after-hours lost bookings, missed phone calls bouncing to competitors, slow mobile load times, invisible on AI search).
 7. Every email, WhatsApp pitch, and objection handler must be consultative, low-pressure, and conversational.`;
@@ -45,9 +45,9 @@ CRITICAL REQUIREMENTS:
 - Diagnosed Vulnerabilities: ${JSON.stringify(lead.audit?.topGaps || [])}
 - Overall Tech Readiness Score: ${lead.audit?.overallHealthScore}/100
 
-Custom Goal/Instruction: ${customPrompt || 'Craft a deeply relatable, empathetic pitch solving their primary technical leak. All pricing must be strictly in Indian Rupees (₹).'}
+Custom Goal/Instruction: ${customPrompt || 'Analyze their local competitors, diagnose what they lack, how we can help, how much it takes, and formulate the exact pitch to beat their competition. All pricing strictly in Indian Rupees (₹).'}
 
-Generate a complete SalesPitchKit JSON object.`;
+Generate a complete SalesPitchKit JSON object including competitorAnalysis.`;
 
     const pitchSchema: Schema = {
       type: Type.OBJECT,
@@ -91,6 +91,28 @@ Generate a complete SalesPitchKit JSON object.`;
             }
           },
           required: ['clientBudgetTier', 'recommendedSweetSpotPrice', 'minWalkawayPrice', 'maxUpsellPrice', 'roiBreakEvenMath', 'quoteOptions']
+        },
+        competitorAnalysis: {
+          type: Type.OBJECT,
+          description: 'Detailed analysis of local competitors, why they are growing, and how we help this business outperform them',
+          properties: {
+            ourDifferentiationStrategy: { type: Type.STRING, description: 'Strategic narrative on how our upgrade makes them the undisputed #1 choice in their city' },
+            estimatedTimeToOvertake: { type: Type.STRING, description: 'e.g. 30 to 45 Days post-launch' },
+            topCompetitors: {
+              type: Type.ARRAY,
+              items: {
+                type: Type.OBJECT,
+                properties: {
+                  competitorName: { type: Type.STRING, description: 'Name of the rival local business' },
+                  whyTheyAreWinning: { type: Type.STRING, description: 'What advantages they currently have (e.g. 24/7 WhatsApp response, 300+ reviews, top AI search ranking)' },
+                  marketAdvantage: { type: Type.STRING, description: 'e.g. Capturing 40% of evening searches' },
+                  howWeBeatThem: { type: Type.STRING, description: 'Concrete technological edge we deploy to leapfrog them' }
+                },
+                required: ['competitorName', 'whyTheyAreWinning', 'marketAdvantage', 'howWeBeatThem']
+              }
+            }
+          },
+          required: ['ourDifferentiationStrategy', 'estimatedTimeToOvertake', 'topCompetitors']
         },
         objections: {
           type: Type.ARRAY,

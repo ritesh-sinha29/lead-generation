@@ -65,6 +65,8 @@ export default defineSchema({
       estimatedPrice: v.string(),
       deliveryTimeline: v.string(),
       estimatedRoi: v.string(),
+      affordability: v.optional(v.any()),
+      competitorAnalysis: v.optional(v.any()),
       objections: v.array(
         v.object({
           objection: v.string(),
