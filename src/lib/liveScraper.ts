@@ -372,14 +372,57 @@ Return a strict JSON array of objects with keys:
 - googleRating (number)
 - googleReviewsCount (number)`;
 
-    const priorityOrder = [
+    // Text/Search grounding models only (exclude specialized audio, realtime, tts, embedding)
+    const isSpecializedModel = (name: string) => {
+      const lower = name.toLowerCase();
+      return (
+        lower.includes('live') ||
+        lower.includes('audio') ||
+        lower.includes('tts') ||
+        lower.includes('embed') ||
+        lower.includes('realtime') ||
+        lower.includes('image') ||
+        lower.includes('customtools') ||
+        lower.includes('robotics') ||
+        lower.includes('clip')
+      );
+    };
+
+    let priorityOrder = [
+      'gemini-flash-latest',
+      'gemini-3.5-flash',
+      'gemini-3-flash-preview',
+      'gemini-3.1-pro-preview',
+      'gemini-flash-lite-latest',
+      'gemini-pro-latest',
       'gemini-2.5-flash',
-      'gemini-1.5-flash',
-      'gemini-1.5-flash-latest',
-      'gemini-1.5-flash-002',
-      'gemini-2.0-flash-001',
-      'gemini-1.5-pro'
+      'gemini-2.5-pro'
     ];
+
+    try {
+      const modelPager = await ai.models.list();
+      const discovered: string[] = [];
+      if (modelPager) {
+        for await (const m of modelPager) {
+          const rawName = (m.name || '').replace(/^models\//, '');
+          if (rawName && !isSpecializedModel(rawName)) {
+            const methods = (m as any).supportedGenerationMethods || (m as any).supportedActions;
+            if (!methods || methods.includes('generateContent')) {
+              if (rawName.includes('flash')) {
+                discovered.unshift(rawName);
+              } else {
+                discovered.push(rawName);
+              }
+            }
+          }
+        }
+      }
+      if (discovered.length > 0) {
+        priorityOrder = Array.from(new Set([...discovered, ...priorityOrder]));
+      }
+    } catch (e) {
+      console.warn('Model auto-discovery skipped, using latest text model aliases');
+    }
 
     let response: any = null;
     let lastErr: any = null;
@@ -403,7 +446,7 @@ Return a strict JSON array of objects with keys:
         const errMsg = err?.message || String(err);
         console.warn(`Model ${model} failed: ${errMsg.slice(0, 120)}`);
         
-        // If quota limit (429) hit, no other model in this project will work, break early
+        // If quota limit (429) hit, break early
         if (err?.status === 429 || errMsg.includes('429') || errMsg.includes('RESOURCE_EXHAUSTED')) {
           console.error('Google Gemini API Key has exhausted its quota (HTTP 429).');
           break;
@@ -412,6 +455,9 @@ Return a strict JSON array of objects with keys:
     }
 
     if (!response || !response.text) {
+      if (lastErr?.status === 429 || String(lastErr).includes('429') || String(lastErr).includes('RESOURCE_EXHAUSTED')) {
+        throw new Error('Google Gemini API Quota Exceeded (HTTP 429). Please update your API key in Settings (or wait for the rate limit to reset on Google AI Studio).');
+      }
       throw lastErr || new Error('Google Gemini API key has exceeded its quota (HTTP 429) or is invalid.');
     }
 
@@ -598,6 +644,7 @@ Return a strict JSON array of objects with keys:
     }
   } catch (err) {
     console.error('Live Gemini Google Search Scraping Error:', err);
+    throw err;
   }
 
   return [];

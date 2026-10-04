@@ -144,18 +144,58 @@ Generate a complete SalesPitchKit JSON object including competitorAnalysis.`;
       ]
     };
 
-    // Cached working model to minimize latency and discovery overhead
-    const priorityOrder = [
+    // Text/generation models only (exclude specialized audio, realtime, tts, embedding)
+    const isSpecializedModel = (name: string) => {
+      const lower = name.toLowerCase();
+      return (
+        lower.includes('live') ||
+        lower.includes('audio') ||
+        lower.includes('tts') ||
+        lower.includes('embed') ||
+        lower.includes('realtime') ||
+        lower.includes('image') ||
+        lower.includes('customtools') ||
+        lower.includes('robotics') ||
+        lower.includes('clip')
+      );
+    };
+
+    let candidateModels = [
+      'gemini-flash-latest',
+      'gemini-3.5-flash',
+      'gemini-3-flash-preview',
+      'gemini-3.1-pro-preview',
+      'gemini-flash-lite-latest',
+      'gemini-pro-latest',
       'gemini-2.5-flash',
-      'gemini-1.5-flash-latest',
-      'gemini-1.5-flash-002',
-      'gemini-1.5-flash',
-      'gemini-2.0-flash-001',
-      'gemini-1.5-pro-latest',
-      'gemini-pro'
+      'gemini-2.5-pro'
     ];
 
-    let candidateModels = [...priorityOrder];
+    try {
+      const modelPager = await ai.models.list();
+      const discovered: string[] = [];
+      if (modelPager) {
+        for await (const m of modelPager) {
+          const rawName = (m.name || '').replace(/^models\//, '');
+          if (rawName && !isSpecializedModel(rawName)) {
+            const methods = (m as any).supportedGenerationMethods || (m as any).supportedActions;
+            if (!methods || methods.includes('generateContent')) {
+              if (rawName.includes('flash')) {
+                discovered.unshift(rawName);
+              } else {
+                discovered.push(rawName);
+              }
+            }
+          }
+        }
+      }
+      if (discovered.length > 0) {
+        candidateModels = Array.from(new Set([...discovered, ...candidateModels]));
+      }
+    } catch (e) {
+      console.warn('Model auto-discovery skipped, using latest text model aliases');
+    }
+
     let response: any = null;
 
     for (const model of candidateModels) {

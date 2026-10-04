@@ -13,7 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 
 interface DashboardHeaderProps {
-  ollamaOnline: boolean;
+  aiOnline: boolean;
   activeModel: string;
   isLoading: boolean;
   onRefresh: () => void;
@@ -23,7 +23,7 @@ interface DashboardHeaderProps {
 }
 
 export function DashboardHeader({
-  ollamaOnline,
+  aiOnline,
   activeModel,
   isLoading,
   onRefresh,
@@ -49,13 +49,13 @@ export function DashboardHeader({
           {/* Engine Status Dot */}
           <div 
             className={`hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[11px] font-mono ${
-              ollamaOnline 
+              aiOnline 
                 ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
                 : 'bg-zinc-950 border-zinc-800 text-zinc-400'
             }`}
           >
-            <span className={`w-1.5 h-1.5 rounded-full ${ollamaOnline ? 'bg-emerald-400' : 'bg-zinc-500'}`} />
-            <span>{ollamaOnline ? 'AI Engine Online' : 'Convex Active'}</span>
+            <span className={`w-1.5 h-1.5 rounded-full ${aiOnline ? 'bg-emerald-400' : 'bg-zinc-500'}`} />
+            <span>{aiOnline ? `AI Online (${activeModel})` : 'Convex Active'}</span>
           </div>
 
           {/* Export Button */}

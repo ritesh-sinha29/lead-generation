@@ -1,30 +1,57 @@
 import { NextResponse } from 'next/server';
 import { generateRelatablePitchWithGemini } from '@/lib/gemini';
-import { generateCustomPitchWithOllama } from '@/lib/ollama';
-import { updateLead } from '@/lib/db';
+import { generateRelatablePitchWithOpenAI } from '@/lib/openai';
+import { generateDefaultPitchKit } from '@/lib/pitchGenerator';
+import { updateLead, getSettings } from '@/lib/db';
 import { Lead } from '@/types/lead';
 
 export async function POST(req: Request) {
   try {
-    const { lead, customInstructions, preferredModel } = await req.json() as {
+    const { lead, customInstructions } = await req.json() as {
       lead: Lead;
       customInstructions?: string;
-      preferredModel?: string;
     };
 
     if (!lead) {
       return NextResponse.json({ success: false, error: 'Lead is required' }, { status: 400 });
     }
 
-    // 1. Try Google Gemini first for highest quality problem-solving pitch
-    let pitchKit = await generateRelatablePitchWithGemini(lead, customInstructions);
-    let source = 'gemini-2.0-flash';
+    const settings = getSettings();
+    let pitchKit = null;
+    let source = 'deterministic';
 
-    // 2. Fallback to Ollama or built-in engine if Gemini isn't configured
+    // 1. Try configured provider first (OpenAI or Gemini)
+    if (settings.aiProvider === 'openai') {
+      pitchKit = await generateRelatablePitchWithOpenAI(lead, customInstructions);
+      if (pitchKit) source = 'openai-gpt-4o-mini';
+    } else {
+      pitchKit = await generateRelatablePitchWithGemini(lead, customInstructions);
+      if (pitchKit) source = 'gemini-flash';
+    }
+
+    // 2. If preferred provider failed or not configured, try alternative provider
     if (!pitchKit) {
-      const ollamaRes = await generateCustomPitchWithOllama(lead, customInstructions, preferredModel);
-      pitchKit = ollamaRes.pitchKit;
-      source = ollamaRes.source;
+      if (settings.aiProvider === 'openai') {
+        pitchKit = await generateRelatablePitchWithGemini(lead, customInstructions);
+        if (pitchKit) source = 'gemini-flash';
+      } else {
+        pitchKit = await generateRelatablePitchWithOpenAI(lead, customInstructions);
+        if (pitchKit) source = 'openai-gpt-4o-mini';
+      }
+    }
+
+    // 3. Fallback to deterministic high-converting pitch engine
+    if (!pitchKit) {
+      pitchKit = generateDefaultPitchKit({
+        businessName: lead.businessName,
+        niche: lead.niche,
+        city: lead.city,
+        decisionMakerName: lead.decisionMakerName,
+        website: lead.website,
+        topGaps: lead.audit?.topGaps || [],
+        primaryService: lead.audit?.topGaps[0]?.service || 'chatbots'
+      });
+      source = 'deterministic-engine';
     }
 
     // Persist regenerated pitch to lead if it exists in DB

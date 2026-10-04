@@ -1,18 +1,41 @@
 import { NextResponse } from 'next/server';
 import { scrapeLiveLeadsWithGemini } from '@/lib/liveScraper';
-import { scrapeDailyLeads } from '@/lib/scraper';
-import { addLeads, getLeads } from '@/lib/db';
+import { scrapeLiveLeadsWithOpenAI } from '@/lib/openai';
+import { addLeads, getLeads, getSettings } from '@/lib/db';
 import { GenerateLeadsRequest, Lead } from '@/types/lead';
 
 export async function POST(req: Request) {
   try {
     const body: GenerateLeadsRequest = await req.json();
+    const settings = getSettings();
     
     // 1. Fetch current Convex leads to ensure 100% uniqueness
     const existingLeads = await getLeads();
 
-    // 2. Live Gemini Google Search Grounding & Live Website HTML Auditor (with exclusion list)
-    const freshLeads: Lead[] = await scrapeLiveLeadsWithGemini(body, existingLeads);
+    // 2. Discover & Audit fresh leads using configured provider (OpenAI or Gemini)
+    let freshLeads: Lead[] = [];
+    const hasOpenAI = !!(process.env.OPENAI_API_KEY || settings.openaiApiKey);
+    const hasGemini = !!(process.env.GEMINI_API_KEY || settings.geminiApiKey);
+
+    if (settings.aiProvider === 'openai' && hasOpenAI) {
+      freshLeads = await scrapeLiveLeadsWithOpenAI(body, existingLeads);
+    } else if (hasGemini) {
+      try {
+        freshLeads = await scrapeLiveLeadsWithGemini(body, existingLeads);
+      } catch (geminiErr: any) {
+        // Fallback to OpenAI if Gemini quota is exhausted and OpenAI is available
+        if (hasOpenAI && (geminiErr?.message?.includes('429') || geminiErr?.status === 429)) {
+          console.log('Gemini quota exhausted, falling back to OpenAI...');
+          freshLeads = await scrapeLiveLeadsWithOpenAI(body, existingLeads);
+        } else {
+          throw geminiErr;
+        }
+      }
+    } else if (hasOpenAI) {
+      freshLeads = await scrapeLiveLeadsWithOpenAI(body, existingLeads);
+    } else {
+      throw new Error('No AI Provider configured. Please add an OpenAI or Gemini API key in Settings.');
+    }
 
     if (!freshLeads || freshLeads.length === 0) {
       return NextResponse.json({

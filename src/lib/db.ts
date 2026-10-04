@@ -27,8 +27,9 @@ export interface AppSettings {
   defaultNiche: string;
   defaultCity: string;
   defaultBatchSize: number;
-  aiProvider: 'gemini' | 'grok';
+  aiProvider: 'gemini' | 'openai' | 'grok';
   geminiApiKey?: string;
+  openaiApiKey?: string;
   grokApiKey?: string;
   currency: string;
 }
@@ -44,6 +45,7 @@ const DEFAULT_SETTINGS: AppSettings = {
   defaultBatchSize: 15,
   aiProvider: 'gemini',
   geminiApiKey: process.env.GEMINI_API_KEY || '',
+  openaiApiKey: process.env.OPENAI_API_KEY || '',
   grokApiKey: process.env.GROK_API_KEY || '',
   currency: 'INR'
 };

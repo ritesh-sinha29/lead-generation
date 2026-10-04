@@ -15,15 +15,15 @@ import {
 
 interface NavbarProps {
   onOpenGenerator?: () => void;
-  ollamaOnline?: boolean;
+  aiOnline?: boolean;
   activeModel?: string;
   totalLeadsCount?: number;
 }
 
 export default function Navbar({
   onOpenGenerator,
-  ollamaOnline = false,
-  activeModel = 'deepseek-v4-pro:cloud',
+  aiOnline = false,
+  activeModel = 'gemini-flash',
   totalLeadsCount = 0
 }: NavbarProps) {
   const pathname = usePathname();
@@ -103,20 +103,20 @@ export default function Navbar({
         {/* Status Indicators & Action Buttons */}
         <div className="flex items-center gap-3">
           
-          {/* Ollama Status Badge */}
+          {/* AI Status Badge */}
           <div 
             className={`hidden lg:flex items-center gap-2 px-3 py-1 rounded-full text-xs border ${
-              ollamaOnline 
+              aiOnline 
                 ? 'bg-secondary/15 border-secondary/30 text-secondary' 
                 : 'bg-muted border-border text-muted-foreground'
             }`}
-            title={ollamaOnline ? `Connected to local Ollama (${activeModel})` : 'Using built-in offline expert sales engine'}
+            title={aiOnline ? `AI Engine Online (${activeModel})` : 'Using built-in expert sales engine'}
           >
             <Cpu className="w-3.5 h-3.5" />
             <span className="font-semibold">
-              {ollamaOnline ? `Ollama: ${activeModel.split(':')[0]}` : 'Offline AI Engine'}
+              {aiOnline ? `AI: ${activeModel.split(':')[0]}` : 'Offline Engine'}
             </span>
-            <span className={`w-2 h-2 rounded-full ${ollamaOnline ? 'bg-secondary' : 'bg-primary'}`} />
+            <span className={`w-2 h-2 rounded-full ${aiOnline ? 'bg-secondary' : 'bg-primary'}`} />
           </div>
 
           {/* Export Button */}

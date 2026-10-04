@@ -145,11 +145,11 @@ export default function EditableDealAmount({
         e.stopPropagation();
         setIsEditing(true);
       }}
-      className={`group inline-flex items-center gap-1 font-mono text-zinc-300 hover:text-white bg-zinc-900/80 hover:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer text-[10px] ${className}`}
+      className={`group inline-flex items-center gap-1 font-mono text-zinc-300 hover:text-white bg-zinc-900/80 hover:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-800 hover:border-zinc-700 transition-colors cursor-pointer text-[10px] whitespace-nowrap shrink-0 ${className}`}
       title="Click to edit deal amount"
     >
       <span className="font-medium">{formatted}</span>
-      <Pencil className="w-2.5 h-2.5 text-zinc-500 group-hover:text-zinc-300 opacity-60 group-hover:opacity-100" />
+      <Pencil className="w-2.5 h-2.5 text-zinc-500 group-hover:text-zinc-300 opacity-60 group-hover:opacity-100 shrink-0" />
     </button>
   );
 }

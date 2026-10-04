@@ -46,9 +46,8 @@ export default function AdminConsoleDashboard() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // AI engine status
-  const [ollamaOnline, setOllamaOnline] = useState(false);
-  const [activeModel, setActiveModel] = useState('gemini-2.0-flash');
-  const [availableModels, setAvailableModels] = useState<string[]>([]);
+  const [aiOnline, setAiOnline] = useState(false);
+  const [activeModel, setActiveModel] = useState('gemini-flash');
 
   const loadData = () => {
     fetch('/api/leads')
@@ -64,14 +63,13 @@ export default function AdminConsoleDashboard() {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
-          setOllamaOnline(!!data.isOnline);
-          if (data.models && data.models.length > 0) {
-            setAvailableModels(data.models);
-            setActiveModel(data.models[0]);
+          setAiOnline(!!data.isOnline);
+          if (data.model) {
+            setActiveModel(data.model);
           }
         }
       })
-      .catch(() => setOllamaOnline(false));
+      .catch(() => setAiOnline(false));
   };
 
   useEffect(() => {
@@ -89,15 +87,14 @@ export default function AdminConsoleDashboard() {
       .then((res) => res.json())
       .then((data) => {
         if (isMounted && data) {
-          setOllamaOnline(!!data.isOnline);
-          if (data.models && data.models.length > 0) {
-            setAvailableModels(data.models);
-            setActiveModel(data.models[0]);
+          setAiOnline(!!data.isOnline);
+          if (data.model) {
+            setActiveModel(data.model);
           }
         }
       })
       .catch(() => {
-        if (isMounted) setOllamaOnline(false);
+        if (isMounted) setAiOnline(false);
       });
 
     return () => {
@@ -503,7 +500,7 @@ export default function AdminConsoleDashboard() {
         
         {/* Top Breadcrumb Bar */}
         <DashboardHeader
-          ollamaOnline={ollamaOnline}
+          aiOnline={aiOnline}
           activeModel={activeModel}
           isLoading={isLoading}
           onRefresh={handleRefresh}
@@ -513,7 +510,7 @@ export default function AdminConsoleDashboard() {
         />
 
         {/* 3. Main Dashboard Body */}
-        <main className="p-4 sm:p-6 space-y-6 max-w-[1600px] w-full">
+        <main className={`p-4 sm:p-6 space-y-6 w-full ${viewMode === 'kanban' ? 'max-w-none' : 'max-w-[1600px]'}`}>
           
           {/* Dashboard Header with Icon, Title & Action Pill Buttons */}
           <DashboardHeading

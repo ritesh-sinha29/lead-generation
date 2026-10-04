@@ -8,6 +8,7 @@ export async function GET() {
       success: true, 
       settings,
       hasEnvGeminiKey: !!process.env.GEMINI_API_KEY,
+      hasEnvOpenAIKey: !!process.env.OPENAI_API_KEY,
       hasEnvGrokKey: !!process.env.GROK_API_KEY
     });
   } catch (error) {
