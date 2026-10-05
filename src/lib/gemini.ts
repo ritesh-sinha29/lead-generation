@@ -9,15 +9,24 @@ export async function generateRelatablePitchWithGemini(
   providedApiKey?: string
 ): Promise<SalesPitchKit | null> {
   const settings = getSettings();
+  const isVertex = process.env.GOOGLE_GENAI_USE_VERTEXAI === 'true' || Boolean(process.env.GOOGLE_CLOUD_PROJECT);
   const apiKey = providedApiKey || process.env.GEMINI_API_KEY || settings.geminiApiKey || '';
 
-  if (!apiKey) {
-    console.warn('No Gemini API key provided, falling back to deterministic problem-solving engine.');
+  if (!apiKey && !isVertex) {
+    console.warn('No Gemini API key or Vertex AI config provided, falling back to deterministic problem-solving engine.');
     return null;
   }
 
   try {
-    const ai = new GoogleGenAI({ apiKey });
+    const ai = new GoogleGenAI(
+      isVertex
+        ? {
+            vertexai: true,
+            project: process.env.GOOGLE_CLOUD_PROJECT || 'zeno-500814',
+            location: process.env.GOOGLE_CLOUD_LOCATION || 'us-central1',
+          }
+        : { apiKey }
+    );
 
     const currency = 'INR';
     const currencySymbol = '₹';
@@ -160,41 +169,9 @@ Generate a complete SalesPitchKit JSON object including competitorAnalysis.`;
       );
     };
 
-    let candidateModels = [
-      'gemini-flash-latest',
-      'gemini-3.5-flash',
-      'gemini-3-flash-preview',
-      'gemini-3.1-pro-preview',
-      'gemini-flash-lite-latest',
-      'gemini-pro-latest',
-      'gemini-2.5-flash',
-      'gemini-2.5-pro'
-    ];
-
-    try {
-      const modelPager = await ai.models.list();
-      const discovered: string[] = [];
-      if (modelPager) {
-        for await (const m of modelPager) {
-          const rawName = (m.name || '').replace(/^models\//, '');
-          if (rawName && !isSpecializedModel(rawName)) {
-            const methods = (m as any).supportedGenerationMethods || (m as any).supportedActions;
-            if (!methods || methods.includes('generateContent')) {
-              if (rawName.includes('flash')) {
-                discovered.unshift(rawName);
-              } else {
-                discovered.push(rawName);
-              }
-            }
-          }
-        }
-      }
-      if (discovered.length > 0) {
-        candidateModels = Array.from(new Set([...discovered, ...candidateModels]));
-      }
-    } catch (e) {
-      console.warn('Model auto-discovery skipped, using latest text model aliases');
-    }
+    const candidateModels = isVertex
+      ? ['gemini-2.5-flash']
+      : ['gemini-2.5-flash', 'gemini-flash-latest'];
 
     let response: any = null;
 
@@ -213,8 +190,12 @@ Generate a complete SalesPitchKit JSON object including competitorAnalysis.`;
         if (response && response.text) {
           break;
         }
-      } catch (err) {
-        console.warn(`Pitch model ${model} failed, trying next candidate...`, err instanceof Error ? err.message : err);
+      } catch (err: any) {
+        console.warn(`Pitch model ${model} failed:`, err?.message || String(err).slice(0, 100));
+        // If 429 or quota, break immediately to avoid waiting
+        if (err?.status === 429 || String(err).includes('429') || String(err).includes('RESOURCE_EXHAUSTED')) {
+          break;
+        }
       }
     }
 

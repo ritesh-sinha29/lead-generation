@@ -254,10 +254,11 @@ export async function scrapeLiveLeadsWithGemini(
 ): Promise<Lead[]> {
   const { niche, city, country = 'India', count = 15 } = req;
   const settings = getSettings();
+  const isVertex = process.env.GOOGLE_GENAI_USE_VERTEXAI === 'true' || Boolean(process.env.GOOGLE_CLOUD_PROJECT);
   const apiKey = process.env.GEMINI_API_KEY || settings.geminiApiKey;
 
-  if (!apiKey) {
-    console.log('No Gemini API key available for live Google Search. Falling back to structured seed scraper.');
+  if (!apiKey && !isVertex) {
+    console.log('No Gemini API key or Vertex AI config available for live Google Search. Falling back to structured seed scraper.');
     return [];
   }
 
@@ -311,7 +312,15 @@ ${existingNames.slice(0, 80).map(n => `- ${n}`).join('\n')}`
   const requestedCandidateCount = Math.min(Math.max(count + (existingNames.length > 0 ? 8 : 4), 15), 30);
 
   try {
-    const ai = new GoogleGenAI({ apiKey });
+    const ai = new GoogleGenAI(
+      isVertex
+        ? {
+            vertexai: true,
+            project: process.env.GOOGLE_CLOUD_PROJECT || 'zeno-500814',
+            location: process.env.GOOGLE_CLOUD_LOCATION || 'us-central1'
+          }
+        : { apiKey: apiKey! }
+    );
 
     const isAnyNiche = niche.toLowerCase().includes('any niche') || niche.toLowerCase().includes('top in-demand') || niche.toLowerCase().includes('top high-ticket');
 
@@ -389,39 +398,38 @@ Return a strict JSON array of objects with keys:
     };
 
     let priorityOrder = [
-      'gemini-flash-latest',
-      'gemini-3.5-flash',
-      'gemini-3-flash-preview',
-      'gemini-3.1-pro-preview',
-      'gemini-flash-lite-latest',
-      'gemini-pro-latest',
       'gemini-2.5-flash',
-      'gemini-2.5-pro'
+      'gemini-2.0-flash',
+      'gemini-1.5-flash',
+      'gemini-3.5-flash',
+      'gemini-flash-latest',
     ];
 
-    try {
-      const modelPager = await ai.models.list();
-      const discovered: string[] = [];
-      if (modelPager) {
-        for await (const m of modelPager) {
-          const rawName = (m.name || '').replace(/^models\//, '');
-          if (rawName && !isSpecializedModel(rawName)) {
-            const methods = (m as any).supportedGenerationMethods || (m as any).supportedActions;
-            if (!methods || methods.includes('generateContent')) {
-              if (rawName.includes('flash')) {
-                discovered.unshift(rawName);
-              } else {
-                discovered.push(rawName);
+    if (!isVertex) {
+      try {
+        const modelPager = await ai.models.list();
+        const discovered: string[] = [];
+        if (modelPager) {
+          for await (const m of modelPager) {
+            const rawName = (m.name || '').replace(/^publishers\/google\/models\//, '').replace(/^models\//, '');
+            if (rawName && !isSpecializedModel(rawName)) {
+              const methods = (m as any).supportedGenerationMethods || (m as any).supportedActions;
+              if (!methods || methods.includes('generateContent')) {
+                if (rawName.includes('flash')) {
+                  discovered.push(rawName);
+                } else {
+                  discovered.push(rawName);
+                }
               }
             }
           }
         }
+        if (discovered.length > 0) {
+          priorityOrder = Array.from(new Set([...priorityOrder, ...discovered]));
+        }
+      } catch (e) {
+        console.warn('Model auto-discovery skipped, using standard models');
       }
-      if (discovered.length > 0) {
-        priorityOrder = Array.from(new Set([...discovered, ...priorityOrder]));
-      }
-    } catch (e) {
-      console.warn('Model auto-discovery skipped, using latest text model aliases');
     }
 
     let response: any = null;
@@ -429,7 +437,7 @@ Return a strict JSON array of objects with keys:
 
     for (const model of priorityOrder) {
       try {
-        response = await ai.models.generateContent({
+        const candidateResponse = await ai.models.generateContent({
           model,
           contents: prompt,
           config: {
@@ -437,9 +445,15 @@ Return a strict JSON array of objects with keys:
             temperature: 0.1, // Low temperature for maximum factual precision
           }
         });
-        if (response && response.text) {
-          console.log(`Successfully generated leads using model: ${model}`);
-          break;
+        if (candidateResponse && candidateResponse.text) {
+          const hasJsonArray = /\[[\s\S]*\]/.test(candidateResponse.text);
+          if (hasJsonArray) {
+            response = candidateResponse;
+            console.log(`Successfully generated leads using model: ${model}`);
+            break;
+          } else {
+            console.warn(`Model ${model} responded without JSON array, trying next model...`);
+          }
         }
       } catch (err: any) {
         lastErr = err;
