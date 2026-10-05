@@ -397,13 +397,15 @@ Return a strict JSON array of objects with keys:
       );
     };
 
-    let priorityOrder = [
+    const configuredModel = process.env.GEMINI_MODEL || process.env.GEMINI_SEARCH_MODEL;
+    let priorityOrder = Array.from(new Set([
+      ...(configuredModel ? [configuredModel] : []),
       'gemini-2.5-flash',
       'gemini-2.0-flash',
       'gemini-1.5-flash',
-      'gemini-3.5-flash',
+      'gemini-2.5-pro',
       'gemini-flash-latest',
-    ];
+    ]));
 
     if (!isVertex) {
       try {
