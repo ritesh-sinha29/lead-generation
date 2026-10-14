@@ -67,9 +67,9 @@ export function DashboardSidebar({
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-bold tracking-tight text-white">
-              LeadPulse
+              Ixion Labs
             </span>
-            <span className="text-[10px] text-zinc-500 font-mono -mt-0.5">Admin Suite</span>
+            <span className="text-[10px] text-zinc-500 font-mono -mt-0.5">AI Growth Suite</span>
           </div>
         </Link>
 

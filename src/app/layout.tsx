@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LeadPulse | Daily AI Lead Generation & Sales Closer Suite",
+  title: "Ixion Labs | Daily AI Lead Generation & Sales Closer Suite",
   description: "Get high-intent leads daily across Web Dev, AI Chatbots, Voice Calling Agents, Portfolios & SEO/AEO/GEO with instant cold call scripts, flaw audits and WhatsApp pitches.",
 };
 
@@ -28,8 +28,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+      <body
+        className="min-h-full flex flex-col bg-background text-foreground font-sans"
+        suppressHydrationWarning
+      >
         <ConvexClientProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </ConvexClientProvider>

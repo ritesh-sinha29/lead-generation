@@ -24,7 +24,8 @@ import {
   FileText,
   Trophy,
   Target,
-  Zap
+  Zap,
+  Download
 } from 'lucide-react';
 import { Lead, ObjectionHandler, LeadStatus, SalesPitchKit, getLeadDealValue, sanitizeToINR } from '@/types/lead';
 import ServiceGapBadge from './ServiceGapBadge';

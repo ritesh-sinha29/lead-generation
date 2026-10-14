@@ -20,7 +20,8 @@ import {
   Zap,
   ArrowLeft,
   Menu,
-  X
+  X,
+  Download
 } from 'lucide-react';
 import { Lead, sanitizeToINR } from '@/types/lead';
 import { Button } from '@/components/ui/button';
@@ -143,6 +144,21 @@ Verified & Prepared by AI Growth Systems`;
               >
                 {copiedPitch ? <Check className="w-3.5 h-3.5 mr-1.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5 mr-1.5 text-zinc-400" />}
                 <span>{copiedPitch ? 'Copied Outreach' : 'Copy Outreach Hook'}</span>
+              </Button>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  if (selectedLeadId) {
+                    window.open(`/api/export?format=pdf&leadId=${selectedLeadId}`, '_blank');
+                  }
+                }}
+                className="hidden sm:inline-flex h-8 px-2.5 text-xs bg-zinc-950 border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-900 rounded-lg cursor-pointer"
+                title="Download formatted PDF proposal"
+              >
+                <Download className="w-3.5 h-3.5 mr-1.5 text-rose-400" />
+                <span>Download PDF</span>
               </Button>
 
               <Button

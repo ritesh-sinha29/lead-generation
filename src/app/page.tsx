@@ -507,6 +507,9 @@ export default function AdminConsoleDashboard() {
           onOpenGenerator={() => setIsGeneratorOpen(true)}
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
+          statusFilter={statusFilter}
+          selectedNiche={selectedNiche}
+          searchQuery={searchQuery}
         />
 
         {/* 3. Main Dashboard Body */}

@@ -28,7 +28,7 @@ export default function Navbar({
 }: NavbarProps) {
   const pathname = usePathname();
 
-  const handleExport = (format: 'csv' | 'json') => {
+  const handleExport = (format: 'pdf' | 'csv' | 'json') => {
     window.open(`/api/export?format=${format}`, '_blank');
   };
 
@@ -46,7 +46,7 @@ export default function Navbar({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-lg text-foreground tracking-tight">LeadPulse</span>
+                <span className="font-bold text-lg text-foreground tracking-tight">Ixion Labs</span>
                 <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
                   Daily Engine
                 </span>
@@ -119,15 +119,25 @@ export default function Navbar({
             <span className={`w-2 h-2 rounded-full ${aiOnline ? 'bg-secondary' : 'bg-primary'}`} />
           </div>
 
-          {/* Export Button */}
-          <button
-            onClick={() => handleExport('csv')}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-card hover:bg-muted text-foreground border border-border shadow-xs transition-colors"
-            title="Export all leads to CSV"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Export CSV</span>
-          </button>
+          {/* Export Buttons */}
+          <div className="hidden sm:flex items-center gap-1.5">
+            <button
+              onClick={() => handleExport('pdf')}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-card hover:bg-muted text-foreground border border-border shadow-xs transition-colors cursor-pointer"
+              title="Export all leads to PDF report"
+            >
+              <Download className="w-3.5 h-3.5 text-rose-400" />
+              <span>PDF</span>
+            </button>
+            <button
+              onClick={() => handleExport('csv')}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-card hover:bg-muted text-foreground border border-border shadow-xs transition-colors cursor-pointer"
+              title="Export all leads to Excel / CSV"
+            >
+              <Download className="w-3.5 h-3.5 text-emerald-400" />
+              <span>CSV</span>
+            </button>
+          </div>
 
           {/* 1-Click Generate Daily Leads */}
           {onOpenGenerator && (
